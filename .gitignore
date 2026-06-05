@@ -1,0 +1,60 @@
+# Dependencies
+node_modules
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage
+coverage
+*.lcov
+.nyc_output
+
+# Build output
+dist
+build
+out
+
+# Cache
+.cache
+.parcel-cache
+.eslintcache
+.stylelintcache
+.rpt2_cache
+.rts2_cache_*
+.tsbuildinfo
+
+# IDE and OS
+.DS_Store
+Thumbs.db
+.idea
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# Env files
+.env
+.env.*
+!.env.example
+
+# Prisma
+/src/generated/prisma
+prisma/migrations
+
+# Misc
+*.tgz
+*.swp
+*.swo
+*.orig

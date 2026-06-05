@@ -1,0 +1,144 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+
+enum Role {
+  ADMIN
+  CMSADMIN
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  REJECTED
+  RESCHEDULED
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  LOST
+}
+
+
+
+
+model User {
+  id        Int       @id @default(autoincrement())
+  name      String
+  careof    String    
+  phone     String    @unique
+  email     String?   @unique
+  address   String    
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  bookings  Booking[]
+}
+
+model Admin {
+  id        Int       @id @default(autoincrement())
+  Username  String    @unique
+  email     String?   @unique
+  password  String
+  role      Role      @default(ADMIN)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Booking {
+  id                  String @id @default(cuid())
+  bookingReference    String @unique
+  userId              Int
+  doctorId            String
+  appointmentDate     DateTime
+  status              BookingStatus @default(PENDING)
+  notes               String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  user                User @relation(fields: [userId], references: [id])
+  doctor              Doctor @relation(fields: [doctorId], references: [id])
+  payments            Payment[]
+}
+
+model Doctor {
+  id                 String @id @default(cuid())
+  name               String
+  specializationId   String
+  experienceYears    Int?
+  bookingFee         Decimal
+  profileImage       String?
+  isActive           Boolean @default(true)
+  schedules          Json @default("[]")
+  specialization     Specialization @relation(fields: [specializationId], references: [id])
+  bookings           Booking[]
+  leads              Lead[]
+}
+
+model Specialization {
+
+  id          String @id @default(cuid())
+  name        String @unique
+  description String?
+  doctors     Doctor[]
+}
+
+
+model Lead {
+
+  id                 String @id @default(cuid())
+  name               String
+  phone              String
+  preferredDate      DateTime
+  doctorId           String
+  notes              String?
+  status             LeadStatus @default(NEW)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  doctor             Doctor @relation(fields: [doctorId], references: [id])
+}
+
+model Payment {
+  id             String        @id @default(cuid())
+  bookingId      String
+  amount         Decimal
+  transactionId  String?        @unique
+  paymentStatus  PaymentStatus @default(PENDING)
+  paidAt         DateTime?
+  booking        Booking       @relation(fields: [bookingId], references: [id])
+  createdAt      DateTime      @default(now())
+}
+
+
+
+model Blog {
+
+  id              String @id @default(cuid())
+  title           String
+  slug            String @unique
+  content         String
+  featuredImage   String?
+  isPublished     Boolean @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+
