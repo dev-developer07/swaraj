@@ -111,6 +111,37 @@ export class bookingController {
                 return;
             }
 
+            // Verify if appointment date matches doctor's scheduled days
+            let doctorSchedules: any[] = [];
+            if (doctor.schedules) {
+                try {
+                    let current = doctor.schedules;
+                    while (typeof current === "string") {
+                        const temp = JSON.parse(current);
+                        if (temp === current) break;
+                        current = temp;
+                    }
+                    doctorSchedules = Array.isArray(current) ? current : [];
+                } catch (e) {
+                    doctorSchedules = [];
+                }
+            }
+
+            if (doctorSchedules.length > 0) {
+                const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                const appointmentWeekday = weekdays[dateObj.getDay()] || "Monday";
+                const isAvailable = doctorSchedules.some(
+                    (s) => s.day.toLowerCase() === appointmentWeekday.toLowerCase()
+                );
+                if (!isAvailable) {
+                    res.status(400).json({
+                        success: false,
+                        message: `Doctor ${doctor.name} is not scheduled to work on ${appointmentWeekday}s. Available days: ${doctorSchedules.map(s => s.day).join(", ")}`
+                    });
+                    return;
+                }
+            }
+
             const bookingReference = `OPD-${Date.now()}-${Math.random().toString(36).substring(2, 7).toUpperCase()}`;
 
             let razorpayOrderId = "";
@@ -367,6 +398,45 @@ export class bookingController {
                 return;
             }
 
+            if (!doctor.isActive) {
+                res.status(400).json({
+                    success: false,
+                    message: "Doctor is currently not accepting bookings"
+                });
+                return;
+            }
+
+            // Verify if preferred date matches doctor's scheduled days
+            let doctorSchedules: any[] = [];
+            if (doctor.schedules) {
+                try {
+                    let current = doctor.schedules;
+                    while (typeof current === "string") {
+                        const temp = JSON.parse(current);
+                        if (temp === current) break;
+                        current = temp;
+                    }
+                    doctorSchedules = Array.isArray(current) ? current : [];
+                } catch (e) {
+                    doctorSchedules = [];
+                }
+            }
+
+            if (doctorSchedules.length > 0) {
+                const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                const appointmentWeekday = weekdays[dateObj.getDay()] || "Monday";
+                const isAvailable = doctorSchedules.some(
+                    (s) => s.day.toLowerCase() === appointmentWeekday.toLowerCase()
+                );
+                if (!isAvailable) {
+                    res.status(400).json({
+                        success: false,
+                        message: `Doctor ${doctor.name} is not scheduled to work on ${appointmentWeekday}s. Available days: ${doctorSchedules.map(s => s.day).join(", ")}`
+                    });
+                    return;
+                }
+            }
+
             const lead = await prisma.lead.create({
                 data: {
                     name,
@@ -386,6 +456,55 @@ export class bookingController {
 
         } catch (error) {
             console.error("Error in requestLead:", error);
+            res.status(500).json({
+                success: false,
+                message: "Internal server error"
+            });
+        }
+    }
+
+    async listPublishedBlogs(req: Request, res: Response): Promise<void> {
+        try {
+            const blogs = await prisma.blog.findMany({
+                where: { isPublished: true },
+                orderBy: { createdAt: "desc" }
+            });
+
+            res.status(200).json({
+                success: true,
+                data: blogs
+            });
+        } catch (error) {
+            console.error("Error listing published blogs:", error);
+            res.status(500).json({
+                success: false,
+                message: "Internal server error"
+            });
+        }
+    }
+
+    async getBlogBySlug(req: Request, res: Response): Promise<void> {
+        try {
+            const { slug } = req.params;
+
+            const blog = await prisma.blog.findUnique({
+                where: { slug: slug as string }
+            });
+
+            if (!blog || !blog.isPublished) {
+                res.status(404).json({
+                    success: false,
+                    message: "Blog post not found"
+                });
+                return;
+            }
+
+            res.status(200).json({
+                success: true,
+                data: blog
+            });
+        } catch (error) {
+            console.error("Error fetching blog by slug:", error);
             res.status(500).json({
                 success: false,
                 message: "Internal server error"

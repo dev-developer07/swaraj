@@ -1,0 +1,174 @@
+import { type FunctionComponent } from "react";
+import { Box, Typography } from "@mui/material";
+import SectionBadge from "./SectionBadge";
+import NavyButton from "./NavyButton";
+import ScrollReveal from "./ScrollReveal";
+
+export type SectionType = {
+  className?: string;
+};
+
+const Section: FunctionComponent<SectionType> = ({ className = "" }) => {
+  return (
+    <Box
+      className={`w-full flex flex-col items-center justify-center !pt-num-0 !pb-num-0 box-border leading-[normal] tracking-[normal] ${className}`}
+    >
+      <section className="w-full max-w-[1360px] rounded-[1125px] flex flex-col items-center relative isolate">
+        <ScrollReveal direction="up" className="w-full flex justify-center">
+          <Box className="w-full h-[890px] rounded-[890px] bg-web-gray-nurse overflow-hidden shrink-0 flex flex-col items-center justify-center gap-11 max-w-[890px]">
+          <section className="w-full flex flex-col items-center gap-[16.2px] max-w-num-599 text-center text-num-16 text-web-woodsmoke font-lilex">
+            <SectionBadge
+              icon="/SVG.svg"
+              label="Welcome to Swaraj"
+              variant="light"
+            />
+            <Box className="w-[500px] flex flex-col items-center !pt-[7.2px] !pb-num-0 !pl-num-0 !pr-num-0 box-border max-w-num-500 text-num-48 font-stack-sans-text">
+              <Box className="relative flex flex-col items-center text-center">
+                <Typography
+                  className="!m-0 w-full relative inline-block max-w-num-500 text-center"
+                  variantMapping={{ inherit: "h1" }}
+                  sx={{
+                    fontFamily: "inherit",
+                    fontWeight: "400",
+                    fontSize: "inherit",
+                    lineHeight: "64.8px",
+                    letterSpacing: "-0.72px",
+                  }}
+                >
+                  Trusted <br /> Multispeciality Care
+                </Typography>
+              </Box>
+            </Box>
+            <Box className="self-stretch flex flex-col items-start font-inter">
+              <Box className="self-stretch [filter:blur(0px)] overflow-hidden flex flex-col items-center !pt-num-0 !pb-num-0 !pl-num-5 !pr-num-5">
+                <div className="w-full relative leading-num-24 inline-block max-w-[588.6px]">
+                  At the heart of Swaraj Hospital is a commitment to advanced
+                  medicine and patient dignity. We don&apos;t just treat
+                  conditions, we focus on the long-term health and wellbeing of
+                  every family we serve. Combining specialist expertise with
+                  compassionate care, we ensure every visit feels personal,
+                  transparent, and world-class.
+                </div>
+              </Box>
+            </Box>
+          </section>
+          <section className="self-stretch flex flex-col items-center max-w-full text-left text-num-16 text-web-woodsmoke font-inter">
+            <Box className="w-[3435.8px] h-num-60 relative bg-web-white overflow-hidden shrink-0 max-w-[387%]">
+              <Box className="absolute top-[16px] left-[-663.5px] flex items-center gap-[60px] shrink-0">
+                <Box className="flex-1 flex flex-col items-start justify-center max-w-full">
+                  <Box className="self-stretch flex items-center gap-[60px]">
+                    <Box className="h-7 flex items-center gap-3">
+                      <Box className="h-7 w-7 relative" />
+                      <Box className="h-6 w-num-101_8 relative" />
+                    </Box>
+                    <Box className="h-7 flex items-center gap-3">
+                      <Box className="h-7 w-7 relative" />
+                      <Box className="h-6 w-num-223_8 relative" />
+                    </Box>
+                    <Box className="h-7 flex items-center gap-3">
+                      <Box className="h-7 w-7 relative" />
+                      <Box className="h-6 w-num-199 relative" />
+                    </Box>
+                    <Box className="h-7 flex items-center gap-3">
+                      <Box className="h-7 w-7 relative" />
+                      <Box className="h-6 w-num-227_7 relative" />
+                    </Box>
+                    <Box className="h-7 flex items-center gap-3">
+                      <Box className="h-7 w-7 relative" />
+                      <Box className="h-6 w-num-186_9 relative" />
+                    </Box>
+                    <Box className="h-7 flex items-center gap-3">
+                      <Box className="h-7 w-7 relative" />
+                      <Box className="h-6 w-num-109_2 relative" />
+                    </Box>
+                  </Box>
+                </Box>
+                <Box className="flex-1 flex flex-col items-start justify-center max-w-full">
+                  <Box className="self-stretch flex items-center gap-[40px] whitespace-nowrap flex-nowrap">
+                    <img className="h-7 w-7 relative object-contain shrink-0" alt="" src="/SVG4.svg" />
+                    <div className="relative leading-num-24 uppercase font-medium text-[16px]">CLIENT SATISFACTION</div>
+                    <img className="h-7 w-7 relative object-contain shrink-0" alt="" src="/SVG4.svg" />
+                    <div className="relative leading-num-24 uppercase font-medium text-[16px]">99% PATIENT SATISFACTION</div>
+                    <img className="h-7 w-7 relative object-contain shrink-0" alt="" src="/SVG4.svg" />
+                    <div className="relative leading-num-24 uppercase font-medium text-[16px]">15+ YEARS OF EXPERTISE</div>
+                    <img className="h-7 w-7 relative object-contain shrink-0" alt="" src="/SVG4.svg" />
+                    <div className="relative leading-num-24 uppercase font-medium text-[16px]">NABH PRE-ACCREDITED</div>
+                    <img className="h-7 w-7 relative object-contain shrink-0" alt="" src="/SVG4.svg" />
+                  </Box>
+                </Box>
+                <Box className="flex-1 flex flex-col items-start justify-center max-w-full">
+                  <Box className="self-stretch flex items-center gap-[60px]">
+                    <Box className="h-7 flex items-center gap-3">
+                      <Box className="h-7 w-7 relative" />
+                      <Box className="h-6 w-num-101_8 relative" />
+                    </Box>
+                    <Box className="h-7 flex items-center gap-3">
+                      <Box className="h-7 w-7 relative" />
+                      <Box className="h-6 w-num-223_8 relative" />
+                    </Box>
+                    <Box className="h-7 flex items-center gap-3">
+                      <Box className="h-7 w-7 relative" />
+                      <Box className="h-6 w-num-199 relative" />
+                    </Box>
+                    <Box className="h-7 flex items-center gap-3">
+                      <Box className="h-7 w-7 relative" />
+                      <Box className="h-6 w-num-227_7 relative" />
+                    </Box>
+                    <Box className="h-7 flex items-center gap-3">
+                      <Box className="h-7 w-7 relative" />
+                      <Box className="h-6 w-num-186_9 relative" />
+                    </Box>
+                    <Box className="h-7 flex items-center gap-3">
+                      <Box className="h-7 w-7 relative" />
+                      <Box className="h-6 w-num-109_2 relative" />
+                    </Box>
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+          </section>
+          <Box className="self-stretch flex flex-col items-start !pt-4 !pb-num-0 !pl-num-0 !pr-num-0">
+            <Box className="self-stretch [filter:blur(0px)] flex items-center justify-center gap-4">
+              <NavyButton
+                label="MORE ABOUT US"
+                variant="filled"
+                endIcon="/container-3.png"
+              />
+              <NavyButton
+                label="Our specialties"
+                variant="outline"
+                endIcon="/container-3.png"
+              />
+            </Box>
+          </Box>
+        </Box>
+        </ScrollReveal>
+        <img
+          className="w-[199.3px] absolute !!m-[0 important] top-[3.6px] left-[177.1px] rounded-num-20 max-h-full object-cover max-w-[199.3px] shrink-0"
+          loading="lazy"
+          alt=""
+          src="/Intro-Image@2x.png"
+        />
+        <img
+          className="w-[244.9px] h-[172.1px] absolute !!m-[0 important] top-[-4.3px] right-[176.4px] rounded-num-20 object-cover max-w-[245.8px] shrink-0"
+          alt=""
+          src="/Intro-Image2@2x.png"
+        />
+        <img
+          className="w-[200px] absolute !!m-[0 important] bottom-[5.7px] left-[176.8px] rounded-num-20 max-h-full object-cover max-w-[200px] shrink-0"
+          loading="lazy"
+          alt=""
+          src="/Intro-Image1@2x.png"
+        />
+        <img
+          className="w-[260.9px] absolute !!m-[0 important] right-[176.3px] bottom-[-3.9px] rounded-num-20 max-h-full object-cover max-w-[261.8px] shrink-0"
+          loading="lazy"
+          alt=""
+          src="/Intro-Image3@2x.png"
+        />
+      </section>
+    </Box>
+  );
+};
+
+export default Section;

@@ -8,5 +8,7 @@ router.get("/doctors-list", bookingController.getDoctors.bind(bookingController)
 router.post("/request-booking", authMiddleware, bookingController.requestBooking.bind(bookingController));
 router.post("/verify-payment", authMiddleware, bookingController.verifyPayment.bind(bookingController));
 router.post("/lead", bookingController.requestLead.bind(bookingController));
+router.get("/blogs", bookingController.listPublishedBlogs.bind(bookingController));
+router.get("/blogs/:slug", bookingController.getBlogBySlug.bind(bookingController));
 
 export default router;

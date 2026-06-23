@@ -1,0 +1,255 @@
+import { type FunctionComponent, useEffect, useRef, useState } from "react";
+import { Box, Typography } from "@mui/material";
+import SectionBadge from "./SectionBadge";
+import ScrollReveal from "./ScrollReveal";
+
+export type FrameComponent1Type = {
+  className?: string;
+};
+
+const FrameComponent1: FunctionComponent<FrameComponent1Type> = ({
+  className = "",
+}) => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [offsetY, setOffsetY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      if (rect.top < viewportHeight && rect.bottom > 0) {
+        const totalDistance = viewportHeight + rect.height;
+        const progress = (viewportHeight - rect.top) / totalDistance;
+        // Shift translateY from -50px to 50px
+        setOffsetY((progress - 0.5) * 100);
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      className={`flex items-start !pt-num-0 !pb-[50px] !pl-num-0 !pr-num-0 box-border max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq925:!pb-num-21 mq925:box-border mq1350:!pb-num-32 mq1350:box-border ${className}`}
+    >
+      <Box className="flex flex-col items-start max-w-full">
+        <Box className="w-[1920px] h-[1200px] relative bg-web-white max-w-full overflow-hidden">
+          <Box className="absolute top-[273.5px] left-[240px] h-[926.5px] flex flex-col items-start max-w-full shrink-0">
+            <ScrollReveal direction="left">
+              <Box className="w-[690px] flex flex-col items-start !pt-3 !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-5 max-w-[690px] mq925:max-w-full">
+              <SectionBadge
+                icon="/SVG.svg"
+                label="our scope"
+                variant="dark"
+              />
+              <Box className="self-stretch flex flex-col items-start !pt-1 !pb-num-0 !pl-num-0 !pr-num-0 text-num-24 font-stack-sans-text">
+                <Typography
+                  className="!m-0 self-stretch relative mq450:text-num-19 mq450:leading-num-29"
+                  variant="inherit"
+                  variantMapping={{ inherit: "h3" }}
+                  sx={{
+                    fontWeight: "400",
+                    lineHeight: "36px",
+                    letterSpacing: "-1.2px",
+                  }}
+                >
+                  The Scope of Our Care
+                </Typography>
+              </Box>
+              <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-2 !pl-num-0 !pr-num-0 text-num-20 text-web-emperor font-inter">
+                <div className="self-stretch relative leading-num-32 mq450:text-num-16 mq450:leading-num-26">
+                  Every patient we treat is a balance of clinical precision and
+                  human compassion. By addressing the root cause with advanced
+                  diagnostics and specialist expertise, we ensure long-term
+                  health and recovery for every family we serve.
+                </div>
+              </Box>
+              <Box className="self-stretch h-0.5 relative border-web-mercury border-solid border-[1px] box-border" />
+              <section className="self-stretch border-web-mercury border-solid border-b-[1px] flex flex-col items-start !pt-2 !pb-num-28 !pl-num-0 !pr-num-0 gap-4 text-left text-num-14 text-web-emperor font-lilex">
+                <Box className="self-stretch flex flex-col items-start">
+                  <div className="self-stretch relative leading-num-24 uppercase font-medium">
+                    Perks and Benefits:
+                  </div>
+                </Box>
+                <Box className="self-stretch flex flex-col items-start gap-4 text-num-18 text-web-woodsmoke font-inter">
+                  <Box className="self-stretch flex items-center gap-4">
+                    <Box className="h-7 w-7 flex flex-col items-start justify-center">
+                      <img
+                        className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
+                        alt=""
+                        src="/SVG5.svg"
+                      />
+                    </Box>
+                    <Box className="flex items-center justify-center">
+                      <div className="w-[641.1px] relative leading-num-28_8 flex items-center shrink-0">
+                        <span className="w-full">
+                          <Typography
+                            variant="inherit"
+                            variantMapping={{ inherit: "span" }}
+                            sx={{ fontWeight: "500", lineHeight: "28.8px" }}
+                          >
+                            ADVANCED DIAGNOSTICS
+                          </Typography>
+                          <Typography
+                            variant="inherit"
+                            variantMapping={{ inherit: "span" }}
+                            sx={{ lineHeight: "28.8px" }}
+                          >
+                            {" "}
+                            — 1.5 Tesla MRI, 64-Slice CT, 4D Ultrasound and
+                            Digital X-Ray under one roof.
+                          </Typography>
+                        </span>
+                      </div>
+                    </Box>
+                  </Box>
+                  <Box className="self-stretch flex items-center gap-4">
+                    <Box className="h-7 w-7 flex flex-col items-start justify-center">
+                      <img
+                        className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
+                        alt=""
+                        src="/SVG5.svg"
+                      />
+                    </Box>
+                    <Box className="flex items-center justify-center">
+                      <div className="w-[592.1px] relative leading-num-28_8 flex items-center shrink-0">
+                        <span className="w-full">
+                          <Typography
+                            variant="inherit"
+                            variantMapping={{ inherit: "span" }}
+                            sx={{ fontWeight: "500", lineHeight: "28.8px" }}
+                          >
+                            SPECIALIST-LED CARE
+                          </Typography>
+                          <Typography
+                            variant="inherit"
+                            variantMapping={{ inherit: "span" }}
+                            sx={{ lineHeight: "28.8px" }}
+                          >
+                            {" "}
+                            — 13+ specialities with experienced doctors across
+                            every major discipline.
+                          </Typography>
+                        </span>
+                      </div>
+                    </Box>
+                  </Box>
+                  <Box className="self-stretch flex items-center gap-4">
+                    <Box className="h-7 w-7 flex flex-col items-start justify-center">
+                      <img
+                        className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
+                        alt=""
+                        src="/SVG5.svg"
+                      />
+                    </Box>
+                    <Box className="flex items-center justify-center">
+                      <div className="w-[639.1px] relative leading-num-28_8 flex items-center shrink-0">
+                        <span className="w-full">
+                          <Typography
+                            variant="inherit"
+                            variantMapping={{ inherit: "span" }}
+                            sx={{ fontWeight: "500", lineHeight: "28.8px" }}
+                          >
+                            ROUND-THE-CLOCK EMERGENCY
+                          </Typography>
+                          <Typography
+                            variant="inherit"
+                            variantMapping={{ inherit: "span" }}
+                            sx={{ lineHeight: "28.8px" }}
+                          >
+                            {" "}
+                            — 24/7 emergency department with ICU on Wheels
+                            ambulance support.
+                          </Typography>
+                        </span>
+                      </div>
+                    </Box>
+                  </Box>
+                  <Box className="self-stretch flex items-center gap-4">
+                    <Box className="h-7 w-7 flex flex-col items-start justify-center">
+                      <img
+                        className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
+                        alt=""
+                        src="/SVG5.svg"
+                      />
+                    </Box>
+                    <Box className="flex items-center justify-center">
+                      <div className="w-[589.1px] relative leading-num-28_8 flex items-center shrink-0">
+                        <span className="w-full">
+                          <Typography
+                            variant="inherit"
+                            variantMapping={{ inherit: "span" }}
+                            sx={{ fontWeight: "500", lineHeight: "28.8px" }}
+                          >
+                            PATIENT DIGNITY FIRST
+                          </Typography>
+                          <Typography
+                            variant="inherit"
+                            variantMapping={{ inherit: "span" }}
+                            sx={{ lineHeight: "28.8px" }}
+                          >
+                            {" "}
+                            — Every consultation, every procedure, designed
+                            around the person not the condition.
+                          </Typography>
+                        </span>
+                      </div>
+                    </Box>
+                  </Box>
+                  <Box className="self-stretch flex items-center gap-4">
+                    <Box className="h-7 w-7 flex flex-col items-start justify-center">
+                      <img
+                        className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
+                        alt=""
+                        src="/SVG5.svg"
+                      />
+                    </Box>
+                    <Box className="flex items-center justify-center">
+                      <div className="w-[621.1px] relative leading-num-28_8 flex items-center shrink-0">
+                        <span className="w-full">
+                          <Typography
+                            variant="inherit"
+                            variantMapping={{ inherit: "span" }}
+                            sx={{ fontWeight: "500", lineHeight: "28.8px" }}
+                          >
+                            RESEARCH-BACKED TREATMENT
+                          </Typography>
+                          <Typography
+                            variant="inherit"
+                            variantMapping={{ inherit: "span" }}
+                            sx={{ lineHeight: "28.8px" }}
+                          >
+                            {" "}
+                            — NABH pre-accredited protocols ensuring safety,
+                            quality and consistency.
+                          </Typography>
+                        </span>
+                      </div>
+                    </Box>
+                  </Box>
+                </Box>
+              </section>
+              </Box>
+            </ScrollReveal>
+          </Box>
+          <Box className="absolute w-[calc(100%_-_1170px)] top-[calc(50%_-_326.5px)] right-[240px] left-[930px] h-[733px] flex flex-col items-start !pt-num-0 !pb-num-0 !pl-num-40 !pr-num-40 box-border max-w-num-1440 shrink-0 mq1825:max-w-full" />
+          <img
+            className="absolute h-[120%] top-[-10%] right-[0px] w-[640px] object-cover shrink-0"
+            style={{
+              transform: `translateY(${offsetY}px)`,
+              willChange: "transform",
+            }}
+            loading="lazy"
+            alt=""
+            src="/Container11@2x.png"
+          />
+        </Box>
+      </Box>
+    </section>
+  );
+};
+
+export default FrameComponent1;

@@ -59,7 +59,7 @@ class TwilioService {
         return true;
       }
 
-      const verification = await this.client.verify.v2
+        const verification = await this.client.verify.v2
         .services(process.env.TWILIO_VERIFY_SERVICE_SID || "")
         .verificationChecks.create({
           to: phoneNumber,
@@ -69,6 +69,27 @@ class TwilioService {
       return verification.status === "approved";
     } catch (error) {
       console.error("Error verifying OTP with Twilio:", error);
+      return false;
+    }
+  }
+
+  async sendSMS(phoneNumber: string, messageBody: string): Promise<boolean> {
+    try {
+      if (!this.config.accountSid || !this.config.authToken || !this.config.phoneNumber) {
+        console.log(`[DEV MODE SMS to ${phoneNumber}]: ${messageBody}`);
+        return true;
+      }
+
+      const message = await this.client.messages.create({
+        body: messageBody,
+        from: this.config.phoneNumber,
+        to: phoneNumber,
+      });
+
+      console.log(`SMS sent successfully: ${message.sid}`);
+      return true;
+    } catch (error) {
+      console.error("Error sending SMS via Twilio:", error);
       return false;
     }
   }
