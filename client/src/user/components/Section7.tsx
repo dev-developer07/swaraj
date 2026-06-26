@@ -1,5 +1,6 @@
 import { type FunctionComponent } from "react";
 import { Box, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export type Section7Type = {
   className?: string;
@@ -13,23 +14,25 @@ const Section7: FunctionComponent<Section7Type> = ({ className = "" }) => {
       <Box className="w-num-1360 flex flex-col items-start gap-6 max-w-full">
         <section className="self-stretch flex items-start !pt-num-0 !pb-6 !pl-num-0 !pr-num-0 gap-[982.2px] text-left text-num-18 text-web-woodsmoke font-inter mq925:gap-[246px] mq1350:gap-[491px] mq1825:flex-wrap mq450:gap-[123px]">
           <Box className="flex items-center">
-            <img
-              className="h-[82.3px] w-[111.7px] relative"
-              loading="lazy"
-              alt=""
-              src="/1-922.svg"
-            />
+            <Link to="/">
+              <img
+                className="h-[82.3px] w-[111.7px] relative cursor-pointer"
+                loading="lazy"
+                alt=""
+                src="/1-922.svg"
+              />
+            </Link>
           </Box>
           <Box className="h-[69.6px] w-num-188_8 flex flex-col items-start !pt-[39.8px] !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-[11px]">
             <Box className="!mt-[-40.8px] w-num-188_8 flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0 box-border shrink-0">
-              <div className="relative leading-num-28_8">
+              <a href="tel:+916305550362" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative leading-num-28_8">
                 +91 (630) 555-0362
-              </div>
+              </a>
             </Box>
             <Box className="w-num-188_8 flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0 box-border shrink-0">
-              <div className="relative leading-num-28_8 shrink-0">
+              <a href="mailto:swarajhospital@gmail.com" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative leading-num-28_8 shrink-0">
                 swarajhospital@gmail.com
-              </div>
+              </a>
             </Box>
           </Box>
         </section>
@@ -52,62 +55,68 @@ const Section7: FunctionComponent<Section7Type> = ({ className = "" }) => {
                     </Box>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                    <Link to="/specialty/general-medicine" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
                       general medicine
-                    </div>
+                    </Link>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                    <Link to="/specialty/general-surgery" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
                       general surgery
-                    </div>
+                    </Link>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">{`Obstetrics & Gynaecology`}</div>
+                    <Link to="/specialty/obstetrics-gynaecology" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                      {`Obstetrics & Gynaecology`}
+                    </Link>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                    <Link to="/specialty/orthopaedics-joint-replacement" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
                       {`Orthopaedics `}
                       <br />
                       {`& Joint Replacement`}
-                    </div>
+                    </Link>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">{`Pediatrics & Neonatology`}</div>
+                    <Link to="/specialty/paediatrics-neonatology" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                      {`Pediatrics & Neonatology`}
+                    </Link>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                    <Link to="/specialty/cardiology" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
                       Cardiology
-                    </div>
+                    </Link>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                    <Link to="/specialty/minimal-access-laparoscopic-surgery" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
                       {`minimal access `}
                       <br />
                       {`& laparoscopic surgery`}
-                    </div>
+                    </Link>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                    <Link to="/specialty/ophthalmology" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
                       ophthalmology
-                    </div>
+                    </Link>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                    <Link to="/specialty/neurology" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
                       neurology
-                    </div>
+                    </Link>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                    <Link to="/specialty/urology" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
                       urology
-                    </div>
+                    </Link>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">{`dental & maxillofacial surgery`}</div>
+                    <Link to="/specialty/dental-maxillofacial-surgery" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                      {`dental & maxillofacial surgery`}
+                    </Link>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                    <Link to="/specialty/gastroenterology" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
                       gastroenterology
-                    </div>
+                    </Link>
                   </Box>
                 </Box>
                 <Box className="flex flex-col items-start !pt-num-0 !pb-[40.8px] !pl-num-0 !pr-num-0 box-border gap-[11px] min-w-[159.31px] mq450:!pb-[27px] mq450:box-border">
@@ -124,39 +133,39 @@ const Section7: FunctionComponent<Section7Type> = ({ className = "" }) => {
                     </Box>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
                       24/7 emergency
-                    </div>
+                    </Link>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
                       icu
-                    </div>
+                    </Link>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
                       stepdown icu
-                    </div>
+                    </Link>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
                       nicu
-                    </div>
+                    </Link>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
                       modular ot
-                    </div>
+                    </Link>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
                       hdu
-                    </div>
+                    </Link>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
                       24/7 ambulance
-                    </div>
+                    </Link>
                   </Box>
                 </Box>
                 <Box className="flex flex-col items-start gap-[11px] min-w-[159.31px]">
@@ -173,47 +182,49 @@ const Section7: FunctionComponent<Section7Type> = ({ className = "" }) => {
                     </Box>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
                       Pathology
-                    </div>
+                    </Link>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
                       Radiology
-                    </div>
+                    </Link>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
                       1.5 tesla mri
-                    </div>
+                    </Link>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
                       64 slice ct
-                    </div>
+                    </Link>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
                       4d ultrasound
-                    </div>
+                    </Link>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
                       digital x-ray
-                    </div>
+                    </Link>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
                       color doppler
-                    </div>
+                    </Link>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
                       mammography
-                    </div>
+                    </Link>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">{`echo & tmt test`}</div>
+                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
+                      {`echo & tmt test`}
+                    </Link>
                   </Box>
                 </Box>
               </Box>
@@ -296,14 +307,14 @@ const Section7: FunctionComponent<Section7Type> = ({ className = "" }) => {
               <Box className="flex flex-col items-start !pt-num-23 !pb-num-0 !pl-num-0 !pr-num-0">
                 <Box className="flex flex-col items-start gap-[15px]">
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative leading-num-28_8">
+                    <a href="tel:+916305550362" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative leading-num-28_8">
                       +91 (630) 555-0362
-                    </div>
+                    </a>
                   </Box>
                   <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <div className="relative leading-num-28_8">
+                    <a href="mailto:swarajhospital@gmail.com" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative leading-num-28_8">
                       swarajhospital@gmail.com
-                    </div>
+                    </a>
                   </Box>
                 </Box>
               </Box>
@@ -316,7 +327,12 @@ const Section7: FunctionComponent<Section7Type> = ({ className = "" }) => {
                     Shri Jyoti Nagar, Patnagarh Road, Balangir
                   </div>
                 </Box>
-                <Box className="border-web-woodsmoke border-solid border-b-[1px] box-border flex items-center !pt-num-0 !pb-num-2 !pl-num-0 !pr-num-0 gap-2 max-w-[525px] text-num-16 font-lilex mq925:max-w-full">
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Swaraj+Hospital+Shri+Jyoti+Nagar+Patnagarh+Road+Balangir"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="no-underline border-web-woodsmoke border-solid border-b-[1px] box-border flex items-center !pt-num-0 !pb-num-2 !pl-num-0 !pr-num-0 gap-2 max-w-[525px] text-num-16 font-lilex text-web-woodsmoke hover:text-[#1F2A44] hover:border-[#1F2A44] transition-colors mq925:max-w-full"
+                >
                   <Box className="flex flex-col items-start">
                     <div className="relative tracking-[-0.8px] leading-num-24 uppercase font-semibold">
                       View on map
@@ -325,7 +341,7 @@ const Section7: FunctionComponent<Section7Type> = ({ className = "" }) => {
                   <Box className="flex flex-col items-start !pt-px !pb-[7px] !pl-num-0 !pr-num-0">
                     <img className="w-4 h-4 relative" alt="" src="/SVG27.svg" />
                   </Box>
-                </Box>
+                </a>
               </Box>
             </Box>
           </section>
@@ -350,13 +366,13 @@ const Section7: FunctionComponent<Section7Type> = ({ className = "" }) => {
           </Box>
           <Box className="flex items-center gap-2.5 max-w-full font-lilex mq450:flex-wrap">
             <Box className="flex flex-col items-start">
-              <div className="relative tracking-[-0.16px] leading-num-24 uppercase font-medium">{`Terms & Conditions`}</div>
+              <Link to="/" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.16px] leading-num-24 uppercase font-medium">{`Terms & Conditions`}</Link>
             </Box>
             <Box className="h-5 w-px relative bg-web-mercury mq450:w-full mq450:h-px" />
             <Box className="flex flex-col items-start">
-              <div className="relative tracking-[-0.16px] leading-num-24 uppercase font-medium">
+              <Link to="/" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.16px] leading-num-24 uppercase font-medium">
                 Privacy Policy
-              </div>
+              </Link>
             </Box>
           </Box>
         </Box>

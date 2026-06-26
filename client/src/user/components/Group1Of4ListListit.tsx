@@ -1,6 +1,8 @@
 import { type FunctionComponent, useMemo, type CSSProperties } from "react";
 import { Typography, Box } from "@mui/material";
 import NavyButton from "./NavyButton";
+import { useNavigate } from "react-router-dom";
+import { getSpecialtySlug } from "../data/specialtyData";
 
 export type Group1Of4ListListitType = {
   className?: string;
@@ -23,6 +25,8 @@ const Group1Of4ListListit: FunctionComponent<Group1Of4ListListitType> = ({
   containerPadding1,
   advancedHeartCareWidth,
 }) => {
+  const navigate = useNavigate();
+
   const container1Style: CSSProperties = useMemo(() => {
     return {
       padding: containerPadding,
@@ -43,6 +47,11 @@ const Group1Of4ListListit: FunctionComponent<Group1Of4ListListitType> = ({
 
   return (
     <Box
+      onClick={() => {
+        if (cardiology) {
+          navigate(`/speciality/${getSpecialtySlug(cardiology)}`);
+        }
+      }}
       className={`w-[436px] group hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer rounded-num-24 bg-web-gray-nurse flex flex-col items-start !p-3 box-border max-w-num-436 shrink-0 text-center text-num-24 text-web-woodsmoke font-stack-sans-text mq450:max-w-full ${className}`}
     >
       <Box className="self-stretch rounded-num-16 overflow-hidden shrink-0">

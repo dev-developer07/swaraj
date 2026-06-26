@@ -18,7 +18,7 @@ const Section5: FunctionComponent<Section5Type> = ({ className = "" }) => {
         setRightSpacer(rect.left);
       }
     };
-    
+
     updateSpacer();
     window.addEventListener("resize", updateSpacer);
     return () => window.removeEventListener("resize", updateSpacer);
@@ -38,103 +38,49 @@ const Section5: FunctionComponent<Section5Type> = ({ className = "" }) => {
 
   const [diagnosticsItems] = useState([
     {
-      sliceCTScan: "1.5 Tesla MRI",
+      sliceCTScan: "Pathology",
+      sVG1: "/SVG18.svg",
+      testingCardBG: "/Card.png",
+    },
+    {
+      sliceCTScan: "Radiology",
       sVG1: "/SVG16.svg",
-      sVG: "/SVG28.svg",
-      testingCardBG: "/Testing-Card-BG@2x.png",
-      gingivalTissueHealth: "1.5 Tesla MRI",
-      periodontalPocketDepth: "Brain & Spine Imaging",
-      gumRecessionTracking: "Joint Diagnostics",
-      inflammationMarkers: "Soft Tissue Analysis",
-      softTissueScreening: "Vascular Scans",
+      testingCardBG: "/Card(1).png",
+    },
+    {
+      sliceCTScan: "1.5 Tesla MRI",
+      sVG1: "/SVG18.svg",
+      testingCardBG: "/Card(2).png",
     },
     {
       sliceCTScan: "64-Slice CT Scan",
-      sVG1: "/SVG18.svg",
-      sVG: "/SVG14.svg",
-      testingCardBG: "/Testing-Card-BG1@2x.png",
-      gingivalTissueHealth: "Gingival & Tissue Health",
-      periodontalPocketDepth: "Periodontal Pocket Depth",
-      gumRecessionTracking: "Gum Recession Tracking",
-      inflammationMarkers: "Inflammation Markers",
-      softTissueScreening: "Soft Tissue Screening",
-    },
-    {
-      sliceCTScan: "Advanced Diagnostics",
       sVG1: "/SVG16.svg",
-      sVG: "/SVG28.svg",
-      testingCardBG: "/Testing-Card-BG2@2x.png",
-      gingivalTissueHealth: "Advanced Diagnostics",
-      periodontalPocketDepth: "Digital 3D Bone Mapping",
-      gumRecessionTracking: "High-Res Panoramic X-Ray",
-      inflammationMarkers: "Oral Cancer Screening",
-      softTissueScreening: "Jaw Joint (TMJ) Function",
-    },
-    {
-      sliceCTScan: "Cardiac Diagnostics",
-      sVG1: "/SVG18.svg",
-      sVG: "/SVG17.svg",
-      testingCardBG: "/Testing-Card-BG3@2x.png",
-      gingivalTissueHealth: "Aesthetic Symmetry",
-      periodontalPocketDepth: "Tooth Shade Graduation",
-      gumRecessionTracking: "Midline Alignment",
-      inflammationMarkers: "Smile Arc Analysis",
-      softTissueScreening: "Proportional Symmetry",
+      testingCardBG: "/Card(3).png",
     },
     {
       sliceCTScan: "4D Ultrasound",
-      sVG1: "/SVG16.svg",
-      sVG: "/SVG28.svg",
-      testingCardBG: "/Testing-Card-BG@2x.png",
-      gingivalTissueHealth: "4D Ultrasound",
-      periodontalPocketDepth: "Fetal Development Tracking",
-      gumRecessionTracking: "Abdominal Imaging",
-      inflammationMarkers: "Pelvic Ultrasound",
-      softTissueScreening: "Thyroid Scans",
+      sVG1: "/SVG18.svg",
+      testingCardBG: "/Card(4).png",
     },
     {
-      sliceCTScan: "Endoscopy",
+      sliceCTScan: "Digital X-Ray",
+      sVG1: "/SVG16.svg",
+      testingCardBG: "/Card(5).png",
+    },
+    {
+      sliceCTScan: "Colour Doppler",
       sVG1: "/SVG18.svg",
-      sVG: "/SVG14.svg",
-      testingCardBG: "/Testing-Card-BG1@2x.png",
-      gingivalTissueHealth: "Endoscopy Services",
-      periodontalPocketDepth: "Upper GI Endoscopy",
-      gumRecessionTracking: "Colonoscopy",
-      inflammationMarkers: "Biopsy Collection",
-      softTissueScreening: "Polyp Removal",
+      testingCardBG: "/Card(6).png",
     },
     {
       sliceCTScan: "Mammography",
       sVG1: "/SVG16.svg",
-      sVG: "/SVG28.svg",
-      testingCardBG: "/Testing-Card-BG2@2x.png",
-      gingivalTissueHealth: "Mammography",
-      periodontalPocketDepth: "Digital Breast Tomosynthesis",
-      gumRecessionTracking: "Breast Ultrasound",
-      inflammationMarkers: "Image-Guided Biopsy",
-      softTissueScreening: "Bone Density Testing",
+      testingCardBG: "/Card(7).png",
     },
     {
-      sliceCTScan: "Pathology Lab",
+      sliceCTScan: "Echo & TMT Test",
       sVG1: "/SVG18.svg",
-      sVG: "/SVG17.svg",
-      testingCardBG: "/Testing-Card-BG3@2x.png",
-      gingivalTissueHealth: "Pathology Services",
-      periodontalPocketDepth: "Blood & Fluid Analysis",
-      gumRecessionTracking: "Tissue Biopsy",
-      inflammationMarkers: "Molecular Testing",
-      softTissueScreening: "Cytology",
-    },
-    {
-      sliceCTScan: "Genetic Testing",
-      sVG1: "/SVG16.svg",
-      sVG: "/SVG28.svg",
-      testingCardBG: "/Testing-Card-BG@2x.png",
-      gingivalTissueHealth: "Genetic Screening",
-      periodontalPocketDepth: "DNA Sequencing",
-      gumRecessionTracking: "Hereditary Risk Assessment",
-      inflammationMarkers: "Pharmacogenomics",
-      softTissueScreening: "Prenatal Genetics",
+      testingCardBG: "/Card(8).png",
     },
   ]);
 
@@ -182,12 +128,6 @@ const Section5: FunctionComponent<Section5Type> = ({ className = "" }) => {
               <Group2Of
                 key={index}
                 testingCardBG={item.testingCardBG}
-                sVG={item.sVG}
-                gingivalTissueHealth={item.gingivalTissueHealth}
-                periodontalPocketDepth={item.periodontalPocketDepth}
-                gumRecessionTracking={item.gumRecessionTracking}
-                inflammationMarkers={item.inflammationMarkers}
-                softTissueScreening={item.softTissueScreening}
                 sVG1={item.sVG1}
                 sliceCTScan={item.sliceCTScan}
               />

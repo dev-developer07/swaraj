@@ -1,0 +1,1306 @@
+import { FunctionComponent, useMemo, type CSSProperties } from "react";
+
+// ─── Types ───────────────────────────────────────────────────────────────────
+
+type DoctorItem = {
+    container: string;
+    name: string;
+    specialty: string;
+    gridColumn: string;
+    gridRow: string;
+};
+
+type JobItem = {
+    date: string;
+    title: string;
+    department: string;
+    commitment: string;
+};
+
+// ─── Data ────────────────────────────────────────────────────────────────────
+
+const doctors: DoctorItem[] = [
+    {
+        container: "/Container5@2x.png",
+        name: "DR. Ankit Padhi",
+        specialty: "Cardiology",
+        gridColumn: "1",
+        gridRow: "1",
+    },
+    {
+        container: "/Container6@2x.png",
+        name: "Dr. Suraj Samal",
+        specialty: "Neurology",
+        gridColumn: "2",
+        gridRow: "1",
+    },
+    {
+        container: "/Container7@2x.png",
+        name: "DR. Priyanka Patra",
+        specialty: "Obstetrics & Gynaecology",
+        gridColumn: "1",
+        gridRow: "2",
+    },
+    {
+        container: "/Container8@2x.png",
+        name: "DR. Anuradha Acharya",
+        specialty: "Orthopaedics & Joint Replacement",
+        gridColumn: "2",
+        gridRow: "2",
+    },
+    {
+        container: "/Container9@2x.png",
+        name: "DR. Barsha Dash",
+        specialty: "Pediatrics & Neonatology",
+        gridColumn: "1",
+        gridRow: "3",
+    },
+];
+
+const jobs: JobItem[] = [
+    {
+        date: "2026-02-15",
+        title: "Consultant Cardiologist",
+        department: "Cardiology",
+        commitment: "Part-time",
+    },
+    {
+        date: "2026-03-20",
+        title: "Resident Medical Officer",
+        department: "Emergency",
+        commitment: "Full-time",
+    },
+    {
+        date: "2026-04-25",
+        title: "Radiographer",
+        department: "Diagnostics",
+        commitment: "Permanent",
+    },
+    {
+        date: "2026-02-28",
+        title: "Staff Nurse — ICU",
+        department: "Critical Care",
+        commitment: "Full-time",
+    },
+    {
+        date: "2026-03-01",
+        title: "Physiotherapist",
+        department: "Rehabilitation",
+        commitment: "Full-time",
+    },
+];
+
+const benefits = [
+    {
+        label: "Competitive Remuneration",
+        img: "/Intro-Image@2x.png",
+        top: "-60.2px",
+        gridRow: "1 / span 8",
+        rotation: "rotate(-4deg)",
+    },
+    {
+        label: "Advanced Infrastructure",
+        img: "/Intro-Image1@2x.png",
+        top: "-135.4px",
+        gridRow: "1 / span 4",
+        rotation: "rotate(3deg)",
+    },
+    {
+        label: "Continuous Learning",
+        img: "/Intro-Image2@2x.png",
+        top: "-210.6px",
+        gridRow: "1 / span 2",
+        rotation: "rotate(-2deg)",
+    },
+    {
+        label: "Health Coverage",
+        img: "/Intro-Image3@2x.png",
+        top: "-285.8px",
+        gridRow: "1 / span 2",
+        rotation: "rotate(4deg)",
+    },
+    {
+        label: "Supportive Environment",
+        img: "/Intro-Image@2x.png",
+        top: "-285.8px",
+        gridRow: "1 / span 2",
+        rotation: "rotate(-3deg)",
+    },
+];
+
+// ─── Inline Styles ───────────────────────────────────────────────────────────
+
+const s: Record<string, CSSProperties> = {
+    // Root
+    pageRoot: {
+        width: "100%",
+        position: "relative",
+        backgroundColor: "#fff",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        lineHeight: "normal",
+        letterSpacing: "normal",
+    },
+
+    // ── Hero Section ──
+    heroSection: {
+        alignSelf: "stretch",
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        padding: "80px 24px 0",
+        boxSizing: "border-box",
+        maxWidth: "100%",
+    },
+    heroInner: {
+        width: "100%",
+        maxWidth: "1240px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "80px",
+        alignSelf: "center",
+    },
+    heroCopy: {
+        width: "100%",
+        maxWidth: "950px",
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        textAlign: "center",
+        fontSize: "16px",
+        color: "#0b0c0f",
+        fontFamily: "Lilex, Arial, sans-serif",
+    },
+    badge: {
+        filter: "blur(0)",
+        borderRadius: "4px",
+        backgroundColor: "#f1f2f1",
+        display: "flex",
+        alignItems: "center",
+        padding: "4px 8px 4px 6px",
+        gap: "4px",
+        flexShrink: 0,
+    },
+    badgeIconWrap: {
+        height: "20px",
+        width: "20px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        justifyContent: "center",
+    },
+    badgeIcon: {
+        alignSelf: "stretch",
+        flex: 1,
+        position: "relative",
+        maxWidth: "100%",
+        overflow: "hidden",
+        maxHeight: "100%",
+    },
+    badgeText: {
+        position: "relative",
+        lineHeight: "24px",
+        textTransform: "uppercase",
+        fontWeight: 500,
+    },
+    heroTitleWrap: {
+        alignSelf: "stretch",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        padding: "24px 0 0",
+        fontSize: "70px",
+        fontFamily: "Stack Sans Text, Arial, sans-serif",
+    },
+    heroTitleInner: {
+        filter: "blur(0)",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        padding: "0",
+    },
+    heroH1: {
+        margin: 0,
+        position: "relative",
+        fontSize: "inherit",
+        letterSpacing: "-1.05px",
+        lineHeight: "84px",
+        fontWeight: 400,
+        fontFamily: "inherit",
+        textAlign: "center",
+    },
+    heroSubWrap: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        padding: "24px 0 0",
+        flexShrink: 0,
+        fontSize: "20px",
+        color: "#505050",
+        fontFamily: "Inter, Arial, sans-serif",
+    },
+    heroSubInner: {
+        filter: "blur(0)",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        padding: "0",
+    },
+    heroSubText: {
+        maxWidth: "728px",
+        width: "100%",
+        position: "relative",
+        lineHeight: "32px",
+        textAlign: "center",
+    },
+    heroImage: {
+        width: "100%",
+        maxWidth: "1240px",
+        height: "auto",
+        aspectRatio: "1240/744",
+        borderRadius: "36px",
+        objectFit: "cover",
+    },
+
+    // ── Mission Section ──
+    missionSection: {
+        width: "1440px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        padding: "140px 40px 0",
+        boxSizing: "border-box",
+        gap: "80px",
+        maxWidth: "1440px",
+        textAlign: "left",
+        fontSize: "20px",
+        color: "#0b0c0f",
+        fontFamily: "Lilex, Arial, sans-serif",
+    },
+    missionRow: {
+        display: "flex",
+        alignItems: "flex-start",
+        alignSelf: "stretch",
+        gap: "160px",
+        minHeight: "513.59px",
+        maxWidth: "100%",
+        flexShrink: 0,
+    },
+    missionBadgeCol: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        alignSelf: "stretch",
+        textAlign: "left",
+        fontSize: "16px",
+    },
+    missionCopyCol: {
+        alignSelf: "stretch",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        gap: "44px",
+        maxWidth: "650px",
+        width: "650px",
+        textAlign: "left",
+        fontSize: "48px",
+        fontFamily: "Stack Sans Text, Arial, sans-serif",
+    },
+    missionH1Wrap: {
+        filter: "blur(0)",
+        display: "flex",
+        alignItems: "flex-end",
+        padding: "0 0 0.2px",
+        boxSizing: "border-box",
+        maxWidth: "100%",
+        width: "650px",
+    },
+    missionH1: {
+        margin: 0,
+        height: "130px",
+        width: "508px",
+        position: "relative",
+        fontSize: "inherit",
+        letterSpacing: "-0.72px",
+        lineHeight: "64.8px",
+        fontWeight: 400,
+        fontFamily: "inherit",
+        display: "inline-block",
+    },
+    missionBodyStack: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        gap: "24px",
+        fontSize: "20px",
+        fontFamily: "Inter, Arial, sans-serif",
+        maxWidth: "100%",
+    },
+    missionSubHeadWrap: {
+        width: "650px",
+        filter: "blur(0)",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        fontSize: "24px",
+        fontFamily: "Stack Sans Text, Arial, sans-serif",
+    },
+    missionSubHead: {
+        margin: 0,
+        position: "relative",
+        fontSize: "inherit",
+        letterSpacing: "-1.2px",
+        lineHeight: "36px",
+        fontWeight: 400,
+        fontFamily: "inherit",
+    },
+    missionBodyText: {
+        alignSelf: "stretch",
+        position: "relative",
+        lineHeight: "32px",
+    },
+    missionBodyBlur: {
+        width: "650px",
+        filter: "blur(0)",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        maxWidth: "100%",
+    },
+
+    // ── Why Join Us Section ──
+    whySection: {
+        alignSelf: "stretch",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        padding: "140px 24px 0",
+        boxSizing: "border-box",
+        position: "relative",
+        isolation: "isolate",
+        maxWidth: "100%",
+    },
+    whyOverlayBlur: {
+        width: "100%",
+        height: "120.07%",
+        position: "absolute",
+        margin: 0,
+        top: "10%",
+        right: 0,
+        bottom: "-30.08%",
+        left: 0,
+        filter: "blur(300px)",
+        borderRadius: "1560px",
+        backgroundColor: "rgba(119, 145, 165, 0.6)",
+        zIndex: 0,
+        flexShrink: 0,
+    },
+    whyCard: {
+        alignSelf: "stretch",
+        borderRadius: "16px",
+        backgroundColor: "#fff",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        padding: "80px 44px 140px",
+        maxWidth: "100%",
+        zIndex: 1,
+        flexShrink: 0,
+        boxSizing: "border-box",
+        position: "relative",
+    },
+    whyHeaderRow: {
+        alignSelf: "stretch",
+        borderBottom: "1px solid #e6e6e6",
+        display: "flex",
+        alignItems: "flex-start",
+        justifyContent: "space-between",
+        padding: "0 0 80px",
+        gap: "20px",
+        maxWidth: "100%",
+        textAlign: "left",
+        fontSize: "16px",
+        color: "#0b0c0f",
+        fontFamily: "Lilex, Arial, sans-serif",
+    },
+    whyHeaderLeft: {
+        display: "flex",
+        alignItems: "flex-start",
+        justifyContent: "space-between",
+        gap: "20px",
+        alignSelf: "stretch",
+        maxWidth: "100%",
+    },
+    whyH1Wrap: {
+        filter: "blur(0)",
+        display: "flex",
+        alignItems: "flex-end",
+        padding: "0 0 0.2px 38px",
+        boxSizing: "border-box",
+        maxWidth: "100%",
+        textAlign: "right",
+        fontSize: "48px",
+        fontFamily: "Stack Sans Text, Arial, sans-serif",
+    },
+    whyH1: {
+        margin: 0,
+        position: "relative",
+        fontSize: "inherit",
+        letterSpacing: "-0.72px",
+        lineHeight: "64.8px",
+        fontWeight: 400,
+        fontFamily: "inherit",
+        color: "#0b0c0f",
+    },
+    // Benefits list
+    benefitsSection: {
+        alignSelf: "stretch",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        padding: "24px 0 0",
+        gap: "32px",
+        textAlign: "left",
+        fontSize: "16px",
+        color: "#7791a5",
+        fontFamily: "Lilex, Arial, sans-serif",
+    },
+    benefitsLabel: {
+        alignSelf: "stretch",
+        position: "relative",
+        lineHeight: "24px",
+        textTransform: "uppercase",
+    },
+    benefitRow: {
+        alignSelf: "stretch",
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        padding: "16px 0",
+        boxSizing: "border-box",
+        textAlign: "left",
+        fontSize: "24px",
+        color: "#0b0c0f",
+        fontFamily: "Inter, Arial, sans-serif",
+    },
+    benefitLabelCell: {
+        display: "flex",
+        alignItems: "center",
+        flexShrink: 0,
+    },
+    benefitLabelInner: {
+        display: "flex",
+        alignItems: "center",
+        gap: "16px",
+    },
+    benefitIconWrap: {
+        height: "24px",
+        width: "24px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    benefitLabelText: {
+        margin: 0,
+        position: "relative",
+        fontSize: "inherit",
+        lineHeight: "51.2px",
+        fontWeight: 400,
+        fontFamily: "inherit",
+    },
+    benefitImage: {
+        width: "460px",
+        height: "460px",
+        margin: 0,
+        position: "absolute",
+        right: "44px",
+        objectFit: "cover",
+        maxWidth: "460px",
+        borderRadius: "16px",
+        border: "8px solid #ffffff",
+        boxShadow: "0 10px 25px rgba(0, 0, 0, 0.12)",
+        transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), z-index 0.4s, box-shadow 0.4s",
+        pointerEvents: "none",
+    },
+
+    // ── Specialists Section ──
+    specialistsSection: {
+        width: "1360px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "flex-start",
+        padding: "200px 0 0",
+        gap: "20px",
+        boxSizing: "border-box",
+    },
+    specialistsSidebar: {
+        width: "550px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        maxWidth: "550px",
+        textAlign: "left",
+        fontSize: "16px",
+        color: "#0b0c0f",
+        fontFamily: "Lilex, Arial, sans-serif",
+    },
+    specialistsBadge: {
+        filter: "blur(0)",
+        borderRadius: "4px",
+        backgroundColor: "rgba(255,255,255,0.8)",
+        display: "flex",
+        alignItems: "center",
+        padding: "4px 8px 4px 6px",
+        gap: "4px",
+        flexShrink: 0,
+    },
+    specialistsH2Wrap: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        padding: "24px 9px 0 0",
+        flexShrink: 0,
+        fontSize: "64px",
+        fontFamily: "Stack Sans Text, Arial, sans-serif",
+    },
+    specialistsH2: {
+        margin: 0,
+        position: "relative",
+        fontSize: "inherit",
+        letterSpacing: "-1.5px",
+        lineHeight: "76.8px",
+        fontWeight: 400,
+        fontFamily: "inherit",
+    },
+    specialistsBodyWrap: {
+        alignSelf: "stretch",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        padding: "14px 30px 0 0",
+        flexShrink: 0,
+        fontSize: "18px",
+        fontFamily: "Inter, Arial, sans-serif",
+    },
+    specialistsBody: {
+        alignSelf: "stretch",
+        position: "relative",
+        lineHeight: "28.8px",
+    },
+    doctorGrid: {
+        width: "730px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    doctorGridInner: {
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        maxWidth: "100%",
+    },
+    doctorList: {
+        alignSelf: "stretch",
+        height: "570px",
+        display: "grid",
+        boxSizing: "border-box",
+        gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+        gridTemplateRows: "repeat(3, 182px)",
+        gap: "12px",
+    },
+    // Doctor card
+    doctorCard: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        padding: "0 0 6px",
+        textAlign: "left",
+        fontSize: "16px",
+        color: "#0b0c0f",
+        fontFamily: "Inter, Arial, sans-serif",
+    },
+    doctorCardLink: {
+        filter: "blur(0)",
+        borderRadius: "16px",
+        backgroundColor: "#fff",
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        padding: "12px",
+        alignSelf: "stretch",
+        gap: "20px",
+    },
+    doctorCardTop: {
+        display: "flex",
+        alignItems: "flex-start",
+        justifyContent: "space-between",
+        alignSelf: "stretch",
+        gap: "20px",
+    },
+    doctorCardArrowWrap: {
+        overflow: "hidden",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "8px",
+    },
+    doctorCardArrow: {
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        maxWidth: "1920px",
+    },
+    doctorArrowImg: {
+        width: "8px",
+        height: "8px",
+        position: "relative",
+        objectFit: "cover",
+    },
+    doctorPhoto: {
+        height: "80px",
+        width: "80px",
+        borderRadius: "4px",
+        objectFit: "cover",
+    },
+    doctorInfo: {
+        alignSelf: "stretch",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        gap: "4px",
+    },
+    doctorNameWrap: {
+        alignSelf: "stretch",
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+    },
+    doctorName: {
+        alignSelf: "stretch",
+        position: "relative",
+        lineHeight: "24px",
+        textTransform: "uppercase",
+        fontWeight: 500,
+    },
+    doctorSpecialtyWrap: {
+        alignSelf: "stretch",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        color: "#505050",
+    },
+    doctorSpecialty: {
+        alignSelf: "stretch",
+        position: "relative",
+        lineHeight: "24px",
+    },
+
+    // ── Job Openings Section ──
+    jobsSection: {
+        width: "1360px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        padding: "100px 0 0",
+        gap: "80px",
+        boxSizing: "border-box",
+        textAlign: "left",
+        fontSize: "16px",
+        color: "#0b0c0f",
+        fontFamily: "Lilex, Arial, sans-serif",
+        maxWidth: "100%",
+    },
+    jobsHeader: {
+        alignSelf: "stretch",
+        filter: "blur(0)",
+        borderBottom: "1px solid #e6e6e6",
+        display: "flex",
+        alignItems: "flex-end",
+        justifyContent: "space-between",
+        padding: "0 0 48px",
+        gap: "20px",
+        boxSizing: "border-box",
+    },
+    jobsHeaderLeft: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        minWidth: "410px",
+        maxWidth: "410px",
+    },
+    jobsH1Wrap: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        padding: "24px 20px 0 0",
+        flexShrink: 0,
+        fontSize: "64px",
+        fontFamily: "Stack Sans Text, Arial, sans-serif",
+    },
+    jobsH1: {
+        margin: 0,
+        position: "relative",
+        fontSize: "inherit",
+        letterSpacing: "-1.5px",
+        lineHeight: "76.8px",
+        fontWeight: 400,
+        fontFamily: "inherit",
+    },
+    jobsHeaderRight: {
+        flex: 1,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        minWidth: "247px",
+        maxWidth: "380px",
+        color: "#505050",
+        fontFamily: "Inter, Arial, sans-serif",
+    },
+    jobsSubText: {
+        alignSelf: "stretch",
+        position: "relative",
+        lineHeight: "24px",
+    },
+    // Table
+    jobsTable: {
+        alignSelf: "stretch",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        fontSize: "18px",
+        color: "#7791a5",
+    },
+    jobsTableHead: {
+        alignSelf: "stretch",
+        height: "44.8px",
+        display: "grid",
+        boxSizing: "border-box",
+        gridTemplateColumns: "1fr 1fr 1fr 0.75fr 0.75fr 0.75fr",
+        gridTemplateRows: "28.796899795532227px",
+        gap: "16px",
+        paddingLeft: "16px",
+        paddingBottom: "16px",
+        overflow: "auto",
+    },
+    jobsTableHeadCell: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        padding: "0 0 0.8px",
+        boxSizing: "border-box",
+    },
+    jobsTableHeadText: {
+        position: "relative",
+        lineHeight: "28.8px",
+        textTransform: "uppercase",
+    },
+    jobsTableBody: {
+        alignSelf: "stretch",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+    },
+    // Job row
+    jobRow: {
+        alignSelf: "stretch",
+        height: "89px",
+        filter: "blur(0)",
+        backgroundColor: "#fff",
+        borderTop: "1px solid #e6e6e6",
+        boxSizing: "border-box",
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr 1fr 0.75fr 0.75fr 0.75fr",
+        alignItems: "center",
+        gap: "16px",
+        paddingLeft: "16px",
+        paddingRight: "16px",
+        textAlign: "left",
+        fontSize: "18px",
+        color: "#505050",
+        fontFamily: "Inter, Arial, sans-serif",
+    },
+    jobCellDate: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        justifyContent: "center",
+        color: "#7791a5",
+    },
+    jobCellTitle: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        justifyContent: "center",
+        color: "#0b0c0f",
+    },
+    jobCellDept: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        justifyContent: "center",
+        color: "#505050",
+    },
+    jobCellCommit: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        justifyContent: "center",
+        color: "#505050",
+    },
+    jobCellLocation: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        justifyContent: "center",
+        color: "#505050",
+    },
+    jobCellText: {
+        position: "relative",
+        lineHeight: "28.8px",
+        color: "inherit",
+    },
+    jobSeeBtn: {
+        cursor: "pointer",
+        border: 0,
+        padding: "12px 20px",
+        backgroundColor: "#f1f2f1",
+        height: "48px",
+        borderRadius: "8px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        boxSizing: "border-box",
+        position: "relative",
+        isolation: "isolate",
+    },
+    jobSeeBtnText: {
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        padding: "0 3px",
+        zIndex: 2,
+        position: "relative",
+        fontSize: "16px",
+        lineHeight: "24px",
+        textTransform: "uppercase",
+        fontWeight: 500,
+        fontFamily: "Lilex, Arial, sans-serif",
+        color: "#0b0c0f",
+    },
+    jobSeeBtnArrow: {
+        margin: 0,
+        position: "absolute",
+        top: "20px",
+        left: "126.6px",
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        maxWidth: "1920px",
+        zIndex: 1,
+    },
+    jobSeeBtnIcon: {
+        width: "24px",
+        height: "24px",
+        position: "relative",
+        overflow: "hidden",
+        flexShrink: 0,
+        zIndex: 1,
+    },
+};
+
+// ─── Sub-components ───────────────────────────────────────────────────────────
+
+const Badge = ({ text }: { text: string }) => (
+    <div style={s.badge}>
+        <div style={s.badgeIconWrap}>
+            <img style={s.badgeIcon} loading="lazy" alt="" src="/SVG.svg" />
+        </div>
+        <div
+            style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+            }}
+        >
+            <div style={s.badgeText}>{text}</div>
+        </div>
+    </div>
+);
+
+const BenefitRow = ({
+    label,
+}: {
+    label: string;
+}) => {
+    return (
+        <section style={s.benefitRow}>
+            <div style={s.benefitLabelCell}>
+                <div style={s.benefitLabelInner}>
+                    <div style={s.benefitIconWrap}>
+                        <img style={s.badgeIcon} loading="lazy" alt="" src="/Vector(1).png" />
+                    </div>
+                    <div
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "flex-start",
+                        }}
+                    >
+                        <h1 style={s.benefitLabelText}>{label}</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+const DoctorCard = ({ item }: { item: DoctorItem }) => {
+    const cardStyle: CSSProperties = useMemo(
+        () => ({
+            ...s.doctorCard,
+            gridColumn: item.gridColumn,
+            gridRow: item.gridRow,
+        }),
+        [item.gridColumn, item.gridRow]
+    );
+    return (
+        <div style={cardStyle}>
+            <div style={s.doctorCardLink}>
+                <div style={s.doctorCardTop}>
+                    <div style={s.doctorCardArrowWrap}>
+                        <div style={s.doctorCardArrow}>
+                            <img
+                                style={s.doctorArrowImg}
+                                alt=""
+                                src="/699f6877b8f1c6d2edfe4bd7-Button-20Ball-svg@2x.png"
+                            />
+                        </div>
+                    </div>
+                    <img
+                        style={s.doctorPhoto}
+                        loading="lazy"
+                        alt=""
+                        src={item.container}
+                    />
+                </div>
+                <div style={s.doctorInfo}>
+                    <div style={s.doctorNameWrap}>
+                        <div style={s.doctorName}>{item.name}</div>
+                    </div>
+                    <div style={s.doctorSpecialtyWrap}>
+                        <div style={s.doctorSpecialty}>{item.specialty}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+const JobRow = ({ item }: { item: JobItem }) => (
+    <div style={s.jobRow}>
+        <div style={s.jobCellDate}>
+            <div style={s.jobCellText}>{item.date}</div>
+        </div>
+        <div style={s.jobCellTitle}>
+            <div style={s.jobCellText}>{item.title}</div>
+        </div>
+        <div style={s.jobCellDept}>
+            <div style={s.jobCellText}>{item.department}</div>
+        </div>
+        <div style={s.jobCellCommit}>
+            <div style={s.jobCellText}>{item.commitment}</div>
+        </div>
+        <div style={s.jobCellLocation}>
+            <div style={s.jobCellText}>On-site</div>
+        </div>
+        <button style={s.jobSeeBtn}>
+            <div style={s.jobSeeBtnText}>See role</div>
+            <div style={s.jobSeeBtnArrow}>
+                <img
+                    style={s.doctorArrowImg}
+                    alt=""
+                    src="/699f6877b8f1c6d2edfe4bd7-Button-20Ball-svg@2x.png"
+                />
+            </div>
+            <div style={s.jobSeeBtnIcon} />
+        </button>
+    </div>
+);
+
+// ─── Main Component ───────────────────────────────────────────────────────────
+
+const JobBoardSection: FunctionComponent = () => {
+    return (
+        <div style={s.pageRoot}>
+            {/* ── 1. Hero ── */}
+            <main style={s.heroSection}>
+                <div style={s.heroInner}>
+                    <section style={s.heroCopy}>
+                        <div style={s.badge}>
+                            <div style={s.badgeIconWrap}>
+                                <img style={s.badgeIcon} loading="lazy" alt="" src="/SVG.svg" />
+                            </div>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    alignItems: "flex-start",
+                                }}
+                            >
+                                <div style={s.badgeText}>JOB BOARD</div>
+                            </div>
+                        </div>
+                        <div style={s.heroTitleWrap}>
+                            <div style={s.heroTitleInner}>
+                                <h1 style={s.heroH1}>
+                                    Build the Future of
+                                    <br /> Healthcare in Odisha
+                                </h1>
+                            </div>
+                        </div>
+                        <div style={s.heroSubWrap}>
+                            <div style={s.heroSubInner}>
+                                <div style={s.heroSubText}>
+                                    Join a team dedicated to clinical excellence and compassionate
+                                    care. We are raising the standard of healthcare in western
+                                    Odisha, one patient at a time.
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <img
+                        style={s.heroImage}
+                        loading="lazy"
+                        alt=""
+                        src="/Job Board Hero Image.png"
+                    />
+                </div>
+            </main>
+
+            {/* ── 2. Mission ── */}
+            <section style={s.missionSection}>
+                <div style={s.missionRow}>
+                    {/* Left badge column */}
+                    <section style={s.missionBadgeCol}>
+                        <Badge text="ABOUT OUR MISSION" />
+                    </section>
+
+                    {/* Right copy column */}
+                    <section style={s.missionCopyCol}>
+                        <div style={s.missionH1Wrap}>
+                            <h1 style={s.missionH1}>
+                                Make a Difference and
+                                <br /> Transform Lives
+                            </h1>
+                        </div>
+                        <div style={s.missionBodyStack}>
+                            <div style={s.missionSubHeadWrap}>
+                                <h3 style={s.missionSubHead}>
+                                    Join the team redefining healthcare in Balangir.
+                                </h3>
+                            </div>
+                            <div style={s.missionBodyBlur}>
+                                <div style={s.missionBodyText}>
+                                    We believe clinical excellence starts with a supportive
+                                    environment. Our focus is on building a workplace where your
+                                    expertise grows alongside our patients' wellbeing — ensuring a
+                                    balanced, meaningful and rewarding professional life.
+                                </div>
+                            </div>
+                            <div style={s.missionBodyBlur}>
+                                <div style={s.missionBodyText}>
+                                    Swaraj Hospital combines advanced diagnostic infrastructure
+                                    with a deeply human approach to care. By joining us, you
+                                    become a key part of a mission to make world-class healthcare
+                                    accessible to every family in western Odisha.
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </section>
+
+            {/* ── 3. Why Join Us ── */}
+            <section style={s.whySection}>
+                <div style={s.whyOverlayBlur} />
+                <div style={s.whyCard}>
+                    {/* Header */}
+                    <div style={s.whyHeaderRow}>
+                        <div style={s.whyHeaderLeft}>
+                            <Badge text="WHY JOIN US?" />
+                        </div>
+                        <div style={s.whyH1Wrap}>
+                            <h1 style={s.whyH1}>
+                                Love your work,
+                                <br />
+                                Grow your career.
+                            </h1>
+                        </div>
+                    </div>
+
+                    {/* Benefits */}
+                    <div style={s.benefitsSection}>
+                        <div
+                            style={{
+                                alignSelf: "stretch",
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "flex-start",
+                            }}
+                        >
+                            <div style={s.benefitsLabel}>Benefits list</div>
+                        </div>
+                        <div
+                            style={{
+                                alignSelf: "stretch",
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "flex-start",
+                            }}
+                        >
+                            {benefits.map((b, i) => (
+                                <BenefitRow
+                                    key={i}
+                                    label={b.label}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ── 4. Specialists ── */}
+            <section style={s.specialistsSection}>
+                {/* Sidebar */}
+                <section style={s.specialistsSidebar}>
+                    <div style={s.specialistsBadge}>
+                        <div style={s.badgeIconWrap}>
+                            <img style={s.badgeIcon} alt="" src="/SVG.svg" />
+                        </div>
+                        <div
+                            style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "flex-start",
+                            }}
+                        >
+                            <div
+                                style={{
+                                    ...s.badgeText,
+                                    fontFamily: "Lilex, Arial, sans-serif",
+                                }}
+                            >
+                                OUR SPECIALISTS
+                            </div>
+                        </div>
+                    </div>
+                    <div style={s.specialistsH2Wrap}>
+                        <h1 style={s.specialistsH2}>
+                            The Hands Behind
+                            <br />
+                            the Care
+                        </h1>
+                    </div>
+                    <div style={s.specialistsBodyWrap}>
+                        <div style={s.specialistsBody}>
+                            From emergency medicine to advanced surgery, our specialists cover
+                            every dimension of patient health.
+                        </div>
+                    </div>
+                </section>
+
+                {/* Doctor grid */}
+                <div style={s.doctorGrid}>
+                    <div style={s.doctorGridInner}>
+                        <div style={s.doctorList}>
+                            {doctors.map((doc, i) => (
+                                <DoctorCard key={i} item={doc} />
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ── 5. Job Openings ── */}
+            <footer style={s.jobsSection}>
+                {/* Header */}
+                <div style={s.jobsHeader}>
+                    <div style={s.jobsHeaderLeft}>
+                        <Badge text="CURRENT OPENINGS" />
+                        <div style={s.jobsH1Wrap}>
+                            <h1 style={s.jobsH1}>
+                                Start your
+                                <br />
+                                new chapter.
+                            </h1>
+                        </div>
+                    </div>
+                    <div style={s.jobsHeaderRight}>
+                        <div
+                            style={{
+                                alignSelf: "stretch",
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "flex-start",
+                            }}
+                        >
+                            <div style={s.jobsSubText}>
+                                Explore open roles that match your expertise. Join
+                                <br />a team focused on excellence and growth.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Table */}
+                <div style={s.jobsTable}>
+                    {/* Head row */}
+                    <div style={s.jobsTableHead}>
+                        {[
+                            { label: "DATE", col: 1 },
+                            { label: "Title", col: 2 },
+                            { label: "Department", col: 3 },
+                            { label: "Commitment", col: 4 },
+                            { label: "Location", col: 5 },
+                        ].map(({ label, col }) => (
+                            <div
+                                key={col}
+                                style={
+                                    {
+                                        ...s.jobsTableHeadCell,
+                                        gridColumn: col,
+                                        gridRow: 1,
+                                    } as CSSProperties
+                                }
+                            >
+                                <div style={s.jobsTableHeadText}>{label}</div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Body rows */}
+                    <div style={s.jobsTableBody}>
+                        {jobs.map((job, i) => (
+                            <JobRow key={i} item={job} />
+                        ))}
+                    </div>
+                </div>
+            </footer>
+        </div>
+    );
+};
+
+export default JobBoardSection;

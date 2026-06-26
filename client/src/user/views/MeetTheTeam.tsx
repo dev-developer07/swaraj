@@ -1,0 +1,333 @@
+import { type FunctionComponent, useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
+import { Box, Typography } from "@mui/material";
+import Navbar from "../components/Navbar";
+import SectionBadge from "../components/SectionBadge";
+import Section3 from "../components/Section3";
+import Background1 from "../components/Background1";
+import Section7 from "../components/Section7";
+
+export interface Doctor {
+  id: number;
+  name: string;
+  specialty: string;
+  qualifications: string;
+  availability: string;
+  days: string[];
+  image: string;
+}
+
+export const DOCTORS_DATA: Doctor[] = [
+  {
+    id: 1,
+    name: "DR. ANKIT PADHI",
+    specialty: "Cardiology",
+    qualifications: "MBBS, MD · Senior Consultant",
+    availability: "Available from 10:30 AM to 1:30 PM",
+    days: ["Mon", "Wed", "Fri", "Sat", "Sun"],
+    image: "/Container5@2x.png",
+  },
+  {
+    id: 2,
+    name: "Dr. SURAJ SAMAL",
+    specialty: "Neurology",
+    qualifications: "MBBS, DM · Consultant",
+    availability: "Available from 10:30 AM to 1:30 PM",
+    days: ["Tue", "Wed", "Thu", "Sat", "Sun"],
+    image: "/Container8@2x.png",
+  },
+  {
+    id: 3,
+    name: "DR. PRIYANKA PATRA",
+    specialty: "Obstetrics & Gynaecology",
+    qualifications: "MBBS, MS · Senior Specialist",
+    availability: "Available from 10:30 AM to 1:30 PM",
+    days: ["Mon", "Tue", "Wed", "Thu", "Fri"],
+    image: "/Container6@2x.png",
+  },
+  {
+    id: 4,
+    name: "DR. ANURADHA ACHARYA",
+    specialty: "Orthopedics & Joint Replacement",
+    qualifications: "MBBS, MS · Senior Specialist",
+    availability: "Available from 10:30 AM to 1:30 PM",
+    days: ["Mon", "Wed", "Fri", "Sat", "Sun"],
+    image: "/Container9@2x.png",
+  },
+  {
+    id: 5,
+    name: "DR. BARSHA DASH",
+    specialty: "Pediatrics & Neonatology",
+    qualifications: "MBBS, MD · Consultant",
+    availability: "Available from 10:30 AM to 1:30 PM",
+    days: ["Mon", "Tue", "Wed", "Thu", "Sat"],
+    image: "/Container10@2x.png",
+  },
+];
+
+const MeetTheTeam: FunctionComponent = () => {
+  const navigate = useNavigate();
+  const [selectedSpecialty, setSelectedSpecialty] = useState<string>("All");
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
+  const filteredDoctors = useMemo(() => {
+    return DOCTORS_DATA.filter((doc) => {
+      const matchesSpecialty =
+        selectedSpecialty === "All" || doc.specialty === selectedSpecialty;
+      const matchesName = doc.name.toLowerCase().includes(searchTerm.toLowerCase());
+      return matchesSpecialty && matchesName;
+    });
+  }, [selectedSpecialty, searchTerm]);
+
+  return (
+    <Box className="h-auto relative w-full flex flex-col items-start !pt-num-0 !pb-[0.1px] !pl-num-0 !pr-num-0 box-border leading-[normal] tracking-[normal]">
+      <Box className="sticky top-0 z-[100] w-full bg-[#FFFFFF] shadow-[0_2px_10px_rgba(0,0,0,0.03)]">
+        <Navbar />
+      </Box>
+
+      {/* Main Meet the Team Section */}
+      <Box className="w-full bg-web-gray-nurse flex flex-col items-start !pt-[80px] !pb-[80px] !px-6 box-border min-h-[1400px]">
+        {/* White Background Container */}
+        <Box className="w-full max-w-[1872px] mx-auto rounded-num-16 bg-web-white flex flex-col items-start !pt-[80px] !pb-[80px] !px-[216px] mq925:!px-10 mq1350:!px-[108px] min-h-[1240px] box-border shadow-[0_4px_30px_rgba(0,0,0,0.03)] relative overflow-hidden">
+          {/* Inner Container */}
+          <Box className="w-full max-w-[1440px] flex flex-col items-start gap-10 !px-10 box-border min-h-[1080px]">
+            {/* Header Content */}
+            <Box className="w-full flex flex-row justify-between items-start mq925:flex-col mq925:gap-4">
+              <Box className="pt-[12px]">
+                <SectionBadge icon="/SVG.svg" label="THE SPECIALISTS" variant="dark" />
+              </Box>
+              <Typography
+                className="!m-0 relative font-stack-sans-text text-right mq925:text-left"
+                variant="inherit"
+                variantMapping={{ inherit: "h1" }}
+                sx={{
+                  fontWeight: "400",
+                  lineHeight: "65px",
+                  letterSpacing: "-0.72px",
+                  fontSize: "48px",
+                  color: "#0b0c0f",
+                  width: "450px",
+                  maxWidth: "100%"
+                }}
+              >
+                Expert hands
+              </Typography>
+            </Box>
+
+            {/* Filters Row */}
+            <Box className="w-[760px] max-w-full flex flex-row justify-start items-start gap-[16px] mq925:flex-col mq925:items-stretch">
+              {/* Specialty Select Dropdown */}
+              <div className="relative w-[372px] h-[50px] mq925:w-full">
+                <select
+                  value={selectedSpecialty}
+                  onChange={(e) => setSelectedSpecialty(e.target.value)}
+                  className="w-full h-full bg-[#F1F2F1] text-[#7E7F80] border-none rounded-[12px] appearance-none outline-none font-inter text-num-14 leading-[19px] cursor-pointer transition-all duration-200 hover:bg-[#e6e7e6]"
+                  style={{ paddingLeft: "28px", paddingRight: "52px" }}
+                >
+                  <option value="All">All specialties</option>
+                  <option value="Cardiology">Cardiology</option>
+                  <option value="Neurology">Neurology</option>
+                  <option value="Orthopedics & Joint Replacement">
+                    Orthopedics & Joint Replacement
+                  </option>
+                  <option value="Obstetrics & Gynaecology">Obstetrics & Gynaecology</option>
+                  <option value="Pediatrics & Neonatology">Pediatrics & Neonatology</option>
+                  <option value="General Medicine">General Medicine</option>
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-[16px] text-[#7E7F80]">
+                  <svg
+                    className="fill-current h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Name Search Input */}
+              <div className="relative w-[372px] h-[50px] mq925:w-full">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-[16px] pointer-events-none">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7.33333 12.6667C10.2789 12.6667 12.6667 10.2789 12.6667 7.33333C12.6667 4.38781 10.2789 2 7.33333 2C4.38781 2 2 4.38781 2 7.33333C2 10.2789 4.38781 12.6667 7.33333 12.6667Z"
+                      stroke="#7E7F80"
+                      strokeWidth="1.4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M14 14.0001L11.1 11.1001"
+                      stroke="#7E7F80"
+                      strokeWidth="1.4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Search doctor’s name"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full h-full bg-[#F1F2F1] text-[#7E7F80] border-none rounded-[12px] outline-none font-inter text-num-14 leading-[19px] transition-all duration-200 focus:bg-[#e6e7e6] placeholder:text-[#7E7F80]"
+                  style={{ paddingLeft: "52px", paddingRight: "28px" }}
+                />
+              </div>
+            </Box>
+
+            {/* Doctors List */}
+            <Box
+              className="w-full max-w-[1360px] mx-auto relative transition-all duration-300"
+              style={{ height: `${filteredDoctors.length * 341 - 33}px` }}
+            >
+              {filteredDoctors.length > 0 ? (
+                filteredDoctors.map((doc, index) => {
+                  const topOffset = index * 341;
+                  return (
+                    <Box
+                      key={doc.id}
+                      onClick={() => navigate(`/doctor/${doc.id}`)}
+                      className="w-full max-w-[1360px] h-[308px] mq925:h-auto mq925:py-6 flex flex-row items-center justify-between bg-[#FFFFFF] hover:bg-web-gray-nurse border-t border-solid border-[#f1f2f1] group p-[32px] box-border absolute left-0 transition-all duration-300 ease-in-out cursor-pointer rounded-3xl"
+                      style={{ top: `${topOffset}px` }}
+                    >
+                      {/* Left Info Column */}
+                      <Box className="w-[640px] max-w-[640px] flex flex-col items-start justify-between mq925:w-full h-[276px] relative z-10 m-0 p-0">
+                        {/* Top Info Group (Availability + Days) */}
+                        <Box className="w-[640px] max-w-full flex flex-col items-start gap-[12px] relative m-0 p-0">
+                          {/* Availability Section */}
+                          <Box className="w-[640px] max-w-full h-[24px] flex flex-col items-start relative m-0 p-0">
+                            <span className="text-left font-lilex font-normal text-[16px] leading-[24px] uppercase text-[#7791A5] h-[24px] flex items-center">
+                              {doc.availability}
+                            </span>
+                          </Box>
+
+                          {/* Days Section */}
+                          <Box className="pb-0 px-0 h-[60px] flex flex-col items-start relative box-border">
+                            <Box className="w-max flex flex-row items-center gap-[16px] relative">
+                              {doc.days.map((day) => (
+                                <Box
+                                  key={day}
+                                  className="w-[60px] h-[60px] rounded-[60px] bg-[#FFFFFF] border border-solid border-[#E6E6E6] flex items-center justify-center relative box-border"
+                                >
+                                  <Box className="w-[28px] h-[28px] flex flex-col items-start justify-center relative">
+                                    <span className="text-left font-lilex font-normal text-[16px] leading-[24px] uppercase text-[#000000] w-max">
+                                      {day.slice(0, 3)}
+                                    </span>
+                                  </Box>
+                                </Box>
+                              ))}
+                            </Box>
+                          </Box>
+                        </Box>
+
+                        {/* Doctor Name and Specialty */}
+                        <Box className="w-[640px] max-w-full pb-0 px-0 flex flex-col items-start relative box-border">
+                          <Box className="w-[640px] max-w-full pb-[0.8px] flex flex-col items-start relative box-border">
+                            <Typography
+                              className="!m-0 text-left font-stack-sans-text uppercase"
+                              variant="inherit"
+                              variantMapping={{ inherit: "h2" }}
+                              sx={{
+                                fontWeight: "600",
+                                fontSize: "36px",
+                                lineHeight: "47px",
+                                letterSpacing: "-1px",
+                                color: "#0B0C0F",
+                              }}
+                            >
+                              {doc.name}
+                            </Typography>
+                          </Box>
+                          <Box className="w-[640px] max-w-full pb-[0.8px] flex flex-col items-start relative box-border">
+                            <span className="text-left font-inter font-normal text-[18px] leading-[29px] text-[#505050] h-auto flex items-center">
+                              {doc.specialty} {doc.qualifications}
+                            </span>
+                          </Box>
+                        </Box>
+
+                        {/* Action Buttons Row */}
+                        <Box className="w-[640px] h-[48px] flex flex-row items-center gap-[16px] relative mq450:flex-col mq450:items-stretch">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              alert(`Booking an appointment with ${doc.name}...`);
+                            }}
+                            className="flex flex-row justify-center items-center w-max h-[48px] bg-[#1F2A44] rounded-[8px] border-none cursor-pointer hover:bg-[#151c2e] active:scale-[0.98] transition-all duration-300 outline-none flex-shrink-0"
+                            style={{ paddingTop: "12px", paddingBottom: "12px", paddingLeft: "40px", paddingRight: "40px" }}
+                          >
+                            <div className="py-0 px-[3px] h-auto flex flex-col items-start relative">
+                              <span className="font-lilex font-medium text-[16px] leading-[24px] uppercase text-[#FFFFFF] text-left align-middle w-max">
+                                Book an Appointment
+                              </span>
+                            </div>
+                            <div className="w-[24px] h-[24px] relative flex items-center justify-center shrink-0">
+                              <div className="w-[8px] h-[8px] rounded-full bg-[#0B0C0F] flex items-center justify-center">
+                                <div className="w-[6px] h-[6px] rounded-full bg-[#FFFFFF]" />
+                              </div>
+                            </div>
+                          </button>
+
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              alert(`Requesting in-clinic visit with ${doc.name}...`);
+                            }}
+                            className="flex flex-row justify-center items-center gap-[4px] w-max h-[48px] bg-transparent border border-solid border-web-mercury rounded-[8px] cursor-pointer hover:!bg-[#e6e7e6] active:scale-[0.98] transition-all duration-300 outline-none flex-shrink-0"
+                            style={{ paddingTop: "12px", paddingBottom: "12px", paddingLeft: "40px", paddingRight: "40px" }}
+                          >
+                            <div className="py-0 px-[3px] h-auto flex flex-col items-start relative">
+                              <span className="font-lilex font-medium text-[16px] leading-[24px] uppercase text-[#1F2A44] text-left align-middle w-max">
+                                Request in-clinic visit
+                              </span>
+                            </div>
+                            <div className="w-[24px] h-[24px] relative flex items-center justify-center shrink-0">
+                              <div className="w-[8px] h-[8px] rounded-full bg-[#0B0C0F] flex items-center justify-center">
+                                <div className="w-[6px] h-[6px] rounded-full bg-[#1F2A44]" />
+                              </div>
+                            </div>
+                          </button>
+                        </Box>
+                      </Box>
+
+                      {/* Right Portrait Image */}
+                      <Box className="h-[276px] w-[276px] mq925:hidden overflow-hidden rounded-[16px] relative flex items-center justify-center m-0 p-0">
+                        <img
+                          className="h-[276px] w-[276px] object-cover object-center transition-transform duration-300 group-hover:scale-105 rounded-[16px]"
+                          src={doc.image}
+                          alt={doc.name}
+                        />
+                      </Box>
+                    </Box>
+                  );
+                })
+              ) : (
+                <Box className="w-full flex flex-col items-center justify-center py-20 text-center border-t border-solid border-web-mercury">
+                  <span className="text-[18px] font-medium text-web-rolling-stone font-inter">
+                    No specialists match your criteria.
+                  </span>
+                </Box>
+              )}
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+
+      {/* Advanced Multispeciality Care & Ticker Banner */}
+      <Box className="self-stretch overflow-hidden flex flex-col items-start isolate shrink-0 max-w-full">
+        <Section3 />
+        <Background1 />
+      </Box>
+
+      <Section7 />
+    </Box>
+  );
+};
+
+export default MeetTheTeam;
