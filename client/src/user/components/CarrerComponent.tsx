@@ -1,4 +1,5 @@
-import { FunctionComponent, useMemo, type CSSProperties } from "react";
+import { useMemo, type FunctionComponent, type CSSProperties } from "react";
+import { Link } from "react-router-dom";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -15,6 +16,7 @@ type JobItem = {
     title: string;
     department: string;
     commitment: string;
+    id?: string;
 };
 
 // ─── Data ────────────────────────────────────────────────────────────────────
@@ -63,30 +65,35 @@ const jobs: JobItem[] = [
         title: "Consultant Cardiologist",
         department: "Cardiology",
         commitment: "Part-time",
+        id: "consultant-cardiologist",
     },
     {
         date: "2026-03-20",
         title: "Resident Medical Officer",
         department: "Emergency",
         commitment: "Full-time",
+        id: "resident-medical-officer",
     },
     {
         date: "2026-04-25",
         title: "Radiographer",
         department: "Diagnostics",
         commitment: "Permanent",
+        id: "radiographer",
     },
     {
         date: "2026-02-28",
         title: "Staff Nurse — ICU",
         department: "Critical Care",
         commitment: "Full-time",
+        id: "staff-nurse",
     },
     {
         date: "2026-03-01",
         title: "Physiotherapist",
         department: "Rehabilitation",
         commitment: "Full-time",
+        id: "physiotherapist",
     },
 ];
 
@@ -1026,7 +1033,7 @@ const JobRow = ({ item }: { item: JobItem }) => (
         <div style={s.jobCellLocation}>
             <div style={s.jobCellText}>On-site</div>
         </div>
-        <button style={s.jobSeeBtn}>
+        <Link to={item.id ? `/career/${item.id}` : "/career"} style={{ ...s.jobSeeBtn, textDecoration: "none" }}>
             <div style={s.jobSeeBtnText}>See role</div>
             <div style={s.jobSeeBtnArrow}>
                 <img
@@ -1036,7 +1043,7 @@ const JobRow = ({ item }: { item: JobItem }) => (
                 />
             </div>
             <div style={s.jobSeeBtnIcon} />
-        </button>
+        </Link>
     </div>
 );
 

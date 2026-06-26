@@ -5,6 +5,7 @@ import DoctorDetail from "./views/DoctorDetail";
 import Specialities from "./views/Specialities";
 import Cardiology from "./views/Cardiology";
 import Carrer from "./views/Carrer";
+import CarrerRole from "./views/CarrerRole";
 // import HomeView from "./views/HomeView";
 // import BookAppointmentView from "./views/BookAppointmentView";
 // import CallbackRequestView from "./views/CallbackRequestView";
@@ -26,6 +27,10 @@ export default function UserPortal() {
           <Route path="/specialty/:specialtyId" element={<Cardiology />} />
           <Route path="/carrer" element={<Carrer />} />
           <Route path="/career" element={<Carrer />} />
+          <Route path="/carrer/:roleId" element={<CarrerRole />} />
+          <Route path="/career/:roleId" element={<CarrerRole />} />
+          <Route path="/carrer/role" element={<CarrerRole />} />
+          <Route path="/career/role" element={<CarrerRole />} />
           {/* <Route path="/book" element={<BookAppointmentView />} />
           <Route path="/callback" element={<CallbackRequestView />} />
           <Route path="/blogs" element={<BlogsFeedView />} /> */}
