@@ -9,7 +9,6 @@ import Section5 from "../components/Section5";
 import Container1 from "../components/Container1";
 import Section6 from "../components/Section6";
 import Section3 from "../components/Section3";
-import Background1 from "../components/Background1";
 import Section7 from "../components/Section7";
 import StatCard from "../components/StatCard";
 import Navbar from "../components/Navbar";
@@ -25,7 +24,7 @@ const Container: FunctionComponent = () => {
       {/* Sticky Stacking Sections Wrapper */}
       <Box className="w-full flex flex-col items-start gap-0 relative">
         {/* 2nd Section (Slide 1): Circle with Multispecialty Care Introduction */}
-        <Box className="sticky top-0 w-full z-10 bg-web-white">
+        <Box className="sticky top-0 w-full z-10 bg-web-white pb-num-200">
           <FrameComponent />
         </Box>
 
@@ -35,7 +34,7 @@ const Container: FunctionComponent = () => {
         </Box>
 
         {/* 4th Section (Slide 3): Specialties & Stats */}
-        <Box className="sticky top-0 w-full z-30 bg-web-white shadow-[0_-20px_40px_rgba(0,0,0,0.06)]">
+        <Box className="relative w-full z-30 bg-web-white">
           <div className="self-stretch bg-web-white border-web-silver-chalice border-dashed border-t-[1px] grid grid-cols-[repeat(auto-fit,_minmax(384px,_1fr))] grid-rows-[365.593994140625px] [row-gap:0px]">
             <StatCard
               icon="/ClockCountdown.svg"
@@ -230,7 +229,6 @@ const Container: FunctionComponent = () => {
         <Section6 />
         <Box className="self-stretch overflow-hidden flex flex-col items-start isolate shrink-0 max-w-full">
           <Section3 />
-          <Background1 />
         </Box>
         <Section7 />
       </Box>

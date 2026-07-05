@@ -36,8 +36,8 @@ const FrameComponent1: FunctionComponent<FrameComponent1Type> = ({
       className={`flex items-start !pt-num-0 !pb-[50px] !pl-num-0 !pr-num-0 box-border max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq925:!pb-num-21 mq925:box-border mq1350:!pb-num-32 mq1350:box-border ${className}`}
     >
       <Box className="flex flex-col items-start max-w-full">
-        <Box className="w-[1920px] h-[1200px] relative bg-web-white max-w-full overflow-hidden">
-          <Box className="absolute top-[273.5px] left-[240px] h-[926.5px] flex flex-col items-start max-w-full shrink-0">
+        <Box className="w-[1920px] h-[980px] relative bg-web-white max-w-full overflow-hidden">
+          <Box className="absolute top-[120px] left-[240px] h-auto flex flex-col items-start max-w-full shrink-0">
             <ScrollReveal direction="left">
               <Box className="w-[690px] flex flex-col items-start !pt-3 !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-5 max-w-[690px] mq925:max-w-full">
               <SectionBadge

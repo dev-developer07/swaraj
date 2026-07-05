@@ -1,8 +1,7 @@
 import { type FunctionComponent, useState } from "react";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import BackgroundBlur from "./BackgroundBlur";
 import SectionBadge from "./SectionBadge";
-import NavyButton from "./NavyButton";
 
 export type Section6Type = {
   className?: string;
@@ -59,23 +58,14 @@ const Section6: FunctionComponent<Section6Type> = ({ className = "" }) => {
         </Box>
         <section className="w-[800px] flex flex-col items-start max-w-full text-left text-num-16 text-web-mine-shaft font-inter">
           <Box className="self-stretch flex items-center justify-end gap-2">
-            <NavyButton label="Clinic" variant="filled" />
-            <Button
-              className="!pt-1 !pb-1 !pl-4 !pr-num-15 box-border max-w-num-800 mq925:max-w-full"
-              disableElevation
-              variant="contained"
-              sx={{
-                color: "#222",
-                fontSize: "16",
-                background: "#f1f2f1",
-                borderRadius: "4px",
-                "&:hover": { background: "#f1f2f1" },
-              }}
-            >
-              DOCTORS
-            </Button>
-            <Box className="rounded-num-4 bg-web-gray-nurse flex flex-col items-start !pt-1 !pb-1 !pl-4 !pr-4 box-border max-w-num-800 mq925:max-w-full">
-              <div className="relative leading-num-24 uppercase">PRICING</div>
+            <Box className="rounded-num-4 bg-[#1F2A44] text-[#FFFFFF] flex flex-col items-start !pt-1 !pb-1 !pl-4 !pr-4 box-border max-w-num-800 mq925:max-w-full cursor-pointer">
+              <div className="relative leading-num-24 uppercase font-lilex font-medium">Clinic</div>
+            </Box>
+            <Box className="rounded-num-4 bg-web-gray-nurse text-web-mine-shaft flex flex-col items-start !pt-1 !pb-1 !pl-4 !pr-4 box-border max-w-num-800 mq925:max-w-full cursor-pointer">
+              <div className="relative leading-num-24 uppercase font-lilex font-medium">DOCTORS</div>
+            </Box>
+            <Box className="rounded-num-4 bg-web-gray-nurse text-web-mine-shaft flex flex-col items-start !pt-1 !pb-1 !pl-4 !pr-4 box-border max-w-num-800 mq925:max-w-full cursor-pointer">
+              <div className="relative leading-num-24 uppercase font-lilex font-medium">PRICING</div>
             </Box>
           </Box>
           <Box className="self-stretch overflow-hidden flex flex-col items-start !pt-11 !pb-num-0 !pl-num-0 !pr-num-0 box-border max-w-full mq925:!pt-num-29 mq925:box-border">

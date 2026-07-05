@@ -6,10 +6,10 @@ import Specialities from "./views/Specialities";
 import Cardiology from "./views/Cardiology";
 import Carrer from "./views/Carrer";
 import CarrerRole from "./views/CarrerRole";
-// import HomeView from "./views/HomeView";
-// import BookAppointmentView from "./views/BookAppointmentView";
-// import CallbackRequestView from "./views/CallbackRequestView";
-// import BlogsFeedView from "./views/BlogsFeedView";
+import BookAppointment from "./views/BookAppointment";
+import AppointmentInquiry from "./views/AppointmentInquiry";
+import BlogsPage from "./components/BlogsPage";
+import ArticleDetail from "./views/ArticleDetail";
 
 export default function UserPortal() {
   return (
@@ -31,9 +31,15 @@ export default function UserPortal() {
           <Route path="/career/:roleId" element={<CarrerRole />} />
           <Route path="/carrer/role" element={<CarrerRole />} />
           <Route path="/career/role" element={<CarrerRole />} />
-          {/* <Route path="/book" element={<BookAppointmentView />} />
-          <Route path="/callback" element={<CallbackRequestView />} />
-          <Route path="/blogs" element={<BlogsFeedView />} /> */}
+          <Route path="/book" element={<BookAppointment />} />
+          <Route path="/book-appointment" element={<BookAppointment />} />
+          <Route path="/appointment" element={<BookAppointment />} />
+          <Route path="/enquire" element={<AppointmentInquiry />} />
+          <Route path="/enquiry" element={<AppointmentInquiry />} />
+          <Route path="/schedule-call" element={<AppointmentInquiry />} />
+          <Route path="/blogs" element={<BlogsPage />} />
+          <Route path="/articles" element={<BlogsPage />} />
+          <Route path="/blog/:slug" element={<ArticleDetail />} />
         </Routes>
       </main>
 

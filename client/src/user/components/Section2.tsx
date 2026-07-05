@@ -1,4 +1,5 @@
 import { type FunctionComponent, useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
 import Blur1 from "./Blur1";
 import SectionBadge from "./SectionBadge";
@@ -9,6 +10,7 @@ export type Section2Type = {
 };
 
 const Section2: FunctionComponent<Section2Type> = ({ className = "" }) => {
+  const navigate = useNavigate();
   const [blur1Items] = useState([
     {
       sVG: "/SVG1.svg",
@@ -31,8 +33,8 @@ const Section2: FunctionComponent<Section2Type> = ({ className = "" }) => {
   ]);
 
   const onLinkClick = useCallback(() => {
-    // Please sync "Doctor's List" to the project
-  }, []);
+    navigate("/team");
+  }, [navigate]);
 
   return (
     <section
@@ -48,7 +50,7 @@ const Section2: FunctionComponent<Section2Type> = ({ className = "" }) => {
       />
       <Box className="h-full w-full absolute !!m-[0 important] top-[0%] right-[0%] bottom-[0%] left-[0%] bg-web-woodsmoke-48 z-[1] shrink-0" />
       <Box className="flex flex-col items-start !pt-20 !pb-20 !pl-num-0 !pr-num-0 box-border max-w-full z-[2] shrink-0 mq925:!pt-num-52 mq925:!pb-num-52 mq925:box-border mq450:!pt-num-34 mq450:!pb-num-34 mq450:box-border">
-        <Box className="w-full flex flex-col items-start !pt-num-0 !pb-num-0 !pl-num-40 !pr-num-40 box-border max-w-num-1440 mq1825:max-w-full">
+        <Box className="w-full flex flex-col items-start !pt-num-0 !pb-num-0 px-10 max-md:px-6 max-xs:px-4 box-border max-w-num-1440 mq1825:max-w-full">
           <section className="self-stretch flex flex-col items-start text-left text-num-16 text-web-woodsmoke font-lilex">
             <Box className="self-stretch flex items-start">
               <SectionBadge
@@ -57,23 +59,17 @@ const Section2: FunctionComponent<Section2Type> = ({ className = "" }) => {
                 variant="light"
               />
             </Box>
-            <Box className="w-[901px] overflow-hidden flex flex-col items-start !pt-6 !pb-num-0 !pl-num-0 !pr-num-0 box-border max-w-[901px] text-[70px] text-web-white font-stack-sans-text mq925:max-w-full">
+            <Box className="w-[901px] max-w-full overflow-hidden flex flex-col items-start !pt-6 !pb-num-0 !pl-num-0 !pr-num-0 box-border text-web-white font-stack-sans-text">
               <Box className="overflow-hidden flex items-center !pt-6 !pb-num-0 !pl-num-0 !pr-num-0 shrink-0">
                 <Box className="flex flex-col items-start !pt-num-0 !pb-num-0 !pl-num-0 !pr-5">
                   <Typography
-                    className="!m-0 relative mq925:text-[56px] mq925:leading-[67px] mq450:text-[42px] mq450:leading-[50px]"
+                    className="!m-0 relative !font-stack-sans-text !text-[70px] !leading-[84px] tracking-[-1.05px] font-normal max-xl:!text-[60px] max-xl:!leading-[72px] max-lg:!text-[50px] max-lg:!leading-[60px] max-md:!text-[38px] max-md:!leading-[46px] max-xs:!text-[30px] max-xs:!leading-[36px]"
                     variant="inherit"
                     variantMapping={{ inherit: "h1" }}
-                    sx={{
-                      fontWeight: "400",
-                      lineHeight: "84px",
-                      letterSpacing: "-1.05px",
-                    }}
                   >
                     <Typography
                       variant="inherit"
                       variantMapping={{ inherit: "span" }}
-                      sx={{ lineHeight: "84px" }}
                     >
                       Excellence in healthcare
                       <br />
@@ -82,7 +78,6 @@ const Section2: FunctionComponent<Section2Type> = ({ className = "" }) => {
                       className="text-goldenrod"
                       variant="inherit"
                       variantMapping={{ inherit: "span" }}
-                      sx={{ lineHeight: "84px" }}
                     >
                       every moment.
                     </Typography>
@@ -91,8 +86,8 @@ const Section2: FunctionComponent<Section2Type> = ({ className = "" }) => {
               </Box>
             </Box>
           </section>
-          <Box className="self-stretch flex items-end !pt-[212px] !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-20 max-w-full mq925:gap-10 mq925:!pt-[138px] mq925:box-border mq1350:flex-wrap mq450:gap-5">
-            <section className="w-[698px] flex flex-col items-start gap-8 max-w-full mq925:gap-4 mq925:min-w-full mq1350:flex-1">
+          <Box className="self-stretch flex flex-row items-end !pt-[212px] !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-20 max-w-full max-xl:!pt-[120px] max-lg:flex-col max-lg:items-start max-lg:gap-12 max-sm:gap-8 max-sm:!pt-[80px]">
+            <section className="w-[698px] flex flex-col items-start gap-8 max-w-full max-lg:w-full max-lg:gap-6">
               {blur1Items.map((item, index) => (
                 <Blur1
                   key={index}
@@ -104,20 +99,19 @@ const Section2: FunctionComponent<Section2Type> = ({ className = "" }) => {
                 />
               ))}
             </section>
-            <section className="[filter:blur(0px)] rounded-num-44 flex flex-col items-start gap-8 min-w-[582px] max-w-num-582 text-left text-[32px] text-web-white font-inter mq925:gap-4 mq925:max-w-full mq925:min-w-full mq1350:w-full">
+            <section className="[filter:blur(0px)] rounded-num-44 flex flex-col items-start gap-8 min-w-[582px] max-w-num-582 text-left text-[32px] text-web-white font-inter max-xl:min-w-0 max-xl:w-full max-lg:max-w-full max-lg:min-w-full max-lg:gap-6">
               <Box className="self-stretch flex flex-col items-start">
                 <Typography
-                  className="!m-0 relative mq925:text-[26px] mq925:leading-[41px] mq450:text-num-19 mq450:leading-[31px]"
+                  className="!m-0 relative !font-inter !text-[32px] !leading-[51.2px] font-normal max-lg:!text-[26px] max-lg:!leading-[38px] max-sm:!text-[20px] max-sm:!leading-[28px]"
                   variant="inherit"
                   variantMapping={{ inherit: "h1" }}
-                  sx={{ fontWeight: "400", lineHeight: "51.2px" }}
                 >
                   Expert medical specialists dedicated
                   <br />
                   to your family&apos;s wellness.
                 </Typography>
               </Box>
-              <Box className="self-stretch flex items-center gap-4 mq925:flex-wrap">
+              <Box className="self-stretch flex flex-row items-center gap-4 flex-wrap">
                 <NavyButton
                   label="Our Services"
                   variant="outline"

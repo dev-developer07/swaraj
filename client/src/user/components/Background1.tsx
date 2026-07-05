@@ -1,150 +1,47 @@
 import { type FunctionComponent } from "react";
-import { Box } from "@mui/material";
 
 export type Background1Type = {
   className?: string;
+  icon?: string;
 };
+
+const ITEMS = [
+  "NABH PRE-ACCREDITED",
+  "99% PATIENT SATISFACTION",
+  "15+ YEARS OF EXPERTISE"
+];
 
 const Background1: FunctionComponent<Background1Type> = ({
   className = "",
+  icon = "/Vector(2).png",
 }) => {
   return (
-    <section
-      className={`self-stretch bg-web-gothic overflow-hidden flex flex-col items-start !pt-4 !pb-4 !pl-num-0 !pr-num-0 box-border max-w-full z-[0] text-left text-num-16 text-web-woodsmoke font-inter ${className}`}
-    >
-      <Box className="w-[4972.6px] flex items-center gap-[60px] max-w-[259%] shrink-0 mq1350:gap-[30px]">
-        <Box className="flex items-center gap-[60px] max-w-full mq925:gap-[30px] mq1825:flex-wrap">
-          <Box className="flex items-center gap-2.5">
-            <Box className="h-7 w-7 flex flex-col items-start justify-center">
-              <img
-                className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
-                loading="lazy"
-                alt=""
-                src="/SVG4.svg"
-              />
-            </Box>
-            <Box className="flex flex-col items-start">
-              <div className="relative leading-num-24 uppercase">
-                24/7 PRIORITY SUPPORT
-              </div>
-            </Box>
-          </Box>
-          <Box className="flex items-center gap-2.5 max-w-full">
-            <Box className="h-7 w-7 flex flex-col items-start justify-center">
-              <img
-                className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
-                loading="lazy"
-                alt=""
-                src="/SVG4.svg"
-              />
-            </Box>
-            <Box className="flex flex-col items-start">
-              <div className="relative leading-num-24 uppercase">
-                WORLD-CLASS HYGIENE PROTOCOLS
-              </div>
-            </Box>
-          </Box>
-          <Box className="flex items-center gap-[11px]">
-            <Box className="h-7 w-7 flex flex-col items-start justify-center">
-              <img
-                className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
-                loading="lazy"
-                alt=""
-                src="/SVG4.svg"
-              />
-            </Box>
-            <Box className="flex flex-col items-start">
-              <div className="relative leading-num-24 uppercase">
-                NABH PRE-ACCREDITED
-              </div>
-            </Box>
-          </Box>
-          <Box className="flex items-center gap-[11px]">
-            <Box className="h-7 w-7 flex flex-col items-start justify-center">
-              <img
-                className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
-                loading="lazy"
-                alt=""
-                src="/SVG4.svg"
-              />
-            </Box>
-            <Box className="flex flex-col items-start">
-              <div className="relative leading-num-24 uppercase">
-                PATIENT SATISFACTION
-              </div>
-            </Box>
-          </Box>
-          <Box className="flex items-center gap-[11px]">
-            <Box className="h-7 w-7 flex flex-col items-start justify-center">
-              <img
-                className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
-                loading="lazy"
-                alt=""
-                src="/SVG4.svg"
-              />
-            </Box>
-            <Box className="flex flex-col items-start">
-              <div className="relative leading-num-24 uppercase">
-                ADVANCED DIAGNOSTICS
-              </div>
-            </Box>
-          </Box>
-        </Box>
-        <Box className="flex items-center gap-[60px] max-w-full mq925:gap-[30px] mq1825:flex-wrap">
-          <Box className="flex items-center gap-[11px]">
-            <Box className="h-7 w-7 flex flex-col items-start justify-center">
-              <img
-                className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
-                alt=""
-                src="/SVG4.svg"
-              />
-            </Box>
-            <Box className="flex flex-col items-start">
-              <div className="relative leading-num-24 uppercase">
-                24/7 EMERGENCY CARE
-              </div>
-            </Box>
-          </Box>
-          <Box className="flex items-center gap-3 max-w-full">
-            <Box className="h-7 w-7 relative" />
-            <Box className="h-6 w-[294.9px] relative hidden" />
-          </Box>
-          <Box className="flex items-center gap-3">
-            <Box className="h-7 w-7 relative" />
-            <Box className="h-6 w-[194.9px] relative" />
-          </Box>
-          <Box className="flex items-center gap-3">
-            <Box className="h-7 w-7 relative" />
-            <Box className="h-6 w-[222.5px] relative" />
-          </Box>
-          <Box className="flex items-center gap-3">
-            <Box className="h-7 w-7 relative" />
-            <Box className="h-6 w-[272.9px] relative" />
-          </Box>
-        </Box>
-        <Box className="flex items-center gap-[60px] max-w-full mq925:gap-[30px] mq1825:flex-wrap">
-          <Box className="flex items-center gap-3">
-            <Box className="h-7 w-7 relative" />
-            <Box className="h-6 w-[192.3px] relative" />
-          </Box>
-          <Box className="flex items-center gap-3 max-w-full">
-            <Box className="h-7 w-7 relative" />
-            <Box className="h-6 w-[294.9px] relative" />
-          </Box>
-          <Box className="flex items-center gap-3">
-            <Box className="h-7 w-7 relative" />
-            <Box className="h-6 w-[194.9px] relative" />
-          </Box>
-          <Box className="flex items-center gap-3">
-            <Box className="h-7 w-7 relative" />
-            <Box className="h-6 w-[222.5px] relative" />
-          </Box>
-          <Box className="flex items-center gap-3">
-            <Box className="h-7 w-7 relative" />
-            <Box className="h-6 w-[272.9px] relative" />
-          </Box>
-        </Box>
-      </Box>
+    <section className={`self-stretch bg-web-gothic flex flex-col items-center max-w-full text-left text-num-16 text-web-woodsmoke font-inter ${className}`}>
+      <div className="w-[1920px] h-[60px] relative bg-transparent overflow-hidden shrink-0 max-w-full">
+        <div className="absolute top-[16px] left-0 flex items-center h-7 w-max animate-marquee-50">
+          {[...Array(4)].map((_, groupIndex) => (
+            <div
+              key={groupIndex}
+              className="flex items-center gap-[60px] shrink-0 whitespace-nowrap flex-nowrap"
+              style={{ paddingRight: "60px" }}
+            >
+              {ITEMS.map((text, index) => (
+                <div key={index} className="flex items-center gap-2.5 shrink-0">
+                  <img
+                    className={icon === "/SVG4.svg" ? "w-7 h-7 relative object-contain shrink-0" : "w-[19px] h-[21px] relative object-contain shrink-0"}
+                    loading="lazy"
+                    alt=""
+                    src={icon}
+                  />
+                  <div className="relative leading-num-24 uppercase font-medium text-[16px]">
+                    {text}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 };

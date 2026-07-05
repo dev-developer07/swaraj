@@ -9,9 +9,16 @@
 @config "../tailwind.config.js";
 
 @custom-variant mq450 (@media screen and (max-width: 450px));
+@custom-variant mq700 (@media screen and (max-width: 700px));
 @custom-variant mq925 (@media screen and (min-width: 451px) and (max-width: 925px));
 @custom-variant mq1350 (@media screen and (min-width: 926px) and (max-width: 1350px));
 @custom-variant mq1825 (@media screen and (min-width: 1351px) and (max-width: 1825px));
+
+@custom-variant max-xl (@media screen and (max-width: 1280px));
+@custom-variant max-lg (@media screen and (max-width: 1024px));
+@custom-variant max-md (@media screen and (max-width: 768px));
+@custom-variant max-sm (@media screen and (max-width: 640px));
+@custom-variant max-xs (@media screen and (max-width: 480px));
 
 body {
   @apply leading-[normal] m-0;
@@ -23,4 +30,8 @@ body {
   *::after {
     border-width: 0;
   }
+}
+
+button, button * {
+  font-family: 'Lilex', monospace !important;
 }

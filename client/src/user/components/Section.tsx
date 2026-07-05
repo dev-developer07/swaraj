@@ -53,90 +53,42 @@ const Section: FunctionComponent<SectionType> = ({ className = "" }) => {
             </Box>
           </section>
           <section className="self-stretch flex flex-col items-center max-w-full text-left text-num-16 text-web-woodsmoke font-inter">
-            <Box className="w-[3435.8px] h-num-60 relative bg-web-white overflow-hidden shrink-0 max-w-[387%]">
-              <Box className="absolute top-[16px] left-[-663.5px] flex items-center gap-[60px] shrink-0">
-                <Box className="flex-1 flex flex-col items-start justify-center max-w-full">
-                  <Box className="self-stretch flex items-center gap-[60px]">
-                    <Box className="h-7 flex items-center gap-3">
-                      <Box className="h-7 w-7 relative" />
-                      <Box className="h-6 w-num-101_8 relative" />
-                    </Box>
-                    <Box className="h-7 flex items-center gap-3">
-                      <Box className="h-7 w-7 relative" />
-                      <Box className="h-6 w-num-223_8 relative" />
-                    </Box>
-                    <Box className="h-7 flex items-center gap-3">
-                      <Box className="h-7 w-7 relative" />
-                      <Box className="h-6 w-num-199 relative" />
-                    </Box>
-                    <Box className="h-7 flex items-center gap-3">
-                      <Box className="h-7 w-7 relative" />
-                      <Box className="h-6 w-num-227_7 relative" />
-                    </Box>
-                    <Box className="h-7 flex items-center gap-3">
-                      <Box className="h-7 w-7 relative" />
-                      <Box className="h-6 w-num-186_9 relative" />
-                    </Box>
-                    <Box className="h-7 flex items-center gap-3">
-                      <Box className="h-7 w-7 relative" />
-                      <Box className="h-6 w-num-109_2 relative" />
-                    </Box>
-                  </Box>
-                </Box>
-                <Box className="flex-1 flex flex-col items-start justify-center max-w-full">
-                  <Box className="self-stretch flex items-center gap-[40px] whitespace-nowrap flex-nowrap">
-                    <img className="h-7 w-7 relative object-contain shrink-0" alt="" src="/SVG4.svg" />
-                    <div className="relative leading-num-24 uppercase font-medium text-[16px]">CLIENT SATISFACTION</div>
-                    <img className="h-7 w-7 relative object-contain shrink-0" alt="" src="/SVG4.svg" />
-                    <div className="relative leading-num-24 uppercase font-medium text-[16px]">99% PATIENT SATISFACTION</div>
-                    <img className="h-7 w-7 relative object-contain shrink-0" alt="" src="/SVG4.svg" />
-                    <div className="relative leading-num-24 uppercase font-medium text-[16px]">15+ YEARS OF EXPERTISE</div>
-                    <img className="h-7 w-7 relative object-contain shrink-0" alt="" src="/SVG4.svg" />
-                    <div className="relative leading-num-24 uppercase font-medium text-[16px]">NABH PRE-ACCREDITED</div>
-                    <img className="h-7 w-7 relative object-contain shrink-0" alt="" src="/SVG4.svg" />
-                  </Box>
-                </Box>
-                <Box className="flex-1 flex flex-col items-start justify-center max-w-full">
-                  <Box className="self-stretch flex items-center gap-[60px]">
-                    <Box className="h-7 flex items-center gap-3">
-                      <Box className="h-7 w-7 relative" />
-                      <Box className="h-6 w-num-101_8 relative" />
-                    </Box>
-                    <Box className="h-7 flex items-center gap-3">
-                      <Box className="h-7 w-7 relative" />
-                      <Box className="h-6 w-num-223_8 relative" />
-                    </Box>
-                    <Box className="h-7 flex items-center gap-3">
-                      <Box className="h-7 w-7 relative" />
-                      <Box className="h-6 w-num-199 relative" />
-                    </Box>
-                    <Box className="h-7 flex items-center gap-3">
-                      <Box className="h-7 w-7 relative" />
-                      <Box className="h-6 w-num-227_7 relative" />
-                    </Box>
-                    <Box className="h-7 flex items-center gap-3">
-                      <Box className="h-7 w-7 relative" />
-                      <Box className="h-6 w-num-186_9 relative" />
-                    </Box>
-                    <Box className="h-7 flex items-center gap-3">
-                      <Box className="h-7 w-7 relative" />
-                      <Box className="h-6 w-num-109_2 relative" />
-                    </Box>
-                  </Box>
-                </Box>
-              </Box>
-            </Box>
+            <div className="w-[1920px] h-[60px] relative bg-web-white overflow-hidden shrink-0 max-w-full">
+              <div className="absolute top-[16px] left-0 flex items-center h-7 w-max animate-marquee-50">
+                {[...Array(2)].map((_, groupIndex) => (
+                  <div
+                    key={groupIndex}
+                    className="flex items-center gap-[60px] shrink-0 whitespace-nowrap flex-nowrap"
+                    style={{ paddingRight: "60px" }}
+                  >
+                    {[
+                      "CLIENT SATISFACTION",
+                      "99% PATIENT SATISFACTION",
+                      "15+ YEARS OF EXPERTISE",
+                      "NABH PRE-ACCREDITED"
+                    ].map((text, index) => (
+                      <div key={index} className="flex items-center gap-2.5 shrink-0">
+                        <img
+                          className="w-[19px] h-[21px] relative object-contain shrink-0"
+                          loading="lazy"
+                          alt=""
+                          src="/Vector(2).png"
+                        />
+                        <div className="relative leading-num-24 uppercase font-medium text-[16px]">
+                          {text}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
           </section>
           <Box className="self-stretch flex flex-col items-start !pt-4 !pb-num-0 !pl-num-0 !pr-num-0">
             <Box className="self-stretch [filter:blur(0px)] flex items-center justify-center gap-4">
               <NavyButton
-                label="MORE ABOUT US"
-                variant="filled"
-                endIcon="/container-3.png"
-              />
-              <NavyButton
                 label="Our specialties"
-                variant="outline"
+                variant="filled"
                 endIcon="/container-3.png"
               />
             </Box>

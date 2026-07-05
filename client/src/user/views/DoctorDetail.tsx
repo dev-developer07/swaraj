@@ -3,8 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
 import Navbar from "../components/Navbar";
 import Section3 from "../components/Section3";
-import Background1 from "../components/Background1";
 import Section7 from "../components/Section7";
+import NavyButton from "../components/NavyButton";
 import { DOCTORS_DATA } from "./MeetTheTeam";
 
 const DoctorDetail: FunctionComponent = () => {
@@ -208,19 +208,12 @@ const DoctorDetail: FunctionComponent = () => {
               </Box>
 
               {/* Make an Appointment Button */}
-              <button
-                onClick={() => alert(`Booking an appointment with ${doctor.name}...`)}
-                className="flex flex-row justify-center items-center gap-4 w-full max-w-[340px] h-[56px] bg-[#1f2a44] rounded-[8px] border-none cursor-pointer hover:bg-[#151c2e] active:scale-[0.98] transition-all duration-300 outline-none mt-4 shrink-0"
-              >
-                <span className="font-lilex font-medium text-[16px] leading-[24px] uppercase text-[#FFFFFF] text-left align-middle w-max">
-                  Make an Appointment
-                </span>
-                <div className="w-[32px] h-[32px] rounded-full bg-[#000000]/10 flex items-center justify-center shrink-0">
-                  <div className="w-[12px] h-[12px] rounded-full bg-[#FFFFFF]/20 flex items-center justify-center">
-                    <div className="w-[6px] h-[6px] rounded-full bg-[#FFFFFF]" />
-                  </div>
-                </div>
-              </button>
+              <NavyButton
+                label="Make an Appointment"
+                variant="filled"
+                onClick={() => navigate(`/book?doctor=${doctor.id}`)}
+                className="!w-full !max-w-[340px] !h-[56px] mt-4"
+              />
 
             </Box>
 
@@ -500,7 +493,6 @@ const DoctorDetail: FunctionComponent = () => {
       {/* Advanced Hospitality Care Section */}
       <Box className="w-full overflow-hidden flex flex-col items-start isolate shrink-0 max-w-full bg-[#FFFFFF]">
         <Section3 />
-        <Background1 />
       </Box>
 
       {/* Footer */}

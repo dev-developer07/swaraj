@@ -9,10 +9,12 @@ export type Section7Type = {
 const Section7: FunctionComponent<Section7Type> = ({ className = "" }) => {
   return (
     <footer
-      className={`bg-web-white overflow-hidden flex flex-col items-start !pt-num-200 !pb-num-200 !pl-num-280 !pr-num-280 box-border max-w-full text-left text-num-16 text-web-woodsmoke font-inter mq925:!pt-num-84 mq925:!pb-num-84 mq925:!pl-num-70 mq925:!pr-num-70 mq925:box-border mq1350:!pt-num-130 mq1350:!pb-num-130 mq1350:!pl-num-140 mq1350:!pr-num-140 mq1350:box-border ${className}`}
+      className={`w-screen bg-web-white overflow-hidden flex flex-col items-start !pt-num-200 !pb-num-200 !pl-num-280 !pr-num-280 box-border max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq925:!pt-num-84 mq925:!pb-num-84 mq925:!pl-num-70 mq925:!pr-num-70 mq925:box-border mq1350:!pt-num-130 mq1350:!pb-num-130 mq1350:!pl-num-140 mq1350:!pr-num-140 mq1350:box-border mq700:!pl-5 mq700:!pr-5 mq700:!pt-16 mq700:!pb-16 ${className}`}
+      style={{ maxWidth: "100vw" }}
     >
-      <Box className="w-num-1360 flex flex-col items-start gap-6 max-w-full">
-        <section className="self-stretch flex items-start !pt-num-0 !pb-6 !pl-num-0 !pr-num-0 gap-[982.2px] text-left text-num-18 text-web-woodsmoke font-inter mq925:gap-[246px] mq1350:gap-[491px] mq1825:flex-wrap mq450:gap-[123px]">
+      <Box className="w-num-1360 flex flex-col items-start max-w-full mq700:w-full">
+        {/* Row 1: Logo & Main Contact Info */}
+        <section className="self-stretch flex items-center justify-between pb-0 text-left text-web-woodsmoke mq1825:flex-wrap mq700:flex-wrap mq700:gap-6">
           <Box className="flex items-center">
             <Link to="/">
               <img
@@ -23,342 +25,232 @@ const Section7: FunctionComponent<Section7Type> = ({ className = "" }) => {
               />
             </Link>
           </Box>
-          <Box className="h-[69.6px] w-num-188_8 flex flex-col items-start !pt-[39.8px] !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-[11px]">
-            <Box className="!mt-[-40.8px] w-num-188_8 flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0 box-border shrink-0">
-              <a href="tel:+916305550362" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative leading-num-28_8">
-                +91 (630) 555-0362
-              </a>
-            </Box>
-            <Box className="w-num-188_8 flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0 box-border shrink-0">
-              <a href="mailto:swarajhospital@gmail.com" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative leading-num-28_8 shrink-0">
-                swarajhospital@gmail.com
-              </a>
-            </Box>
-          </Box>
+          <div
+            className="flex flex-col gap-2"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              textAlign: "left",
+              fontFamily: "Inter, sans-serif"
+            }}
+          >
+            <a
+              href="tel:+916305550362"
+              className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative leading-6 font-normal text-num-16"
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
+              +91 (630) 555-0362
+            </a>
+            <a
+              href="mailto:swarajhospital@gmail.com"
+              className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative leading-6 font-normal text-num-16"
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
+              swarajhospital@gmail.com
+            </a>
+          </div>
         </section>
-        <Box className="self-stretch h-0.5 relative border-web-mercury border-solid border-[1px] box-border" />
-        <Box className="self-stretch flex items-start !pt-9 !pb-9 !pl-num-0 !pr-num-0 box-border gap-11 min-h-[616.98px] max-w-full mq925:gap-[22px] mq925:!pt-num-23 mq925:!pb-num-23 mq925:box-border mq1825:flex-wrap mq450:!pt-5 mq450:!pb-5 mq450:box-border">
-          <Box className="w-[789px] flex flex-col items-start gap-2 max-w-full mq1825:flex-1 mq1825:min-w-full">
-            <section className="self-stretch flex flex-col items-start !pt-num-32 !pb-num-0 !pl-num-0 !pr-num-0 text-left text-num-18 text-web-woodsmoke font-lilex">
-              <Box className="self-stretch flex items-start gap-10 mq925:gap-5 mq1350:flex-wrap">
-                <Box className="flex flex-col items-start gap-[11px]">
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-14 !pl-num-0 !pr-num-0 text-num-20">
-                    <Box className="self-stretch flex flex-col items-start">
-                      <Typography
-                        className="!m-0 self-stretch relative uppercase mq450:text-num-16 mq450:leading-num-26"
-                        variant="inherit"
-                        variantMapping={{ inherit: "h3" }}
-                        sx={{ fontWeight: "500", lineHeight: "32px" }}
-                      >
-                        Specialties
-                      </Typography>
-                    </Box>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialty/general-medicine" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      general medicine
-                    </Link>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialty/general-surgery" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      general surgery
-                    </Link>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialty/obstetrics-gynaecology" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      {`Obstetrics & Gynaecology`}
-                    </Link>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialty/orthopaedics-joint-replacement" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      {`Orthopaedics `}
-                      <br />
-                      {`& Joint Replacement`}
-                    </Link>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialty/paediatrics-neonatology" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      {`Pediatrics & Neonatology`}
-                    </Link>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialty/cardiology" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      Cardiology
-                    </Link>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialty/minimal-access-laparoscopic-surgery" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      {`minimal access `}
-                      <br />
-                      {`& laparoscopic surgery`}
-                    </Link>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialty/ophthalmology" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      ophthalmology
-                    </Link>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialty/neurology" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      neurology
-                    </Link>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialty/urology" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      urology
-                    </Link>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialty/dental-maxillofacial-surgery" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      {`dental & maxillofacial surgery`}
-                    </Link>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialty/gastroenterology" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      gastroenterology
-                    </Link>
-                  </Box>
-                </Box>
-                <Box className="flex flex-col items-start !pt-num-0 !pb-[40.8px] !pl-num-0 !pr-num-0 box-border gap-[11px] min-w-[159.31px] mq450:!pb-[27px] mq450:box-border">
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-14 !pl-num-0 !pr-num-0 text-num-20">
-                    <Box className="self-stretch flex flex-col items-start">
-                      <Typography
-                        className="!m-0 self-stretch relative uppercase mq450:text-num-16 mq450:leading-num-26"
-                        variant="inherit"
-                        variantMapping={{ inherit: "h3" }}
-                        sx={{ fontWeight: "500", lineHeight: "32px" }}
-                      >
-                        Services
-                      </Typography>
-                    </Box>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      24/7 emergency
-                    </Link>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      icu
-                    </Link>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      stepdown icu
-                    </Link>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      nicu
-                    </Link>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      modular ot
-                    </Link>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      hdu
-                    </Link>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      24/7 ambulance
-                    </Link>
-                  </Box>
-                </Box>
-                <Box className="flex flex-col items-start gap-[11px] min-w-[159.31px]">
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-14 !pl-num-0 !pr-num-0 text-num-20">
-                    <Box className="self-stretch flex flex-col items-start">
-                      <Typography
-                        className="!m-0 self-stretch relative uppercase mq450:text-num-16 mq450:leading-num-26"
-                        variant="inherit"
-                        variantMapping={{ inherit: "h3" }}
-                        sx={{ fontWeight: "500", lineHeight: "32px" }}
-                      >
-                        Diagnostics
-                      </Typography>
-                    </Box>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      Pathology
-                    </Link>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      Radiology
-                    </Link>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      1.5 tesla mri
-                    </Link>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      64 slice ct
-                    </Link>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      4d ultrasound
-                    </Link>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      digital x-ray
-                    </Link>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      color doppler
-                    </Link>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      mammography
-                    </Link>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-num--0_18 leading-num-28_8 uppercase font-medium">
-                      {`echo & tmt test`}
-                    </Link>
-                  </Box>
-                </Box>
+
+        {/* Divider 1 */}
+        <Box className="self-stretch h-[2px] bg-web-mercury !my-[72px]" />
+
+        {/* Row 2: Links Columns & Location Column */}
+        <Box className="self-stretch flex items-start justify-between py-0 box-border gap-11 max-w-full mq1350:flex-wrap mq700:gap-8">
+          {/* Columns 1-4: Link Lists */}
+          <Box className="flex-1 max-w-[840px] flex items-start justify-between gap-6 mq925:gap-4 mq1350:flex-wrap font-lilex">
+            {/* Column 1: Swaraj Links (Aligned with Specialties header) */}
+            <Box className="flex flex-col items-start gap-3 min-w-[120px] pt-1">
+              <Link to="/" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                about us
+              </Link>
+              <Link to="/meet-the-team" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                doctors
+              </Link>
+              <Link to="/career" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                careers
+              </Link>
+              <Link to="/blogs" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                articles
+              </Link>
+            </Box>
+
+            {/* Column 2: Specialties */}
+            <Box className="flex flex-col items-start gap-4">
+              <Typography
+                className="!m-0 relative uppercase font-medium text-web-woodsmoke"
+                variant="h3"
+                sx={{ fontSize: "20px", lineHeight: "24px", fontWeight: "500", fontFamily: "inherit" }}
+              >
+                Specialties
+              </Typography>
+              <Box className="flex flex-col items-start gap-3">
+                <Link to="/specialty/general-medicine" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  general medicine
+                </Link>
+                <Link to="/specialty/general-surgery" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  general surgery
+                </Link>
+                <Link to="/specialty/obstetrics-gynaecology" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  {`Obstetrics & Gynaecology`}
+                </Link>
+                <Link to="/specialty/orthopaedics-joint-replacement" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  Orthopaedics <br /> & Joint Replacement
+                </Link>
+                <Link to="/specialty/paediatrics-neonatology" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  Pediatrics & Neonatology
+                </Link>
+                <Link to="/specialty/cardiology" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  Cardiology
+                </Link>
+                <Link to="/specialty/minimal-access-laparoscopic-surgery" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  minimal access <br /> & laparoscopic surgery
+                </Link>
+                <Link to="/specialty/ophthalmology" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  ophthalmology
+                </Link>
+                <Link to="/specialty/neurology" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  neurology
+                </Link>
+                <Link to="/specialty/urology" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  urology
+                </Link>
+                <Link to="/specialty/dental-maxillofacial-surgery" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  dental & maxillofacial surgery
+                </Link>
+                <Link to="/specialty/gastroenterology" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  gastroenterology
+                </Link>
               </Box>
-            </section>
-            <Box className="flex flex-col items-start !pt-[60px] !pb-num-0 !pl-num-0 !pr-num-0">
-              <Box className="flex items-center justify-center gap-4 mq450:flex-wrap">
-                <Box className="h-num-60 w-[60px] rounded-num-60 bg-web-white border-web-mercury border-solid border-[1px] box-border flex items-center justify-center">
-                  <Box className="h-7 w-7 flex flex-col items-start justify-center">
-                    <img
-                      className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
-                      loading="lazy"
-                      alt=""
-                      src="/SVG21.svg"
-                    />
-                  </Box>
-                </Box>
-                <Box className="h-num-60 w-[60px] rounded-num-60 bg-web-white border-web-mercury border-solid border-[1px] box-border flex items-center justify-center">
-                  <Box className="h-7 w-7 flex flex-col items-start justify-center">
-                    <img
-                      className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
-                      loading="lazy"
-                      alt=""
-                      src="/SVG23.svg"
-                    />
-                  </Box>
-                </Box>
-                <Box className="h-num-60 w-[60px] rounded-num-60 bg-web-white border-web-mercury border-solid border-[1px] box-border flex items-center justify-center">
-                  <Box className="h-7 w-7 flex flex-col items-start justify-center">
-                    <img
-                      className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
-                      loading="lazy"
-                      alt=""
-                      src="/SVG24.svg"
-                    />
-                  </Box>
-                </Box>
-                <Box className="h-num-60 w-[60px] rounded-num-60 bg-web-white border-web-mercury border-solid border-[1px] box-border flex items-center justify-center">
-                  <Box className="h-7 w-7 flex flex-col items-start justify-center">
-                    <img
-                      className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
-                      loading="lazy"
-                      alt=""
-                      src="/SVG26.svg"
-                    />
-                  </Box>
-                </Box>
+            </Box>
+
+            {/* Column 3: Diagnostics */}
+            <Box className="flex flex-col items-start gap-4 min-w-[150px]">
+              <Typography
+                className="!m-0 relative uppercase font-medium text-web-woodsmoke"
+                variant="h3"
+                sx={{ fontSize: "20px", lineHeight: "24px", fontWeight: "500", fontFamily: "inherit" }}
+              >
+                Diagnostics
+              </Typography>
+              <Box className="flex flex-col items-start gap-3">
+                <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  Pathology
+                </Link>
+                <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  Radiology
+                </Link>
+                <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  1.5 tesla mri
+                </Link>
+                <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  64 slice ct
+                </Link>
+                <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  4d ultrasound
+                </Link>
+                <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  digital x-ray
+                </Link>
+                <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  color doppler
+                </Link>
+                <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  mammography
+                </Link>
+                <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  echo & tmt test
+                </Link>
+              </Box>
+            </Box>
+
+            {/* Column 4: Services */}
+            <Box className="flex flex-col items-start gap-4 min-w-[150px]">
+              <Typography
+                className="!m-0 relative uppercase font-medium text-web-woodsmoke"
+                variant="h3"
+                sx={{ fontSize: "20px", lineHeight: "24px", fontWeight: "500", fontFamily: "inherit" }}
+              >
+                Services
+              </Typography>
+              <Box className="flex flex-col items-start gap-3">
+                <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  24/7 emergency
+                </Link>
+                <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  icu
+                </Link>
+                <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  stepdown icu
+                </Link>
+                <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  nicu
+                </Link>
+                <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  modular ot
+                </Link>
+                <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  hdu
+                </Link>
+                <Link to="/specialties" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
+                  24/7 ambulance
+                </Link>
               </Box>
             </Box>
           </Box>
-          <section className="flex-1 flex flex-col items-start gap-[60px] min-w-[341px] max-w-[525px] text-left text-[36px] text-web-woodsmoke font-stack-sans-text mq925:gap-[30px] mq925:max-w-full mq1350:min-w-full">
-            <Box className="w-[525px] rounded-num-12 bg-web-gray-nurse hidden flex-col items-start !pt-num-23 !pb-num-39 !pl-6 !pr-6 box-border gap-[60px] shrink-0">
-              <Box className="self-stretch flex flex-col items-start gap-3">
-                <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                  <div className="self-stretch relative tracking-[-1px] leading-[46.8px] mq925:text-num-29 mq925:leading-[37px] mq450:text-num-22 mq450:leading-7">
-                    Stay Informed with Oralic
-                  </div>
-                </Box>
-                <Box className="self-stretch flex flex-col items-start text-num-16 text-web-emperor font-inter">
-                  <div className="self-stretch relative leading-num-24">
-                    Join our community for exclusive updates on the Oralic
-                    <br />
-                    standard of care and clinical innovations.
-                  </div>
-                </Box>
-              </Box>
-              <Box className="self-stretch flex items-center !pt-num-0 !pb-num-0 !pl-num-0 !pr-num-29 gap-3 text-num-16 text-web-rolling-stone font-inter mq925:flex-wrap">
-                <Box className="h-[50px] w-[300px] rounded-num-12 bg-web-white border-web-mercury border-solid border-[1px] box-border overflow-hidden shrink-0 flex flex-col items-start !pt-num-14 !pb-num-14 !pl-3 !pr-3">
-                  <Box className="self-stretch overflow-hidden flex flex-col items-start">
-                    <div className="self-stretch relative">
-                      Your email address...
-                    </div>
-                  </Box>
-                </Box>
-                <Box className="rounded-num-8 bg-web-cloud-burst overflow-hidden flex flex-col items-center !pt-3 !pb-3 !pl-5 !pr-5 text-center text-web-white font-lilex">
-                  <div className="relative leading-num-24">SUBMIT NOW</div>
-                </Box>
-              </Box>
+
+          {/* Column 5: Location, Map & Social Links */}
+          <Box className="w-[380px] flex flex-col items-start gap-5 font-lilex mq1350:w-full pt-1">
+            <div className="leading-6 text-num-18 flex items-center max-w-[290px] text-web-woodsmoke font-normal">
+              Shri Jyoti Nagar, Patnagarh Road, Balangir
+            </div>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Swaraj+Hospital+Shri+Jyoti+Nagar+Patnagarh+Road+Balangir"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="no-underline border-web-woodsmoke border-solid border-b-[1px] flex items-center pb-1 gap-2 text-num-16 text-web-woodsmoke hover:text-[#1F2A44] hover:border-[#1F2A44] transition-colors shrink-0"
+            >
+              <span className="relative tracking-[-0.8px] leading-6 uppercase font-semibold">
+                View on map
+              </span>
+              <img className="w-4 h-4 relative" alt="" src="/SVG27.svg" />
+            </a>
+
+            <Box className="self-stretch h-px bg-web-mercury my-2" />
+
+            <Box className="flex items-center gap-4">
+              <a href="#" className="h-[50px] w-[50px] rounded-full bg-web-white border-web-mercury border-solid border-[1px] flex items-center justify-center hover:bg-web-gray-nurse transition-all duration-300 hover:scale-105">
+                <img className="h-6 w-6 relative" loading="lazy" alt="" src="/SVG21.svg" />
+              </a>
+              <a href="#" className="h-[50px] w-[50px] rounded-full bg-web-white border-web-mercury border-solid border-[1px] flex items-center justify-center hover:bg-web-gray-nurse transition-all duration-300 hover:scale-105">
+                <img className="h-6 w-6 relative" loading="lazy" alt="" src="/SVG23.svg" />
+              </a>
+              <a href="#" className="h-[50px] w-[50px] rounded-full bg-web-white border-web-mercury border-solid border-[1px] flex items-center justify-center hover:bg-web-gray-nurse transition-all duration-300 hover:scale-105">
+                <img className="h-6 w-6 relative" loading="lazy" alt="" src="/SVG24.svg" />
+              </a>
+              <a href="#" className="h-[50px] w-[50px] rounded-full bg-web-white border-web-mercury border-solid border-[1px] flex items-center justify-center hover:bg-web-gray-nurse transition-all duration-300 hover:scale-105">
+                <img className="h-6 w-6 relative" loading="lazy" alt="" src="/SVG26.svg" />
+              </a>
             </Box>
-            <Box className="self-stretch flex flex-col items-start justify-between gap-0 shrink-0 text-num-18 font-inter">
-              <Box className="flex flex-col items-start !pt-num-23 !pb-num-0 !pl-num-0 !pr-num-0">
-                <Box className="flex flex-col items-start gap-[15px]">
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <a href="tel:+916305550362" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative leading-num-28_8">
-                      +91 (630) 555-0362
-                    </a>
-                  </Box>
-                  <Box className="self-stretch flex flex-col items-start !pt-num-0 !pb-num-0_8 !pl-num-0 !pr-num-0">
-                    <a href="mailto:swarajhospital@gmail.com" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative leading-num-28_8">
-                      swarajhospital@gmail.com
-                    </a>
-                  </Box>
-                </Box>
-              </Box>
-              <Box className="self-stretch h-[50px] flex flex-col items-start !pt-6 !pb-6 !pl-num-0 !pr-num-0 box-border">
-                <Box className="self-stretch h-0.5 relative border-web-mercury border-solid border-[1px] box-border" />
-              </Box>
-              <Box className="self-stretch flex items-end justify-between gap-5 mq925:flex-wrap mq925:gap-5">
-                <Box className="h-[57.6px] flex-1 flex items-end !pt-num-0 !pb-num-0_7 !pl-num-0 !pr-num-0 box-border min-w-[188px] max-w-[290px]">
-                  <div className="h-[58px] w-[271.9px] relative leading-num-28_8 flex items-center shrink-0">
-                    Shri Jyoti Nagar, Patnagarh Road, Balangir
-                  </div>
-                </Box>
-                <a
-                  href="https://www.google.com/maps/search/?api=1&query=Swaraj+Hospital+Shri+Jyoti+Nagar+Patnagarh+Road+Balangir"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="no-underline border-web-woodsmoke border-solid border-b-[1px] box-border flex items-center !pt-num-0 !pb-num-2 !pl-num-0 !pr-num-0 gap-2 max-w-[525px] text-num-16 font-lilex text-web-woodsmoke hover:text-[#1F2A44] hover:border-[#1F2A44] transition-colors mq925:max-w-full"
-                >
-                  <Box className="flex flex-col items-start">
-                    <div className="relative tracking-[-0.8px] leading-num-24 uppercase font-semibold">
-                      View on map
-                    </div>
-                  </Box>
-                  <Box className="flex flex-col items-start !pt-px !pb-[7px] !pl-num-0 !pr-num-0">
-                    <img className="w-4 h-4 relative" alt="" src="/SVG27.svg" />
-                  </Box>
-                </a>
-              </Box>
-            </Box>
-          </section>
+          </Box>
         </Box>
-        <Box className="self-stretch h-0.5 relative border-web-mercury border-solid border-[1px] box-border" />
-        <Box className="self-stretch flex items-center justify-between !pt-num-0 !pb-6 !pl-num-0 !pr-num-0 box-border gap-5 max-w-full mq1350:flex-wrap mq1350:gap-5">
-          <Box className="flex flex-col items-start max-w-full">
-            <div className="relative leading-num-24">
+
+        {/* Divider 2 */}
+        <Box className="self-stretch h-[2px] bg-web-mercury !my-[72px]" />
+
+        {/* Row 3: Copyright & Policies */}
+        <Box className="self-stretch flex items-center justify-between pt-0 pb-4 box-border gap-5 max-w-full mq1350:flex-wrap mq700:flex-col mq700:items-start mq700:gap-4">
+          <Box className="flex flex-col items-start max-w-full font-lilex">
+            <div className="relative leading-num-24 font-normal">
               <Typography
                 variant="inherit"
                 variantMapping={{ inherit: "span" }}
-                sx={{ lineHeight: "24px" }}
+                sx={{ lineHeight: "24px", fontWeight: "400", fontFamily: "inherit" }}
               >{`Copyright © Swaraj | Designed By `}</Typography>
               <Typography
                 variant="inherit"
                 variantMapping={{ inherit: "b" }}
-                sx={{ lineHeight: "24px" }}
+                sx={{ lineHeight: "24px", fontWeight: "400", fontFamily: "inherit" }}
               >
                 UnderGrads
               </Typography>
@@ -366,11 +258,11 @@ const Section7: FunctionComponent<Section7Type> = ({ className = "" }) => {
           </Box>
           <Box className="flex items-center gap-2.5 max-w-full font-lilex mq450:flex-wrap">
             <Box className="flex flex-col items-start">
-              <Link to="/" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.16px] leading-num-24 uppercase font-medium">{`Terms & Conditions`}</Link>
+              <Link to="/" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.16px] leading-num-24 uppercase font-medium text-num-18">{`Terms & Conditions`}</Link>
             </Box>
             <Box className="h-5 w-px relative bg-web-mercury mq450:w-full mq450:h-px" />
             <Box className="flex flex-col items-start">
-              <Link to="/" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.16px] leading-num-24 uppercase font-medium">
+              <Link to="/" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.16px] leading-num-24 uppercase font-medium text-num-18">
                 Privacy Policy
               </Link>
             </Box>

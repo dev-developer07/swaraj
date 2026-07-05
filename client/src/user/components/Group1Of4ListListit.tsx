@@ -62,7 +62,7 @@ const Group1Of4ListListit: FunctionComponent<Group1Of4ListListitType> = ({
           src={background}
         />
       </Box>
-      <Box className="self-stretch flex-1 flex flex-col items-start !pt-3 !pb-num-0 !pl-num-0 !pr-num-0">
+      <Box className="self-stretch flex-1 flex flex-col items-start !pt-6 !pb-num-0 !pl-num-0 !pr-num-0">
         <Box className="self-stretch flex-1 rounded-num-16 bg-web-white flex flex-col items-start justify-between">
           <Box
             className="self-stretch flex-1 flex flex-col items-center justify-between !pt-num-38 !pb-num-38 !pl-num-28 !pr-num-22"

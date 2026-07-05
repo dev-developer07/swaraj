@@ -41,20 +41,20 @@ const Group2Of: FunctionComponent<Group2OfType> = ({
     <Box
       className={`h-num-438 w-[436px] group hover:-translate-y-2 hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer rounded-num-24 bg-web-gray-nurse overflow-hidden shrink-0 flex flex-col items-start justify-center relative isolate max-w-full text-left text-num-16 text-web-white font-inter mq450:h-auto ${className}`}
     >
-      {/* Hover State: Renders the full cover image using original Figma dimensions */}
+      {/* Hover State: Renders the full cover image fitting the container perfectly to preserve padding */}
       <Box
         className="w-full h-full group-hover:opacity-100 transition-opacity duration-500 !!m-[0 important] absolute top-[0%] right-[0%] bottom-[0%] left-[0%] flex flex-col items-start justify-between isolate gap-5 opacity-num-0 z-[0] mq450:h-auto mq450:gap-5 pointer-events-none"
         style={container4Style}
       >
         <img
-          className="w-num-479_6 h-num-481_8 absolute !!m-[0 important] top-[-21.9px] left-[-21.8px] object-cover z-[0] shrink-0"
+          className="w-full h-full absolute top-0 left-0 object-cover rounded-num-24 z-[0] shrink-0"
           alt=""
           src={testingCardBG}
         />
       </Box>
 
       {/* Front Face: Exact original layout, typography, responsive sizes, and spacing */}
-      <Box className="self-stretch flex-1 group-hover:opacity-0 transition-opacity duration-500 rounded-num-20 bg-web-gray-nurse flex flex-col items-start justify-between !p-6 gap-5 z-[1] text-num-48 text-web-woodsmoke font-stack-sans-text mq450:gap-5 mq450:!pt-5 mq450:!pb-5 mq450:box-border">
+      <Box className="self-stretch flex-1 group-hover:opacity-num-0 transition-opacity duration-500 rounded-num-20 bg-web-gray-nurse flex flex-col items-start justify-between !p-10 gap-5 z-[1] text-num-48 text-web-woodsmoke font-stack-sans-text mq450:gap-5 mq450:!pt-5 mq450:!pb-5 mq450:box-border">
         <Box className="w-12 h-12 rounded-num-12 bg-web-white flex items-center justify-center">
           <Box className="h-8 w-8 flex flex-col items-start justify-center">
             <img

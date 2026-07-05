@@ -62,38 +62,48 @@ const Section4: FunctionComponent<Section4Type> = ({ className = "" }) => {
     <Box
       className={`self-stretch bg-web-white flex flex-col items-center !pt-[150px] !pb-num-0 !pl-num-0 !pr-num-0 gap-[34px] z-[2] !mt-[-0.6px] relative mq925:gap-[17px] ${className}`}
     >
-      <section className="w-[1400px] flex items-end !pt-num-0 !pb-num-0 !pl-5 !pr-5 box-border gap-[492px] text-left text-num-16 text-web-woodsmoke font-lilex mq925:gap-[123px] mq1350:gap-[246px] mq450:gap-[61px]">
-        <Box className="[filter:blur(0px)] flex flex-col items-start max-w-[490px] mq925:max-w-full">
-          <SectionBadge
-            icon="/SVG.svg"
-            label="our specialized services"
-            variant="dark"
-          />
-          <Box className="flex flex-col items-start !pt-6 !pb-num-0 !pl-num-0 !pr-num-2 text-num-48 font-stack-sans-text">
-            <Typography
-              className="!m-0 relative mq925:text-num-38 mq925:leading-num-52 mq450:text-num-29 mq450:leading-num-39"
-              variant="inherit"
-              variantMapping={{ inherit: "h1" }}
-              sx={{
-                fontWeight: "400",
-                lineHeight: "64.8px",
-                letterSpacing: "-0.72px",
-              }}
-            >
-              Experience <br />
-              the Difference.
-            </Typography>
-          </Box>
+      {/* Top Header Wrapper to match table's left/right margins and responsive behavior */}
+      <Box className="self-stretch bg-web-white flex flex-col items-start !pt-num-0 !pb-num-0 !pl-60 !pr-60 mq925:!pl-[60px] mq925:!pr-[60px] mq925:box-border mq1350:!pl-num-120 mq1350:!pr-num-120 mq1350:box-border">
+        <Box className="w-full flex flex-col items-start !pt-num-0 !pb-num-0 !pl-num-40 !pr-num-40 box-border max-w-num-1440 mq1825:max-w-full">
+          <section className="w-full grid grid-cols-[repeat(4,_1fr)] gap-4 text-left text-num-16 text-web-woodsmoke font-lilex mq925:flex mq925:flex-col mq925:gap-6">
+            
+            {/* Left side: Eyebrow badge and title spanning columns 1 and 2 (aligned with Services column) */}
+            <Box className="col-[1_/_span_2] [filter:blur(0px)] flex flex-col items-start max-w-[490px] mq925:max-w-full">
+              <SectionBadge
+                icon="/SVG.svg"
+                label="our specialized services"
+                variant="dark"
+              />
+              <Box className="flex flex-col items-start !pt-6 !pb-num-0 !pl-num-0 !pr-num-2 text-num-48 font-stack-sans-text">
+                <Typography
+                  className="!m-0 relative mq925:text-num-38 mq925:leading-num-52 mq450:text-num-29 mq450:leading-num-39"
+                  variant="inherit"
+                  variantMapping={{ inherit: "h1" }}
+                  sx={{
+                    fontWeight: "400",
+                    lineHeight: "64.8px",
+                    letterSpacing: "-0.72px",
+                  }}
+                >
+                  Experience <br />
+                  the Difference.
+                </Typography>
+              </Box>
+            </Box>
+
+            {/* Right side: Description paragraph starting at Column 4 (aligned with Local Hospitals column) */}
+            <Box className="col-[4] flex flex-col items-start max-w-[378px] font-inter mq925:max-w-full justify-end !pb-[10px]">
+              <Box className="self-stretch [filter:blur(0px)] flex flex-col items-start">
+                <div className="w-[378px] mq925:w-full relative leading-num-24 flex items-center">
+                  Understanding what sets Swaraj Hospital apart from a typical
+                  hospital in western Odisha
+                </div>
+              </Box>
+            </Box>
+
+          </section>
         </Box>
-        <Box className="flex-1 flex flex-col items-start max-w-[378px] font-inter">
-          <Box className="self-stretch [filter:blur(0px)] flex flex-col items-start">
-            <div className="w-[378px] relative leading-num-24 flex items-center">
-              Understanding what sets Swaraj Hospital apart from a typical
-              hospital in western Odisha
-            </div>
-          </Box>
-        </Box>
-      </section>
+      </Box>
       <Box className="self-stretch bg-web-gray-nurse flex flex-col items-start !pt-num-0 !pb-num-0 !pl-60 !pr-60 mq925:!pl-[60px] mq925:!pr-[60px] mq925:box-border mq1350:!pl-num-120 mq1350:!pr-num-120 mq1350:box-border">
         <Box className="w-full h-[615px] flex flex-col items-start !pt-num-0 !pb-num-0 !pl-num-40 !pr-num-40 box-border max-w-num-1440 mq925:h-auto mq1825:max-w-full">
           <section className="w-num-1360 h-[77px] [filter:blur(0px)] border-web-gothic border-solid border-b-[1px] box-border grid grid-cols-[repeat(4,_1fr)] grid-rows-[76px] gap-4 text-left text-num-24 text-web-woodsmoke font-stack-sans-text">

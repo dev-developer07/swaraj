@@ -9,13 +9,14 @@ export type Section1Type = {
 
 const Section1: FunctionComponent<Section1Type> = ({ className = "" }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [rightSpacer, setRightSpacer] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [spacerWidth, setSpacerWidth] = useState(0);
 
   useEffect(() => {
     const updateSpacer = () => {
-      if (scrollRef.current) {
-        const rect = scrollRef.current.getBoundingClientRect();
-        setRightSpacer(rect.left);
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        setSpacerWidth(rect.left);
       }
     };
     
@@ -144,7 +145,7 @@ const Section1: FunctionComponent<Section1Type> = ({ className = "" }) => {
         backgroundSize: "cover",
       }}
     >
-      <Box className="w-full flex flex-col items-start !pt-num-0 !pb-num-0 !pl-num-40 !pr-0 box-border relative isolate max-w-num-1440 mq1825:max-w-full">
+      <Box ref={containerRef} className="w-full flex flex-col items-start !pt-num-0 !pb-num-0 !pl-num-40 !pr-0 box-border relative isolate max-w-num-1440 mq1825:max-w-full">
         <Box className="self-stretch flex flex-col items-start !pt-num-100 !pb-[132px] !pl-num-0 !pr-num-0 box-border gap-[46px] max-w-full z-[1] shrink-0 mq925:gap-[23px] mq925:!pt-[42px] mq925:!pb-14 mq925:box-border mq1350:!pt-num-65 mq1350:!pb-[86px] mq1350:box-border">
           <section className="self-stretch !pr-60 mq925:!pr-[60px] mq1350:!pr-num-120 overflow-hidden flex items-end justify-between gap-5 max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq1350:flex-wrap mq1350:gap-5">
             <Box className="[filter:blur(0px)] flex flex-col items-start max-w-[480px] mq925:max-w-full mq1350:w-full mq1350:min-w-full">
@@ -181,7 +182,8 @@ const Section1: FunctionComponent<Section1Type> = ({ className = "" }) => {
             </Box>
           </section>
           <Box className="self-stretch flex flex-col items-start justify-center relative isolate max-w-full">
-            <section ref={scrollRef} className="w-[100vw] h-auto flex items-stretch overflow-x-hidden scroll-smooth !pt-num-0 !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-6 shrink-0 text-center text-num-16 text-web-woodsmoke font-stack-sans-text mq450:max-w-full">
+            <section ref={scrollRef} className="w-[100vw] h-auto flex items-stretch overflow-x-hidden scroll-smooth !pt-num-0 !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-6 shrink-0 text-center text-num-16 text-web-woodsmoke font-stack-sans-text mq450:max-w-full" style={{ marginLeft: `-${spacerWidth}px`, width: "100vw" }}>
+              <div style={{ width: `${spacerWidth}px`, flexShrink: 0 }} />
               {group1Of4ListListitItems.map((item, index) => (
                 <Group1Of4ListListit
                   key={index}
@@ -195,13 +197,15 @@ const Section1: FunctionComponent<Section1Type> = ({ className = "" }) => {
                   advancedHeartCareWidth={item.advancedHeartCareWidth}
                 />
               ))}
-              <div style={{ width: `${rightSpacer}px`, flexShrink: 0 }} />
+              <div style={{ width: `${spacerWidth}px`, flexShrink: 0 }} />
             </section>
-            <Box onClick={scrollLeft} className="w-11 h-[7.83%] !!m-[0 important] absolute top-[107.17%] right-[390px] bottom-[-15%] [backdrop-filter:blur(12px)] rounded-num-8 bg-web-white-12 overflow-hidden flex items-center justify-center z-[1] shrink-0 cursor-pointer hover:bg-web-white-24 transition-colors">
-              <img className="h-3.5 w-3.5 relative" alt="" src="/SVG9.svg" />
-            </Box>
-            <Box onClick={scrollRight} className="w-11 h-[7.83%] !!m-[0 important] absolute top-[107.17%] right-[324px] bottom-[-15%] rounded-num-12 bg-web-white-12 overflow-hidden flex items-center justify-center z-[2] shrink-0 cursor-pointer hover:bg-web-white-24 transition-colors">
-              <img className="h-3.5 w-3.5 relative" alt="" src="/SVG10.svg" />
+            <Box className="w-full flex justify-end gap-[22px] !pt-12 !pr-[324px] mq1350:!pr-num-120 mq925:!pr-[60px] mq450:!pr-5 box-border">
+              <Box onClick={scrollLeft} className="w-11 h-11 [backdrop-filter:blur(12px)] rounded-num-8 bg-web-white-12 overflow-hidden flex items-center justify-center shrink-0 cursor-pointer hover:bg-web-white-24 transition-colors">
+                <img className="h-3.5 w-3.5 relative" alt="" src="/SVG9.svg" />
+              </Box>
+              <Box onClick={scrollRight} className="w-11 h-11 rounded-num-12 bg-web-white-12 overflow-hidden flex items-center justify-center shrink-0 cursor-pointer hover:bg-web-white-24 transition-colors">
+                <img className="h-3.5 w-3.5 relative" alt="" src="/SVG10.svg" />
+              </Box>
             </Box>
           </Box>
         </Box>

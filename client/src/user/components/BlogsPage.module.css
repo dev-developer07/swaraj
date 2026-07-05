@@ -1,0 +1,1411 @@
+/* ─── Hero Section ─── */
+.heroSection {
+    align-self: stretch;
+    filter: blur(0);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px 280px 80px;
+    position: relative;
+    isolation: isolate;
+}
+
+.heroBg,
+.heroOverlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    margin: 0 !important;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    flex-shrink: 0;
+}
+
+.heroBg {
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.heroOverlay {
+    backdrop-filter: blur(6px);
+    background-color: rgba(11, 12, 15, 0.7);
+    z-index: 1;
+}
+
+.heroContent {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 80px 0 0;
+    gap: 20px;
+    z-index: 2;
+    flex-shrink: 0;
+}
+
+.heroTop {
+    width: 572px;
+    max-width: 572px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    font-size: 16px;
+    color: #0b0c0f;
+    font-family: Lilex, Arial, sans-serif;
+}
+
+.heroBadge {
+    border-radius: 4px;
+    background-color: #f1f2f1;
+    display: flex;
+    align-items: center;
+    padding: 4px 8px 4px 6px;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.heroBadgeBtn {
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.heroBadgeIcon {
+    align-self: stretch;
+    flex: 1;
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+
+.heroBadgeText {
+    position: relative;
+    line-height: 24px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.heroHeadingWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 20px 0 0;
+    flex-shrink: 0;
+    font-size: 64px;
+    color: #fff;
+    font-family: Stack Sans Text, Arial, sans-serif;
+}
+
+.heroHeading {
+    margin: 0;
+    position: relative;
+    font-size: inherit;
+    letter-spacing: -1.5px;
+    line-height: 76.8px;
+    font-weight: 400;
+    font-family: inherit;
+}
+
+.heroBottom {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: left;
+    font-size: 32px;
+    color: #fff;
+    font-family: Inter, Arial, sans-serif;
+}
+
+.heroSubWrap {
+    width: 620px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.heroSub {
+    align-self: stretch;
+    position: relative;
+    line-height: 51.2px;
+}
+
+/* ─── Blog Grid Section ─── */
+.gridSection {
+    align-self: stretch;
+    background-color: #f1f2f1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 140px 280px;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.blogGrid {
+    align-self: stretch;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(446px, 1fr));
+    grid-template-rows: auto;
+    gap: 24px;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.showMoreContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
+}
+
+.showMoreBtn {
+    cursor: pointer;
+    background-color: transparent;
+    border: 1.5px solid #1f2a44;
+    color: #1f2a44;
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-family: Lilex, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.showMoreBtn:hover {
+    background-color: #1f2a44;
+    color: #fff;
+}
+
+/* ─── Blog Card ─── */
+.blogCard {
+    filter: blur(0);
+    border-radius: 12px;
+    background-color: #fff;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 24px;
+    box-sizing: border-box;
+    max-width: 100%;
+    text-align: left;
+    font-size: 14px;
+    color: #7791a5;
+    font-family: Lilex, Arial, sans-serif;
+}
+
+.blogCardBody {
+    height: 403px;
+    flex: 1;
+    min-width: 164px;
+    max-width: 253px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.blogCardMeta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.blogCardMetaInner {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.blogCardCategory {
+    position: relative;
+    line-height: 21px;
+    text-transform: uppercase;
+}
+
+.blogCardTitleWrap {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 36px 0 0;
+    font-size: 24px;
+    color: #0b0c0f;
+    font-family: Stack Sans Text, Arial, sans-serif;
+}
+
+.blogCardTitle {
+    align-self: stretch;
+    position: relative;
+    letter-spacing: -1.2px;
+    line-height: 36px;
+}
+
+.blogCardDescWrap {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 16px;
+    color: #505050;
+    font-family: Inter, Arial, sans-serif;
+}
+
+.blogCardDesc {
+    align-self: stretch;
+    position: relative;
+    line-height: 24px;
+}
+
+.blogCardCta {
+    border-radius: 8px;
+    background-color: #f1f2f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    position: relative;
+    isolation: isolate;
+    font-size: 16px;
+    color: #0b0c0f;
+}
+
+.blogCardCtaText {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 3px;
+    z-index: 2;
+}
+
+.learnMore {
+    position: relative;
+    line-height: 24px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.blogCardArrow {
+    margin: 0 !important;
+    position: absolute;
+    top: 16px;
+    left: 126px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 1920px;
+    z-index: 1;
+}
+
+.arrowIcon {
+    width: 8px;
+    height: 8px;
+    position: relative;
+    object-fit: cover;
+}
+
+.blogCardCtaBtn {
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+    height: 24px;
+    width: 24px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    z-index: 1;
+}
+
+.blogCardImg {
+    height: 403px;
+    width: 323px;
+    border-radius: 4px;
+    object-fit: cover;
+    max-width: 100%;
+}
+
+/* ─── CTA Section ─── */
+.ctaSection {
+    align-self: stretch;
+    background-color: #fff;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 280px 100px;
+    position: relative;
+    isolation: isolate;
+    z-index: 1;
+}
+
+.ctaBgBlur {
+    width: 120%;
+    height: 120%;
+    position: absolute;
+    margin: 0 !important;
+    top: -6.99%;
+    right: -10%;
+    bottom: -13.01%;
+    left: -10%;
+    filter: blur(16px);
+    overflow: hidden;
+    background-image: url(/public/699c22a989738800e2454084-CTA-20Bg-20Image-p-2000-webp@3x.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    z-index: 0;
+    flex-shrink: 0;
+}
+
+.ctaOverlay {
+    position: absolute;
+    top: calc(50% - 336.9px);
+    left: calc(50% - 960px);
+    backdrop-filter: blur(6px);
+    background-color: rgba(11, 12, 15, 0.7);
+    width: 1920px;
+    height: 637px;
+}
+
+.ctaInner {
+    align-self: stretch;
+    padding: 140px 0 0;
+    z-index: 1;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.ctaTop {
+    width: 600px;
+    max-width: 600px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 0 0;
+    gap: 4px;
+    text-align: left;
+    font-size: 16px;
+    color: #0b0c0f;
+    font-family: Lilex, Arial, sans-serif;
+}
+
+.ctaBadgeWrap {
+    width: 600px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 283px 0 0;
+    flex-shrink: 0;
+}
+
+.ctaBadge {
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    padding: 4px 8px 4px 6px;
+    gap: 4px;
+}
+
+.ctaBadgeBtn {
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.ctaBadgeIcon {
+    align-self: stretch;
+    flex: 1;
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+
+.ctaBadgeText {
+    position: relative;
+    line-height: 24px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.ctaHeadingWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 20px 0 0;
+    flex-shrink: 0;
+    font-size: 70px;
+    color: #fff;
+    font-family: Stack Sans Text, Arial, sans-serif;
+}
+
+.ctaHeading {
+    margin: 0;
+    position: relative;
+    font-size: inherit;
+    letter-spacing: -1.05px;
+    line-height: 84px;
+    font-weight: 400;
+    font-family: inherit;
+}
+
+.ctaBottom {
+    align-self: stretch;
+    display: flex;
+    align-items: flex-end;
+    gap: 871px;
+    text-align: left;
+    font-size: 16px;
+    color: #1f2a44;
+    font-family: Lilex, Arial, sans-serif;
+}
+
+.ctaBookingWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 32px 0 0;
+    flex-shrink: 0;
+}
+
+.ctaBookingLink {
+    border-radius: 8px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    isolation: isolate;
+}
+
+.ctaBookingText {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 3px;
+    z-index: 1;
+}
+
+.ctaBookingLabel {
+    position: relative;
+    line-height: 24px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.ctaBookingArrow {
+    height: 24px;
+    width: 24px;
+    position: relative;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.ctaImgWrap {
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 121px 56px 21px;
+    flex-shrink: 0;
+}
+
+.ctaImg {
+    width: 113.5px;
+    height: 142px;
+    position: relative;
+    border-radius: 12px;
+    object-fit: contain;
+}
+
+/* ─── Ticker / Background band ─── */
+.tickerSection {
+    align-self: stretch;
+    background-color: #7791a5;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 0;
+    box-sizing: border-box;
+    max-width: 100%;
+    z-index: 0;
+    text-align: left;
+    font-size: 16px;
+    color: #0b0c0f;
+    font-family: Inter, Arial, sans-serif;
+}
+
+.tickerTrack {
+    width: 4972.6px;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    max-width: 259%;
+    flex-shrink: 0;
+}
+
+.tickerRow {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    max-width: 100%;
+}
+
+.tickerItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tickerItemWide {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 100%;
+}
+
+.tickerBtn {
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+    height: 28px;
+    width: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.tickerBtnIcon {
+    align-self: stretch;
+    flex: 1;
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+
+.tickerLabel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.tickerText {
+    position: relative;
+    line-height: 24px;
+    text-transform: uppercase;
+}
+
+.tickerPlaceholder {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tickerDot {
+    height: 28px;
+    width: 28px;
+    position: relative;
+}
+
+.tickerBar1 {
+    height: 24px;
+    width: 294.9px;
+    position: relative;
+    display: none;
+}
+
+.tickerBar2 {
+    height: 24px;
+    width: 194.9px;
+    position: relative;
+}
+
+.tickerBar3 {
+    height: 24px;
+    width: 222.5px;
+    position: relative;
+}
+
+.tickerBar4 {
+    height: 24px;
+    width: 272.9px;
+    position: relative;
+}
+
+.tickerBar5 {
+    height: 24px;
+    width: 192.3px;
+    position: relative;
+}
+
+.tickerBar6 {
+    height: 24px;
+    width: 294.9px;
+    position: relative;
+}
+
+/* ─── Footer Section ─── */
+.footerSection {
+    background-color: #fff;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 200px 280px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    max-width: 100%;
+    z-index: 2;
+    text-align: left;
+    font-size: 36px;
+    color: #0b0c0f;
+    font-family: Stack Sans Text, Arial, sans-serif;
+}
+
+.footerInner {
+    width: 1360px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    max-width: 100%;
+}
+
+.footerTop {
+    align-self: stretch;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0 0 24px;
+    box-sizing: border-box;
+    gap: 20px;
+    flex-shrink: 0;
+    max-width: 100%;
+}
+
+.footerBrand {
+    width: 617.3px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 100%;
+}
+
+.footerLogo {
+    height: 82.3px;
+    width: 111.7px;
+    position: relative;
+}
+
+.footerSocialWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 60px 0 0;
+}
+
+.footerSocials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.socialBtn {
+    cursor: pointer;
+    border: 1px solid #e6e6e6;
+    padding: 0;
+    background-color: #fff;
+    height: 60px;
+    width: 60px;
+    border-radius: 60px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.socialIcon {
+    height: 28px;
+    width: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.socialIconImg {
+    align-self: stretch;
+    flex: 1;
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+
+.footerContact {
+    width: 525px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 60px;
+    max-width: 525px;
+}
+
+.footerNewsletter {
+    width: 525px;
+    border-radius: 12px;
+    background-color: #f1f2f1;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 23px 24px 39px;
+    box-sizing: border-box;
+    gap: 60px;
+    flex-shrink: 0;
+}
+
+.footerNlHeadingWrap {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.footerNlHeading {
+    align-self: stretch;
+    position: relative;
+    letter-spacing: -1px;
+    line-height: 46.8px;
+}
+
+.footerNlSubWrap {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 16px;
+    color: #505050;
+    font-family: Inter, Arial, sans-serif;
+}
+
+.footerNlSub {
+    align-self: stretch;
+    position: relative;
+    line-height: 24px;
+}
+
+.footerEmailForm {
+    display: flex;
+    align-items: center;
+    padding: 0 29px 0 0;
+    gap: 12px;
+    font-size: 16px;
+    color: #7e7f80;
+    font-family: Inter, Arial, sans-serif;
+}
+
+.footerEmailInput {
+    height: 50px;
+    width: 300px;
+    border-radius: 12px;
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 14px 12px;
+}
+
+.footerEmailPlaceholder {
+    align-self: stretch;
+    position: relative;
+}
+
+.footerSubmitBtn {
+    border-radius: 8px;
+    background-color: #1f2a44;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 20px;
+    text-align: center;
+    color: #fff;
+    font-family: Lilex, Arial, sans-serif;
+}
+
+.footerSubmitText {
+    position: relative;
+    line-height: 24px;
+}
+
+.footerContactInfo {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0;
+    flex-shrink: 0;
+    font-size: 18px;
+    font-family: Inter, Arial, sans-serif;
+}
+
+.footerContactTop {
+    padding: 23px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footerPhoneEmail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.footerContactLink {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 0 0.8px;
+}
+
+.footerContactText {
+    position: relative;
+    line-height: 28.8px;
+}
+
+.footerDividerWrap {
+    align-self: stretch;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 0;
+    box-sizing: border-box;
+}
+
+.footerDivider {
+    align-self: stretch;
+    height: 2px;
+    position: relative;
+    border: 1px solid #e6e6e6;
+    box-sizing: border-box;
+}
+
+.footerAddress {
+    align-self: stretch;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.footerAddressTextWrap {
+    height: 57.6px;
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 0 0.7px;
+    box-sizing: border-box;
+    min-width: 188px;
+    max-width: 290px;
+}
+
+.footerAddressText {
+    height: 58px;
+    width: 271.9px;
+    position: relative;
+    line-height: 28.8px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+.footerMapBtn {
+    cursor: pointer;
+    border: 0;
+    padding: 0 0 2px;
+    background-color: transparent;
+    border-bottom: 1px solid #0b0c0f;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 525px;
+}
+
+.footerMapLabel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footerMapText {
+    position: relative;
+    font-size: 16px;
+    letter-spacing: -0.8px;
+    line-height: 24px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: Lilex, Arial, sans-serif;
+    color: #0b0c0f;
+    text-align: left;
+}
+
+.footerMapIconWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1px 0 7px;
+}
+
+.footerMapIcon {
+    width: 16px;
+    height: 16px;
+    position: relative;
+}
+
+.footerHr {
+    align-self: stretch;
+    height: 2px;
+    position: relative;
+    border: 1px solid #e6e6e6;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.footerNav {
+    align-self: stretch;
+    display: flex;
+    align-items: flex-start;
+    padding: 36px 0;
+    box-sizing: border-box;
+    min-height: 616.98px;
+    flex-shrink: 0;
+    font-size: 18px;
+    font-family: Lilex, Arial, sans-serif;
+}
+
+.footerNavInner {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footerNavPad {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 32px 0 0;
+}
+
+.footerNavGrid {
+    align-self: stretch;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: flex-start;
+    gap: 80px;
+}
+
+.footerNavCol {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 11px;
+    padding: 0 0 40.8px;
+    box-sizing: border-box;
+    min-width: 159.31px;
+}
+
+.footerNavColWide {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 11px;
+    min-width: 159.31px;
+}
+
+.footerNavColTitle {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 0 14px;
+    font-size: 20px;
+}
+
+.footerNavTitleInner {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footerNavHeading {
+    margin: 0;
+    align-self: stretch;
+    font-size: inherit;
+    line-height: 32px;
+    font-weight: 500;
+    font-family: inherit;
+    text-transform: uppercase;
+}
+
+.footerNavLink {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 0 0.8px;
+}
+
+.footerNavLinkText {
+    position: relative;
+    letter-spacing: -0.18px;
+    line-height: 28.8px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.footerBottom {
+    width: 1360px;
+    display: none;
+    align-items: center;
+    padding: 0 0 24px;
+    gap: 521.7px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    max-width: 100%;
+    font-size: 16px;
+    font-family: Inter, Arial, sans-serif;
+}
+
+.footerCopyWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 100%;
+}
+
+.footerCopy {
+    line-height: 24px;
+}
+
+.footerLinks {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 100%;
+    font-family: Lilex, Arial, sans-serif;
+}
+
+.footerLinkText {
+    position: relative;
+    letter-spacing: -0.16px;
+    line-height: 24px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.footerLinkDivider {
+    height: 20px;
+    width: 1px;
+    position: relative;
+    background-color: #e6e6e6;
+}
+
+/* ─── Page wrapper ─── */
+.page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+}
+
+.mainWrap {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sectionWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+    isolation: isolate;
+    z-index: 3;
+    align-self: stretch;
+}
+
+/* ─── Responsive ─── */
+@media screen and (max-width: 1325px) {
+    .heroSection {
+        padding-left: 140px;
+        padding-right: 140px;
+        box-sizing: border-box;
+    }
+
+    .gridSection {
+        padding: 91px 140px;
+        box-sizing: border-box;
+    }
+
+    .ctaSection {
+        padding-left: 140px;
+        padding-right: 140px;
+        box-sizing: border-box;
+    }
+
+    .footerSection {
+        padding: 130px 140px;
+        box-sizing: border-box;
+    }
+
+    .footerContact,
+    .footerBrand {
+        min-width: 100%;
+    }
+
+    .footerNavGrid {
+        gap: 40px;
+    }
+
+    .tickerTrack {
+        gap: 30px;
+    }
+}
+
+@media screen and (max-width: 1725px) {
+    .footerTop {
+        flex-wrap: wrap;
+    }
+
+    .footerBrand {
+        flex: 1;
+    }
+
+    .footerContact {
+        width: 100%;
+    }
+
+    .footerBottom {
+        flex-wrap: wrap;
+    }
+
+    .tickerRow {
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .heroSection {
+        padding-left: 70px;
+        padding-right: 70px;
+        padding-bottom: 52px;
+        box-sizing: border-box;
+    }
+
+    .heroContent {
+        padding-top: 52px;
+        box-sizing: border-box;
+    }
+
+    .heroTop {
+        max-width: 100%;
+    }
+
+    .gridSection {
+        padding: 59px 70px;
+        box-sizing: border-box;
+    }
+
+    .blogGrid {
+        height: auto;
+        min-height: 1400.2px;
+    }
+
+    .blogCard {
+        flex-wrap: wrap;
+    }
+
+    .blogCardImg {
+        flex: 1;
+    }
+
+    .ctaSection {
+        padding-left: 70px;
+        padding-right: 70px;
+        padding-bottom: 65px;
+        box-sizing: border-box;
+    }
+
+    .ctaInner {
+        padding-top: 91px;
+        box-sizing: border-box;
+    }
+
+    .ctaTop {
+        max-width: 100%;
+    }
+
+    .ctaBadgeWrap {
+        padding-right: 141px;
+        box-sizing: border-box;
+    }
+
+    .ctaHeading {
+        font-size: 56px;
+        line-height: 67px;
+    }
+
+    .footerSection {
+        padding: 84px 70px;
+        box-sizing: border-box;
+    }
+
+    .footerContact {
+        gap: 30px;
+        max-width: 100%;
+    }
+
+    .footerNlHeading {
+        font-size: 29px;
+        line-height: 37px;
+    }
+
+    .footerAddress,
+    .footerEmailForm {
+        flex-wrap: wrap;
+    }
+
+    .footerMapBtn {
+        max-width: 100%;
+    }
+
+    .footerNav {
+        gap: 22px;
+        padding-top: 23px;
+        padding-bottom: 23px;
+        box-sizing: border-box;
+    }
+
+    .footerNavGrid {
+        gap: 20px;
+    }
+
+    .tickerRow {
+        gap: 30px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .gridSection {
+        padding-top: 38px;
+        padding-bottom: 38px;
+        box-sizing: border-box;
+    }
+
+    .blogCardTitle {
+        font-size: 19px;
+        line-height: 29px;
+    }
+
+    .ctaBadgeWrap {
+        padding-right: 20px;
+        box-sizing: border-box;
+    }
+
+    .ctaHeading {
+        font-size: 42px;
+        line-height: 50px;
+    }
+
+    .ctaBottom {
+        gap: 435px;
+    }
+
+    .footerSocials {
+        flex-wrap: wrap;
+    }
+
+    .footerNlHeading {
+        font-size: 22px;
+        line-height: 28px;
+    }
+
+    .footerNavHeading {
+        font-size: 16px;
+        line-height: 26px;
+    }
+
+    .footerNavCol {
+        padding-bottom: 27px;
+        box-sizing: border-box;
+    }
+
+    .footerLinks {
+        flex-wrap: wrap;
+    }
+
+    .footerLinkDivider {
+        width: 100%;
+        height: 1px;
+    }
+}

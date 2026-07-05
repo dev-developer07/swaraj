@@ -4,8 +4,8 @@ import { Box, Typography } from "@mui/material";
 import Navbar from "../components/Navbar";
 import SectionBadge from "../components/SectionBadge";
 import Section3 from "../components/Section3";
-import Background1 from "../components/Background1";
 import Section7 from "../components/Section7";
+import NavyButton from "../components/NavyButton";
 
 export interface Doctor {
   id: number;
@@ -253,46 +253,26 @@ const MeetTheTeam: FunctionComponent = () => {
                         </Box>
 
                         {/* Action Buttons Row */}
-                        <Box className="w-[640px] h-[48px] flex flex-row items-center gap-[16px] relative mq450:flex-col mq450:items-stretch">
-                          <button
+                        <Box className="w-full max-w-[640px] min-h-[48px] flex flex-row items-center gap-[16px] relative mq450:flex-col mq450:items-stretch mq450:h-auto">
+                          <NavyButton
+                            label="Book an Appointment"
+                            variant="filled"
                             onClick={(e) => {
                               e.stopPropagation();
-                              alert(`Booking an appointment with ${doc.name}...`);
+                              navigate(`/book?doctor=${doc.id}`);
                             }}
-                            className="flex flex-row justify-center items-center w-max h-[48px] bg-[#1F2A44] rounded-[8px] border-none cursor-pointer hover:bg-[#151c2e] active:scale-[0.98] transition-all duration-300 outline-none flex-shrink-0"
-                            style={{ paddingTop: "12px", paddingBottom: "12px", paddingLeft: "40px", paddingRight: "40px" }}
-                          >
-                            <div className="py-0 px-[3px] h-auto flex flex-col items-start relative">
-                              <span className="font-lilex font-medium text-[16px] leading-[24px] uppercase text-[#FFFFFF] text-left align-middle w-max">
-                                Book an Appointment
-                              </span>
-                            </div>
-                            <div className="w-[24px] h-[24px] relative flex items-center justify-center shrink-0">
-                              <div className="w-[8px] h-[8px] rounded-full bg-[#0B0C0F] flex items-center justify-center">
-                                <div className="w-[6px] h-[6px] rounded-full bg-[#FFFFFF]" />
-                              </div>
-                            </div>
-                          </button>
+                            className="flex-1 !h-[48px] !px-5"
+                          />
 
-                          <button
+                          <NavyButton
+                            label="Request in-clinic visit"
+                            variant="outline"
                             onClick={(e) => {
                               e.stopPropagation();
-                              alert(`Requesting in-clinic visit with ${doc.name}...`);
+                              navigate(`/book?doctor=${doc.id}`);
                             }}
-                            className="flex flex-row justify-center items-center gap-[4px] w-max h-[48px] bg-transparent border border-solid border-web-mercury rounded-[8px] cursor-pointer hover:!bg-[#e6e7e6] active:scale-[0.98] transition-all duration-300 outline-none flex-shrink-0"
-                            style={{ paddingTop: "12px", paddingBottom: "12px", paddingLeft: "40px", paddingRight: "40px" }}
-                          >
-                            <div className="py-0 px-[3px] h-auto flex flex-col items-start relative">
-                              <span className="font-lilex font-medium text-[16px] leading-[24px] uppercase text-[#1F2A44] text-left align-middle w-max">
-                                Request in-clinic visit
-                              </span>
-                            </div>
-                            <div className="w-[24px] h-[24px] relative flex items-center justify-center shrink-0">
-                              <div className="w-[8px] h-[8px] rounded-full bg-[#0B0C0F] flex items-center justify-center">
-                                <div className="w-[6px] h-[6px] rounded-full bg-[#1F2A44]" />
-                              </div>
-                            </div>
-                          </button>
+                            className="flex-1 !h-[48px] !px-5"
+                          />
                         </Box>
                       </Box>
 
@@ -322,7 +302,6 @@ const MeetTheTeam: FunctionComponent = () => {
       {/* Advanced Multispeciality Care & Ticker Banner */}
       <Box className="self-stretch overflow-hidden flex flex-col items-start isolate shrink-0 max-w-full">
         <Section3 />
-        <Background1 />
       </Box>
 
       <Section7 />

@@ -151,18 +151,18 @@ const Specialities: FunctionComponent = () => {
                       } flex flex-row justify-between items-center bg-[#ffffff] hover:bg-web-gray-nurse transition-all duration-300 rounded-3xl cursor-pointer`}
                   >
                     {/* Inner Row - Width 1328px, Height 320px */}
-                    <Box className="flex flex-row justify-between grow self-stretch w-full max-w-[1328px] h-[320px] relative mq1350:flex-col mq1350:h-auto mq1350:gap-8">
+                    <Box className="flex flex-row justify-between items-center grow self-stretch w-full max-w-[1328px] min-h-[320px] relative mq1350:flex-col mq1350:h-auto mq1350:gap-8 py-4">
 
-                      {/* Left Column - Details (Width 520px, Height 320px) */}
-                      <Box className="self-stretch h-[320px] w-full max-w-[520px] relative mq1350:h-auto">
+                      {/* Left Column - Details (Width 520px) */}
+                      <Box className="w-full max-w-[520px] flex flex-col justify-center mq1350:pt-8">
 
-                        {/* Title & Description Block (Heading centered exactly at 50%) */}
-                        <Box className="absolute top-1/2 -translate-y-[22px] left-0 w-full flex flex-col gap-4 mq1350:relative mq1350:top-0 mq1350:translate-y-0 mq1350:pt-8">
+                        {/* Title & Description Block */}
+                        <Box className="w-full flex flex-col gap-4">
                           {/* Title Block */}
                           <Typography className="text-left align-middle !font-stack-sans-text !text-[36px] !leading-[44px] text-[#0B0C0F] mq1350:!text-[28px] mq1350:!leading-[36px]">
                             {spec.name}
                           </Typography>
-                          <br />
+
                           {/* Description Block */}
                           <Typography className="text-left align-middle !font-stack-sans-text !text-[18px] !font-normal !leading-[28px] text-web-emperor">
                             {spec.description}

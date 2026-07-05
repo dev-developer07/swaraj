@@ -89,14 +89,14 @@ const Section5: FunctionComponent<Section5Type> = ({ className = "" }) => {
       className={`self-stretch bg-web-white overflow-hidden flex flex-col items-start !pt-num-0 !pb-num-200 !pl-num-280 !pr-0 box-border shrink-0 max-w-full mq925:!pl-num-70 mq925:!pr-0 mq925:!pb-num-84 mq925:box-border mq1350:!pl-num-140 mq1350:!pr-0 mq1350:!pb-num-130 mq1350:box-border ${className}`}
     >
       <Box className="self-stretch flex flex-col items-start !pt-num-140 !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-[46px] max-w-full mq925:gap-[23px] mq925:!pt-[91px] mq925:box-border mq450:!pt-[59px] mq450:box-border">
-        <section className="self-stretch flex items-end flex-wrap content-end justify-between max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq925:gap-[123px] mq1350:gap-[246px] mq450:gap-[61px] !pr-num-280 mq925:!pr-num-70 mq1350:!pr-num-140 box-border">
+        <section className="self-stretch flex items-end flex-wrap content-end gap-[492px] max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq925:gap-[123px] mq1350:gap-[246px] mq450:gap-[61px] box-border">
           <Box className="[filter:blur(0px)] flex flex-col items-start max-w-[490px] mq925:max-w-full">
             <SectionBadge
               icon="/SVG.svg"
               label="WHAT WE DIAGNOSE"
               variant="dark"
             />
-            <Box className="flex flex-col items-start !pt-6 !pb-num-0 !pl-num-0 !pr-num-2 shrink-0 text-num-48 font-stack-sans-text">
+            <Box className="flex flex-col items-start !pt-6 !pb-num-0 !pl-num-0 !pr-num-2 text-num-48 font-stack-sans-text">
               <Typography
                 className="!m-0 relative mq925:text-num-38 mq925:leading-num-52 mq450:text-num-29 mq450:leading-num-39"
                 variant="inherit"
@@ -112,7 +112,7 @@ const Section5: FunctionComponent<Section5Type> = ({ className = "" }) => {
               </Typography>
             </Box>
           </Box>
-          <Box className="flex-1 flex flex-col items-start min-w-[246px] max-w-[378px] font-inter">
+          <Box className="flex-1 flex flex-col items-start max-w-[378px] font-inter">
             <Box className="self-stretch [filter:blur(0px)] flex flex-col items-start">
               <div className="w-[378px] relative leading-num-24 flex items-center">
                 State-of-the-art diagnostic technology and lab-grade testing to
