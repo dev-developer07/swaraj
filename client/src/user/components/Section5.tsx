@@ -86,7 +86,7 @@ const Section5: FunctionComponent<Section5Type> = ({ className = "" }) => {
 
   return (
     <Box
-      className={`self-stretch bg-web-white overflow-hidden flex flex-col items-start !pt-num-0 !pb-num-200 !pl-num-280 !pr-0 box-border shrink-0 max-w-full mq925:!pl-num-70 mq925:!pr-0 mq925:!pb-num-84 mq925:box-border mq1350:!pl-num-140 mq1350:!pr-0 mq1350:!pb-num-130 mq1350:box-border ${className}`}
+      className={`self-stretch bg-web-white overflow-hidden flex flex-col items-start !pt-num-0 !pb-num-200 !pl-num-280 !pr-0 box-border shrink-0 max-w-full mq925:!pl-num-70 mq925:!pr-0 mq925:!pb-num-84 mq925:box-border mq1350:!pl-num-140 mq1350:!pr-0 mq1350:!pb-num-130 mq1350:box-border mq450:!pl-6 ${className}`}
     >
       <Box className="self-stretch flex flex-col items-start !pt-num-140 !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-[46px] max-w-full mq925:gap-[23px] mq925:!pt-[91px] mq925:box-border mq450:!pt-[59px] mq450:box-border">
         <section className="self-stretch flex items-end flex-wrap content-end gap-[492px] max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq925:gap-[123px] mq1350:gap-[246px] mq450:gap-[61px] box-border">
@@ -123,7 +123,7 @@ const Section5: FunctionComponent<Section5Type> = ({ className = "" }) => {
           </Box>
         </section>
         <Box className="self-stretch flex flex-col items-start justify-center relative isolate max-w-full">
-          <section ref={scrollRef} className="w-[100vw] h-num-438 flex items-stretch overflow-x-hidden scroll-smooth !pt-num-0 !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-6 shrink-0 text-left text-num-16 text-web-white font-inter mq925:h-auto mq450:max-w-full">
+          <section ref={scrollRef} className="w-[100vw] h-num-438 flex items-stretch overflow-x-auto no-scrollbar scroll-smooth !pt-num-0 !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-6 shrink-0 text-left text-num-16 text-web-white font-inter mq925:h-auto mq450:!max-w-none">
             {diagnosticsItems.map((item, index) => (
               <Group2Of
                 key={index}

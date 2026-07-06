@@ -63,7 +63,7 @@ const Section2: FunctionComponent<Section2Type> = ({ className = "" }) => {
               <Box className="overflow-hidden flex items-center !pt-6 !pb-num-0 !pl-num-0 !pr-num-0 shrink-0">
                 <Box className="flex flex-col items-start !pt-num-0 !pb-num-0 !pl-num-0 !pr-5">
                   <Typography
-                    className="!m-0 relative !font-stack-sans-text !text-[70px] !leading-[84px] tracking-[-1.05px] font-normal max-xl:!text-[60px] max-xl:!leading-[72px] max-lg:!text-[50px] max-lg:!leading-[60px] max-md:!text-[38px] max-md:!leading-[46px] max-xs:!text-[30px] max-xs:!leading-[36px]"
+                    className="!m-0 relative !font-stack-sans-text !text-[70px] !leading-[84px] tracking-[-1.05px] font-normal max-xl:!text-[60px] max-xl:!leading-[72px] max-lg:!text-[50px] max-lg:!leading-[60px] max-md:!text-[38px] max-md:!leading-[46px] max-xs:!text-[38px] max-xs:!leading-[46px]"
                     variant="inherit"
                     variantMapping={{ inherit: "h1" }}
                   >
@@ -75,7 +75,7 @@ const Section2: FunctionComponent<Section2Type> = ({ className = "" }) => {
                       <br />
                     </Typography>
                     <Typography
-                      className="text-goldenrod"
+                      className="text-goldenrod max-sm:text-white"
                       variant="inherit"
                       variantMapping={{ inherit: "span" }}
                     >
@@ -87,7 +87,7 @@ const Section2: FunctionComponent<Section2Type> = ({ className = "" }) => {
             </Box>
           </section>
           <Box className="self-stretch flex flex-row items-end !pt-[212px] !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-20 max-w-full max-xl:!pt-[120px] max-lg:flex-col max-lg:items-start max-lg:gap-12 max-sm:gap-8 max-sm:!pt-[80px]">
-            <section className="w-[698px] flex flex-col items-start gap-8 max-w-full max-lg:w-full max-lg:gap-6">
+            <section className="w-[698px] flex flex-col items-start gap-8 max-w-full max-lg:w-full max-lg:gap-6 max-sm:flex-row max-sm:flex-wrap max-sm:gap-x-6 max-sm:gap-y-6">
               {blur1Items.map((item, index) => (
                 <Blur1
                   key={index}
@@ -111,13 +111,15 @@ const Section2: FunctionComponent<Section2Type> = ({ className = "" }) => {
                   to your family&apos;s wellness.
                 </Typography>
               </Box>
-              <Box className="self-stretch flex flex-row items-center gap-4 flex-wrap">
+              <Box className="self-stretch flex flex-row items-center gap-4 flex-wrap max-sm:flex-col max-sm:items-start max-sm:w-full max-sm:gap-4">
                 <NavyButton
+                  className="max-sm:!w-[178px] max-sm:!h-[40px] max-sm:!px-4 max-sm:!py-2"
                   label="Our Services"
                   variant="outline"
                   endIcon="/699f6877b8f1c6d2edfe4bd7-button-20ball-svg.png"
                 />
                 <NavyButton
+                  className="max-sm:!w-[245px] max-sm:!h-[40px] max-sm:!px-4 max-sm:!py-2"
                   label="Book an Appointment"
                   variant="filled"
                   endIcon="/69959585702a1a429f59d932-frame-svg.png"

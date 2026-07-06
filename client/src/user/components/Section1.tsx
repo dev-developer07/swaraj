@@ -137,7 +137,7 @@ const Section1: FunctionComponent<Section1Type> = ({ className = "" }) => {
   ]);
   return (
     <Box
-      className={`self-stretch overflow-hidden flex flex-col items-start !pt-num-0 !pb-num-0 !pl-60 !pr-0 box-border max-w-full z-[1] mq925:!pl-[60px] mq925:!pr-0 mq925:box-border mq1350:!pl-num-120 mq1350:!pr-0 mq1350:box-border ${className}`}
+      className={`self-stretch overflow-hidden flex flex-col items-start !pt-num-0 !pb-num-0 !pl-60 !pr-0 box-border max-w-full z-[1] mq925:!pl-[60px] mq925:!pr-0 mq925:box-border mq1350:!pl-num-120 mq1350:!pr-0 mq1350:box-border mq450:!pl-6 ${className}`}
       style={{
         backgroundImage: "url('/Testimonial-Section-BG-Image@2x.png')",
         backgroundAttachment: "fixed",
@@ -145,7 +145,7 @@ const Section1: FunctionComponent<Section1Type> = ({ className = "" }) => {
         backgroundSize: "cover",
       }}
     >
-      <Box ref={containerRef} className="w-full flex flex-col items-start !pt-num-0 !pb-num-0 !pl-num-40 !pr-0 box-border relative isolate max-w-num-1440 mq1825:max-w-full">
+      <Box ref={containerRef} className="w-full flex flex-col items-start !pt-num-0 !pb-num-0 !pl-num-40 !pr-0 box-border relative isolate max-w-num-1440 mq1825:max-w-full mq450:!pl-0">
         <Box className="self-stretch flex flex-col items-start !pt-num-100 !pb-[132px] !pl-num-0 !pr-num-0 box-border gap-[46px] max-w-full z-[1] shrink-0 mq925:gap-[23px] mq925:!pt-[42px] mq925:!pb-14 mq925:box-border mq1350:!pt-num-65 mq1350:!pb-[86px] mq1350:box-border">
           <section className="self-stretch !pr-60 mq925:!pr-[60px] mq1350:!pr-num-120 overflow-hidden flex items-end justify-between gap-5 max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq1350:flex-wrap mq1350:gap-5">
             <Box className="[filter:blur(0px)] flex flex-col items-start max-w-[480px] mq925:max-w-full mq1350:w-full mq1350:min-w-full">
@@ -176,13 +176,13 @@ const Section1: FunctionComponent<Section1Type> = ({ className = "" }) => {
                 <div className="self-stretch relative leading-num-24">
                   We offer a full range of advanced medical specialities, where
                   clinical expertise and compassionate care come together for
-                  your family&apos;s health.
+                   your family&apos;s health.
                 </div>
               </Box>
             </Box>
           </section>
           <Box className="self-stretch flex flex-col items-start justify-center relative isolate max-w-full">
-            <section ref={scrollRef} className="w-[100vw] h-auto flex items-stretch overflow-x-hidden scroll-smooth !pt-num-0 !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-6 shrink-0 text-center text-num-16 text-web-woodsmoke font-stack-sans-text mq450:max-w-full" style={{ marginLeft: `-${spacerWidth}px`, width: "100vw" }}>
+            <section ref={scrollRef} className="w-[100vw] h-auto flex items-stretch overflow-x-auto no-scrollbar scroll-smooth !pt-num-0 !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-6 shrink-0 text-center text-num-16 text-web-woodsmoke font-stack-sans-text mq450:!max-w-none" style={{ marginLeft: `-${spacerWidth}px`, width: "100vw" }}>
               <div style={{ width: `${spacerWidth}px`, flexShrink: 0 }} />
               {group1Of4ListListitItems.map((item, index) => (
                 <Group1Of4ListListit

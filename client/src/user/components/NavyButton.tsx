@@ -39,7 +39,7 @@ const NavyButton: FunctionComponent<NavyButtonProps> = ({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`relative inline-flex items-center justify-center gap-3 h-[48px] rounded-[8px] cursor-pointer outline-none transition-all duration-300 overflow-hidden font-lilex font-medium text-[16px] leading-[24px] uppercase active:scale-[0.97] disabled:opacity-60 disabled:cursor-not-allowed !px-8 !py-3 box-border ${className}`}
+      className={`relative inline-flex items-center justify-center gap-3 h-[48px] rounded-[8px] cursor-pointer outline-none transition-all duration-300 overflow-hidden font-lilex font-medium text-[16px] leading-[24px] uppercase active:scale-[0.97] disabled:opacity-60 disabled:cursor-not-allowed !px-8 !py-3 box-border max-sm:!px-4 max-sm:!py-2 max-sm:!h-[40px] max-sm:!text-[13px] max-sm:!leading-[20px] max-sm:!gap-2 [--translate-y:24px] max-sm:[--translate-y:20px] ${className}`}
       style={{
         backgroundColor: isHovered && !disabled ? hoverBgColor : bgColor,
         color: textColor,
@@ -54,15 +54,15 @@ const NavyButton: FunctionComponent<NavyButtonProps> = ({
       }}
     >
       {/* Sliding text container */}
-      <div className="relative overflow-hidden h-[24px] flex flex-col items-start justify-start">
+      <div className="relative overflow-hidden h-[24px] max-sm:h-[20px] flex flex-col items-start justify-start">
         <div
           className="transition-transform duration-300 ease-in-out transform"
           style={{
-            transform: isHovered ? "translateY(-24px)" : "translateY(0px)",
+            transform: isHovered ? "translateY(calc(-1 * var(--translate-y)))" : "translateY(0px)",
           }}
         >
-          <span className="block h-[24px] leading-[24px] text-left">{label}</span>
-          <span className="block h-[24px] leading-[24px] text-left">{label}</span>
+          <span className="block h-[24px] max-sm:h-[20px] leading-[24px] max-sm:leading-[20px] text-left">{label}</span>
+          <span className="block h-[24px] max-sm:h-[20px] leading-[24px] max-sm:leading-[20px] text-left">{label}</span>
         </div>
       </div>
 
