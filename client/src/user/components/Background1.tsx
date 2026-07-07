@@ -17,7 +17,7 @@ const Background1: FunctionComponent<Background1Type> = ({
 }) => {
   return (
     <section className={`self-stretch bg-web-gothic flex flex-col items-center max-w-full text-left text-num-16 text-web-woodsmoke font-inter ${className}`}>
-      <div className="w-[1920px] h-[60px] relative bg-transparent overflow-hidden shrink-0 max-w-full">
+      <div className="w-full h-[60px] relative bg-transparent overflow-hidden shrink-0">
         <div className="absolute top-[16px] left-0 flex items-center h-7 w-max animate-marquee-50">
           {[...Array(4)].map((_, groupIndex) => (
             <div

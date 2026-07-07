@@ -56,9 +56,9 @@ const Section7: FunctionComponent<Section7Type> = ({ className = "" }) => {
         <Box className="self-stretch h-[2px] bg-web-mercury !my-[72px]" />
 
         {/* Row 2: Links Columns & Location Column */}
-        <Box className="self-stretch flex items-start justify-between py-0 box-border gap-11 max-w-full mq1350:flex-wrap mq700:gap-8">
+        <Box className="self-stretch flex items-start justify-between py-0 box-border gap-11 max-w-full flex-wrap mq925:gap-8 mq700:gap-8">
           {/* Columns 1-4: Link Lists */}
-          <Box className="flex-1 max-w-[840px] flex items-start justify-between gap-6 mq925:gap-4 mq1350:flex-wrap font-lilex">
+          <Box className="flex-1 min-w-[280px] max-w-[840px] grid grid-cols-4 gap-6 mq1350:grid-cols-2 mq700:grid-cols-1 font-lilex">
             {/* Column 1: Swaraj Links (Aligned with Specialties header) */}
             <Box className="flex flex-col items-start gap-3 min-w-[120px] pt-1">
               <Link to="/" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
@@ -200,7 +200,7 @@ const Section7: FunctionComponent<Section7Type> = ({ className = "" }) => {
           </Box>
 
           {/* Column 5: Location, Map & Social Links */}
-          <Box className="w-[380px] flex flex-col items-start gap-5 font-lilex mq1350:w-full pt-1">
+          <Box className="w-[380px] flex flex-col items-start gap-5 font-lilex mq1350:w-full mq925:w-full mq700:w-full pt-1">
             <div className="leading-6 text-num-18 flex items-center max-w-[290px] text-web-woodsmoke font-normal">
               Shri Jyoti Nagar, Patnagarh Road, Balangir
             </div>
@@ -239,7 +239,7 @@ const Section7: FunctionComponent<Section7Type> = ({ className = "" }) => {
         <Box className="self-stretch h-[2px] bg-web-mercury !my-[72px]" />
 
         {/* Row 3: Copyright & Policies */}
-        <Box className="self-stretch flex items-center justify-between pt-0 pb-4 box-border gap-5 max-w-full mq1350:flex-wrap mq700:flex-col mq700:items-start mq700:gap-4">
+        <Box className="self-stretch flex items-center justify-between pt-0 pb-4 box-border gap-5 max-w-full flex-wrap mq925:flex-col mq925:items-start mq925:gap-4 mq700:flex-col mq700:items-start mq700:gap-4">
           <Box className="flex flex-col items-start max-w-full font-lilex">
             <div className="relative leading-num-24 font-normal">
               <Typography
@@ -256,11 +256,11 @@ const Section7: FunctionComponent<Section7Type> = ({ className = "" }) => {
               </Typography>
             </div>
           </Box>
-          <Box className="flex items-center gap-2.5 max-w-full font-lilex mq450:flex-wrap">
+          <Box className="flex items-center gap-2.5 max-w-full font-lilex flex-wrap">
             <Box className="flex flex-col items-start">
               <Link to="/" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.16px] leading-num-24 uppercase font-medium text-num-18">{`Terms & Conditions`}</Link>
             </Box>
-            <Box className="h-5 w-px relative bg-web-mercury mq450:w-full mq450:h-px" />
+            <Box className="h-5 w-px relative bg-web-mercury mq925:hidden mq700:hidden mq450:hidden" />
             <Box className="flex flex-col items-start">
               <Link to="/" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.16px] leading-num-24 uppercase font-medium text-num-18">
                 Privacy Policy

@@ -24,18 +24,18 @@ const Container: FunctionComponent = () => {
       {/* Sticky Stacking Sections Wrapper */}
       <Box className="w-full flex flex-col items-start gap-0 relative">
         {/* 2nd Section (Slide 1): Circle with Multispecialty Care Introduction */}
-        <Box className="sticky top-0 w-full z-10 bg-web-white pb-num-200">
+        <Box className="sticky mq925:relative mq450:relative top-0 w-full z-10 bg-web-white pb-num-200 mq925:pb-10 mq450:pb-10">
           <FrameComponent />
         </Box>
 
         {/* 3rd Section (Slide 2): Scope of Our Care */}
-        <Box className="sticky top-0 w-full z-20 bg-web-white shadow-[0_-20px_40px_rgba(0,0,0,0.06)]">
+        <Box className="sticky mq925:relative mq450:relative top-0 w-full z-20 bg-web-white shadow-[0_-20px_40px_rgba(0,0,0,0.06)] mq925:shadow-none mq450:shadow-none">
           <FrameComponent1 />
         </Box>
 
         {/* 4th Section (Slide 3): Specialties & Stats */}
         <Box className="relative w-full z-30 bg-web-white">
-          <div className="self-stretch bg-web-white border-web-silver-chalice border-dashed border-t-[1px] grid grid-cols-[repeat(auto-fit,_minmax(384px,_1fr))] grid-rows-[365.593994140625px] [row-gap:0px]">
+          <div className="self-stretch bg-web-white border-web-silver-chalice border-dashed border-t-[1px] grid grid-cols-[repeat(auto-fit,_minmax(384px,_1fr))] grid-rows-[365.593994140625px] mq925:grid-cols-[1fr] mq925:grid-rows-auto mq450:grid-cols-[1fr] mq450:grid-rows-auto [row-gap:0px]">
             <StatCard
               icon="/ClockCountdown.svg"
               title="15 Years of Experience"
@@ -46,13 +46,13 @@ const Container: FunctionComponent = () => {
                   trusted experience
                 </>
               }
-              className="col-[1] row-[1]"
+              className="col-[1] row-[1] mq925:col-auto mq925:row-auto mq450:col-auto mq450:row-auto"
             />
             <StatCard
               icon="/SVG6.svg"
               title="Specialist Doctors"
               description="Experienced specialists across 13+ medical disciplines"
-              className="col-[2] row-[1]"
+              className="col-[2] row-[1] mq925:col-auto mq925:row-auto mq450:col-auto mq450:row-auto"
             />
             <StatCard
               icon="/SVG7.svg"
@@ -64,13 +64,13 @@ const Container: FunctionComponent = () => {
                   first
                 </>
               }
-              className="col-[3] row-[1]"
+              className="col-[3] row-[1] mq925:col-auto mq925:row-auto mq450:col-auto mq450:row-auto"
             />
             <StatCard
               icon="/SVG8.svg"
               title="NABH Pre-accredited"
               description="Meeting national standards for safety and quality of care"
-              className="col-[4] row-[1] !pb-[64.8px]"
+              className="col-[4] row-[1] !pb-[64.8px] mq925:col-auto mq925:row-auto mq450:col-auto mq450:row-auto"
             />
           </div>
           <Section1 />

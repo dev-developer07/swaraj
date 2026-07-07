@@ -16,9 +16,9 @@ const Listitem1: FunctionComponent<Listitem1Type> = ({
 }) => {
   return (
     <Box
-      className={`h-num-182 flex-1 flex items-start !pt-num-10 !pb-num-0 !pl-num-0 !pr-num-0 box-border min-w-num-318 max-w-full text-left text-num-16 text-web-woodsmoke font-inter ${className}`}
+      className={`w-full h-num-182 mq925:h-auto mq450:h-auto flex flex-col items-center !pt-num-10 !pb-num-0 !pl-num-0 !pr-num-0 box-border max-w-full text-left text-num-16 text-web-woodsmoke font-inter ${className}`}
     >
-      <Box className="w-num-490 rounded-num-16 bg-web-white overflow-hidden shrink-0 flex flex-col items-start !p-3 box-border gap-5 max-w-full">
+      <Box className="w-full max-w-[490px] rounded-num-16 bg-web-white overflow-hidden flex flex-col items-start !p-3 box-border gap-5 max-w-full">
         <Box className="self-stretch flex items-start justify-between gap-5">
           <Box className="overflow-hidden flex items-center justify-center !p-2">
             <Box className="overflow-hidden flex flex-col items-center justify-center max-w-num-1920">

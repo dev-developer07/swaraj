@@ -60,15 +60,15 @@ const Section4: FunctionComponent<Section4Type> = ({ className = "" }) => {
   ]);
   return (
     <Box
-      className={`self-stretch bg-web-white flex flex-col items-center !pt-[150px] !pb-num-0 !pl-num-0 !pr-num-0 gap-[34px] z-[2] !mt-[-0.6px] relative mq925:gap-[17px] ${className}`}
+      className={`self-stretch bg-web-white flex flex-col items-center !pt-[150px] !pb-num-0 !pl-num-0 !pr-num-0 gap-[34px] z-[2] !mt-[-0.6px] relative mq925:gap-[17px] mq450:gap-[17px] ${className}`}
     >
       {/* Top Header Wrapper to match table's left/right margins and responsive behavior */}
-      <Box className="self-stretch bg-web-white flex flex-col items-start !pt-num-0 !pb-num-0 !pl-60 !pr-60 mq925:!pl-[60px] mq925:!pr-[60px] mq925:box-border mq1350:!pl-num-120 mq1350:!pr-num-120 mq1350:box-border">
-        <Box className="w-full flex flex-col items-start !pt-num-0 !pb-num-0 !pl-num-40 !pr-num-40 box-border max-w-num-1440 mq1825:max-w-full">
-          <section className="w-full grid grid-cols-[repeat(4,_1fr)] gap-4 text-left text-num-16 text-web-woodsmoke font-lilex mq925:flex mq925:flex-col mq925:gap-6">
+      <Box className="self-stretch bg-web-white flex flex-col items-start !pt-num-0 !pb-num-0 !pl-60 !pr-60 mq925:!pl-5 mq925:!pr-5 mq925:box-border mq1350:!pl-num-120 mq1350:!pr-num-120 mq1350:box-border mq450:!pl-5 mq450:!pr-5 mq450:box-border">
+        <Box className="w-full flex flex-col items-start !pt-num-0 !pb-num-0 !pl-num-40 !pr-num-40 mq925:!pl-0 mq925:!pr-0 mq450:!pl-0 mq450:!pr-0 box-border max-w-num-1440 mq1825:max-w-full">
+          <section className="w-full grid grid-cols-[repeat(4,_1fr)] gap-4 text-left text-num-16 text-web-woodsmoke font-lilex mq925:flex mq925:flex-col mq925:gap-6 mq450:flex mq450:flex-col mq450:gap-6">
             
             {/* Left side: Eyebrow badge and title spanning columns 1 and 2 (aligned with Services column) */}
-            <Box className="col-[1_/_span_2] [filter:blur(0px)] flex flex-col items-start max-w-[490px] mq925:max-w-full">
+            <Box className="col-[1_/_span_2] [filter:blur(0px)] flex flex-col items-start max-w-[490px] mq925:max-w-full mq450:max-w-full">
               <SectionBadge
                 icon="/SVG.svg"
                 label="our specialized services"
@@ -92,9 +92,9 @@ const Section4: FunctionComponent<Section4Type> = ({ className = "" }) => {
             </Box>
 
             {/* Right side: Description paragraph starting at Column 4 (aligned with Local Hospitals column) */}
-            <Box className="col-[4] flex flex-col items-start max-w-[378px] font-inter mq925:max-w-full justify-end !pb-[10px]">
+            <Box className="col-[4] flex flex-col items-start max-w-[378px] font-inter mq925:max-w-full mq450:max-w-full justify-end !pb-[10px]">
               <Box className="self-stretch [filter:blur(0px)] flex flex-col items-start">
-                <div className="w-[378px] mq925:w-full relative leading-num-24 flex items-center">
+                <div className="w-[378px] mq925:w-full mq450:w-full relative leading-num-24 flex items-center">
                   Understanding what sets Swaraj Hospital apart from a typical
                   hospital in western Odisha
                 </div>
@@ -104,13 +104,13 @@ const Section4: FunctionComponent<Section4Type> = ({ className = "" }) => {
           </section>
         </Box>
       </Box>
-      <Box className="self-stretch bg-web-gray-nurse flex flex-col items-start !pt-num-0 !pb-num-0 !pl-60 !pr-60 mq925:!pl-[60px] mq925:!pr-[60px] mq925:box-border mq1350:!pl-num-120 mq1350:!pr-num-120 mq1350:box-border">
-        <Box className="w-full h-[615px] flex flex-col items-start !pt-num-0 !pb-num-0 !pl-num-40 !pr-num-40 box-border max-w-num-1440 mq925:h-auto mq1825:max-w-full">
-          <section className="w-num-1360 h-[77px] [filter:blur(0px)] border-web-gothic border-solid border-b-[1px] box-border grid grid-cols-[repeat(4,_1fr)] grid-rows-[76px] gap-4 text-left text-num-24 text-web-woodsmoke font-stack-sans-text">
-            <Box className="h-num-76 flex items-center !pt-num-22 !pb-num-22 !pl-num-0 !pr-num-0 box-border col-[1_/_span_2] row-[1]">
+      <Box className="self-stretch bg-web-gray-nurse flex flex-col items-start !pt-num-0 !pb-num-0 !pl-60 !pr-60 mq925:!pl-5 mq925:!pr-5 mq925:box-border mq1350:!pl-num-120 mq1350:!pr-num-120 mq1350:box-border mq450:!pl-5 mq450:!pr-5 mq450:box-border">
+        <Box className="w-full h-[615px] flex flex-col items-start !pt-num-0 !pb-num-0 !pl-num-40 !pr-num-40 mq925:!pl-0 mq925:!pr-0 mq450:!pl-0 mq450:!pr-0 box-border max-w-num-1440 mq925:h-auto mq450:h-auto mq1825:max-w-full">
+          <section className="w-full max-w-num-1360 h-[77px] mq925:h-auto mq450:h-auto [filter:blur(0px)] border-web-gothic border-solid border-b-[1px] box-border grid grid-cols-[repeat(4,_1fr)] gap-4 text-left text-num-24 mq925:text-num-14 mq450:text-num-14 text-web-woodsmoke font-stack-sans-text">
+            <Box className="h-num-76 mq925:h-auto mq450:h-auto flex items-center !pt-num-22 !pb-num-22 mq925:!pt-2 mq925:!pb-2 mq450:!pt-2 mq450:!pb-2 !pl-num-0 !pr-num-0 box-border col-[1_/_span_2] row-[1]">
               <Box className="flex flex-col items-start shrink-0">
                 <Typography
-                  className="!m-0 relative mq450:text-num-19 mq450:leading-num-29"
+                   className="!m-0 relative mq450:text-num-14 mq450:leading-num-20"
                   variant="inherit"
                   variantMapping={{ inherit: "h3" }}
                   sx={{
@@ -123,9 +123,9 @@ const Section4: FunctionComponent<Section4Type> = ({ className = "" }) => {
                 </Typography>
               </Box>
             </Box>
-            <Box className="h-num-76 bg-web-cloud-burst flex items-center justify-center !pt-num-22 !pb-num-22 !pl-num-0 !pr-num-0 box-border whitespace-nowrap col-[3] row-[1] text-web-white">
+            <Box className="h-num-76 mq925:h-auto mq450:h-auto bg-web-cloud-burst flex items-center justify-center !pt-num-22 !pb-num-22 mq925:!pt-2 mq925:!pb-2 mq450:!pt-2 mq450:!pb-2 !pl-2 !pr-2 box-border whitespace-nowrap mq925:whitespace-normal text-center col-[3] row-[1] text-web-white">
               <Typography
-                className="!m-0 relative shrink-0"
+                className="!m-0 relative shrink-0 mq450:text-num-14 mq450:leading-num-20"
                 variant="inherit"
                 variantMapping={{ inherit: "h3" }}
                 sx={{
@@ -137,9 +137,9 @@ const Section4: FunctionComponent<Section4Type> = ({ className = "" }) => {
                 Swaraj Hospital
               </Typography>
             </Box>
-            <Box className="h-num-76 flex items-center justify-center !pt-num-22 !pb-num-22 !pl-num-0 !pr-num-0 box-border col-[4] row-[1] text-web-gothic">
+            <Box className="h-num-76 mq925:h-auto mq450:h-auto flex items-center justify-center !pt-num-22 !pb-num-22 mq925:!pt-2 mq925:!pb-2 mq450:!pt-2 mq450:!pb-2 !pl-2 !pr-2 box-border text-center col-[4] row-[1] text-web-gothic">
               <Typography
-                className="!m-0 relative shrink-0 mq450:text-num-19 mq450:leading-num-29"
+                className="!m-0 relative shrink-0 mq450:text-num-14 mq450:leading-num-20"
                 variant="inherit"
                 variantMapping={{ inherit: "h3" }}
                 sx={{

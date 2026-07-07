@@ -15,7 +15,7 @@ const Section3: FunctionComponent<Section3Type> = ({ className = "" }) => {
   return (
     <>
       <Box
-        className={`self-stretch overflow-hidden flex flex-col justify-center items-start !py-32 !pl-num-280 !pr-num-280 relative isolate z-[1] mq925:!pl-num-70 mq925:!pr-num-70 mq925:!py-16 mq925:box-border mq1350:!pl-num-140 mq1350:!pr-num-140 mq1350:box-border min-h-[600px] ${className}`}
+        className={`self-stretch overflow-hidden flex flex-col justify-center items-start !py-32 !pl-num-280 !pr-num-280 relative isolate z-[1] mq925:!pl-num-70 mq925:!pr-num-70 mq925:!py-16 mq925:box-border mq1350:!pl-num-140 mq1350:!pr-num-140 mq1350:box-border mq450:!pl-6 mq450:!pr-6 mq450:!py-16 mq450:box-border min-h-[600px] ${className}`}
       >
         <img
           className="w-full h-full absolute inset-0 object-cover z-[0] shrink-0"

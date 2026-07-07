@@ -47,18 +47,18 @@ const Container1: FunctionComponent<Container1Type> = ({ className = "" }) => {
   ]);
   return (
     <Box
-      className={`w-[1400px] flex flex-col items-center !pt-num-0 !pb-num-0 !pl-5 !pr-5 box-border gap-[34px] max-w-full shrink-0 mq925:gap-[17px] ${className}`}
+      className={`w-full max-w-[1400px] flex flex-col items-center !pt-num-0 !pb-num-0 !pl-5 !pr-5 box-border gap-[34px] max-w-full shrink-0 mq925:gap-[17px] ${className}`}
     >
-      <section className="w-[599px] flex flex-col items-center justify-center max-w-num-599 text-center text-num-16 text-web-woodsmoke font-lilex mq925:max-w-full">
+      <section className="w-full max-w-num-599 flex flex-col items-center justify-center text-center text-num-16 text-web-woodsmoke font-lilex">
         <SectionBadge
           icon="/SVG.svg"
           label="since 2010"
           variant="light"
         />
-        <Box className="flex flex-col items-start !pt-6 !pb-num-0 !pl-num-0 !pr-num-0 box-border max-w-num-500 text-num-48 font-stack-sans-text mq925:max-w-full">
-          <Box className="w-[500px] h-num-129_6 [filter:blur(0px)] overflow-hidden shrink-0 flex items-end !pt-num-0 !pb-num-0_2 !pl-[59px] !pr-[58px] box-border mq925:!pl-num-29 mq925:!pr-num-29 mq925:box-border">
+        <Box className="flex flex-col items-start !pt-6 !pb-num-0 !pl-num-0 !pr-num-0 box-border max-w-num-500 text-num-48 font-stack-sans-text mq925:max-w-full mq450:max-w-full">
+          <Box className="w-full max-w-[500px] mq925:h-auto mq450:h-auto h-num-129_6 [filter:blur(0px)] overflow-hidden shrink-0 flex items-end !pt-num-0 !pb-num-0_2 !pl-[59px] !pr-[58px] box-border mq925:!pl-num-29 mq925:!pr-num-29 mq925:box-border mq450:!pl-4 mq450:!pr-4 mq450:box-border">
             <Typography
-              className="!m-0 h-num-130 w-[382px] relative inline-block mq925:text-num-38 mq925:leading-num-52 mq450:text-num-29 mq450:leading-num-39"
+              className="!m-0 h-auto w-full max-w-[382px] relative inline-block mq925:text-num-38 mq925:leading-num-52 mq450:text-num-29 mq450:leading-num-39"
               variant="inherit"
               variantMapping={{ inherit: "h1" }}
               sx={{
@@ -74,8 +74,8 @@ const Container1: FunctionComponent<Container1Type> = ({ className = "" }) => {
           </Box>
         </Box>
         <Box className="flex flex-col items-start !pt-4 !pb-num-0 !pl-num-0 !pr-num-0 font-inter">
-          <Box className="[filter:blur(0px)] overflow-hidden flex flex-col items-center !pt-num-0 !pb-num-0 !pl-num-5 !pr-num-5">
-            <div className="w-num-589 relative leading-num-24 flex items-center justify-center">
+          <Box className="[filter:blur(0px)] overflow-hidden flex flex-col items-center !pt-num-0 !pb-num-0 !pl-num-5 !pr-num-5 mq925:!pl-4 mq925:!pr-4 mq450:!pl-4 mq450:!pr-4">
+            <div className="w-num-589 mq925:w-full mq450:w-full max-w-full relative leading-num-24 text-center">
               A multidisciplinary team dedicated to precision and compassion.
               Bridging advanced medical technology with patient-centred care for
               every family in western Odisha.
@@ -83,9 +83,9 @@ const Container1: FunctionComponent<Container1Type> = ({ className = "" }) => {
           </Box>
         </Box>
       </section>
-      <section className="w-[992px] flex flex-col items-center justify-center max-w-[992px] mq1350:max-w-full">
+      <section className="w-full max-w-[992px] flex flex-col items-center justify-center mq1350:max-w-full">
         <Box className="self-stretch flex flex-col items-start !pt-5 !pb-num-0 !pl-num-0 !pr-num-0">
-          <div className="self-stretch h-num-182 grid box-border grid-cols-[repeat(auto-fit,_minmax(244px,_1fr))] grid-rows-[182px] gap-3">
+          <div className="self-stretch h-auto min-h-num-182 grid box-border grid-cols-[repeat(auto-fit,_minmax(244px,_1fr))] gap-3">
             {listitemItems.map((item, index) => (
               <Listitem
                 key={index}
@@ -103,7 +103,7 @@ const Container1: FunctionComponent<Container1Type> = ({ className = "" }) => {
           </div>
         </Box>
         <Box className="self-stretch flex flex-col items-start !pt-num-10 !pb-num-0 !pl-num-0 !pr-num-0 box-border max-w-full !mt-[-8px] relative">
-          <Box className="self-stretch flex items-center justify-center flex-wrap content-center gap-3 max-w-full">
+          <Box className="self-stretch flex items-center justify-center flex-wrap mq925:flex-col mq450:flex-col content-center gap-3 max-w-full">
             <Listitem1
               container="/Container9@2x.png"
               dRAnuradhaAcharya="DR. Anuradha Acharya"

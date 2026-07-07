@@ -34,10 +34,10 @@ const Section6: FunctionComponent<Section6Type> = ({ className = "" }) => {
   ]);
   return (
     <Box
-      className={`bg-web-white overflow-hidden flex flex-col items-start !pt-num-200 !pb-num-200 !pl-num-280 !pr-num-280 box-border max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq925:!pt-num-84 mq925:!pb-num-84 mq925:!pl-num-70 mq925:!pr-num-70 mq925:box-border mq1350:!pt-num-130 mq1350:!pb-num-130 mq1350:!pl-num-140 mq1350:!pr-num-140 mq1350:box-border ${className}`}
+      className={`bg-web-white overflow-hidden flex flex-col items-start !pt-num-200 !pb-num-200 !pl-num-280 !pr-num-280 box-border max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq925:!pt-num-84 mq925:!pb-num-84 mq925:!pl-5 mq925:!pr-5 mq925:box-border mq1350:!pt-num-130 mq1350:!pb-num-130 mq1350:!pl-num-140 mq1350:!pr-num-140 mq1350:box-border mq450:!pt-num-84 mq450:!pb-num-84 mq450:!pl-5 mq450:!pr-5 mq450:box-border ${className}`}
     >
-      <Box className="w-num-1360 flex items-start gap-[103px] max-w-full mq925:gap-[51px] mq450:gap-[26px]">
-        <Box className="w-[457px] flex flex-col items-start !pt-3 !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-[23.4px] max-w-[457px] mq450:max-w-full">
+      <Box className="w-full max-w-num-1360 flex flex-row mq925:flex-col mq450:flex-col items-start gap-[103px] max-w-full mq925:gap-[51px] mq450:gap-[26px]">
+        <Box className="w-[457px] mq925:w-full mq450:w-full flex flex-col items-start !pt-3 !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-[23.4px] max-w-[457px] mq925:max-w-full mq450:max-w-full">
           <SectionBadge icon="/SVG.svg" label="FAQ — quiry" variant="dark" />
           <Box className="self-stretch flex flex-col items-start text-num-48 font-stack-sans-text">
             <Typography
@@ -56,20 +56,20 @@ const Section6: FunctionComponent<Section6Type> = ({ className = "" }) => {
             </Typography>
           </Box>
         </Box>
-        <section className="w-[800px] flex flex-col items-start max-w-full text-left text-num-16 text-web-mine-shaft font-inter">
+        <section className="w-[800px] mq925:w-full mq450:w-full flex flex-col items-start max-w-full text-left text-num-16 text-web-mine-shaft font-inter">
           <Box className="self-stretch flex items-center justify-end gap-2">
-            <Box className="rounded-num-4 bg-[#1F2A44] text-[#FFFFFF] flex flex-col items-start !pt-1 !pb-1 !pl-4 !pr-4 box-border max-w-num-800 mq925:max-w-full cursor-pointer">
+            <Box className="rounded-num-4 bg-[#1F2A44] text-[#FFFFFF] flex flex-col items-start !pt-1 !pb-1 !pl-4 !pr-4 box-border max-w-num-800 mq925:max-w-full mq450:max-w-full cursor-pointer">
               <div className="relative leading-num-24 uppercase font-lilex font-medium">Clinic</div>
             </Box>
-            <Box className="rounded-num-4 bg-web-gray-nurse text-web-mine-shaft flex flex-col items-start !pt-1 !pb-1 !pl-4 !pr-4 box-border max-w-num-800 mq925:max-w-full cursor-pointer">
+            <Box className="rounded-num-4 bg-web-gray-nurse text-web-mine-shaft flex flex-col items-start !pt-1 !pb-1 !pl-4 !pr-4 box-border max-w-num-800 mq925:max-w-full mq450:max-w-full cursor-pointer">
               <div className="relative leading-num-24 uppercase font-lilex font-medium">DOCTORS</div>
             </Box>
-            <Box className="rounded-num-4 bg-web-gray-nurse text-web-mine-shaft flex flex-col items-start !pt-1 !pb-1 !pl-4 !pr-4 box-border max-w-num-800 mq925:max-w-full cursor-pointer">
+            <Box className="rounded-num-4 bg-web-gray-nurse text-web-mine-shaft flex flex-col items-start !pt-1 !pb-1 !pl-4 !pr-4 box-border max-w-num-800 mq925:max-w-full mq450:max-w-full cursor-pointer">
               <div className="relative leading-num-24 uppercase font-lilex font-medium">PRICING</div>
             </Box>
           </Box>
-          <Box className="self-stretch overflow-hidden flex flex-col items-start !pt-11 !pb-num-0 !pl-num-0 !pr-num-0 box-border max-w-full mq925:!pt-num-29 mq925:box-border">
-            <Box className="w-full flex flex-col items-start gap-3 max-w-num-800 mq925:max-w-full">
+          <Box className="self-stretch overflow-hidden flex flex-col items-start !pt-11 !pb-num-0 !pl-num-0 !pr-num-0 box-border max-w-full mq925:!pt-num-29 mq925:box-border mq450:!pt-num-29 mq450:box-border">
+            <Box className="w-full flex flex-col items-start gap-3 max-w-num-800 mq925:max-w-full mq450:max-w-full">
               {backgroundBlurItems.map((item, index) => (
                 <BackgroundBlur
                   key={index}

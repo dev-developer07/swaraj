@@ -1,4 +1,4 @@
-import { type FunctionComponent, useMemo, type CSSProperties } from "react";
+import { type FunctionComponent, useMemo, type CSSProperties, useState, useEffect } from "react";
 import { Box } from "@mui/material";
 
 export type ListitemType = {
@@ -28,34 +28,64 @@ const Listitem: FunctionComponent<ListitemType> = ({
   containerJustifyContent,
   containerGap,
 }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1024);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const listitemStyle: CSSProperties = useMemo(() => {
+    if (isMobile) {
+      return {
+        gridColumn: "auto",
+        gridRow: "auto",
+        width: "100%",
+      };
+    }
     return {
       gridColumn: listitemGridColumn,
       width: listitemWidth,
     };
-  }, [listitemGridColumn, listitemWidth]);
+  }, [listitemGridColumn, listitemWidth, isMobile]);
 
   const linkStyle: CSSProperties = useMemo(() => {
+    if (isMobile) {
+      return {
+        width: "100%",
+        alignSelf: "stretch",
+      };
+    }
     return {
       width: linkWidth,
       alignSelf: linkAlignSelf,
     };
-  }, [linkWidth, linkAlignSelf]);
+  }, [linkWidth, linkAlignSelf, isMobile]);
 
   const container6Style: CSSProperties = useMemo(() => {
+    if (isMobile) {
+      return {
+        justifyContent: "space-between",
+        gap: "20px",
+      };
+    }
     return {
       justifyContent: containerJustifyContent,
       gap: containerGap,
     };
-  }, [containerJustifyContent, containerGap]);
+  }, [containerJustifyContent, containerGap, isMobile]);
 
   return (
     <Box
-      className={`flex flex-col items-start !pt-num-10 !pb-num-0 !pl-num-0 !pr-num-0 col-[1] row-[1] shrink-0 text-left text-num-16 text-web-woodsmoke font-inter ${className}`}
+      className={`flex flex-col items-start !pt-num-10 !pb-num-0 !pl-num-0 !pr-num-0 col-[1] row-[1] mq925:col-auto mq925:row-auto mq450:col-auto mq450:row-auto shrink-0 text-left text-num-16 text-web-woodsmoke font-inter ${className}`}
       style={listitemStyle}
     >
       <Box
-        className="w-num-322_7 rounded-num-16 bg-web-white overflow-hidden flex flex-col items-start !p-3 box-border gap-5"
+        className="w-num-322_7 mq925:w-full mq450:w-full rounded-num-16 bg-web-white overflow-hidden flex flex-col items-start !p-3 box-border gap-5"
         style={linkStyle}
       >
         <Box

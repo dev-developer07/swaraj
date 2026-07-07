@@ -146,8 +146,8 @@ const Section1: FunctionComponent<Section1Type> = ({ className = "" }) => {
       }}
     >
       <Box ref={containerRef} className="w-full flex flex-col items-start !pt-num-0 !pb-num-0 !pl-num-40 !pr-0 box-border relative isolate max-w-num-1440 mq1825:max-w-full mq450:!pl-0">
-        <Box className="self-stretch flex flex-col items-start !pt-num-100 !pb-[132px] !pl-num-0 !pr-num-0 box-border gap-[46px] max-w-full z-[1] shrink-0 mq925:gap-[23px] mq925:!pt-[42px] mq925:!pb-14 mq925:box-border mq1350:!pt-num-65 mq1350:!pb-[86px] mq1350:box-border">
-          <section className="self-stretch !pr-60 mq925:!pr-[60px] mq1350:!pr-num-120 overflow-hidden flex items-end justify-between gap-5 max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq1350:flex-wrap mq1350:gap-5">
+        <Box className="self-stretch flex flex-col items-start !pt-num-100 !pb-[132px] !pl-num-0 !pr-num-0 box-border gap-[46px] max-w-full z-[1] shrink-0 mq925:gap-[23px] mq925:!pt-[42px] mq925:!pb-14 mq925:box-border mq1350:!pt-num-65 mq1350:!pb-[86px] mq1350:box-border mq450:gap-[23px] mq450:!pt-[42px] mq450:!pb-14 mq450:box-border">
+          <section className="self-stretch !pr-60 mq925:!pr-[60px] mq1350:!pr-num-120 overflow-hidden flex items-end justify-between gap-5 max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq1350:flex-wrap mq1350:gap-5 mq925:flex-wrap mq450:flex-wrap mq450:!pr-6">
             <Box className="[filter:blur(0px)] flex flex-col items-start max-w-[480px] mq925:max-w-full mq1350:w-full mq1350:min-w-full">
               <SectionBadge
                 icon="/SVG.svg"
@@ -167,11 +167,11 @@ const Section1: FunctionComponent<Section1Type> = ({ className = "" }) => {
                 >
                   Exceptional
                   <br />
-                  <span className="whitespace-nowrap">care for every patient</span>
+                  <span className="mq925:whitespace-normal mq450:whitespace-normal whitespace-nowrap">care for every patient</span>
                 </Typography>
               </Box>
             </Box>
-            <Box className="flex-1 [filter:blur(0px)] flex flex-col items-start min-w-[235px] max-w-[362px] text-web-white font-inter">
+            <Box className="flex-1 [filter:blur(0px)] flex flex-col items-start min-w-[235px] max-w-[362px] mq925:max-w-full mq925:w-full mq925:min-w-0 mq450:max-w-full mq450:w-full mq450:min-w-0 text-web-white font-inter">
               <Box className="self-stretch flex flex-col items-start">
                 <div className="self-stretch relative leading-num-24">
                   We offer a full range of advanced medical specialities, where

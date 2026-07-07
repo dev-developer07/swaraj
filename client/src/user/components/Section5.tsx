@@ -107,14 +107,14 @@ const Section5: FunctionComponent<Section5Type> = ({ className = "" }) => {
                   letterSpacing: "-0.72px",
                 }}
               >
-                <span className="whitespace-nowrap">Advanced Diagnostics</span> <br />
-                <span className="whitespace-nowrap">for accurate treatment.</span>
+                <span className="mq925:whitespace-normal mq450:whitespace-normal whitespace-nowrap">Advanced Diagnostics</span> <br />
+                <span className="mq925:whitespace-normal mq450:whitespace-normal whitespace-nowrap">for accurate treatment.</span>
               </Typography>
             </Box>
           </Box>
-          <Box className="flex-1 flex flex-col items-start max-w-[378px] font-inter">
+          <Box className="flex-1 flex flex-col items-start max-w-[378px] mq925:max-w-full mq925:w-full mq450:max-w-full mq450:w-full font-inter">
             <Box className="self-stretch [filter:blur(0px)] flex flex-col items-start">
-              <div className="w-[378px] relative leading-num-24 flex items-center">
+              <div className="w-[378px] mq925:w-full mq450:w-full relative leading-num-24 flex items-center">
                 State-of-the-art diagnostic technology and lab-grade testing to
                 ensure every condition is identified with precision and treated
                 with confidence.

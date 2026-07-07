@@ -36,10 +36,10 @@ const FrameComponent1: FunctionComponent<FrameComponent1Type> = ({
       className={`flex items-start !pt-num-0 !pb-[50px] !pl-num-0 !pr-num-0 box-border max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq925:!pb-num-21 mq925:box-border mq1350:!pb-num-32 mq1350:box-border ${className}`}
     >
       <Box className="flex flex-col items-start max-w-full">
-        <Box className="w-[1920px] h-[980px] relative bg-web-white max-w-full overflow-hidden">
-          <Box className="absolute top-[120px] left-[240px] h-auto flex flex-col items-start max-w-full shrink-0">
+        <Box className="w-[1920px] h-[980px] relative bg-web-white max-w-full overflow-hidden mq925:h-auto mq925:py-12">
+          <Box className="absolute top-[120px] left-[240px] h-auto flex flex-col items-start max-w-full shrink-0 mq925:relative mq925:top-0 mq925:left-0 mq925:w-full mq925:px-6">
             <ScrollReveal direction="left">
-              <Box className="w-[690px] flex flex-col items-start !pt-3 !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-5 max-w-[690px] mq925:max-w-full">
+              <Box className="w-[690px] flex flex-col items-start !pt-3 !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-5 max-w-[690px] mq925:max-w-full mq925:w-full">
               <SectionBadge
                 icon="/SVG.svg"
                 label="our scope"
@@ -84,7 +84,7 @@ const FrameComponent1: FunctionComponent<FrameComponent1Type> = ({
                       />
                     </Box>
                     <Box className="flex items-center justify-center">
-                      <div className="w-[641.1px] relative leading-num-28_8 flex items-center shrink-0">
+                      <div className="w-[641.1px] relative leading-num-28_8 flex items-center shrink-0 mq925:!w-full mq925:shrink">
                         <span className="w-full">
                           <Typography
                             variant="inherit"
@@ -115,7 +115,7 @@ const FrameComponent1: FunctionComponent<FrameComponent1Type> = ({
                       />
                     </Box>
                     <Box className="flex items-center justify-center">
-                      <div className="w-[592.1px] relative leading-num-28_8 flex items-center shrink-0">
+                      <div className="w-[592.1px] relative leading-num-28_8 flex items-center shrink-0 mq925:!w-full mq925:shrink">
                         <span className="w-full">
                           <Typography
                             variant="inherit"
@@ -146,7 +146,7 @@ const FrameComponent1: FunctionComponent<FrameComponent1Type> = ({
                       />
                     </Box>
                     <Box className="flex items-center justify-center">
-                      <div className="w-[639.1px] relative leading-num-28_8 flex items-center shrink-0">
+                      <div className="w-[639.1px] relative leading-num-28_8 flex items-center shrink-0 mq925:!w-full mq925:shrink">
                         <span className="w-full">
                           <Typography
                             variant="inherit"
@@ -177,7 +177,7 @@ const FrameComponent1: FunctionComponent<FrameComponent1Type> = ({
                       />
                     </Box>
                     <Box className="flex items-center justify-center">
-                      <div className="w-[589.1px] relative leading-num-28_8 flex items-center shrink-0">
+                      <div className="w-[589.1px] relative leading-num-28_8 flex items-center shrink-0 mq925:!w-full mq925:shrink">
                         <span className="w-full">
                           <Typography
                             variant="inherit"
@@ -208,7 +208,7 @@ const FrameComponent1: FunctionComponent<FrameComponent1Type> = ({
                       />
                     </Box>
                     <Box className="flex items-center justify-center">
-                      <div className="w-[621.1px] relative leading-num-28_8 flex items-center shrink-0">
+                      <div className="w-[621.1px] relative leading-num-28_8 flex items-center shrink-0 mq925:!w-full mq925:shrink">
                         <span className="w-full">
                           <Typography
                             variant="inherit"
@@ -237,7 +237,7 @@ const FrameComponent1: FunctionComponent<FrameComponent1Type> = ({
           </Box>
           <Box className="absolute w-[calc(100%_-_1170px)] top-[calc(50%_-_326.5px)] right-[240px] left-[930px] h-[733px] flex flex-col items-start !pt-num-0 !pb-num-0 !pl-num-40 !pr-num-40 box-border max-w-num-1440 shrink-0 mq1825:max-w-full" />
           <img
-            className="absolute h-[120%] top-[-10%] right-[0px] w-[640px] object-cover shrink-0"
+            className="absolute h-[120%] top-[-10%] right-[0px] w-[640px] object-cover shrink-0 mq925:hidden"
             style={{
               transform: `translateY(${offsetY}px)`,
               willChange: "transform",

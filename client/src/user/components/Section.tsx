@@ -15,14 +15,14 @@ const Section: FunctionComponent<SectionType> = ({ className = "" }) => {
     >
       <section className="w-full max-w-[1360px] rounded-[1125px] flex flex-col items-center relative isolate">
         <ScrollReveal direction="up" className="w-full flex justify-center">
-          <Box className="w-full h-[890px] rounded-[890px] bg-web-gray-nurse overflow-hidden shrink-0 flex flex-col items-center justify-center gap-11 max-w-[890px]">
+          <Box className="w-full h-[890px] rounded-[890px] bg-web-gray-nurse overflow-hidden shrink-0 flex flex-col items-center justify-center gap-11 max-w-[890px] mq925:h-auto mq925:rounded-[60px] mq925:gap-8 mq925:py-16 mq925:px-6 mq450:h-auto mq450:rounded-[60px] mq450:gap-8 mq450:py-16 mq450:px-6">
           <section className="w-full flex flex-col items-center gap-[16.2px] max-w-num-599 text-center text-num-16 text-web-woodsmoke font-lilex">
             <SectionBadge
               icon="/SVG.svg"
               label="Welcome to Swaraj"
               variant="light"
             />
-            <Box className="w-[500px] flex flex-col items-center !pt-[7.2px] !pb-num-0 !pl-num-0 !pr-num-0 box-border max-w-num-500 text-num-48 font-stack-sans-text">
+            <Box className="w-[500px] flex flex-col items-center !pt-[7.2px] !pb-num-0 !pl-num-0 !pr-num-0 box-border max-w-num-500 text-num-48 font-stack-sans-text mq925:w-full">
               <Box className="relative flex flex-col items-center text-center">
                 <Typography
                   className="!m-0 w-full relative inline-block max-w-num-500 text-center"
@@ -53,7 +53,7 @@ const Section: FunctionComponent<SectionType> = ({ className = "" }) => {
             </Box>
           </section>
           <section className="self-stretch flex flex-col items-center max-w-full text-left text-num-16 text-web-woodsmoke font-inter">
-            <div className="w-[1920px] h-[60px] relative bg-web-white overflow-hidden shrink-0 max-w-full">
+            <div className="w-full h-[60px] relative bg-web-white mq925:bg-transparent mq450:bg-transparent overflow-hidden shrink-0">
               <div className="absolute top-[16px] left-0 flex items-center h-7 w-max animate-marquee-50">
                 {[...Array(2)].map((_, groupIndex) => (
                   <div
@@ -96,24 +96,24 @@ const Section: FunctionComponent<SectionType> = ({ className = "" }) => {
         </Box>
         </ScrollReveal>
         <img
-          className="w-[199.3px] absolute !!m-[0 important] top-[3.6px] left-[177.1px] rounded-num-20 max-h-full object-cover max-w-[199.3px] shrink-0"
+          className="w-[199.3px] absolute !!m-[0 important] top-[3.6px] left-[177.1px] rounded-num-20 max-h-full object-cover max-w-[199.3px] shrink-0 mq925:hidden"
           loading="lazy"
           alt=""
           src="/Intro-Image@2x.png"
         />
         <img
-          className="w-[244.9px] h-[172.1px] absolute !!m-[0 important] top-[-4.3px] right-[176.4px] rounded-num-20 object-cover max-w-[245.8px] shrink-0"
+          className="w-[244.9px] h-[172.1px] absolute !!m-[0 important] top-[-4.3px] right-[176.4px] rounded-num-20 object-cover max-w-[245.8px] shrink-0 mq925:hidden"
           alt=""
           src="/Intro-Image2@2x.png"
         />
         <img
-          className="w-[200px] absolute !!m-[0 important] bottom-[5.7px] left-[176.8px] rounded-num-20 max-h-full object-cover max-w-[200px] shrink-0"
+          className="w-[200px] absolute !!m-[0 important] bottom-[5.7px] left-[176.8px] rounded-num-20 max-h-full object-cover max-w-[200px] shrink-0 mq925:hidden"
           loading="lazy"
           alt=""
           src="/Intro-Image1@2x.png"
         />
         <img
-          className="w-[260.9px] absolute !!m-[0 important] right-[176.3px] bottom-[-3.9px] rounded-num-20 max-h-full object-cover max-w-[261.8px] shrink-0"
+          className="w-[260.9px] absolute !!m-[0 important] right-[176.3px] bottom-[-3.9px] rounded-num-20 max-h-full object-cover max-w-[261.8px] shrink-0 mq925:hidden"
           loading="lazy"
           alt=""
           src="/Intro-Image3@2x.png"
