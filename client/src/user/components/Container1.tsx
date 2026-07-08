@@ -85,7 +85,7 @@ const Container1: FunctionComponent<Container1Type> = ({ className = "" }) => {
       </section>
       <section className="w-full max-w-[992px] flex flex-col items-center justify-center mq1350:max-w-full">
         <Box className="self-stretch flex flex-col items-start !pt-5 !pb-num-0 !pl-num-0 !pr-num-0">
-          <div className="self-stretch h-auto min-h-num-182 grid box-border grid-cols-[repeat(auto-fit,_minmax(244px,_1fr))] gap-3">
+          <div className="self-stretch h-auto min-h-num-182 grid box-border grid-cols-[repeat(auto-fit,_minmax(244px,_1fr))] mq925:grid-cols-1 mq450:grid-cols-1 gap-3">
             {listitemItems.map((item, index) => (
               <Listitem
                 key={index}

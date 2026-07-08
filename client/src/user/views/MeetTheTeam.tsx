@@ -277,7 +277,7 @@ const MeetTheTeam: FunctionComponent = () => {
                       </Box>
 
                       {/* Right Portrait Image */}
-                      <Box className="h-[276px] w-[276px] mq925:hidden overflow-hidden rounded-[16px] relative flex items-center justify-center m-0 p-0">
+                      <Box className="h-[276px] w-[276px] mq925:hidden mq450:hidden overflow-hidden rounded-[16px] relative flex items-center justify-center m-0 p-0">
                         <img
                           className="h-[276px] w-[276px] object-cover object-center transition-transform duration-300 group-hover:scale-105 rounded-[16px]"
                           src={doc.image}

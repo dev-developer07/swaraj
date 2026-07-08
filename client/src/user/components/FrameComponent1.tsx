@@ -237,7 +237,7 @@ const FrameComponent1: FunctionComponent<FrameComponent1Type> = ({
           </Box>
           <Box className="absolute w-[calc(100%_-_1170px)] top-[calc(50%_-_326.5px)] right-[240px] left-[930px] h-[733px] flex flex-col items-start !pt-num-0 !pb-num-0 !pl-num-40 !pr-num-40 box-border max-w-num-1440 shrink-0 mq1825:max-w-full" />
           <img
-            className="absolute h-[120%] top-[-10%] right-[0px] w-[640px] object-cover shrink-0 mq925:hidden"
+            className="absolute h-[120%] top-[-10%] right-[0px] w-[640px] object-cover shrink-0 mq925:hidden mq450:hidden"
             style={{
               transform: `translateY(${offsetY}px)`,
               willChange: "transform",
