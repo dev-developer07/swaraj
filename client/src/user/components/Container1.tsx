@@ -103,13 +103,15 @@ const Container1: FunctionComponent<Container1Type> = ({ className = "" }) => {
           </div>
         </Box>
         <Box className="self-stretch flex flex-col items-start !pt-num-10 !pb-num-0 !pl-num-0 !pr-num-0 box-border max-w-full !mt-[-8px] relative">
-          <Box className="self-stretch flex items-center justify-center flex-wrap mq925:flex-col mq450:flex-col content-center gap-3 max-w-full">
+          <Box className="self-stretch flex flex-row mq925:flex-col mq450:flex-col items-stretch justify-center gap-3 max-w-full">
             <Listitem1
+              className="flex-1 w-full"
               container="/Container9@2x.png"
               dRAnuradhaAcharya="DR. Anuradha Acharya"
               orthopaedicsJointReplacement={`Orthopaedics & Joint Replacement`}
             />
             <Listitem1
+              className="flex-1 w-full"
               container="/Container10@2x.png"
               dRAnuradhaAcharya="DR. Barsha Dash"
               orthopaedicsJointReplacement={`Pediatrics & Neonatology`}

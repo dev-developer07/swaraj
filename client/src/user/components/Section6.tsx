@@ -57,17 +57,7 @@ const Section6: FunctionComponent<Section6Type> = ({ className = "" }) => {
           </Box>
         </Box>
         <section className="w-[800px] mq925:w-full mq450:w-full flex flex-col items-start max-w-full text-left text-num-16 text-web-mine-shaft font-inter">
-          <Box className="self-stretch flex items-center justify-end gap-2">
-            <Box className="rounded-num-4 bg-[#1F2A44] text-[#FFFFFF] flex flex-col items-start !pt-1 !pb-1 !pl-4 !pr-4 box-border max-w-num-800 mq925:max-w-full mq450:max-w-full cursor-pointer">
-              <div className="relative leading-num-24 uppercase font-lilex font-medium">Clinic</div>
-            </Box>
-            <Box className="rounded-num-4 bg-web-gray-nurse text-web-mine-shaft flex flex-col items-start !pt-1 !pb-1 !pl-4 !pr-4 box-border max-w-num-800 mq925:max-w-full mq450:max-w-full cursor-pointer">
-              <div className="relative leading-num-24 uppercase font-lilex font-medium">DOCTORS</div>
-            </Box>
-            <Box className="rounded-num-4 bg-web-gray-nurse text-web-mine-shaft flex flex-col items-start !pt-1 !pb-1 !pl-4 !pr-4 box-border max-w-num-800 mq925:max-w-full mq450:max-w-full cursor-pointer">
-              <div className="relative leading-num-24 uppercase font-lilex font-medium">PRICING</div>
-            </Box>
-          </Box>
+
           <Box className="self-stretch overflow-hidden flex flex-col items-start !pt-11 !pb-num-0 !pl-num-0 !pr-num-0 box-border max-w-full mq925:!pt-num-29 mq925:box-border mq450:!pt-num-29 mq450:box-border">
             <Box className="w-full flex flex-col items-start gap-3 max-w-num-800 mq925:max-w-full mq450:max-w-full">
               {backgroundBlurItems.map((item, index) => (

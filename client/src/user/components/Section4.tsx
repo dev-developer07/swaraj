@@ -167,7 +167,7 @@ const Section4: FunctionComponent<Section4Type> = ({ className = "" }) => {
               sVGIconHeight={item.sVGIconHeight}
             />
           ))}
-          <section className="flex flex-col items-start">
+          <section className="self-stretch flex flex-col items-start">
             <HorizontalBorderBlur
               sVG="/SVG25.svg"
               emergencyService="Modular Operation Theatre"
