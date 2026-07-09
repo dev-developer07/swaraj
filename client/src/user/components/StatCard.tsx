@@ -23,7 +23,7 @@ const StatCard: FunctionComponent<StatCardProps> = ({
 }) => {
   return (
     <section
-      className={`[filter:blur(0px)] border-web-silver-chalice border-dashed border-r-[1px] flex flex-col items-start !pt-9 !pb-9 !pl-9 !pr-num-32 shrink-0 text-left text-num-24 text-web-woodsmoke font-stack-sans-text ${className}`}
+      className={`[filter:blur(0px)] border-web-silver-chalice border-dashed border-r-[1px] flex flex-col items-start !pt-9 !pb-9 !pl-9 !pr-num-32 shrink-0 text-left text-num-24 text-web-woodsmoke font-stack-sans-text mq925:border-r-0 mq925:!pt-5 mq925:!pb-5 mq925:!pl-6 mq925:!pr-6 mq450:border-r-0 mq450:!pt-4 mq450:!pb-4 mq450:!pl-4 mq450:!pr-4 ${className}`}
     >
       <Box className="w-[60px] h-12 rounded-num-4 bg-web-gray-nurse flex items-center justify-center">
         <Box className="h-8 w-8 flex flex-col items-start justify-center">
@@ -35,7 +35,7 @@ const StatCard: FunctionComponent<StatCardProps> = ({
           />
         </Box>
       </Box>
-      <Box className="self-stretch flex flex-col items-start !pt-num-140 !pb-num-0 !pl-num-0 !pr-num-0 gap-[10.9px]">
+      <Box className="self-stretch flex flex-col items-start !pt-num-140 !pb-num-0 !pl-num-0 !pr-num-0 gap-[16px] mq925:!pt-10 mq450:!pt-8">
         <Box className="self-stretch flex flex-col items-start">
           <Typography
             className="!m-0 self-stretch relative mq450:text-num-19 mq450:leading-num-29"

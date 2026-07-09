@@ -35,15 +35,13 @@ const Container: FunctionComponent = () => {
 
         {/* 4th Section (Slide 3): Specialties & Stats */}
         <Box className="relative w-full z-30 bg-web-white">
-          <div className="self-stretch bg-web-white border-web-silver-chalice border-dashed border-t-[1px] grid grid-cols-[repeat(auto-fit,_minmax(384px,_1fr))] grid-rows-[365.593994140625px] mq925:grid-cols-[1fr] mq925:grid-rows-auto mq450:grid-cols-[1fr] mq450:grid-rows-auto [row-gap:0px]">
+          <div className="self-stretch bg-web-white border-web-silver-chalice border-dashed border-t-[1px] grid grid-cols-[repeat(auto-fit,_minmax(384px,_1fr))] grid-rows-[365.593994140625px] mq925:grid-cols-[1fr] mq925:grid-rows-none mq925:pt-5 mq925:pb-5 mq450:grid-cols-[1fr] mq450:grid-rows-none mq450:pt-4 mq450:pb-4 [row-gap:0px]">
             <StatCard
               icon="/ClockCountdown.svg"
               title="15 Years of Experience"
               description={
                 <>
-                  Serving patients with confidence, care, and
-                  <br />
-                  trusted experience
+                  Serving patients with confidence, care, and trusted experience
                 </>
               }
               className="col-[1] row-[1] mq925:col-auto mq925:row-auto mq450:col-auto mq450:row-auto"
@@ -59,9 +57,7 @@ const Container: FunctionComponent = () => {
               title="Patient-First Care"
               description={
                 <>
-                  Your comfort, safety, and needs always come
-                  <br />
-                  first
+                  Your comfort, safety, and needs always come first
                 </>
               }
               className="col-[3] row-[1] mq925:col-auto mq925:row-auto mq450:col-auto mq450:row-auto"

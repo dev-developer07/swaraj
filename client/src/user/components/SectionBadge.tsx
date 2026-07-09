@@ -39,7 +39,7 @@ const SectionBadge: FunctionComponent<SectionBadgeProps> = ({
         />
       </Box>
       <Box className="flex flex-col items-start">
-        <div className="relative leading-num-24 uppercase font-medium whitespace-nowrap">
+        <div className="relative leading-num-24 uppercase font-medium whitespace-nowrap text-[16px] font-lilex max-[450px]:!text-[14px] max-[450px]:!leading-[21px]">
           {label}
         </div>
       </Box>

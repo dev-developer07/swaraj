@@ -839,16 +839,6 @@ export default function AdminDashboard() {
                     <option value="LOST">No response / Lost</option>
                   </select>
                 </div>
-                <div className="form-group">
-                  <label className="form-label">Staff Notes</label>
-                  <textarea
-                    rows={3}
-                    className="form-control"
-                    placeholder="Add details about follow-ups..."
-                    value={leadForm.notes}
-                    onChange={e => setLeadForm({ ...leadForm, notes: e.target.value })}
-                  />
-                </div>
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" onClick={() => setShowModal(null)}>Cancel</button>

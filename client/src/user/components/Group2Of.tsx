@@ -39,11 +39,11 @@ const Group2Of: FunctionComponent<Group2OfType> = ({
 
   return (
     <Box
-      className={`h-num-438 w-[436px] group hover:-translate-y-2 hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer rounded-num-24 bg-web-gray-nurse overflow-hidden shrink-0 flex flex-col items-start justify-center relative isolate max-w-full text-left text-num-16 text-web-white font-inter mq450:h-auto ${className}`}
+      className={`h-num-438 w-[436px] group hover:-translate-y-2 hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer rounded-num-24 bg-web-gray-nurse overflow-hidden shrink-0 flex flex-col items-start justify-center relative isolate max-w-full text-left text-num-16 text-web-white font-inter mq450:h-auto max-[450px]:!w-[318px] max-[450px]:!h-[320px] max-[450px]:!min-w-[318px] max-[450px]:!min-h-[320px] ${className}`}
     >
       {/* Hover State: Renders the full cover image fitting the container perfectly to preserve padding */}
       <Box
-        className="w-full h-full group-hover:opacity-100 transition-opacity duration-500 !!m-[0 important] absolute top-[0%] right-[0%] bottom-[0%] left-[0%] flex flex-col items-start justify-between isolate gap-5 opacity-num-0 z-[0] mq450:h-auto mq450:gap-5 pointer-events-none"
+        className="w-full h-full group-hover:opacity-100 transition-opacity duration-500 !!m-[0 important] absolute top-[0%] right-[0%] bottom-[0%] left-[0%] flex flex-col items-start justify-between isolate gap-5 opacity-num-0 z-[0] mq450:h-auto mq450:gap-5 pointer-events-none max-[450px]:!h-[320px]"
         style={container4Style}
       >
         <img
@@ -54,7 +54,7 @@ const Group2Of: FunctionComponent<Group2OfType> = ({
       </Box>
 
       {/* Front Face: Exact original layout, typography, responsive sizes, and spacing */}
-      <Box className="self-stretch flex-1 group-hover:opacity-num-0 transition-opacity duration-500 rounded-num-20 bg-web-gray-nurse flex flex-col items-start justify-between !p-10 gap-5 z-[1] text-num-48 text-web-woodsmoke font-stack-sans-text mq450:gap-5 mq450:!pt-5 mq450:!pb-5 mq450:box-border">
+      <Box className="self-stretch flex-1 group-hover:opacity-num-0 transition-opacity duration-500 rounded-num-20 bg-web-gray-nurse flex flex-col items-start justify-between !p-10 gap-5 z-[1] text-num-48 text-web-woodsmoke font-stack-sans-text mq450:gap-5 mq450:!pt-5 mq450:!pb-5 mq450:box-border max-[450px]:!p-6">
         <Box className="w-12 h-12 rounded-num-12 bg-web-white flex items-center justify-center">
           <Box className="h-8 w-8 flex flex-col items-start justify-center">
             <img
@@ -65,9 +65,9 @@ const Group2Of: FunctionComponent<Group2OfType> = ({
           </Box>
         </Box>
         <Box className="self-stretch flex flex-col items-start">
-          <Box className="w-[338px] flex flex-col items-start max-w-num-338">
+          <Box className="w-[338px] flex flex-col items-start max-w-num-338 max-[450px]:!w-full">
             <Typography
-              className="!m-0 relative shrink-0 mq925:text-num-38 mq925:leading-num-52 mq450:text-num-29 mq450:leading-num-39"
+              className="!m-0 relative shrink-0 mq925:text-num-38 mq925:leading-num-52 mq450:text-num-29 mq450:leading-num-39 max-[450px]:!text-[28px] max-[450px]:!leading-[36px] max-[450px]:!tracking-[-0.5px]"
               variant="inherit"
               variantMapping={{ inherit: "h1" }}
               sx={{

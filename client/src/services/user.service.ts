@@ -14,14 +14,8 @@ export async function submitLead(payload: {
   });
 }
 
-// Fetch public doctors list
 export async function getPublicDoctors() {
-  // We can fetch doctors via auth endpoint or admin endpoint. Since user portal needs list of doctors, 
-  // let's route to the booking controller's endpoint or public options if available.
-  // In our backend, the list of doctors is public under getDoctors?
-  // Let's inspect the router booking.routes.ts to see what public endpoints exist.
-  // Usually, patients need to view doctors.
-  return apiRequest("/booking/doctors", {});
+  return apiRequest("/booking/doctors-list", {});
 }
 
 // Fetch public published blogs

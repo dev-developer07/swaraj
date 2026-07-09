@@ -55,10 +55,10 @@ const Container1: FunctionComponent<Container1Type> = ({ className = "" }) => {
           label="since 2010"
           variant="light"
         />
-        <Box className="flex flex-col items-start !pt-6 !pb-num-0 !pl-num-0 !pr-num-0 box-border max-w-num-500 text-num-48 font-stack-sans-text mq925:max-w-full mq450:max-w-full">
-          <Box className="w-full max-w-[500px] mq925:h-auto mq450:h-auto h-num-129_6 [filter:blur(0px)] overflow-hidden shrink-0 flex items-end !pt-num-0 !pb-num-0_2 !pl-[59px] !pr-[58px] box-border mq925:!pl-num-29 mq925:!pr-num-29 mq925:box-border mq450:!pl-4 mq450:!pr-4 mq450:box-border">
+        <Box className="flex flex-col items-start !pt-6 !pb-num-0 !pl-num-0 !pr-num-0 box-border max-w-num-500 text-num-48 font-stack-sans-text mq925:max-w-full mq450:max-w-full max-[450px]:!max-w-full max-[450px]:!w-full max-[450px]:!items-center">
+          <Box className="w-full max-w-[500px] mq925:h-auto mq450:h-auto h-num-129_6 [filter:blur(0px)] overflow-hidden shrink-0 flex items-end !pt-num-0 !pb-num-0_2 !pl-[59px] !pr-[58px] box-border mq925:!pl-num-29 mq925:!pr-num-29 mq925:box-border mq450:!pl-4 mq450:!pr-4 mq450:box-border max-[450px]:!h-auto max-[450px]:!pl-0 max-[450px]:!pr-0 max-[450px]:!justify-center max-[450px]:!w-full">
             <Typography
-              className="!m-0 h-auto w-full max-w-[382px] relative inline-block mq925:text-num-38 mq925:leading-num-52 mq450:text-num-29 mq450:leading-num-39"
+              className="!m-0 h-auto w-full max-w-[382px] relative inline-block mq925:text-num-38 mq925:leading-num-52 mq450:text-num-29 mq450:leading-num-39 max-[450px]:!text-[28px] max-[450px]:!leading-[38px] max-[450px]:!tracking-[-0.42px] max-[450px]:!text-[#0B0C0F] max-[450px]:!flex max-[450px]:!items-center max-[450px]:!justify-center max-[450px]:!text-center max-[450px]:!w-[319px] max-[450px]:!max-w-full"
               variant="inherit"
               variantMapping={{ inherit: "h1" }}
               sx={{

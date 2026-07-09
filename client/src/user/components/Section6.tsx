@@ -34,14 +34,14 @@ const Section6: FunctionComponent<Section6Type> = ({ className = "" }) => {
   ]);
   return (
     <Box
-      className={`bg-web-white overflow-hidden flex flex-col items-start !pt-num-200 !pb-num-200 !pl-num-280 !pr-num-280 box-border max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq925:!pt-num-84 mq925:!pb-num-84 mq925:!pl-5 mq925:!pr-5 mq925:box-border mq1350:!pt-num-130 mq1350:!pb-num-130 mq1350:!pl-num-140 mq1350:!pr-num-140 mq1350:box-border mq450:!pt-num-84 mq450:!pb-num-84 mq450:!pl-5 mq450:!pr-5 mq450:box-border ${className}`}
+      className={`bg-web-white overflow-hidden flex flex-col items-start !pt-num-200 !pb-num-200 !pl-num-280 !pr-num-280 box-border max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq925:!pt-num-84 mq925:!pb-num-84 mq925:!pl-5 mq925:!pr-5 mq925:box-border mq1350:!pt-num-130 mq1350:!pb-num-130 mq1350:!pl-num-140 mq1350:!pr-num-140 mq1350:box-border mq450:!pt-num-84 mq450:!pb-num-84 mq450:!pl-5 mq450:!pr-5 mq450:box-border ${className} max-[450px]:!w-[390px] max-[450px]:!max-w-full max-[450px]:!mx-auto max-[450px]:!pt-[60px] max-[450px]:!pb-[60px] max-[450px]:!pl-5 max-[450px]:!pr-5`}
     >
-      <Box className="w-full max-w-num-1360 flex flex-row mq925:flex-col mq450:flex-col items-start gap-[103px] max-w-full mq925:gap-[51px] mq450:gap-[26px]">
-        <Box className="w-[457px] mq925:w-full mq450:w-full flex flex-col items-start !pt-3 !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-[23.4px] max-w-[457px] mq925:max-w-full mq450:max-w-full">
+      <Box className="w-full max-w-num-1360 flex flex-row mq925:flex-col mq450:flex-col items-start gap-[103px] max-w-full mq925:gap-[51px] mq450:gap-[26px] max-[450px]:!gap-6">
+        <Box className="w-[457px] mq925:w-full mq450:w-full flex flex-col items-start !pt-3 !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-[23.4px] max-w-[457px] mq925:max-w-full mq450:max-w-full max-[450px]:!max-w-[350px] max-[450px]:!w-[350px] max-[450px]:!gap-4">
           <SectionBadge icon="/SVG.svg" label="FAQ — quiry" variant="dark" />
           <Box className="self-stretch flex flex-col items-start text-num-48 font-stack-sans-text">
             <Typography
-              className="!m-0 self-stretch relative mq925:text-num-38 mq925:leading-num-52 mq450:text-num-29 mq450:leading-num-39"
+              className="!m-0 self-stretch relative mq925:text-num-38 mq925:leading-num-52 mq450:text-num-29 mq450:leading-num-39 max-[450px]:!text-[28px] max-[450px]:!leading-[38px] max-[450px]:!tracking-[-0.42px] max-[450px]:!text-[#0B0C0F] max-[450px]:!w-[350px] max-[450px]:!max-w-full max-[450px]:!h-auto max-[450px]:!flex max-[450px]:!items-center"
               variant="inherit"
               variantMapping={{ inherit: "h1" }}
               sx={{

@@ -19,7 +19,7 @@ const Section1: FunctionComponent<Section1Type> = ({ className = "" }) => {
         setSpacerWidth(rect.left);
       }
     };
-    
+
     updateSpacer();
     window.addEventListener("resize", updateSpacer);
     return () => window.removeEventListener("resize", updateSpacer);
@@ -167,7 +167,7 @@ const Section1: FunctionComponent<Section1Type> = ({ className = "" }) => {
                 >
                   Exceptional
                   <br />
-                  <span className="mq925:whitespace-normal mq450:whitespace-normal whitespace-nowrap">care for every patient</span>
+                  <span className="mq925:whitespace-normal mq450:whitespace-normal whitespace-nowrap">care for every smile</span>
                 </Typography>
               </Box>
             </Box>
@@ -176,7 +176,7 @@ const Section1: FunctionComponent<Section1Type> = ({ className = "" }) => {
                 <div className="self-stretch relative leading-num-24">
                   We offer a full range of advanced medical specialities, where
                   clinical expertise and compassionate care come together for
-                   your family&apos;s health.
+                  your family&apos;s health.
                 </div>
               </Box>
             </Box>

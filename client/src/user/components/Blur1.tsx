@@ -16,7 +16,7 @@ const Blur1: FunctionComponent<Blur1Type> = ({
 }) => {
   return (
     <Box
-      className={`self-stretch [filter:blur(0px)] flex items-center gap-6 max-w-full text-left text-num-20 text-web-white font-lilex mq925:flex-wrap max-sm:!self-auto max-sm:flex-col max-sm:items-start max-sm:gap-2 max-sm:w-[calc(50%-12px)] ${className}`}
+      className={`self-stretch [filter:blur(0px)] flex items-center gap-6 max-w-full text-left text-num-20 text-web-white font-lilex mq925:flex-wrap max-sm:!self-auto max-sm:flex-col max-sm:items-start max-sm:gap-2 max-sm:w-[calc(50%_-_12px)] ${className}`}
     >
       <Box className="h-num-72 w-[72px] [backdrop-filter:blur(12px)] rounded-num-16 bg-web-white-12 flex items-center justify-center max-sm:!h-10 max-sm:!w-10 max-sm:!rounded-num-4">
         <Box className="h-10 w-10 flex flex-col items-start justify-center max-sm:!h-5 max-sm:!w-5">

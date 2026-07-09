@@ -33,13 +33,13 @@ const FrameComponent1: FunctionComponent<FrameComponent1Type> = ({
   return (
     <section
       ref={sectionRef}
-      className={`flex items-start !pt-num-0 !pb-[50px] !pl-num-0 !pr-num-0 box-border max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq925:!pb-num-21 mq925:box-border mq1350:!pb-num-32 mq1350:box-border ${className}`}
+      className={`flex items-start !pt-num-0 !pb-[50px] !pl-num-0 !pr-num-0 box-border max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq925:!pb-num-21 mq925:box-border mq450:!pb-6 mq450:box-border mq1350:!pb-num-32 mq1350:box-border ${className}`}
     >
       <Box className="flex flex-col items-start max-w-full">
-        <Box className="w-[1920px] h-[980px] relative bg-web-white max-w-full overflow-hidden mq925:h-auto mq925:py-12">
-          <Box className="absolute top-[120px] left-[240px] h-auto flex flex-col items-start max-w-full shrink-0 mq925:relative mq925:top-0 mq925:left-0 mq925:w-full mq925:px-6">
+        <Box className="w-[1920px] h-[980px] relative bg-web-white max-w-full overflow-hidden mq925:h-auto mq925:py-12 mq450:h-auto mq450:py-10">
+          <Box className="absolute top-[120px] left-[240px] h-auto flex flex-col items-start max-w-full shrink-0 mq925:relative mq925:top-0 mq925:left-0 mq925:w-full mq925:px-6 mq450:relative mq450:top-0 mq450:left-0 mq450:w-full mq450:px-4">
             <ScrollReveal direction="left">
-              <Box className="w-[690px] flex flex-col items-start !pt-3 !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-5 max-w-[690px] mq925:max-w-full mq925:w-full">
+              <Box className="w-[690px] flex flex-col items-start !pt-3 !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-5 max-w-[690px] mq925:max-w-full mq925:w-full mq450:max-w-full mq450:w-full">
               <SectionBadge
                 icon="/SVG.svg"
                 label="our scope"
@@ -75,16 +75,16 @@ const FrameComponent1: FunctionComponent<FrameComponent1Type> = ({
                   </div>
                 </Box>
                 <Box className="self-stretch flex flex-col items-start gap-4 text-num-18 text-web-woodsmoke font-inter">
-                  <Box className="self-stretch flex items-center gap-4">
-                    <Box className="h-7 w-7 flex flex-col items-start justify-center">
+                  <Box className="self-stretch flex items-start gap-4">
+                    <Box className="h-7 w-7 flex flex-col items-start justify-start pt-[3px] shrink-0">
                       <img
                         className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
                         alt=""
                         src="/SVG5.svg"
                       />
                     </Box>
-                    <Box className="flex items-center justify-center">
-                      <div className="w-[641.1px] relative leading-num-28_8 flex items-center shrink-0 mq925:!w-full mq925:shrink">
+                    <Box className="flex items-start justify-start">
+                      <div className="w-[641.1px] relative leading-num-28_8 flex items-start shrink-0 mq925:!w-full mq925:shrink mq450:!w-full mq450:shrink">
                         <span className="w-full">
                           <Typography
                             variant="inherit"
@@ -106,16 +106,16 @@ const FrameComponent1: FunctionComponent<FrameComponent1Type> = ({
                       </div>
                     </Box>
                   </Box>
-                  <Box className="self-stretch flex items-center gap-4">
-                    <Box className="h-7 w-7 flex flex-col items-start justify-center">
+                  <Box className="self-stretch flex items-start gap-4">
+                    <Box className="h-7 w-7 flex flex-col items-start justify-start pt-[3px] shrink-0">
                       <img
                         className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
                         alt=""
                         src="/SVG5.svg"
                       />
                     </Box>
-                    <Box className="flex items-center justify-center">
-                      <div className="w-[592.1px] relative leading-num-28_8 flex items-center shrink-0 mq925:!w-full mq925:shrink">
+                    <Box className="flex items-start justify-start">
+                      <div className="w-[592.1px] relative leading-num-28_8 flex items-start shrink-0 mq925:!w-full mq925:shrink mq450:!w-full mq450:shrink">
                         <span className="w-full">
                           <Typography
                             variant="inherit"
@@ -137,16 +137,16 @@ const FrameComponent1: FunctionComponent<FrameComponent1Type> = ({
                       </div>
                     </Box>
                   </Box>
-                  <Box className="self-stretch flex items-center gap-4">
-                    <Box className="h-7 w-7 flex flex-col items-start justify-center">
+                  <Box className="self-stretch flex items-start gap-4">
+                    <Box className="h-7 w-7 flex flex-col items-start justify-start pt-[3px] shrink-0">
                       <img
                         className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
                         alt=""
                         src="/SVG5.svg"
                       />
                     </Box>
-                    <Box className="flex items-center justify-center">
-                      <div className="w-[639.1px] relative leading-num-28_8 flex items-center shrink-0 mq925:!w-full mq925:shrink">
+                    <Box className="flex items-start justify-start">
+                      <div className="w-[639.1px] relative leading-num-28_8 flex items-start shrink-0 mq925:!w-full mq925:shrink mq450:!w-full mq450:shrink">
                         <span className="w-full">
                           <Typography
                             variant="inherit"
@@ -168,16 +168,16 @@ const FrameComponent1: FunctionComponent<FrameComponent1Type> = ({
                       </div>
                     </Box>
                   </Box>
-                  <Box className="self-stretch flex items-center gap-4">
-                    <Box className="h-7 w-7 flex flex-col items-start justify-center">
+                  <Box className="self-stretch flex items-start gap-4">
+                    <Box className="h-7 w-7 flex flex-col items-start justify-start pt-[3px] shrink-0">
                       <img
                         className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
                         alt=""
                         src="/SVG5.svg"
                       />
                     </Box>
-                    <Box className="flex items-center justify-center">
-                      <div className="w-[589.1px] relative leading-num-28_8 flex items-center shrink-0 mq925:!w-full mq925:shrink">
+                    <Box className="flex items-start justify-start">
+                      <div className="w-[589.1px] relative leading-num-28_8 flex items-start shrink-0 mq925:!w-full mq925:shrink mq450:!w-full mq450:shrink">
                         <span className="w-full">
                           <Typography
                             variant="inherit"
@@ -199,16 +199,16 @@ const FrameComponent1: FunctionComponent<FrameComponent1Type> = ({
                       </div>
                     </Box>
                   </Box>
-                  <Box className="self-stretch flex items-center gap-4">
-                    <Box className="h-7 w-7 flex flex-col items-start justify-center">
+                  <Box className="self-stretch flex items-start gap-4">
+                    <Box className="h-7 w-7 flex flex-col items-start justify-start pt-[3px] shrink-0">
                       <img
                         className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
                         alt=""
                         src="/SVG5.svg"
                       />
                     </Box>
-                    <Box className="flex items-center justify-center">
-                      <div className="w-[621.1px] relative leading-num-28_8 flex items-center shrink-0 mq925:!w-full mq925:shrink">
+                    <Box className="flex items-start justify-start">
+                      <div className="w-[621.1px] relative leading-num-28_8 flex items-start shrink-0 mq925:!w-full mq925:shrink mq450:!w-full mq450:shrink">
                         <span className="w-full">
                           <Typography
                             variant="inherit"
@@ -232,6 +232,15 @@ const FrameComponent1: FunctionComponent<FrameComponent1Type> = ({
                   </Box>
                 </Box>
               </section>
+              {/* Mobile-only / Tablet-only surgeon image */}
+              <Box className="hidden mq925:block mq450:block w-full mt-6">
+                <img
+                  className="w-full aspect-[4/5] object-cover rounded-2xl"
+                  src="/Container11@2x.png"
+                  alt="Swaraj Hospital Scope of Care"
+                  loading="lazy"
+                />
+              </Box>
               </Box>
             </ScrollReveal>
           </Box>

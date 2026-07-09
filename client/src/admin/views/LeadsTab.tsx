@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Edit2, Trash2, Search } from "lucide-react";
+import { RefreshCw, Trash2, Search } from "lucide-react";
 
 interface LeadsTabProps {
   leads: any[];
@@ -48,7 +48,7 @@ export default function LeadsTab({
                 <th>Preferred Date</th>
                 <th>Requested Doctor</th>
                 <th>Status</th>
-                <th>Staff Notes</th>
+                <th>Notes</th>
                 <th style={{ textAlign: "right" }}>Actions</th>
               </tr>
             </thead>
@@ -88,9 +88,9 @@ export default function LeadsTab({
                         onClick={() => openLeadStatusModal(l)}
                         className="btn btn-secondary btn-sm"
                         style={{ padding: "4px 8px" }}
-                        title="Update Status / Log Notes"
+                        title="Update Status"
                       >
-                        <Edit2 size={13} />
+                        <RefreshCw size={13} />
                       </button>
                       <button
                         onClick={() => onDelete(l.id)}

@@ -52,11 +52,11 @@ const Group1Of4ListListit: FunctionComponent<Group1Of4ListListitType> = ({
           navigate(`/speciality/${getSpecialtySlug(cardiology)}`);
         }
       }}
-      className={`w-[436px] group hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer rounded-num-24 bg-web-gray-nurse flex flex-col items-start !p-3 box-border max-w-num-436 shrink-0 text-center text-num-24 text-web-woodsmoke font-stack-sans-text mq450:max-w-full ${className}`}
+      className={`w-[436px] mq925:w-[380px] mq450:w-[calc(100vw_-_48px)] group hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer rounded-num-24 bg-web-gray-nurse flex flex-col items-start !p-3 box-border max-w-num-436 mq450:max-w-full shrink-0 text-center text-num-24 text-web-woodsmoke font-stack-sans-text ${className}`}
     >
       <Box className="self-stretch rounded-num-16 overflow-hidden shrink-0">
         <img
-          className="self-stretch w-full h-num-278 relative max-w-full group-hover:scale-105 transition-transform duration-500 ease-out shrink-0 object-cover"
+          className="self-stretch w-full h-num-278 mq925:h-[220px] mq450:h-[180px] relative max-w-full group-hover:scale-105 transition-transform duration-500 ease-out shrink-0 object-cover"
           loading="lazy"
           alt=""
           src={background}
@@ -65,7 +65,7 @@ const Group1Of4ListListit: FunctionComponent<Group1Of4ListListitType> = ({
       <Box className="self-stretch flex-1 flex flex-col items-start !pt-6 !pb-num-0 !pl-num-0 !pr-num-0">
         <Box className="self-stretch flex-1 rounded-num-16 bg-web-white flex flex-col items-start justify-between">
           <Box
-            className="self-stretch flex-1 flex flex-col items-center justify-between !pt-num-38 !pb-num-38 !pl-num-28 !pr-num-22"
+            className="self-stretch flex-1 flex flex-col items-center justify-between !pt-num-38 !pb-num-38 !pl-num-28 !pr-num-22 mq925:!pt-8 mq925:!pb-8 mq925:!pl-6 mq925:!pr-6 mq450:!pt-6 mq450:!pb-6 mq450:!pl-4 mq450:!pr-4"
             style={container1Style}
           >
             <Box className="flex flex-col items-center gap-2">
@@ -83,11 +83,11 @@ const Group1Of4ListListit: FunctionComponent<Group1Of4ListListitType> = ({
               </Typography>
               <Box className="flex flex-col items-start !pt-2 !pb-num-0 !pl-num-0 !pr-num-0 shrink-0 text-num-16 text-web-emperor font-inter">
                 <Box
-                  className="flex flex-col items-center !pt-num-0 !pb-num-0 !pl-1 !pr-1"
+                  className="flex flex-col items-center !pt-num-0 !pb-num-0 !pl-1 !pr-1 mq925:!px-0 mq450:!px-0"
                   style={container2Style}
                 >
                   <div
-                    className="w-[354px] relative leading-num-24 flex items-center justify-center"
+                    className="w-[354px] mq925:!w-full mq450:!w-full relative leading-num-24 flex items-center justify-center"
                     style={advancedHeartCareStyle}
                   >
                     {advancedHeartCareDiagnostics}
