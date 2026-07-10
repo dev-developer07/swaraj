@@ -121,7 +121,7 @@ const AppointmentInquiry: FunctionComponent = () => {
             display: "flex",
             flexDirection: "column"
           }}
-          className="shadow-[0_4px_30px_rgba(0,0,0,0.03)] mq925:min-h-0 mq925:pb-10"
+          className="shadow-[0_4px_30px_rgba(0,0,0,0.03)] mq925:min-h-0 mq925:!h-auto mq925:!p-6 mq450:!p-4 mq925:!gap-6 mq450:!gap-5"
         >
           {/* Badge: GET AN Appointment */}
           <Box
@@ -140,6 +140,7 @@ const AppointmentInquiry: FunctionComponent = () => {
               borderRadius: "4px",
               boxSizing: "border-box"
             }}
+            className="mq925:!static mq925:!w-max mq450:!static mq450:!w-max"
           >
             {/* Badge Icon Container */}
             <Box
@@ -205,6 +206,7 @@ const AppointmentInquiry: FunctionComponent = () => {
               display: "flex",
               alignItems: "center"
             }}
+            className="mq925:!static mq925:!h-auto mq925:!w-full mq450:!static mq450:!h-auto mq450:!w-full"
           >
             <h1
               style={{
@@ -222,7 +224,7 @@ const AppointmentInquiry: FunctionComponent = () => {
                 letterSpacing: "-1.5px",
                 color: "#0B0C0F"
               }}
-              className="mq925:text-[42px] mq925:leading-[52px]"
+              className="mq925:!text-[32px] mq925:!leading-[40px] mq925:!h-auto mq450:!text-[28px] mq450:!leading-[36px] mq450:!h-auto"
             >
               Appointment Inquiry
             </h1>
@@ -239,6 +241,7 @@ const AppointmentInquiry: FunctionComponent = () => {
               top: "206.8px",
               border: "1px solid #E6E6E6"
             }}
+            className="mq925:!static mq925:!h-[1px] mq925:!w-full mq925:!border-none mq925:!bg-[#E6E6E6] mq450:!static mq450:!h-[1px] mq450:!w-full mq450:!border-none mq450:!bg-[#E6E6E6]"
           />
 
           {/* Success State Overlay */}
@@ -258,6 +261,7 @@ const AppointmentInquiry: FunctionComponent = () => {
                 borderRadius: "12px",
                 boxSizing: "border-box"
               }}
+              className="mq925:!static mq925:!w-full mq925:!h-auto mq925:!p-6 mq450:!static mq450:!w-full mq450:!h-auto mq450:!p-4"
             >
               <Box
                 style={{
@@ -270,6 +274,7 @@ const AppointmentInquiry: FunctionComponent = () => {
                   width: "704px",
                   height: "33px"
                 }}
+                className="mq925:!w-full mq925:!h-auto mq925:!flex-col mq925:!gap-4 mq450:!w-full mq450:!h-auto mq450:!flex-col mq450:!gap-3"
               >
                 <Box
                   style={{
@@ -281,6 +286,7 @@ const AppointmentInquiry: FunctionComponent = () => {
                     width: "494px",
                     height: "33px"
                   }}
+                  className="mq925:!w-full mq925:!h-auto mq450:!w-full mq450:!h-auto"
                 >
                   <span
                     style={{
@@ -296,6 +302,7 @@ const AppointmentInquiry: FunctionComponent = () => {
                       color: "#0B0C0F",
                       whiteSpace: "nowrap"
                     }}
+                    className="mq925:!w-full mq925:!h-auto mq925:!text-[18px] mq925:!leading-[26px] mq925:!whitespace-normal mq925:!text-center mq450:!w-full mq450:!h-auto mq450:!text-[16px] mq450:!leading-[24px] mq450:!whitespace-normal mq450:!text-center"
                   >
                     Thank you! Your submission has been received!
                   </span>
@@ -352,7 +359,7 @@ const AppointmentInquiry: FunctionComponent = () => {
                 padding: "0px",
                 gap: "32px"
               }}
-              className="mq925:position-relative mq925:top-0 mq925:left-0 mq925:right-0 mq925:!pt-[230px] mq925:px-6"
+              className="mq925:!static mq925:!w-full mq925:!p-0 mq925:!gap-6 mq450:!static mq450:!w-full mq450:!p-0 mq450:!gap-5"
             >
               {/* Row 1: Name + Phone Number */}
               <Box
@@ -366,7 +373,7 @@ const AppointmentInquiry: FunctionComponent = () => {
                   width: "100%",
                   maxWidth: "760px"
                 }}
-                className="mq700:flex-col"
+                className="w-full flex flex-row mq925:!flex-col mq925:!gap-6 mq450:!flex-col mq450:!gap-5"
               >
                 {/* Name */}
                 <Box style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px", gap: "12px", flexGrow: 1 }} className="w-full">
@@ -445,7 +452,7 @@ const AppointmentInquiry: FunctionComponent = () => {
                   width: "100%",
                   maxWidth: "760px"
                 }}
-                className="mq700:flex-col"
+                className="w-full flex flex-row mq925:!flex-col mq925:!gap-6 mq450:!flex-col mq450:!gap-5"
               >
                 {/* Preferred Date */}
                 <Box style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px", gap: "12px", flexGrow: 1 }} className="w-full">
@@ -587,14 +594,21 @@ const AppointmentInquiry: FunctionComponent = () => {
                     color: "#0B0C0F",
                     marginTop: "8px"
                   }}
+                  className="mq925:!leading-[20px] mq450:!leading-[20px]"
                 >
                   Request only. Our team will call you soon to confirm your slot.
                 </span>
               </Box>
 
               {/* Submit Button Section */}
-              <Box style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "12px 0px 0px", width: "100%", height: "84px" }}>
-                <Box style={{ display: "flex", flexDirection: "row", alignItems: "center", padding: "0px", width: "100%", height: "48px" }}>
+              <Box 
+                style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "12px 0px 0px", width: "100%", height: "84px" }}
+                className="mq925:!h-auto mq925:!pt-4 mq450:!h-auto mq450:!pt-3"
+              >
+                <Box 
+                  style={{ display: "flex", flexDirection: "row", alignItems: "center", padding: "0px", width: "100%", height: "48px" }}
+                  className="mq925:!h-auto mq450:!h-auto w-full"
+                >
                   <button
                     onClick={handleSubmit}
                     disabled={status === "submitting"}
@@ -614,7 +628,7 @@ const AppointmentInquiry: FunctionComponent = () => {
                       transition: "all 0.3s ease",
                       outline: "none"
                     }}
-                    className="hover:bg-[#151c2e] active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="hover:bg-[#151c2e] active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed mq925:!w-full mq450:!w-full"
                   >
                     <span
                       style={{
@@ -632,6 +646,7 @@ const AppointmentInquiry: FunctionComponent = () => {
                         alignItems: "center",
                         justifyContent: "center"
                       }}
+                      className="mq925:!w-full mq450:!w-full"
                     >
                       {status === "submitting" ? "PLEASE WAIT..." : "GET AN APPOINTMENT"}
                     </span>

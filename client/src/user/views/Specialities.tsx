@@ -117,20 +117,20 @@ const Specialities: FunctionComponent = () => {
       </Box>
 
       {/* Main Specialities Section Wrapper with Gray Nurse Background */}
-      <Box className="w-full bg-web-gray-nurse flex flex-col items-center !pt-[80px] !pb-[80px] !px-6 box-border">
+      <Box className="w-full bg-web-gray-nurse flex flex-col items-center !pt-[80px] !pb-[80px] !px-6 box-border mq450:!pt-6 mq450:!pb-6 mq450:!px-3">
         {/* White Background Container */}
-        <Box className="w-full max-w-[1872px] mx-auto rounded-num-16 bg-[#ffffff] flex flex-col items-start !pt-[80px] !pb-[80px] !px-[216px] mq925:!px-10 mq1350:!px-[108px] box-border shadow-[0_4px_30px_rgba(0,0,0,0.03)] relative overflow-hidden">
+        <Box className="w-full max-w-[1872px] mx-auto rounded-num-16 bg-[#ffffff] flex flex-col items-start !pt-[80px] !pb-[80px] !px-[216px] mq925:!px-10 mq1350:!px-[108px] box-border shadow-[0_4px_30px_rgba(0,0,0,0.03)] relative overflow-hidden mq450:!pt-6 mq450:!pb-6 mq450:!px-4 mq450:!rounded-[12px]">
           {/* Inner Content Grid */}
-          <Box className="w-full max-w-[1440px] flex flex-col items-start gap-[80px] !px-10 box-border">
+          <Box className="w-full max-w-[1440px] flex flex-col items-start gap-[80px] !px-10 box-border mq450:!px-0 mq450:!gap-6">
 
             {/* Header Content */}
-            <Box className="w-full flex flex-row justify-between items-start mq1350:flex-col mq1350:gap-8">
-              <Box className="pt-3">
+            <Box className="w-full flex flex-row justify-between items-start mq1350:flex-col mq1350:gap-8 mq450:!flex-col mq450:!gap-4 mq450:!items-start">
+              <Box className="pt-3 mq450:!pt-0">
                 <SectionBadge icon="/SVG.svg" label="SPECIALITIES" variant="dark" />
               </Box>
               <Box className="max-w-[720px]">
                 <Typography
-                  className="!m-0 text-right mq1350:text-left !font-stack-sans-text !text-[48px] !leading-[60px] text-[#0B0C0F] tracking-[-1px] mq925:!text-[36px] mq925:!leading-[44px]"
+                  className="!m-0 text-right mq1350:text-left !font-stack-sans-text !text-[48px] !leading-[60px] text-[#0B0C0F] tracking-[-1px] mq925:!text-[36px] mq925:!leading-[44px] mq450:!text-[30px] mq450:!leading-[36px] mq450:!text-left"
                 >
                   Exceptional care<br />for every patient
                 </Typography>
@@ -148,23 +148,23 @@ const Specialities: FunctionComponent = () => {
                       navigate(`/speciality/${getSpecialtySlug(spec.name)}`);
                     }}
                     className={`w-full max-w-[1360px] p-[32px] border-t border-solid border-[#f1f2f1] ${isLast ? "border-b" : ""
-                      } flex flex-row justify-between items-center bg-[#ffffff] hover:bg-web-gray-nurse transition-all duration-300 rounded-3xl cursor-pointer`}
+                      } flex flex-row justify-between items-center bg-[#ffffff] hover:bg-web-gray-nurse transition-all duration-300 rounded-3xl cursor-pointer mq450:!p-0 mq450:!py-6 mq450:!rounded-none mq450:hover:!bg-transparent`}
                   >
                     {/* Inner Row - Width 1328px, Height 320px */}
-                    <Box className="flex flex-row justify-between items-center grow self-stretch w-full max-w-[1328px] min-h-[320px] relative mq1350:flex-col mq1350:h-auto mq1350:gap-8 py-4">
+                    <Box className="flex flex-row justify-between items-center grow self-stretch w-full max-w-[1328px] min-h-[320px] relative mq1350:flex-col mq1350:h-auto mq1350:gap-8 py-4 mq925:!flex-col mq925:!h-auto mq925:!gap-8 mq450:!flex-col mq450:!h-auto mq450:!min-h-0 mq450:!gap-4 mq450:!py-0 mq450:!items-start">
 
                       {/* Left Column - Details (Width 520px) */}
-                      <Box className="w-full max-w-[520px] flex flex-col justify-center mq1350:pt-8">
+                      <Box className="w-full max-w-[520px] flex flex-col justify-center mq1350:pt-8 mq925:!max-w-full mq925:!pt-8 mq450:!pt-0 mq450:!max-w-full">
 
                         {/* Title & Description Block */}
-                        <Box className="w-full flex flex-col gap-4">
+                        <Box className="w-full flex flex-col gap-4 mq450:!gap-2">
                           {/* Title Block */}
-                          <Typography className="text-left align-middle !font-stack-sans-text !text-[36px] !leading-[44px] text-[#0B0C0F] mq1350:!text-[28px] mq1350:!leading-[36px]">
+                          <Typography className="text-left align-middle !font-stack-sans-text !text-[36px] !leading-[44px] text-[#0B0C0F] mq1350:!text-[28px] mq1350:!leading-[36px] mq925:!text-[28px] mq925:!leading-[36px] mq450:!text-[22px] mq450:!leading-[28px]">
                             {spec.name}
                           </Typography>
 
                           {/* Description Block */}
-                          <Typography className="text-left align-middle !font-stack-sans-text !text-[18px] !font-normal !leading-[28px] text-web-emperor">
+                          <Typography className="text-left align-middle !font-stack-sans-text !text-[18px] !font-normal !leading-[28px] text-web-emperor mq450:!text-[15px] mq450:!leading-[22px] mq450:!font-inter">
                             {spec.description}
                           </Typography>
                         </Box>
@@ -172,7 +172,7 @@ const Specialities: FunctionComponent = () => {
                       </Box>
 
                       {/* Right Column - Image Card (Width 454px, Height 240px with space above/below) */}
-                      <Box className="rounded-2xl self-center h-[280px] w-full max-w-[454px] relative overflow-hidden flex-shrink-0 mq1350:h-[240px]">
+                      <Box className="rounded-2xl self-center h-[280px] w-full max-w-[454px] relative overflow-hidden flex-shrink-0 mq1350:h-[240px] mq925:!w-full mq925:!max-w-full mq925:!h-auto mq925:!aspect-[1.6] mq925:!mt-2 mq925:!self-start mq450:!w-full mq450:!max-w-full mq450:!h-auto mq450:!aspect-[1.6] mq450:!mt-2 mq450:!self-start">
                         <img
                           className="w-full h-full object-cover rounded-2xl"
                           alt={spec.name}

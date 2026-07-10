@@ -41,13 +41,13 @@ const DoctorDetail: FunctionComponent = () => {
       </Box>
 
       {/* Main content container */}
-      <Box className="w-full flex flex-col items-center py-20 px-[280px] mq925:px-10 mq1350:px-[140px] mq925:py-10 box-border relative bg-[#ffffff]">
-        <Box className="w-full max-w-[1360px] flex flex-col items-start gap-10">
+      <Box className="w-full flex flex-col items-center py-20 px-[280px] mq925:px-10 mq1350:px-[140px] mq925:py-10 mq450:!px-6 mq450:!py-8 box-border relative bg-[#ffffff]">
+        <Box className="w-full max-w-[1360px] flex flex-col items-start gap-10 mq450:!gap-6">
           
           {/* Back to Team Link */}
           <button
             onClick={() => navigate("/meet-the-team")}
-            className="group flex items-center gap-2 text-[#7791A5] font-lilex font-normal text-[16px] leading-[24px] uppercase bg-transparent border-none cursor-pointer outline-none hover:text-[#1F2A44] transition-colors duration-200"
+            className="group flex items-center gap-2 text-[#7791A5] font-lilex font-normal text-[16px] leading-[24px] uppercase bg-transparent border-none cursor-pointer outline-none hover:text-[#1F2A44] transition-colors duration-200 mq925:!hidden mq450:!hidden"
           >
             <svg
               width="16"
@@ -67,11 +67,11 @@ const DoctorDetail: FunctionComponent = () => {
           </button>
 
           {/* Columns Flex Container */}
-          <Box className="w-full flex flex-row justify-between items-start gap-12 mq1350:flex-col mq1350:items-stretch relative">
+          <Box className="w-full flex flex-row justify-between items-start gap-12 mq1350:flex-col-reverse mq1350:items-stretch mq925:flex-col-reverse mq925:items-stretch mq450:flex-col-reverse mq450:items-stretch relative mq450:!gap-8">
             
             {/* Left Column - Doctor Info */}
             <Box
-              className="flex-1 max-w-[640px] flex flex-col items-start gap-10 relative box-border"
+              className="flex-1 max-w-[640px] flex flex-col items-start gap-10 relative box-border mq1350:!pt-[56px] mq450:!gap-6"
               style={{ paddingTop: "56px" }}
             >
               
@@ -111,9 +111,9 @@ const DoctorDetail: FunctionComponent = () => {
               </Box>
 
               {/* Name and Specialty Header */}
-              <Box className="flex flex-col items-start gap-3 w-full border-b border-[#E6E6E6] pb-8">
+              <Box className="flex flex-col items-start gap-3 w-full border-b border-[#E6E6E6] pb-8 mq450:!pb-4">
                 <Typography
-                  className="!m-0 text-left font-stack-sans-text uppercase"
+                  className="!m-0 text-left font-stack-sans-text uppercase mq450:!text-[32px] mq450:!leading-[40px] mq450:!tracking-[-0.5px]"
                   variant="inherit"
                   variantMapping={{ inherit: "h1" }}
                   sx={{
@@ -127,14 +127,14 @@ const DoctorDetail: FunctionComponent = () => {
                   {doctor.name}
                 </Typography>
                 <Typography
-                  className="text-left font-inter font-normal text-[20px] leading-[30px] text-[#505050]"
+                  className="text-left font-inter font-normal text-[20px] leading-[30px] text-[#505050] mq450:!text-[16px] mq450:!leading-[24px]"
                 >
                   {doctor.specialty} · {doctor.qualifications.split(" · ")[1] || "Senior Consultant"}
                 </Typography>
               </Box>
 
               {/* Bio Paragraphs */}
-              <Box className="flex flex-col items-start gap-6 w-full text-left font-inter font-normal text-[18px] leading-[28px] text-[#505050]">
+              <Box className="flex flex-col items-start gap-6 w-full text-left font-inter font-normal text-[18px] leading-[28px] text-[#505050] mq450:!text-[14px] mq450:!leading-[22px] mq450:!gap-4">
                 <p className="m-0">
                   With over 10 years of clinical experience, {doctor.name} brings specialist expertise and a patient-first approach to every consultation. Having trained at leading medical institutions across India, they deliver care that meets the highest standards of diagnosis and treatment.
                 </p>
@@ -147,83 +147,118 @@ const DoctorDetail: FunctionComponent = () => {
               </Box>
 
               {/* Qualification Badges */}
-              <Box className="flex flex-wrap items-start gap-4 w-full pt-4">
+              <Box className="flex flex-wrap items-start gap-4 w-full pt-4 mq450:!gap-2">
                 <Box
-                  className="rounded-[4px] w-max flex items-center justify-center gap-3 bg-[#f1f2f1]"
+                  className="rounded-[4px] w-max flex items-center justify-center gap-3 bg-[#f1f2f1] mq450:!h-9 mq450:!pl-3 mq450:!pr-3"
                   style={{ height: "48px", paddingLeft: "36px", paddingRight: "36px" }}
                 >
-                  <Box className="rounded-full h-2.5 w-2.5 bg-[#7791a5]" />
-                  <span className="font-lilex font-normal text-[14px] leading-[20px] uppercase text-[#0B0C0F]">
-                    BOARD CERTIFIED
+                  <Box className="rounded-full h-2.5 w-2.5 bg-[#7791a5] mq450:!hidden" />
+                  <span className="font-lilex font-normal text-[14px] leading-[20px] uppercase text-[#0B0C0F] mq450:!text-[12px] mq450:!leading-[18px]">
+                    <span className="hidden mq450:!inline mr-1">+</span>BOARD CERTIFIED
                   </span>
                 </Box>
                 <Box
-                  className="rounded-[4px] w-max flex items-center justify-center gap-3 bg-[#f1f2f1]"
+                  className="rounded-[4px] w-max flex items-center justify-center gap-3 bg-[#f1f2f1] mq450:!h-9 mq450:!pl-3 mq450:!pr-3"
                   style={{ height: "48px", paddingLeft: "36px", paddingRight: "36px" }}
                 >
-                  <Box className="rounded-full h-2.5 w-2.5 bg-[#7791a5]" />
-                  <span className="font-lilex font-normal text-[14px] leading-[20px] uppercase text-[#0B0C0F]">
-                    MBBS
+                  <Box className="rounded-full h-2.5 w-2.5 bg-[#7791a5] mq450:!hidden" />
+                  <span className="font-lilex font-normal text-[14px] leading-[20px] uppercase text-[#0B0C0F] mq450:!text-[12px] mq450:!leading-[18px]">
+                    <span className="hidden mq450:!inline mr-1">+</span>MBBS
                   </span>
                 </Box>
                 <Box
-                  className="rounded-[4px] w-max flex items-center justify-center gap-3 bg-[#f1f2f1]"
+                  className="rounded-[4px] w-max flex items-center justify-center gap-3 bg-[#f1f2f1] mq450:!h-9 mq450:!pl-3 mq450:!pr-3"
                   style={{ height: "48px", paddingLeft: "36px", paddingRight: "36px" }}
                 >
-                  <Box className="rounded-full h-2.5 w-2.5 bg-[#7791a5]" />
-                  <span className="font-lilex font-normal text-[14px] leading-[20px] uppercase text-[#0B0C0F]">
-                    {doctor.qualifications.split(",")[1]?.trim()?.split(" · ")[0] || "MD / MS / DM"}
+                  <Box className="rounded-full h-2.5 w-2.5 bg-[#7791a5] mq450:!hidden" />
+                  <span className="font-lilex font-normal text-[14px] leading-[20px] uppercase text-[#0B0C0F] mq450:!text-[12px] mq450:!leading-[18px]">
+                    <span className="hidden mq450:!inline mr-1">+</span>{doctor.qualifications.split(",")[1]?.trim()?.split(" · ")[0] || "MD / MS / DM"}
                   </span>
                 </Box>
                 <Box
-                  className="rounded-[4px] w-max flex items-center justify-center gap-3 bg-[#f1f2f1]"
+                  className="rounded-[4px] w-max flex items-center justify-center gap-3 bg-[#f1f2f1] mq450:!h-9 mq450:!pl-3 mq450:!pr-3"
                   style={{ height: "48px", paddingLeft: "36px", paddingRight: "36px" }}
                 >
-                  <Box className="rounded-full h-2.5 w-2.5 bg-[#7791a5]" />
-                  <span className="font-lilex font-normal text-[14px] leading-[20px] uppercase text-[#0B0C0F]">
-                    10 YRS EXPERIENCE
+                  <Box className="rounded-full h-2.5 w-2.5 bg-[#7791a5] mq450:!hidden" />
+                  <span className="font-lilex font-normal text-[14px] leading-[20px] uppercase text-[#0B0C0F] mq450:!text-[12px] mq450:!leading-[18px]">
+                    <span className="hidden mq450:!inline mr-1">+</span>10 YRS EXPERIENCE
                   </span>
                 </Box>
               </Box>
 
               {/* Contacts Info */}
-              <Box className="flex flex-col items-start gap-4 w-full pt-6 border-t border-[#E6E6E6]">
-                <Typography className="text-left font-lilex font-semibold text-[20px] leading-[30px] text-[#0B0C0F] uppercase tracking-[0.5px]">
+              <Box className="flex flex-col items-start gap-4 w-full pt-6 border-t border-[#E6E6E6] mq450:!gap-2 mq450:!pt-4">
+                <Typography className="text-left font-lilex font-semibold text-[20px] leading-[30px] text-[#0B0C0F] uppercase tracking-[0.5px] mq450:!text-[16px] mq450:!leading-[24px]">
                   Contacts
                 </Typography>
-                <Box className="flex flex-col items-start gap-3 w-full">
+                <Box className="flex flex-col items-start gap-3 w-full mq450:!gap-2">
                   <Box className="flex items-center gap-3">
-                    <Box className="rounded-full h-2 w-2 bg-[#7791a5] shrink-0" />
-                    <span className="font-inter font-normal text-[18px] leading-[28px] text-[#505050]">
+                    <Box className="rounded-full h-2 w-2 bg-[#7791a5] shrink-0 mq450:!hidden" />
+                    <span className="hidden mq450:!inline text-[#1F2A44] font-bold text-[10px] shrink-0 mr-1">▶</span>
+                    <span className="font-inter font-normal text-[18px] leading-[28px] text-[#505050] mq450:!text-[14px] mq450:!leading-[22px]">
                       info@swarajhospital.in
                     </span>
                   </Box>
                   <Box className="flex items-center gap-3">
-                    <Box className="rounded-full h-2 w-2 bg-[#7791a5] shrink-0" />
-                    <span className="font-inter font-normal text-[18px] leading-[28px] text-[#505050]">
+                    <Box className="rounded-full h-2 w-2 bg-[#7791a5] shrink-0 mq450:!hidden" />
+                    <span className="hidden mq450:!inline text-[#1F2A44] font-bold text-[10px] shrink-0 mr-1">▶</span>
+                    <span className="font-inter font-normal text-[18px] leading-[28px] text-[#505050] mq450:!text-[14px] mq450:!leading-[22px]">
                       +91 63708 22507
                     </span>
                   </Box>
                 </Box>
               </Box>
 
-              {/* Make an Appointment Button */}
-              <NavyButton
-                label="Make an Appointment"
-                variant="filled"
-                onClick={() => navigate(`/book?doctor=${doctor.id}`)}
-                className="!w-full !max-w-[340px] !h-[56px] mt-4"
-              />
+              {/* Availability timing and days */}
+              <Box className="flex flex-col items-start gap-4 w-full pt-6 border-t border-[#E6E6E6] mq450:!pt-4 mq450:!gap-2">
+                <Typography className="text-left font-lilex font-semibold text-[14px] leading-[20px] text-[#7791A5] uppercase tracking-[0.5px] mq450:!text-[12px] mq450:!leading-[18px]">
+                  AVAILABLE FROM<br />
+                  <span className="font-inter font-normal text-[18px] leading-[28px] text-[#505050] mq450:!text-[14px] mq450:!leading-[22px]">
+                    {doctor.availability.toUpperCase().replace("AVAILABLE FROM ", "")}
+                  </span>
+                </Typography>
+
+                {/* Days Circles */}
+                <Box className="flex flex-row items-center gap-4 pt-2 mq450:!gap-2">
+                  {doctor.days.map((day) => (
+                    <Box
+                      key={day}
+                      className="w-[60px] h-[60px] rounded-full bg-[#FFFFFF] border border-solid border-[#E6E6E6] flex items-center justify-center mq450:!w-[44px] mq450:!h-[44px]"
+                    >
+                      <span className="font-lilex font-normal text-[16px] leading-[24px] uppercase text-[#0B0C0F] mq450:!text-[12px] mq450:!leading-[18px]">
+                        {day.toUpperCase().slice(0, 3)}
+                      </span>
+                    </Box>
+                  ))}
+                </Box>
+              </Box>
+
+              {/* Action Buttons Row */}
+              <Box className="w-full flex flex-col items-start gap-3 pt-6 border-t border-[#E6E6E6] mq450:!pt-4">
+                <NavyButton
+                  label="Book an Appointment"
+                  variant="filled"
+                  onClick={() => navigate(`/book?doctor=${doctor.id}`)}
+                  className="!w-full !max-w-[340px] !h-[48px] mq450:!w-[80%]"
+                />
+
+                <NavyButton
+                  label="Request your session"
+                  variant="outline"
+                  onClick={() => navigate(`/book?doctor=${doctor.id}`)}
+                  className="!w-full !max-w-[340px] !h-[48px] mq450:!bg-transparent mq450:hover:!bg-transparent mq450:!shadow-none mq450:!text-[#1F2A44] mq450:!w-[80%] mq450:!justify-start mq450:!px-0 mq450:!py-2 mq450:!h-auto !border-[#1F2A44] !text-[#1F2A44]"
+                />
+              </Box>
 
             </Box>
 
             {/* Right Column - Large Image */}
             <Box
-              className="flex items-center justify-center relative box-border shrink-0 mq1350:w-full"
+              className="flex items-center justify-center relative box-border shrink-0 mq1350:!w-full mq925:!w-full mq450:!w-full"
               style={{ width: "750.2px" }}
             >
               <Box 
-                className="rounded-[12px] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.06)] relative flex items-center justify-center bg-[#F1F2F1]"
+                className="rounded-[12px] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.06)] relative flex items-center justify-center bg-[#F1F2F1] mq1350:!w-full mq1350:!h-auto mq1350:!aspect-square mq925:!w-full mq925:!h-auto mq925:!aspect-square mq450:!w-full mq450:!h-auto mq450:!aspect-square mq450:!rounded-none"
                 style={{ width: "750.2px", height: "751.3px" }}
               >
                 <img
@@ -240,13 +275,13 @@ const DoctorDetail: FunctionComponent = () => {
 
       {/* Our Specialists Section */}
       <Box 
-        className="w-full flex flex-col items-center px-[280px] mq925:px-10 mq1350:px-[140px] box-border relative bg-[#ffffff]"
+        className="w-full flex flex-col items-center px-[280px] mq925:px-10 mq1350:px-[140px] mq450:!px-6 box-border relative bg-[#ffffff] mq1350:!pt-20 mq1350:!pb-20 mq925:!pt-14 mq925:!pb-14 mq450:!pt-10 mq450:!pb-10"
         style={{ paddingTop: "240px", paddingBottom: "240px" }}
       >
-        <Box className="w-full max-w-[1360px] flex flex-row justify-between items-start gap-[80px] mq1350:flex-col mq1350:items-stretch">
+        <Box className="w-full max-w-[1360px] flex flex-row justify-between items-start gap-[80px] mq1350:flex-col mq1350:items-stretch mq925:flex-col mq925:items-stretch mq450:flex-col mq450:items-stretch mq450:!gap-8">
           
           {/* Left Column */}
-          <Box className="flex flex-col items-start w-[550px] mq1350:w-full">
+          <Box className="flex flex-col items-start w-[550px] mq1350:w-full mq925:w-full mq450:w-full">
             {/* Badge */}
             <Box
               className="flex flex-row items-center bg-[#F1F2F1] rounded-[4px] select-none"
@@ -276,7 +311,7 @@ const DoctorDetail: FunctionComponent = () => {
 
             {/* Title */}
             <Typography
-              className="!m-0 text-left font-stack-sans-text uppercase"
+              className="!m-0 text-left font-stack-sans-text uppercase mq450:!text-[32px] mq450:!leading-[40px] mq450:!tracking-[-0.5px]"
               variant="inherit"
               variantMapping={{ inherit: "h2" }}
               sx={{
@@ -293,7 +328,7 @@ const DoctorDetail: FunctionComponent = () => {
 
             {/* Subtitle */}
             <Typography
-              className="text-left font-inter font-normal text-[18px] leading-[28px] text-[#505050]"
+              className="text-left font-inter font-normal text-[18px] leading-[28px] text-[#505050] mq450:!text-[14px] mq450:!leading-[22px] mq450:!pt-4"
               sx={{ paddingTop: "44px" }}
             >
               From emergency medicine to advanced surgery, our specialists cover every dimension of your family's health.
@@ -301,7 +336,7 @@ const DoctorDetail: FunctionComponent = () => {
           </Box>
 
           {/* Right Column - Specialists Grid */}
-          <Box className="w-[730px] max-w-full mq1350:w-full flex flex-col items-start">
+          <Box className="w-[730px] max-w-full mq1350:w-full mq925:w-full mq450:w-full flex flex-col items-start">
             <Box
               className="grid gap-[12px] w-full"
               sx={{
@@ -309,13 +344,16 @@ const DoctorDetail: FunctionComponent = () => {
                 "@media (max-width: 925px)": {
                   gridTemplateColumns: "1fr",
                 },
+                "@media (max-width: 450px)": {
+                  gridTemplateColumns: "1fr !important",
+                },
               }}
             >
               
               {/* Card 1: Dr. Suraj Samal */}
               <Box
                 onClick={() => navigate("/doctor/2")}
-                className="bg-[#f1f2f1] rounded-[16px] flex flex-row justify-between items-center cursor-pointer hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 transition-all duration-300"
+                className="bg-[#f1f2f1] rounded-[16px] flex flex-row justify-between items-center cursor-pointer hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 transition-all duration-300 mq450:!max-w-full"
                 style={{
                   width: "100%",
                   maxWidth: "359px",
@@ -358,7 +396,7 @@ const DoctorDetail: FunctionComponent = () => {
               {/* Card 2: DR. Priyanka Patra */}
               <Box
                 onClick={() => navigate("/doctor/3")}
-                className="bg-[#f1f2f1] rounded-[16px] flex flex-row justify-between items-center cursor-pointer hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 transition-all duration-300"
+                className="bg-[#f1f2f1] rounded-[16px] flex flex-row justify-between items-center cursor-pointer hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 transition-all duration-300 mq450:!max-w-full"
                 style={{
                   width: "100%",
                   maxWidth: "359px",
@@ -401,7 +439,7 @@ const DoctorDetail: FunctionComponent = () => {
               {/* Card 3: DR. Anuradha Acharya */}
               <Box
                 onClick={() => navigate("/doctor/4")}
-                className="bg-[#f1f2f1] rounded-[16px] flex flex-row justify-between items-center cursor-pointer hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 transition-all duration-300"
+                className="bg-[#f1f2f1] rounded-[16px] flex flex-row justify-between items-center cursor-pointer hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 transition-all duration-300 mq450:!max-w-full"
                 style={{
                   width: "100%",
                   maxWidth: "359px",
@@ -444,7 +482,7 @@ const DoctorDetail: FunctionComponent = () => {
               {/* Card 4: DR. Barsha Dash */}
               <Box
                 onClick={() => navigate("/doctor/5")}
-                className="bg-[#f1f2f1] rounded-[16px] flex flex-row justify-between items-center cursor-pointer hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 transition-all duration-300"
+                className="bg-[#f1f2f1] rounded-[16px] flex flex-row justify-between items-center cursor-pointer hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 transition-all duration-300 mq450:!max-w-full"
                 style={{
                   width: "100%",
                   maxWidth: "359px",

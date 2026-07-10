@@ -1,5 +1,6 @@
 import { useMemo, type FunctionComponent, type CSSProperties } from "react";
 import { Link } from "react-router-dom";
+import styles from "./CarrerComponent.module.css";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -931,7 +932,7 @@ const s: Record<string, CSSProperties> = {
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
 const Badge = ({ text }: { text: string }) => (
-    <div style={s.badge}>
+    <div className={styles.badge} style={s.badge}>
         <div style={s.badgeIconWrap}>
             <img style={s.badgeIcon} loading="lazy" alt="" src="/SVG.svg" />
         </div>
@@ -953,9 +954,9 @@ const BenefitRow = ({
     label: string;
 }) => {
     return (
-        <section style={s.benefitRow}>
-            <div style={s.benefitLabelCell}>
-                <div style={s.benefitLabelInner}>
+        <section className={styles.benefitRow} style={s.benefitRow}>
+            <div className={styles.benefitLabelCell} style={s.benefitLabelCell}>
+                <div className={styles.benefitLabelInner} style={s.benefitLabelInner}>
                     <div style={s.benefitIconWrap}>
                         <img style={s.badgeIcon} loading="lazy" alt="" src="/Vector(1).png" />
                     </div>
@@ -966,7 +967,7 @@ const BenefitRow = ({
                             alignItems: "flex-start",
                         }}
                     >
-                        <h1 style={s.benefitLabelText}>{label}</h1>
+                        <h1 className={styles.benefitLabelText} style={s.benefitLabelText}>{label}</h1>
                     </div>
                 </div>
             </div>
@@ -984,12 +985,13 @@ const DoctorCard = ({ item }: { item: DoctorItem }) => {
         [item.gridColumn, item.gridRow]
     );
     return (
-        <div style={cardStyle}>
-            <div style={s.doctorCardLink}>
-                <div style={s.doctorCardTop}>
-                    <div style={s.doctorCardArrowWrap}>
-                        <div style={s.doctorCardArrow}>
+        <div className={styles.doctorCard} style={cardStyle}>
+            <div className={styles.doctorCardLink} style={s.doctorCardLink}>
+                <div className={styles.doctorCardTop} style={s.doctorCardTop}>
+                    <div className={styles.doctorCardArrowWrap} style={s.doctorCardArrowWrap}>
+                        <div className={styles.doctorCardArrow} style={s.doctorCardArrow}>
                             <img
+                                className={styles.doctorArrowImg}
                                 style={s.doctorArrowImg}
                                 alt=""
                                 src="/699f6877b8f1c6d2edfe4bd7-Button-20Ball-svg@2x.png"
@@ -997,18 +999,19 @@ const DoctorCard = ({ item }: { item: DoctorItem }) => {
                         </div>
                     </div>
                     <img
+                        className={styles.doctorPhoto}
                         style={s.doctorPhoto}
                         loading="lazy"
                         alt=""
                         src={item.container}
                     />
                 </div>
-                <div style={s.doctorInfo}>
-                    <div style={s.doctorNameWrap}>
-                        <div style={s.doctorName}>{item.name}</div>
+                <div className={styles.doctorInfo} style={s.doctorInfo}>
+                    <div className={styles.doctorNameWrap} style={s.doctorNameWrap}>
+                        <div className={styles.doctorName} style={s.doctorName}>{item.name}</div>
                     </div>
-                    <div style={s.doctorSpecialtyWrap}>
-                        <div style={s.doctorSpecialty}>{item.specialty}</div>
+                    <div className={styles.doctorSpecialtyWrap} style={s.doctorSpecialtyWrap}>
+                        <div className={styles.doctorSpecialty} style={s.doctorSpecialty}>{item.specialty}</div>
                     </div>
                 </div>
             </div>
@@ -1017,25 +1020,28 @@ const DoctorCard = ({ item }: { item: DoctorItem }) => {
 };
 
 const JobRow = ({ item }: { item: JobItem }) => (
-    <div style={s.jobRow}>
-        <div style={s.jobCellDate}>
-            <div style={s.jobCellText}>{item.date}</div>
+    <div className={styles.jobRow} style={s.jobRow}>
+        <div className={styles.jobCellDate} style={s.jobCellDate}>
+            <div className={styles.jobCellText} style={s.jobCellText}>{item.date}</div>
         </div>
-        <div style={s.jobCellTitle}>
-            <div style={s.jobCellText}>{item.title}</div>
+        <div className={styles.jobCellTitle} style={s.jobCellTitle}>
+            <div className={styles.jobCellText} style={s.jobCellText}>{item.title}</div>
         </div>
-        <div style={s.jobCellDept}>
-            <div style={s.jobCellText}>{item.department}</div>
+        <div className={styles.jobCellDept} style={s.jobCellDept}>
+            <div className={styles.jobCellText} style={s.jobCellText}>{item.department}</div>
         </div>
-        <div style={s.jobCellCommit}>
-            <div style={s.jobCellText}>{item.commitment}</div>
+        <div className={styles.jobCellCommit} style={s.jobCellCommit}>
+            <div className={styles.jobCellText} style={s.jobCellText}>{item.commitment}</div>
         </div>
-        <div style={s.jobCellLocation}>
-            <div style={s.jobCellText}>On-site</div>
+        <div className={styles.jobCellLocation} style={s.jobCellLocation}>
+            <div className={styles.jobCellText} style={s.jobCellText}>On-site</div>
         </div>
-        <Link to={item.id ? `/career/${item.id}` : "/career"} style={{ ...s.jobSeeBtn, textDecoration: "none" }}>
-            <div style={s.jobSeeBtnText}>See role</div>
-            <div style={s.jobSeeBtnArrow}>
+        <Link to={item.id ? `/career/${item.id}` : "/career"} className={styles.jobSeeBtn} style={{ ...s.jobSeeBtn, textDecoration: "none" }}>
+            <div className={styles.jobSeeBtnText} style={s.jobSeeBtnText}>
+                <span>See role</span>
+                <span className={styles.jobBtnDot}> •</span>
+            </div>
+            <div className={styles.jobSeeBtnArrow} style={s.jobSeeBtnArrow}>
                 <img
                     style={s.doctorArrowImg}
                     alt=""
@@ -1051,12 +1057,12 @@ const JobRow = ({ item }: { item: JobItem }) => (
 
 const JobBoardSection: FunctionComponent = () => {
     return (
-        <div style={s.pageRoot}>
+        <div className={styles.pageRoot} style={s.pageRoot}>
             {/* ── 1. Hero ── */}
-            <main style={s.heroSection}>
-                <div style={s.heroInner}>
-                    <section style={s.heroCopy}>
-                        <div style={s.badge}>
+            <main className={styles.heroSection} style={s.heroSection}>
+                <div className={styles.heroInner} style={s.heroInner}>
+                    <section className={styles.heroCopy} style={s.heroCopy}>
+                        <div className={styles.badge} style={s.badge}>
                             <div style={s.badgeIconWrap}>
                                 <img style={s.badgeIcon} loading="lazy" alt="" src="/SVG.svg" />
                             </div>
@@ -1070,17 +1076,17 @@ const JobBoardSection: FunctionComponent = () => {
                                 <div style={s.badgeText}>JOB BOARD</div>
                             </div>
                         </div>
-                        <div style={s.heroTitleWrap}>
+                        <div className={styles.heroTitleWrap} style={s.heroTitleWrap}>
                             <div style={s.heroTitleInner}>
-                                <h1 style={s.heroH1}>
-                                    Build the Future of
+                                <h1 className={styles.heroH1} style={s.heroH1}>
+                                    Build the Future of{" "}
                                     <br /> Healthcare in Odisha
                                 </h1>
                             </div>
                         </div>
-                        <div style={s.heroSubWrap}>
+                        <div className={styles.heroSubWrap} style={s.heroSubWrap}>
                             <div style={s.heroSubInner}>
-                                <div style={s.heroSubText}>
+                                <div className={styles.heroSubText} style={s.heroSubText}>
                                     Join a team dedicated to clinical excellence and compassionate
                                     care. We are raising the standard of healthcare in western
                                     Odisha, one patient at a time.
@@ -1089,6 +1095,7 @@ const JobBoardSection: FunctionComponent = () => {
                         </div>
                     </section>
                     <img
+                        className={styles.heroImage}
                         style={s.heroImage}
                         loading="lazy"
                         alt=""
@@ -1098,37 +1105,37 @@ const JobBoardSection: FunctionComponent = () => {
             </main>
 
             {/* ── 2. Mission ── */}
-            <section style={s.missionSection}>
-                <div style={s.missionRow}>
+            <section className={styles.missionSection} style={s.missionSection}>
+                <div className={styles.missionRow} style={s.missionRow}>
                     {/* Left badge column */}
-                    <section style={s.missionBadgeCol}>
-                        <Badge text="ABOUT OUR MISSION" />
+                    <section className={styles.missionBadgeCol} style={s.missionBadgeCol}>
+                        <Badge text="ABOUT OUR VISION" />
                     </section>
 
                     {/* Right copy column */}
-                    <section style={s.missionCopyCol}>
-                        <div style={s.missionH1Wrap}>
-                            <h1 style={s.missionH1}>
-                                Make a Difference and
+                    <section className={styles.missionCopyCol} style={s.missionCopyCol}>
+                        <div className={styles.missionH1Wrap} style={s.missionH1Wrap}>
+                            <h1 className={styles.missionH1} style={s.missionH1}>
+                                Make a Difference and{" "}
                                 <br /> Transform Lives
                             </h1>
                         </div>
-                        <div style={s.missionBodyStack}>
-                            <div style={s.missionSubHeadWrap}>
-                                <h3 style={s.missionSubHead}>
+                        <div className={styles.missionBodyStack} style={s.missionBodyStack}>
+                            <div className={styles.missionSubHeadWrap} style={s.missionSubHeadWrap}>
+                                <h3 className={styles.missionSubHead} style={s.missionSubHead}>
                                     Join the team redefining healthcare in Balangir.
                                 </h3>
                             </div>
-                            <div style={s.missionBodyBlur}>
-                                <div style={s.missionBodyText}>
+                            <div className={styles.missionBodyBlur} style={s.missionBodyBlur}>
+                                <div className={styles.missionBodyText} style={s.missionBodyText}>
                                     We believe clinical excellence starts with a supportive
                                     environment. Our focus is on building a workplace where your
                                     expertise grows alongside our patients' wellbeing — ensuring a
                                     balanced, meaningful and rewarding professional life.
                                 </div>
                             </div>
-                            <div style={s.missionBodyBlur}>
-                                <div style={s.missionBodyText}>
+                            <div className={styles.missionBodyBlur} style={s.missionBodyBlur}>
+                                <div className={styles.missionBodyText} style={s.missionBodyText}>
                                     Swaraj Hospital combines advanced diagnostic infrastructure
                                     with a deeply human approach to care. By joining us, you
                                     become a key part of a mission to make world-class healthcare
@@ -1141,16 +1148,16 @@ const JobBoardSection: FunctionComponent = () => {
             </section>
 
             {/* ── 3. Why Join Us ── */}
-            <section style={s.whySection}>
+            <section className={styles.whySection} style={s.whySection}>
                 <div style={s.whyOverlayBlur} />
-                <div style={s.whyCard}>
+                <div className={styles.whyCard} style={s.whyCard}>
                     {/* Header */}
-                    <div style={s.whyHeaderRow}>
-                        <div style={s.whyHeaderLeft}>
+                    <div className={styles.whyHeaderRow} style={s.whyHeaderRow}>
+                        <div className={styles.whyHeaderLeft} style={s.whyHeaderLeft}>
                             <Badge text="WHY JOIN US?" />
                         </div>
-                        <div style={s.whyH1Wrap}>
-                            <h1 style={s.whyH1}>
+                        <div className={styles.whyH1Wrap} style={s.whyH1Wrap}>
+                            <h1 className={styles.whyH1} style={s.whyH1}>
                                 Love your work,
                                 <br />
                                 Grow your career.
@@ -1159,7 +1166,7 @@ const JobBoardSection: FunctionComponent = () => {
                     </div>
 
                     {/* Benefits */}
-                    <div style={s.benefitsSection}>
+                    <div className={styles.benefitsSection} style={s.benefitsSection}>
                         <div
                             style={{
                                 alignSelf: "stretch",
@@ -1168,7 +1175,7 @@ const JobBoardSection: FunctionComponent = () => {
                                 alignItems: "flex-start",
                             }}
                         >
-                            <div style={s.benefitsLabel}>Benefits list</div>
+                            <div className={styles.benefitsLabel} style={s.benefitsLabel}>Benefits list</div>
                         </div>
                         <div
                             style={{
@@ -1190,10 +1197,10 @@ const JobBoardSection: FunctionComponent = () => {
             </section>
 
             {/* ── 4. Specialists ── */}
-            <section style={s.specialistsSection}>
+            <section className={styles.specialistsSection} style={s.specialistsSection}>
                 {/* Sidebar */}
-                <section style={s.specialistsSidebar}>
-                    <div style={s.specialistsBadge}>
+                <section className={styles.specialistsSidebar} style={s.specialistsSidebar}>
+                    <div className={styles.specialistsBadge} style={s.specialistsBadge}>
                         <div style={s.badgeIconWrap}>
                             <img style={s.badgeIcon} alt="" src="/SVG.svg" />
                         </div>
@@ -1205,6 +1212,7 @@ const JobBoardSection: FunctionComponent = () => {
                             }}
                         >
                             <div
+                                className={styles.badgeText}
                                 style={{
                                     ...s.badgeText,
                                     fontFamily: "Lilex, Arial, sans-serif",
@@ -1214,15 +1222,15 @@ const JobBoardSection: FunctionComponent = () => {
                             </div>
                         </div>
                     </div>
-                    <div style={s.specialistsH2Wrap}>
-                        <h1 style={s.specialistsH2}>
-                            The Hands Behind
+                    <div className={styles.specialistsH2Wrap} style={s.specialistsH2Wrap}>
+                        <h1 className={styles.specialistsH2} style={s.specialistsH2}>
+                            The Hands Behind{" "}
                             <br />
                             the Care
                         </h1>
                     </div>
-                    <div style={s.specialistsBodyWrap}>
-                        <div style={s.specialistsBody}>
+                    <div className={styles.specialistsBodyWrap} style={s.specialistsBodyWrap}>
+                        <div className={styles.specialistsBody} style={s.specialistsBody}>
                             From emergency medicine to advanced surgery, our specialists cover
                             every dimension of patient health.
                         </div>
@@ -1230,9 +1238,9 @@ const JobBoardSection: FunctionComponent = () => {
                 </section>
 
                 {/* Doctor grid */}
-                <div style={s.doctorGrid}>
-                    <div style={s.doctorGridInner}>
-                        <div style={s.doctorList}>
+                <div className={styles.doctorGrid} style={s.doctorGrid}>
+                    <div className={styles.doctorGridInner} style={s.doctorGridInner}>
+                        <div className={styles.doctorList} style={s.doctorList}>
                             {doctors.map((doc, i) => (
                                 <DoctorCard key={i} item={doc} />
                             ))}
@@ -1242,20 +1250,20 @@ const JobBoardSection: FunctionComponent = () => {
             </section>
 
             {/* ── 5. Job Openings ── */}
-            <footer style={s.jobsSection}>
+            <footer className={styles.jobsSection} style={s.jobsSection}>
                 {/* Header */}
-                <div style={s.jobsHeader}>
-                    <div style={s.jobsHeaderLeft}>
+                <div className={styles.jobsHeader} style={s.jobsHeader}>
+                    <div className={styles.jobsHeaderLeft} style={s.jobsHeaderLeft}>
                         <Badge text="CURRENT OPENINGS" />
-                        <div style={s.jobsH1Wrap}>
-                            <h1 style={s.jobsH1}>
-                                Start your
+                        <div className={styles.jobsH1Wrap} style={s.jobsH1Wrap}>
+                            <h1 className={styles.jobsH1} style={s.jobsH1}>
+                                Start your{" "}
                                 <br />
-                                new chapter.
+                                new chapter
                             </h1>
                         </div>
                     </div>
-                    <div style={s.jobsHeaderRight}>
+                    <div className={styles.jobsHeaderRight} style={s.jobsHeaderRight}>
                         <div
                             style={{
                                 alignSelf: "stretch",
@@ -1264,7 +1272,7 @@ const JobBoardSection: FunctionComponent = () => {
                                 alignItems: "flex-start",
                             }}
                         >
-                            <div style={s.jobsSubText}>
+                            <div className={styles.jobsSubText} style={s.jobsSubText}>
                                 Explore open roles that match your expertise. Join
                                 <br />a team focused on excellence and growth.
                             </div>
@@ -1273,9 +1281,9 @@ const JobBoardSection: FunctionComponent = () => {
                 </div>
 
                 {/* Table */}
-                <div style={s.jobsTable}>
+                <div className={styles.jobsTable} style={s.jobsTable}>
                     {/* Head row */}
-                    <div style={s.jobsTableHead}>
+                    <div className={styles.jobsTableHead} style={s.jobsTableHead}>
                         {[
                             { label: "DATE", col: 1 },
                             { label: "Title", col: 2 },
@@ -1299,7 +1307,7 @@ const JobBoardSection: FunctionComponent = () => {
                     </div>
 
                     {/* Body rows */}
-                    <div style={s.jobsTableBody}>
+                    <div className={styles.jobsTableBody} style={s.jobsTableBody}>
                         {jobs.map((job, i) => (
                             <JobRow key={i} item={job} />
                         ))}

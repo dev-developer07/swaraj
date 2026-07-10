@@ -120,6 +120,7 @@
     line-height: 76.8px;
     font-weight: 400;
     font-family: inherit;
+    white-space: nowrap;
 }
 
 .heroBottom {
@@ -280,66 +281,30 @@
 }
 
 .blogCardCta {
-    border-radius: 8px;
+    border-radius: 99px;
     background-color: #f1f2f1;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 8px 16px;
-    position: relative;
-    isolation: isolate;
-    font-size: 16px;
+    gap: 8px;
+    font-size: 14px;
     color: #0b0c0f;
-}
-
-.blogCardCtaText {
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0 3px;
-    z-index: 2;
+    width: fit-content;
+    font-family: Lilex, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 600;
 }
 
 .learnMore {
     position: relative;
     line-height: 24px;
-    text-transform: uppercase;
-    font-weight: 500;
 }
 
-.blogCardArrow {
-    margin: 0 !important;
-    position: absolute;
-    top: 16px;
-    left: 126px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    max-width: 1920px;
-    z-index: 1;
-}
-
-.arrowIcon {
-    width: 8px;
-    height: 8px;
-    position: relative;
-    object-fit: cover;
-}
-
-.blogCardCtaBtn {
-    cursor: pointer;
-    border: 0;
-    padding: 0;
-    background-color: transparent;
-    height: 24px;
-    width: 24px;
-    position: relative;
-    overflow: hidden;
-    flex-shrink: 0;
-    z-index: 1;
+.ctaDot {
+    font-size: 14px;
+    line-height: 1;
+    color: #0b0c0f;
 }
 
 .blogCardImg {
@@ -1271,6 +1236,13 @@
         max-width: 100%;
     }
 
+    .heroHeading {
+        font-size: 40px !important;
+        line-height: 48px !important;
+        white-space: normal !important;
+        letter-spacing: -0.5px !important;
+    }
+
     .gridSection {
         padding: 59px 70px;
         box-sizing: border-box;
@@ -1278,15 +1250,49 @@
 
     .blogGrid {
         height: auto;
-        min-height: 1400.2px;
+        min-height: auto !important;
     }
 
     .blogCard {
-        flex-wrap: wrap;
+        flex-direction: column-reverse !important;
+        padding: 16px !important;
+        gap: 16px !important;
+        align-items: stretch !important;
+        grid-column: auto !important;
+        grid-row: auto !important;
+        height: auto !important;
+        background-color: #ffffff !important;
+        border-radius: 12px !important;
+    }
+
+    .blogCardBody {
+        height: auto !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        gap: 12px !important;
     }
 
     .blogCardImg {
-        flex: 1;
+        width: 100% !important;
+        height: 240px !important;
+        max-height: 240px !important;
+        border-radius: 8px !important;
+        object-fit: cover !important;
+    }
+
+    .blogCardTitleWrap {
+        padding: 0 !important;
+    }
+
+    .blogCardTitle {
+        font-size: 20px !important;
+        line-height: 28px !important;
+    }
+
+    .blogCardDescWrap {
+        font-size: 14px !important;
+        line-height: 20px !important;
     }
 
     .ctaSection {
@@ -1356,15 +1362,56 @@
 }
 
 @media screen and (max-width: 450px) {
+    .heroSection {
+        padding: 0px 16px 40px !important;
+    }
+
+    .heroContent {
+        padding-top: 40px !important;
+        gap: 16px !important;
+    }
+
+    .heroHeadingWrap {
+        padding-top: 16px !important;
+    }
+
+    .heroHeading {
+        font-size: 28px !important;
+        line-height: 36px !important;
+        white-space: normal !important;
+    }
+
+    .heroSubWrap {
+        width: 100% !important;
+    }
+
+    .heroSub {
+        font-size: 15px !important;
+        line-height: 22px !important;
+    }
+
     .gridSection {
-        padding-top: 38px;
-        padding-bottom: 38px;
+        padding: 32px 16px !important;
         box-sizing: border-box;
     }
 
+    .blogGrid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    .blogCard {
+        padding: 16px !important;
+        border-radius: 12px !important;
+    }
+
+    .blogCardImg {
+        height: 220px !important;
+    }
+
     .blogCardTitle {
-        font-size: 19px;
-        line-height: 29px;
+        font-size: 18px !important;
+        line-height: 26px !important;
     }
 
     .ctaBadgeWrap {

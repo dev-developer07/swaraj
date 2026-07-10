@@ -154,9 +154,9 @@ const Section1: FunctionComponent<Section1Type> = ({ className = "" }) => {
                 label="SPECIALITIES"
                 variant="light"
               />
-              <Box className="flex flex-col items-start !pt-6 !pb-num-0 !pl-num-0 !pr-num-0 shrink-0 text-num-48 text-web-white font-stack-sans-text">
+              <Box className="flex flex-col items-start !pt-6 max-[450px]:!pt-8 !pb-num-0 !pl-num-0 !pr-num-0 shrink-0 text-num-48 text-web-white font-stack-sans-text">
                 <Typography
-                  className="!m-0 relative mq925:text-num-38 mq925:leading-num-52 mq450:text-num-29 mq450:leading-num-39"
+                  className="!m-0 relative mq925:text-num-38 mq925:leading-num-52 mq450:text-num-29 mq450:leading-num-39 max-[450px]:!text-[28px] max-[450px]:!leading-[38px] max-[450px]:!tracking-[-0.42px] max-[450px]:!w-[345px] max-[450px]:!max-w-full"
                   variant="inherit"
                   variantMapping={{ inherit: "h1" }}
                   sx={{

@@ -1,0 +1,534 @@
+/* Base responsive styles for Career Component */
+
+@media screen and (max-width: 900px) {
+  .pageRoot {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Hero Section */
+  .heroSection {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 32px 16px 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .heroInner {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 24px !important;
+    width: 100% !important;
+  }
+
+  .heroCopy {
+    width: 100% !important;
+    max-width: 100% !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 16px !important;
+  }
+
+  .heroCopy .badge {
+    align-self: center !important;
+  }
+
+  .heroTitleWrap {
+    padding-top: 8px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .heroH1 {
+    font-size: 32px !important;
+    line-height: 40px !important;
+    letter-spacing: -0.5px !important;
+    text-align: center !important;
+    margin: 0 !important;
+  }
+
+  /* Hide <br> inside headings on mobile to let them wrap naturally */
+  .heroH1 br,
+  .missionH1 br,
+  .whyH1 br,
+  .jobsH1 br {
+    display: none !important;
+  }
+
+  .heroSubWrap {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .heroSubText {
+    font-size: 16px !important;
+    line-height: 24px !important;
+    text-align: center !important;
+  }
+
+  .heroImage {
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 16px !important;
+    margin-top: 16px !important;
+  }
+
+  /* Mission Section */
+  .missionSection {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 48px 16px 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .missionRow {
+    flex-direction: column !important;
+    gap: 24px !important;
+    min-height: auto !important;
+    width: 100% !important;
+  }
+
+  .missionBadgeCol {
+    width: auto !important;
+    align-self: flex-start !important;
+  }
+
+  .missionCopyCol {
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 20px !important;
+  }
+
+  .missionH1Wrap {
+    width: 100% !important;
+  }
+
+  .missionH1 {
+    font-size: 28px !important;
+    line-height: 36px !important;
+    letter-spacing: -0.5px !important;
+    height: auto !important;
+    width: 100% !important;
+    text-align: left !important;
+  }
+
+  .missionBodyStack {
+    gap: 16px !important;
+  }
+
+  .missionSubHeadWrap {
+    width: 100% !important;
+  }
+
+  .missionSubHead {
+    font-size: 18px !important;
+    line-height: 26px !important;
+    letter-spacing: -0.3px !important;
+    text-align: left !important;
+  }
+
+  .missionBodyBlur {
+    width: 100% !important;
+  }
+
+  .missionBodyText {
+    font-size: 15px !important;
+    line-height: 22px !important;
+    text-align: left !important;
+  }
+
+  /* Why Join Us Section */
+  .whySection {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 48px 16px 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .whyCard {
+    padding: 24px 16px !important;
+    border-radius: 16px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .whyHeaderRow {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+    padding-bottom: 20px !important;
+    border-bottom: 1px solid #e6e6e6 !important;
+    width: 100% !important;
+  }
+
+  .whyHeaderLeft {
+    width: auto !important;
+  }
+
+  .whyH1Wrap {
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  .whyH1 {
+    font-size: 28px !important;
+    line-height: 36px !important;
+    letter-spacing: -0.5px !important;
+    text-align: left !important;
+  }
+
+  .benefitsSection {
+    padding-top: 16px !important;
+    gap: 16px !important;
+    width: 100% !important;
+  }
+
+  .benefitsLabel {
+    font-size: 14px !important;
+    line-height: 20px !important;
+  }
+
+  .benefitRow {
+    padding: 12px 0 !important;
+    width: 100% !important;
+  }
+
+  .benefitLabelCell {
+    width: 100% !important;
+  }
+
+  .benefitLabelInner {
+    gap: 12px !important;
+  }
+
+  .benefitLabelText {
+    font-size: 16px !important;
+    line-height: 24px !important;
+    font-weight: 500 !important;
+  }
+
+  /* Specialists Section */
+  .specialistsSection {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 64px 16px 48px !important; /* Bottom padding to avoid abrupt gradient cutoff */
+    box-sizing: border-box !important;
+    gap: 40px !important;
+    background: radial-gradient(circle at 100% 0%, #d4e0eb 0%, #e2eaf0 50%, #ecefef 100%) !important; /* Soft gradient matching mockup */
+  }
+
+  .specialistsSidebar {
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 16px !important;
+  }
+
+  .specialistsH2Wrap {
+    padding: 12px 0 0 !important;
+  }
+
+  .specialistsH2 {
+    font-size: 32px !important;
+    line-height: 40px !important;
+    letter-spacing: -0.5px !important;
+  }
+
+  .specialistsH2 br {
+    display: none !important;
+  }
+
+  .specialistsBodyWrap {
+    padding: 0 !important;
+  }
+
+  .specialistsBody {
+    font-size: 15px !important;
+    line-height: 22px !important;
+    color: #505050 !important;
+  }
+
+  .doctorGrid {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .doctorGridInner {
+    width: 100% !important;
+  }
+
+  .doctorList {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    height: auto !important;
+    width: 100% !important;
+  }
+
+  /* Doctor card */
+  .doctorCard {
+    width: 100% !important;
+    height: auto !important;
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+
+  .doctorCardLink {
+    padding: 16px !important;
+    border-radius: 16px !important;
+    gap: 16px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+    background-color: #ffffff !important;
+  }
+
+  .doctorCardTop {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+  }
+
+  .doctorCardArrowWrap {
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .doctorCardArrow {
+    display: block !important;
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 50% !important;
+    background-color: #000000 !important;
+  }
+
+  .doctorArrowImg {
+    display: none !important;
+  }
+
+  .doctorPhoto {
+    width: 80px !important;
+    height: 80px !important;
+    border-radius: 8px !important;
+  }
+
+  .doctorInfo {
+    gap: 4px !important;
+    width: 100% !important;
+  }
+
+  .doctorName {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    line-height: 24px !important;
+    color: #0b0c0f !important;
+    text-transform: uppercase !important;
+  }
+
+  .doctorSpecialty {
+    font-size: 14px !important;
+    line-height: 20px !important;
+    color: #505050 !important;
+  }
+
+  /* Current Openings Section */
+  .jobsSection {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 80px 16px !important; /* Increased padding to give more breathing room */
+    box-sizing: border-box !important;
+    gap: 24px !important;
+  }
+
+  .jobsHeader {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+    padding-bottom: 20px !important;
+    width: 100% !important;
+  }
+
+  .jobsHeaderLeft {
+    min-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .jobsH1Wrap {
+    padding: 12px 0 0 !important;
+  }
+
+  .jobsH1 {
+    font-size: 32px !important;
+    line-height: 40px !important;
+    letter-spacing: -0.5px !important;
+  }
+
+  .jobsHeaderRight {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .jobsSubText {
+    font-size: 15px !important;
+    line-height: 22px !important;
+  }
+
+  /* Jobs Table - Responsive Block Layout */
+  .jobsTable {
+    width: 100% !important;
+  }
+
+  .jobsTableHead {
+    display: none !important; /* Hide column headers on mobile */
+  }
+
+  .jobsTableBody {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important; /* Separator lines on rows handle spacing */
+    width: 100% !important;
+  }
+
+  .jobRow {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    height: auto !important;
+    padding: 24px 0 !important;
+    gap: 12px !important;
+    border-bottom: 1px solid #e6e6e6 !important;
+    width: 100% !important;
+  }
+
+  .jobCellDate,
+  .jobCellTitle,
+  .jobCellDept,
+  .jobCellCommit,
+  .jobCellLocation {
+    display: flex !important;
+    width: 100% !important;
+    padding: 0 !important;
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  .jobCellText {
+    font-size: 15px !important;
+    line-height: 22px !important;
+  }
+
+  /* Reorder columns to match mockup */
+  .jobCellTitle {
+    order: 1 !important;
+  }
+
+  .jobCellTitle .jobCellText {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #0b0c0f !important;
+  }
+
+  .jobCellDate {
+    order: 2 !important;
+  }
+
+  .jobCellDate .jobCellText {
+    color: #7791a5 !important;
+    font-weight: 500 !important;
+  }
+
+  .jobCellDept {
+    order: 3 !important;
+  }
+
+  .jobCellDept .jobCellText {
+    color: #505050 !important;
+  }
+
+  .jobCellCommit {
+    order: 4 !important;
+  }
+
+  .jobCellCommit .jobCellText {
+    color: #505050 !important;
+  }
+
+  .jobCellLocation {
+    order: 5 !important;
+  }
+
+  .jobCellLocation .jobCellText {
+    color: #505050 !important;
+  }
+
+  /* Pill button for 'SEE ROLE •' */
+  .jobSeeBtn {
+    order: 6 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    height: 44px !important;
+    background-color: #f1f2f1 !important;
+    border-radius: 22px !important; /* Pill style */
+    padding: 0 !important;
+    margin-top: 8px !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+  }
+
+  .jobSeeBtnText {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    font-size: 14px !important;
+    line-height: 20px !important;
+    text-transform: uppercase !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    color: #0b0c0f !important;
+  }
+
+  .jobBtnDot {
+    display: inline !important;
+  }
+
+  .jobSeeBtnArrow {
+    display: none !important; /* Hide ball/arrow on mobile */
+  }
+}
+
+/* Specific adjustments for 400px and below */
+@media screen and (max-width: 410px) {
+  .heroH1 {
+    font-size: 28px !important;
+    line-height: 36px !important;
+  }
+
+  .missionH1 {
+    font-size: 26px !important;
+    line-height: 34px !important;
+  }
+
+  .whyH1 {
+    font-size: 26px !important;
+    line-height: 34px !important;
+  }
+
+  .jobsH1 {
+    font-size: 28px !important;
+    line-height: 36px !important;
+  }
+}

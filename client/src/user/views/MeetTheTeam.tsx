@@ -86,18 +86,18 @@ const MeetTheTeam: FunctionComponent = () => {
       </Box>
 
       {/* Main Meet the Team Section */}
-      <Box className="w-full bg-web-gray-nurse flex flex-col items-start !pt-[80px] !pb-[80px] !px-6 box-border min-h-[1400px]">
+      <Box className="w-full bg-web-gray-nurse flex flex-col items-start !pt-[80px] !pb-[80px] !px-6 box-border min-h-[1400px] mq450:!px-0 mq450:!pt-0 mq450:!pb-0 mq450:!bg-[#FFFFFF]">
         {/* White Background Container */}
-        <Box className="w-full max-w-[1872px] mx-auto rounded-num-16 bg-web-white flex flex-col items-start !pt-[80px] !pb-[80px] !px-[216px] mq925:!px-10 mq1350:!px-[108px] min-h-[1240px] box-border shadow-[0_4px_30px_rgba(0,0,0,0.03)] relative overflow-hidden">
+        <Box className="w-full max-w-[1872px] mx-auto rounded-num-16 bg-web-white flex flex-col items-start !pt-[80px] !pb-[80px] !px-[216px] mq925:!px-10 mq1350:!px-[108px] min-h-[1240px] box-border shadow-[0_4px_30px_rgba(0,0,0,0.03)] relative overflow-hidden mq450:!px-5 mq450:!pt-10 mq450:!pb-10 mq450:!rounded-none mq450:!shadow-none mq450:!min-h-0">
           {/* Inner Container */}
-          <Box className="w-full max-w-[1440px] flex flex-col items-start gap-10 !px-10 box-border min-h-[1080px]">
+          <Box className="w-full max-w-[1440px] flex flex-col items-start gap-10 !px-10 box-border min-h-[1080px] mq450:!px-0 mq450:!min-h-0 mq450:!gap-8">
             {/* Header Content */}
-            <Box className="w-full flex flex-row justify-between items-start mq925:flex-col mq925:gap-4">
+            <Box className="w-full flex flex-row justify-between items-start mq925:flex-col mq925:gap-4 mq450:flex-col mq450:gap-4">
               <Box className="pt-[12px]">
                 <SectionBadge icon="/SVG.svg" label="THE SPECIALISTS" variant="dark" />
               </Box>
               <Typography
-                className="!m-0 relative font-stack-sans-text text-right mq925:text-left"
+                className="!m-0 relative font-stack-sans-text text-right mq925:text-left mq450:!text-[28px] mq450:!leading-[38px] mq450:!tracking-[-0.42px] mq450:!w-[345px] mq450:!text-left mq450:!font-semibold"
                 variant="inherit"
                 variantMapping={{ inherit: "h1" }}
                 sx={{
@@ -110,14 +110,15 @@ const MeetTheTeam: FunctionComponent = () => {
                   maxWidth: "100%"
                 }}
               >
-                Expert hands
+                <span className="mq450:hidden">Expert hands in Health</span>
+                <span className="hidden mq450:inline">Expert hands in<br />Health</span>
               </Typography>
             </Box>
 
             {/* Filters Row */}
-            <Box className="w-[760px] max-w-full flex flex-row justify-start items-start gap-[16px] mq925:flex-col mq925:items-stretch">
+            <Box className="w-[760px] max-w-full flex flex-row justify-start items-start gap-[16px] mq925:flex-col mq925:items-stretch mq450:flex-col mq450:items-stretch">
               {/* Specialty Select Dropdown */}
-              <div className="relative w-[372px] h-[50px] mq925:w-full">
+              <div className="relative w-[372px] h-[50px] mq925:w-full mq450:w-full">
                 <select
                   value={selectedSpecialty}
                   onChange={(e) => setSelectedSpecialty(e.target.value)}
@@ -146,7 +147,7 @@ const MeetTheTeam: FunctionComponent = () => {
               </div>
 
               {/* Name Search Input */}
-              <div className="relative w-[372px] h-[50px] mq925:w-full">
+              <div className="relative w-[372px] h-[50px] mq925:w-full mq450:w-full">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-[16px] pointer-events-none">
                   <svg
                     width="16"
@@ -184,7 +185,7 @@ const MeetTheTeam: FunctionComponent = () => {
 
             {/* Doctors List */}
             <Box
-              className="w-full max-w-[1360px] mx-auto relative transition-all duration-300"
+              className="w-full max-w-[1360px] mx-auto relative transition-all duration-300 mq925:!h-auto mq925:!flex mq925:!flex-col mq450:!h-auto mq450:!flex mq450:!flex-col"
               style={{ height: `${filteredDoctors.length * 341 - 33}px` }}
             >
               {filteredDoctors.length > 0 ? (
@@ -194,30 +195,30 @@ const MeetTheTeam: FunctionComponent = () => {
                     <Box
                       key={doc.id}
                       onClick={() => navigate(`/doctor/${doc.id}`)}
-                      className="w-full max-w-[1360px] h-[308px] mq925:h-auto mq925:py-6 flex flex-row items-center justify-between bg-[#FFFFFF] hover:bg-web-gray-nurse border-t border-solid border-[#f1f2f1] group p-[32px] box-border absolute left-0 transition-all duration-300 ease-in-out cursor-pointer rounded-3xl"
+                      className="w-full max-w-[1360px] h-[308px] flex flex-row items-center justify-between bg-[#FFFFFF] hover:bg-web-gray-nurse border-t border-solid border-[#f1f2f1] group p-[32px] box-border absolute left-0 transition-all duration-300 ease-in-out cursor-pointer rounded-3xl mq925:!relative mq925:!top-auto mq925:!left-auto mq925:!flex-col mq925:!items-start mq925:!gap-6 mq450:!relative mq450:!top-auto mq450:!left-auto mq450:!flex-col mq450:!items-start mq450:!gap-6 mq450:!h-auto mq450:!px-0 mq450:!py-8 mq450:!rounded-none mq450:hover:!bg-[#FFFFFF]"
                       style={{ top: `${topOffset}px` }}
                     >
                       {/* Left Info Column */}
-                      <Box className="w-[640px] max-w-[640px] flex flex-col items-start justify-between mq925:w-full h-[276px] relative z-10 m-0 p-0">
+                      <Box className="w-[640px] max-w-[640px] flex flex-col items-start justify-between mq925:w-full h-[276px] relative z-10 m-0 p-0 mq925:!h-auto mq925:!max-w-full mq925:!gap-6 mq450:w-full mq450:!h-auto mq450:!max-w-full mq450:!gap-6">
                         {/* Top Info Group (Availability + Days) */}
                         <Box className="w-[640px] max-w-full flex flex-col items-start gap-[12px] relative m-0 p-0">
                           {/* Availability Section */}
-                          <Box className="w-[640px] max-w-full h-[24px] flex flex-col items-start relative m-0 p-0">
-                            <span className="text-left font-lilex font-normal text-[16px] leading-[24px] uppercase text-[#7791A5] h-[24px] flex items-center">
+                          <Box className="w-[640px] max-w-full h-[24px] flex flex-col items-start relative m-0 p-0 mq450:!h-auto">
+                            <span className="text-left font-lilex font-normal text-[16px] leading-[24px] uppercase text-[#7791A5] h-[24px] mq450:!h-auto flex items-center mq450:!text-[12px] mq450:!leading-[18px]">
                               {doc.availability}
                             </span>
                           </Box>
 
                           {/* Days Section */}
-                          <Box className="pb-0 px-0 h-[60px] flex flex-col items-start relative box-border">
-                            <Box className="w-max flex flex-row items-center gap-[16px] relative">
+                          <Box className="pb-0 px-0 h-[60px] flex flex-col items-start relative box-border mq450:!h-auto">
+                            <Box className="w-max flex flex-row items-center gap-[16px] relative mq450:!gap-2">
                               {doc.days.map((day) => (
                                 <Box
                                   key={day}
-                                  className="w-[60px] h-[60px] rounded-[60px] bg-[#FFFFFF] border border-solid border-[#E6E6E6] flex items-center justify-center relative box-border"
+                                  className="w-[60px] h-[60px] rounded-[60px] bg-[#FFFFFF] border border-solid border-[#E6E6E6] flex items-center justify-center relative box-border mq450:!w-[44px] mq450:!h-[44px]"
                                 >
-                                  <Box className="w-[28px] h-[28px] flex flex-col items-start justify-center relative">
-                                    <span className="text-left font-lilex font-normal text-[16px] leading-[24px] uppercase text-[#000000] w-max">
+                                  <Box className="w-[28px] h-[28px] flex flex-col items-start justify-center relative mq450:!w-auto mq450:!h-auto">
+                                    <span className="text-left font-lilex font-normal text-[16px] leading-[24px] uppercase text-[#000000] w-max mq450:!text-[12px] mq450:!leading-[18px]">
                                       {day.slice(0, 3)}
                                     </span>
                                   </Box>
@@ -228,10 +229,10 @@ const MeetTheTeam: FunctionComponent = () => {
                         </Box>
 
                         {/* Doctor Name and Specialty */}
-                        <Box className="w-[640px] max-w-full pb-0 px-0 flex flex-col items-start relative box-border">
-                          <Box className="w-[640px] max-w-full pb-[0.8px] flex flex-col items-start relative box-border">
+                        <Box className="w-[640px] max-w-full pb-0 px-0 flex flex-col items-start relative box-border mq450:!max-w-full">
+                          <Box className="w-[640px] max-w-full pb-[0.8px] flex flex-col items-start relative box-border mq450:!max-w-full">
                             <Typography
-                              className="!m-0 text-left font-stack-sans-text uppercase"
+                              className="!m-0 text-left font-stack-sans-text uppercase mq450:!text-[24px] mq450:!leading-[32px] mq450:!tracking-[-0.5px]"
                               variant="inherit"
                               variantMapping={{ inherit: "h2" }}
                               sx={{
@@ -245,15 +246,15 @@ const MeetTheTeam: FunctionComponent = () => {
                               {doc.name}
                             </Typography>
                           </Box>
-                          <Box className="w-[640px] max-w-full pb-[0.8px] flex flex-col items-start relative box-border">
-                            <span className="text-left font-inter font-normal text-[18px] leading-[29px] text-[#505050] h-auto flex items-center">
+                          <Box className="w-[640px] max-w-full pb-[0.8px] flex flex-col items-start relative box-border mq450:!max-w-full">
+                            <span className="text-left font-inter font-normal text-[18px] leading-[29px] text-[#505050] h-auto flex items-center mq450:!text-[14px] mq450:!leading-[22px]">
                               {doc.specialty} {doc.qualifications}
                             </span>
                           </Box>
                         </Box>
 
                         {/* Action Buttons Row */}
-                        <Box className="w-full max-w-[640px] min-h-[48px] flex flex-row items-center gap-[16px] relative mq450:flex-col mq450:items-stretch mq450:h-auto">
+                        <Box className="w-full max-w-[640px] min-h-[48px] flex flex-row items-center gap-[16px] relative mq450:flex-col mq450:items-start mq450:h-auto mq450:!gap-3">
                           <NavyButton
                             label="Book an Appointment"
                             variant="filled"
@@ -261,25 +262,25 @@ const MeetTheTeam: FunctionComponent = () => {
                               e.stopPropagation();
                               navigate(`/book?doctor=${doc.id}`);
                             }}
-                            className="flex-1 !h-[48px] !px-5"
+                            className="flex-1 !h-[48px] !px-5 mq450:!w-[80%] mq450:!flex-none"
                           />
 
                           <NavyButton
-                            label="Request in-clinic visit"
+                            label="Request your session"
                             variant="outline"
                             onClick={(e) => {
                               e.stopPropagation();
                               navigate(`/book?doctor=${doc.id}`);
                             }}
-                            className="flex-1 !h-[48px] !px-5"
+                            className="flex-1 !h-[48px] !px-5 mq450:!bg-transparent mq450:hover:!bg-transparent mq450:!shadow-none mq450:!text-[#1F2A44] mq450:!w-[80%] mq450:!justify-start mq450:!px-0 mq450:!py-2 mq450:!flex-none"
                           />
                         </Box>
                       </Box>
 
                       {/* Right Portrait Image */}
-                      <Box className="h-[276px] w-[276px] mq925:hidden mq450:hidden overflow-hidden rounded-[16px] relative flex items-center justify-center m-0 p-0">
+                      <Box className="h-[276px] w-[276px] mq925:hidden overflow-hidden rounded-[16px] relative flex items-center justify-center m-0 p-0 mq450:flex mq450:w-full mq450:h-[276px]">
                         <img
-                          className="h-[276px] w-[276px] object-cover object-center transition-transform duration-300 group-hover:scale-105 rounded-[16px]"
+                          className="h-[276px] w-[276px] object-cover object-center transition-transform duration-300 group-hover:scale-105 rounded-[16px] mq450:w-full mq450:h-full"
                           src={doc.image}
                           alt={doc.name}
                         />

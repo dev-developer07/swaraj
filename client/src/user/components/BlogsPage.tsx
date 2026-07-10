@@ -37,9 +37,6 @@ const BlogCard: FunctionComponent<BlogCardProps> = ({
     bodyMinWidth,
     bodyAlignSelf,
     ctaBorder,
-    ctaBtnBorder,
-    ctaBtnPadding,
-    ctaBtnBg,
     slug,
 }) => {
     const cardStyle: CSSProperties = useMemo(
@@ -54,14 +51,7 @@ const BlogCard: FunctionComponent<BlogCardProps> = ({
         () => ({ border: ctaBorder }),
         [ctaBorder]
     );
-    const ctaBtnStyle: CSSProperties = useMemo(
-        () => ({
-            border: ctaBtnBorder,
-            padding: ctaBtnPadding,
-            backgroundColor: ctaBtnBg,
-        }),
-        [ctaBtnBorder, ctaBtnPadding, ctaBtnBg]
-    );
+
 
     const finalSlug = slug || title
         .toLowerCase()
@@ -84,18 +74,8 @@ const BlogCard: FunctionComponent<BlogCardProps> = ({
                         </div>
                     </div>
                     <div className={styles.blogCardCta} style={ctaStyle}>
-                        <div className={styles.blogCardCtaText}>
-                            <div className={styles.learnMore}>Learn more</div>
-                        </div>
-                        <div className={styles.blogCardArrow}>
-                            <img
-                                className={styles.arrowIcon}
-                                loading="lazy"
-                                alt=""
-                                src="/699f6877b8f1c6d2edfe4bd7-Button-20Ball-svg@2x.png"
-                            />
-                        </div>
-                        <button className={styles.blogCardCtaBtn} style={ctaBtnStyle} />
+                        <div className={styles.learnMore}>LEARN MORE</div>
+                        <span className={styles.ctaDot}>•</span>
                     </div>
                 </div>
                 <img 
@@ -232,7 +212,7 @@ const BlogsPage: FunctionComponent<BlogsPageProps> = ({ className = "" }) => {
                                 </div>
                             </div>
                             <div className={styles.heroHeadingWrap}>
-                                <h1 className={styles.heroHeading} style={{ whiteSpace: "nowrap" }}>
+                                <h1 className={styles.heroHeading}>
                                     Insights into
                                     <br />
                                     Modern Healthcare

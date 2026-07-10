@@ -9,7 +9,7 @@ export type Section7Type = {
 const Section7: FunctionComponent<Section7Type> = ({ className = "" }) => {
   return (
     <footer
-      className={`w-screen bg-web-white overflow-hidden flex flex-col items-start !pt-num-200 !pb-num-200 !pl-num-280 !pr-num-280 box-border max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq925:!pt-num-84 mq925:!pb-num-84 mq925:!pl-num-70 mq925:!pr-num-70 mq925:box-border mq1350:!pt-num-130 mq1350:!pb-num-130 mq1350:!pl-num-140 mq1350:!pr-num-140 mq1350:box-border mq700:!pl-5 mq700:!pr-5 mq700:!pt-16 mq700:!pb-16 max-[450px]:!w-[390px] max-[450px]:!max-w-full max-[450px]:!px-5 max-[450px]:!pt-16 max-[450px]:!pb-16 ${className}`}
+      className={`w-screen bg-web-white overflow-hidden flex flex-col items-start !pt-num-200 !pb-num-200 !pl-num-280 !pr-num-280 box-border max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq925:!pt-num-84 mq925:!pb-num-84 mq925:!pl-num-70 mq925:!pr-num-70 mq925:box-border mq1350:!pt-num-130 mq1350:!pb-num-130 mq1350:!pl-num-140 mq1350:!pr-num-140 mq1350:box-border mq700:!pl-5 mq700:!pr-5 mq700:!pt-16 mq700:!pb-16 max-[450px]:!w-full max-[450px]:!max-w-full max-[450px]:!px-6 max-[450px]:!pt-16 max-[450px]:!pb-16 ${className}`}
       style={{ maxWidth: "100vw" }}
     >
       <Box className="w-num-1360 flex flex-col items-start max-w-full mq700:w-full max-[450px]:!w-full">

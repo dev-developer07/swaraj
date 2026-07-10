@@ -98,7 +98,7 @@ const Section5: FunctionComponent<Section5Type> = ({ className = "" }) => {
             />
             <Box className="flex flex-col items-start !pt-6 !pb-num-0 !pl-num-0 !pr-num-2 text-num-48 font-stack-sans-text max-[450px]:!pt-4">
               <Typography
-                className="!m-0 relative mq925:text-num-38 mq925:leading-num-52 mq450:text-num-29 mq450:leading-num-39 max-[450px]:!text-[28px] max-[450px]:!leading-[38px] max-[450px]:!tracking-[-0.42px] max-[450px]:!text-[#0B0C0F] max-[450px]:!w-[345px] max-[450px]:!max-w-full max-[450px]:!h-auto max-[450px]:!flex max-[450px]:!items-center"
+                className="!m-0 relative mq925:text-num-38 mq925:leading-num-52 mq450:text-num-29 mq450:leading-num-39 max-[450px]:!text-[28px] max-[450px]:!leading-[38px] max-[450px]:!tracking-[-0.42px] max-[450px]:!text-[#0B0C0F] max-[450px]:!w-[345px] max-[450px]:!max-w-full"
                 variant="inherit"
                 variantMapping={{ inherit: "h1" }}
                 sx={{
@@ -107,9 +107,9 @@ const Section5: FunctionComponent<Section5Type> = ({ className = "" }) => {
                   letterSpacing: "-0.72px",
                 }}
               >
-                <span className="max-[450px]:hidden">Advanced Diagnostics</span> <br className="max-[450px]:hidden" />
-                <span className="max-[450px]:hidden">for accurate treatment.</span>
-                <span className="hidden max-[450px]:inline">Advanced Diagnostics <br />for accurate treatment.</span>
+                <span className="whitespace-nowrap">Advanced Diagnostics</span>
+                <br />
+                <span className="whitespace-nowrap">for accurate treatment.</span>
               </Typography>
             </Box>
           </Box>

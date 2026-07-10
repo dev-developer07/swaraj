@@ -186,6 +186,355 @@ const CARDIOLOGY_STYLES = `
 .cs-input-box { align-self: stretch; height: var(--height-50); border-radius: var(--br-12); background-color: var(--color-whitesmoke); border: var(--border-1); box-sizing: border-box; overflow: hidden; flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-start; padding: var(--padding-14) var(--padding-12); }
 .cs-input-el { width: 100%; border: 0; outline: 0; background-color: transparent; height: var(--height-19); font-family: var(--font-inter); font-size: var(--fs-16); color: var(--color-gray-100); min-width: var(--min-w-193); }
 @media screen and (max-width: 925px) { .cs-form { gap: var(--gap-16); } }
+
+.cs-appointment-btn {
+  align-self: flex-start;
+  cursor: pointer;
+  border: 0;
+  padding: 12px 24px;
+  background-color: var(--color-gray-200);
+  border-radius: 8px;
+  color: var(--color-white);
+  font-family: var(--font-lilex);
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: background-color 0.2s ease;
+  margin-top: 24px;
+}
+.cs-appointment-btn:hover {
+  background-color: var(--color-slategray);
+}
+
+/* Custom Responsive Overrides for Mobile and Tablet Views */
+@media screen and (max-width: 1350px) {
+  .cs-hero {
+    padding-left: 48px;
+    padding-right: 48px;
+    box-sizing: border-box;
+  }
+  .cs-hero-sub-wrap {
+    align-items: flex-start;
+  }
+  .cs-hero-sub-inner {
+    display: flex !important;
+    width: 100%;
+    max-width: 100%;
+  }
+  .cs-hero-sub-text {
+    display: block !important;
+  }
+  .cs-treatment-top {
+    gap: 32px;
+    flex-direction: column;
+  }
+  .cs-treatment-desc {
+    max-width: 100%;
+    width: 100%;
+  }
+  .cs-treatment-desc-inner {
+    height: auto;
+    padding-top: 0;
+  }
+  .cs-treatment-heading-wrap {
+    margin-top: 0;
+    width: 100%;
+  }
+  .cs-contact-section {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 48px;
+    padding-right: 48px;
+    box-sizing: border-box;
+  }
+}
+
+@media screen and (max-width: 925px) {
+  .cs-hero {
+    padding-left: 24px;
+    padding-right: 24px;
+    box-sizing: border-box;
+  }
+  .cs-hero-sub-wrap {
+    align-items: flex-start;
+  }
+  .cs-hero-sub-inner {
+    display: flex !important;
+    width: 100%;
+    max-width: 100%;
+  }
+  .cs-hero-sub-text {
+    display: block !important;
+  }
+  
+  .cs-treatment-top {
+    gap: 24px;
+    flex-direction: column;
+    padding-left: 24px;
+    padding-right: 24px;
+    box-sizing: border-box;
+  }
+  .cs-treatment-desc {
+    max-width: 100%;
+    width: 100%;
+  }
+  .cs-treatment-desc-inner {
+    height: auto;
+    padding-top: 0;
+  }
+  .cs-treatment-heading-wrap {
+    margin-top: 0;
+    width: 100%;
+  }
+  .cs-treatment-p1, .cs-treatment-p2 {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .cs-interventions-card-title, .cs-interventions-card2-title {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  .cs-interventions {
+    width: 100%;
+    max-width: 100%;
+    padding: 40px 24px;
+  }
+  .cs-interventions-grid {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    background-color: transparent;
+  }
+  .cs-interventions-card1, .cs-interventions-card2 {
+    width: 100%;
+    height: auto;
+    grid-column: unset;
+    grid-row: unset;
+    padding: 32px 24px;
+    border: none;
+    background-color: var(--color-whitesmoke);
+    border-radius: 16px;
+    gap: 24px !important;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+  .cs-svc-card {
+    width: 100% !important;
+    height: auto !important;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: static;
+  }
+  .cs-svc-badge {
+    position: static;
+    align-self: flex-start;
+  }
+  .cs-svc-img {
+    position: static;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1.5;
+    border-radius: 12px;
+  }
+  
+  .cs-list-section {
+    width: 100%;
+    padding: 0 24px;
+    box-sizing: border-box;
+  }
+  .cs-list-items {
+    height: auto;
+    overflow: visible;
+    padding-top: 0;
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .cs-list-item-first, .cs-list-item {
+    margin-top: 0 !important;
+    width: 100% !important;
+    padding-left: 36px !important;
+  }
+  
+  .cs-stat-card {
+    height: 600px;
+    position: relative !important;
+  }
+  .cs-stat-bg {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    z-index: 0 !important;
+  }
+  .cs-stat-overlay {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 90% !important;
+    max-width: 500px !important;
+    margin: 0 !important;
+    padding: 32px 24px !important;
+    box-sizing: border-box !important;
+    z-index: 1 !important;
+  }
+  .cs-stat-desc-wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .cs-contact-section {
+    width: 100%;
+    max-width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 60px 24px;
+    box-sizing: border-box;
+  }
+  .cs-contact-info {
+    width: 100%;
+    max-width: 100%;
+    padding-bottom: 0;
+  }
+  .cs-form-wrap {
+    width: 100%;
+    max-width: 100%;
+    padding-top: 0;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .cs-hero {
+    padding: 32px 16px 40px 16px;
+    box-sizing: border-box;
+  }
+  .cs-hero-content {
+    padding-top: 16px;
+    box-sizing: border-box;
+  }
+  .cs-hero-title {
+    font-size: 36px !important;
+    line-height: 44px !important;
+  }
+  .cs-hero-sub-text {
+    font-size: 16px !important;
+    line-height: 24px !important;
+  }
+  
+  .cs-hero-badge-wrap {
+    max-width: 100% !important;
+    width: auto !important;
+  }
+  .cs-treatment-top {
+    gap: 16px;
+    flex-direction: column;
+    padding-left: 16px;
+    padding-right: 16px;
+    box-sizing: border-box;
+  }
+  .cs-treatment-desc {
+    max-width: 100%;
+    width: 100%;
+  }
+  .cs-treatment-desc-inner {
+    height: auto;
+    padding-top: 0;
+    gap: 16px;
+  }
+  .cs-treatment-heading {
+    font-size: 28px !important;
+    line-height: 36px !important;
+  }
+  .cs-treatment-paragraphs {
+    gap: 12px;
+  }
+  .cs-treatment-p-text {
+    font-size: 15px !important;
+    line-height: 22px !important;
+  }
+  
+  .cs-interventions {
+    width: 100%;
+    max-width: 100%;
+    padding: 32px 16px;
+  }
+  .cs-interventions-card1, .cs-interventions-card2 {
+    padding: 24px 16px;
+    border-radius: 12px;
+    gap: 16px !important;
+  }
+  .cs-interventions-card-title, .cs-interventions-card2-title {
+    font-size: 20px !important;
+    line-height: 28px !important;
+  }
+  .cs-svc-card {
+    gap: 12px;
+  }
+  .cs-svc-img {
+    aspect-ratio: 1.2;
+    border-radius: 8px;
+  }
+  
+  .cs-list-section {
+    padding: 0 16px;
+  }
+  .cs-list-heading {
+    font-size: 18px !important;
+    line-height: 26px !important;
+  }
+  .cs-list-items {
+    margin-top: 12px;
+    gap: 12px;
+  }
+  .cs-list-item-first, .cs-list-item {
+    padding-left: 32px !important;
+  }
+  .cs-list-item-text {
+    font-size: 14px !important;
+    line-height: 20px !important;
+  }
+  
+  .cs-stat-card {
+    height: 480px;
+  }
+  .cs-stat-overlay {
+    width: 92% !important;
+    max-width: 360px !important;
+    padding: 24px 16px !important;
+  }
+  .cs-stat-number {
+    font-size: 48px !important;
+    line-height: 56px !important;
+  }
+  .cs-stat-divider-wrap {
+    height: 40px;
+    padding: 19px 0;
+  }
+  .cs-stat-title {
+    font-size: 18px !important;
+    line-height: 26px !important;
+  }
+  .cs-stat-desc {
+    font-size: 14px !important;
+    line-height: 20px !important;
+  }
+  
+  .cs-contact-section {
+    padding: 40px 16px;
+    gap: 32px;
+  }
+}
 `;
 // END_STYLES
 
@@ -328,124 +677,126 @@ const HeroSection: FunctionComponent<{ data: SpecialtyData }> = ({ data }) => (
 );
 
 // TreatmentSection (was Container3)
-const TreatmentSection: FunctionComponent<{ data: SpecialtyData }> = ({ data }) => (
-    <section className="cs-treatment">
-        <div className="cs-treatment-top">
-            <div className="cs-treatment-badge-col">
-                <div className="cs-treatment-badge">
-                    <button className="cs-treatment-badge-btn">
-                        <img
-                            className="cs-treatment-badge-icon"
-                            loading="lazy"
-                            alt=""
-                            src="/SVG.svg"
-                        />
-                    </button>
-                    <div className="cs-treatment-badge-text-col">
-                        <div className="cs-treatment-badge-text">TREATMENT SCOPE</div>
+const TreatmentSection: FunctionComponent<{ data: SpecialtyData }> = ({ data }) => {
+    return (
+        <section className="cs-treatment">
+            <div className="cs-treatment-top">
+                <div className="cs-treatment-badge-col">
+                    <div className="cs-treatment-badge">
+                        <button className="cs-treatment-badge-btn">
+                            <img
+                                className="cs-treatment-badge-icon"
+                                loading="lazy"
+                                alt=""
+                                src="/SVG.svg"
+                            />
+                        </button>
+                        <div className="cs-treatment-badge-text-col">
+                            <div className="cs-treatment-badge-text">TREATMENT SCOPE</div>
+                        </div>
+                    </div>
+                </div>
+                <section className="cs-treatment-desc">
+                    <div className="cs-treatment-desc-inner">
+                        <div className="cs-treatment-heading-wrap">
+                            <h1 className="cs-treatment-heading">
+                                Protecting your health through precision care.
+                            </h1>
+                        </div>
+                        <div className="cs-treatment-paragraphs">
+                            <div className="cs-treatment-p1">
+                                <div className="cs-treatment-p-text">
+                                    <span className="cs-bold">{data.boldIntro}</span>
+                                    <span className="cs-muted">
+                                        {" "}
+                                        {data.mutedIntro}
+                                    </span>
+                                </div>
+                            </div>
+                            <div className="cs-treatment-p2">
+                                <div className="cs-treatment-p-text">
+                                    <span className="cs-italic-normal">{`Every patient begins with a `}</span>
+                                    <span className="cs-italic-bold">
+                                        comprehensive evaluation
+                                    </span>
+                                    <span className="cs-italic-normal">
+                                        . This includes a detailed review of your history, a physical
+                                        examination, and a personalised diagnostic plan tailored to
+                                        your specific condition and risk factors.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div className="cs-interventions">
+                <div className="cs-treatment-badge-text-col">
+                    <div className="cs-interventions-label">KEY INTERVENTIONS</div>
+                </div>
+                <div className="cs-interventions-cards-wrap">
+                    <div className="cs-interventions-grid">
+                        <div className="cs-interventions-card1">
+                            <h1 className="cs-interventions-card-title">{data.intervention1Title}</h1>
+                            <ServiceDetail
+                                label={data.intervention1Label}
+                                imageSrc="/69a3e99bd6ca614dc6e9e9aa-Service-20Details-20Image-2001-webp@2x.png"
+                            />
+                        </div>
+                        <section className="cs-interventions-card2">
+                            <div className="cs-interventions-card2-heading">
+                                <h1 className="cs-interventions-card2-title">{data.intervention2Title}</h1>
+                            </div>
+                            <ServiceDetail
+                                label={data.intervention2Label}
+                                imageSrc="/69a3e99bfd7ca35f82f15373-Service-20Details-20Image-2002-webp@2x.png"
+                                width="unset"
+                                alignSelf="stretch"
+                            />
+                        </section>
                     </div>
                 </div>
             </div>
-            <section className="cs-treatment-desc">
-                <div className="cs-treatment-desc-inner">
-                    <div className="cs-treatment-heading-wrap">
-                        <h1 className="cs-treatment-heading">
-                            Protecting your health through precision care.
-                        </h1>
+            <section className="cs-list-section">
+                <div className="cs-list-heading-wrap">
+                    <div className="cs-list-heading">
+                        {data.listHeading}
                     </div>
-                    <div className="cs-treatment-paragraphs">
-                        <div className="cs-treatment-p1">
-                            <div className="cs-treatment-p-text">
-                                <span className="cs-bold">{data.boldIntro}</span>
-                                <span className="cs-muted">
-                                    {" "}
-                                    {data.mutedIntro}
-                                </span>
+                </div>
+                <div className="cs-list-items">
+                    {data.listItems.map((item, i) => (
+                        <div
+                            key={i}
+                            className={i === 0 ? "cs-list-item-first" : "cs-list-item"}
+                        >
+                            <div className="cs-list-item-icon-wrap">
+                                <img
+                                    className="cs-list-item-icon"
+                                    loading="lazy"
+                                    alt=""
+                                    src="/699b66f163c738c08a92d0be-Pricing-20List-20icon-svg.svg"
+                                />
+                            </div>
+                            <div className="cs-list-item-text">
+                                <span className="cs-list-item-label">{item.label}</span>
+                                <span className="cs-list-item-desc">{item.desc}</span>
                             </div>
                         </div>
-                        <div className="cs-treatment-p2">
-                            <div className="cs-treatment-p-text">
-                                <span className="cs-italic-normal">{`Every patient begins with a `}</span>
-                                <span className="cs-italic-bold">
-                                    comprehensive evaluation
-                                </span>
-                                <span className="cs-italic-normal">
-                                    . This includes a detailed review of your history, a physical
-                                    examination, and a personalised diagnostic plan tailored to
-                                    your specific condition and risk factors.
-                                </span>
-                            </div>
-                        </div>
+                    ))}
+                </div>
+                <div className="cs-list-note">
+                    <div className="cs-list-note-text">
+                        <span className="cs-bold">{data.noteBold}</span>
+                        <span className="cs-muted">
+                            {" "}
+                            {data.noteMuted}
+                        </span>
                     </div>
                 </div>
             </section>
-        </div>
-        <div className="cs-interventions">
-            <div className="cs-treatment-badge-text-col">
-                <div className="cs-interventions-label">KEY INTERVENTIONS</div>
-            </div>
-            <div className="cs-interventions-cards-wrap">
-                <div className="cs-interventions-grid">
-                    <div className="cs-interventions-card1">
-                        <h1 className="cs-interventions-card-title">{data.intervention1Title}</h1>
-                        <ServiceDetail
-                            label={data.intervention1Label}
-                            imageSrc="/69a3e99bd6ca614dc6e9e9aa-Service-20Details-20Image-2001-webp@2x.png"
-                        />
-                    </div>
-                    <section className="cs-interventions-card2">
-                        <div className="cs-interventions-card2-heading">
-                            <h1 className="cs-interventions-card2-title">{data.intervention2Title}</h1>
-                        </div>
-                        <ServiceDetail
-                            label={data.intervention2Label}
-                            imageSrc="/69a3e99bfd7ca35f82f15373-Service-20Details-20Image-2002-webp@2x.png"
-                            width="unset"
-                            alignSelf="stretch"
-                        />
-                    </section>
-                </div>
-            </div>
-        </div>
-        <section className="cs-list-section">
-            <div className="cs-list-heading-wrap">
-                <div className="cs-list-heading">
-                    {data.listHeading}
-                </div>
-            </div>
-            <div className="cs-list-items">
-                {data.listItems.map((item, i) => (
-                    <div
-                        key={i}
-                        className={i === 0 ? "cs-list-item-first" : "cs-list-item"}
-                    >
-                        <div className="cs-list-item-icon-wrap">
-                            <img
-                                className="cs-list-item-icon"
-                                loading="lazy"
-                                alt=""
-                                src="/699b66f163c738c08a92d0be-Pricing-20List-20icon-svg.svg"
-                            />
-                        </div>
-                        <div className="cs-list-item-text">
-                            <span className="cs-list-item-label">{item.label}</span>
-                            <span className="cs-list-item-desc">{item.desc}</span>
-                        </div>
-                    </div>
-                ))}
-            </div>
-            <div className="cs-list-note">
-                <div className="cs-list-note-text">
-                    <span className="cs-bold">{data.noteBold}</span>
-                    <span className="cs-muted">
-                        {" "}
-                        {data.noteMuted}
-                    </span>
-                </div>
-            </div>
         </section>
-    </section>
-);
+    );
+};
 
 // StatCard (was Container5)
 const StatCard: FunctionComponent<{ data: SpecialtyData }> = ({ data }) => (

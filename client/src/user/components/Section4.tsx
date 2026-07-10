@@ -66,7 +66,7 @@ const Section4: FunctionComponent<Section4Type> = ({ className = "" }) => {
       <Box className="self-stretch bg-web-white flex flex-col items-start !pt-num-0 !pb-num-0 !pl-60 !pr-60 mq925:!pl-5 mq925:!pr-5 mq925:box-border mq1350:!pl-num-120 mq1350:!pr-num-120 mq1350:box-border mq450:!pl-5 mq450:!pr-5 mq450:box-border">
         <Box className="w-full flex flex-col items-start !pt-num-0 !pb-num-0 !pl-num-40 !pr-num-40 mq925:!pl-0 mq925:!pr-0 mq450:!pl-0 mq450:!pr-0 box-border max-w-num-1440 mq1825:max-w-full">
           <section className="w-full grid grid-cols-[repeat(4,_1fr)] gap-4 text-left text-num-16 text-web-woodsmoke font-lilex mq925:flex mq925:flex-col mq925:gap-6 max-[450px]:flex max-[450px]:flex-col max-[450px]:gap-4 mq450:flex mq450:flex-col mq450:gap-6">
-            
+
             {/* Left side: Eyebrow badge and title spanning columns 1 and 2 (aligned with Services column) */}
             <Box className="col-[1_/_span_2] [filter:blur(0px)] flex flex-col items-start max-w-[490px] mq925:max-w-full mq450:max-w-full">
               <SectionBadge
@@ -74,7 +74,8 @@ const Section4: FunctionComponent<Section4Type> = ({ className = "" }) => {
                 label="our specialized services"
                 variant="dark"
               />
-              <Box className="flex flex-col items-start !pt-6 max-[450px]:!pt-4 !pb-num-0 !pl-num-0 !pr-num-2 text-num-48 font-stack-sans-text">
+              <Box className="flex flex-col items-start !pt-6 max-[450px]:!pt-8 !pb-num-0 !pl-num-0 !pr-num-2 text-num-48 font-stack-sans-text">
+
                 <Typography
                   className="!m-0 relative mq925:text-num-38 mq925:leading-num-52 mq450:text-num-29 mq450:leading-num-39 max-[450px]:!text-[28px] max-[450px]:!leading-[38px] max-[450px]:!tracking-[-0.42px] max-[450px]:!text-[#0B0C0F] max-[450px]:!w-[345px] max-[450px]:!max-w-full max-[450px]:!h-[38px] max-[450px]:!flex max-[450px]:!items-center"
                   variant="inherit"
@@ -90,7 +91,7 @@ const Section4: FunctionComponent<Section4Type> = ({ className = "" }) => {
                     the Difference.
                   </span>
                   <span className="hidden max-[450px]:inline">
-                    Experience theDifference
+                    Experience the Difference
                   </span>
                 </Typography>
               </Box>
@@ -117,7 +118,7 @@ const Section4: FunctionComponent<Section4Type> = ({ className = "" }) => {
                 <Box className="h-num-76 mq925:h-auto mq450:h-auto flex items-center !pt-num-22 !pb-num-22 mq925:!pt-2 mq925:!pb-2 mq450:!pt-2 mq450:!pb-2 !pl-num-0 !pr-num-0 box-border col-[1_/_span_2] row-[1] max-[450px]:!w-[calc((100vw-56px)/2)] max-[450px]:!min-w-[calc((100vw-56px)/2)] max-[450px]:!h-[68px] max-[450px]:!flex max-[450px]:!justify-center max-[450px]:!items-center max-[450px]:!py-[19px] max-[450px]:!px-0 max-[450px]:!flex-none">
                   <Box className="flex flex-col items-start shrink-0 max-[450px]:!w-[80px] max-[450px]:!h-[30px] max-[450px]:!flex-none">
                     <Typography
-                       className="!m-0 relative mq450:text-num-14 mq450:leading-num-20 max-[450px]:!text-[20px] max-[450px]:!leading-[30px] max-[450px]:!tracking-[-1px] max-[450px]:!w-[80px] max-[450px]:!h-[30px] max-[450px]:!flex max-[450px]:!items-center max-[450px]:!text-[#0B0C0F]"
+                      className="!m-0 relative mq450:text-num-14 mq450:leading-num-20 max-[450px]:!text-[20px] max-[450px]:!leading-[30px] max-[450px]:!tracking-[-1px] max-[450px]:!w-[80px] max-[450px]:!h-[30px] max-[450px]:!flex max-[450px]:!items-center max-[450px]:!text-[#0B0C0F]"
                       variant="inherit"
                       variantMapping={{ inherit: "h3" }}
                       sx={{
@@ -148,7 +149,7 @@ const Section4: FunctionComponent<Section4Type> = ({ className = "" }) => {
                 </Box>
                 <Box className="h-num-76 mq925:h-auto mq450:h-auto flex items-center justify-center !pt-num-22 !pb-num-22 mq925:!pt-2 mq925:!pb-2 mq450:!pt-2 mq450:!pb-2 !pl-2 !pr-2 box-border text-center col-[4] row-[1] text-web-gothic max-[450px]:!w-[calc((100vw-56px)/2)] max-[450px]:!min-w-[calc((100vw-56px)/2)] max-[450px]:!h-[68px] max-[450px]:!flex max-[450px]:!justify-center max-[450px]:!items-center max-[450px]:!py-[19px] max-[450px]:!px-0 max-[450px]:!flex-none">
                   <Typography
-                    className="!m-0 relative shrink-0 mq450:text-num-14 mq450:leading-num-20 max-[450px]:!text-[20px] max-[450px]:!leading-[30px] max-[450px]:!tracking-[-1px] max-[450px]:!w-[164px] max-[450px]:!h-[30px] max-[450px]:!flex max-[450px]:!items-center max-[450px]:!text-[#0B0C0F]"
+                    className="!m-0 relative shrink-0 mq450:text-num-14 mq450:leading-num-20 max-[450px]:!text-[20px] max-[450px]:!leading-[30px] max-[450px]:!tracking-[-1px] max-[450px]:!w-[50px] max-[450px]:!h-[30px] max-[450px]:!flex max-[450px]:!items-center max-[450px]:!justify-center max-[450px]:!text-[#0B0C0F]"
                     variant="inherit"
                     variantMapping={{ inherit: "h3" }}
                     sx={{

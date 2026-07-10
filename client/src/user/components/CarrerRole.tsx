@@ -1,5 +1,6 @@
-import { type FunctionComponent, type CSSProperties } from "react";
+import { type FunctionComponent } from "react";
 import { Link } from "react-router-dom";
+import SectionBadge from "./SectionBadge";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -24,7 +25,6 @@ const infoRows: InfoRow[] = [
     {
         label: "Candidacy:",
         value: "careers@swarajhospital.in",
-        height: "94.8px",
         borderBottom: "1px solid #aaa",
     },
 ];
@@ -44,620 +44,46 @@ const benefits: BenefitItem[] = [
     },
 ];
 
-// ─── Styles ───────────────────────────────────────────────────────────────────
+// ─── Icons ───────────────────────────────────────────────────────────────────
 
-const css: Record<string, CSSProperties> = {
-    // Page wrapper
-    page: {
-        width: "100%",
-        position: "relative",
-        backgroundColor: "#fff",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: "0 30px",
-        boxSizing: "border-box",
-        gap: "80px",
-        fontFamily: "Lilex, Arial, sans-serif",
-        lineHeight: "normal",
-        letterSpacing: "normal",
-    },
-
-    // ── Hero section ──────────────────────────────────────────────────────────
-    heroSection: {
-        alignSelf: "stretch",
-        overflow: "hidden",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: "80px 0 0",
-        maxWidth: "100%",
-        textAlign: "left",
-        fontSize: "16px",
-        color: "#0b0c0f",
-    },
-    heroInner: {
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        padding: "0 40px",
-        gap: "32px",
-        maxWidth: "1440px",
-        boxSizing: "border-box",
-    },
-    heroTop: {
-        alignSelf: "stretch",
-        display: "flex",
-        alignItems: "flex-end",
-        justifyContent: "space-between",
-        flexWrap: "wrap",
-        gap: "20px",
-        maxWidth: "100%",
-    },
-    heroBadgeWrap: {
-        flex: 1,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        padding: "12px 0 0",
-        gap: "22.9px",
-        minWidth: "376px",
-        maxWidth: "579px",
-        boxSizing: "border-box",
-    },
-    badge: {
-        width: "163px",
-        height: "32px",
-        borderRadius: "4px",
-        backgroundColor: "#f1f2f1",
-        display: "flex",
-        alignItems: "center",
-        padding: "4px 8px 4px 6px",
-        gap: "4px",
-        boxSizing: "border-box",
-    },
-    badgeIcon: {
-        height: "20px",
-        width: "20px",
-        position: "relative",
-    },
-    badgeLabel: {
-        position: "relative",
-        lineHeight: "24px",
-        textTransform: "uppercase",
-        fontWeight: 500,
-        color: "#0b0c0f",
-    },
-    heroHeading: {
-        alignSelf: "stretch",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        padding: "0 0 0.7px",
-    },
-    heroTitle: {
-        margin: 0,
-        width: "100%",
-        position: "relative",
-        fontSize: "64px",
-        letterSpacing: "-1.5px",
-        lineHeight: "76.8px",
-        fontWeight: 400,
-        fontFamily: "'Stack Sans Text', Arial, sans-serif",
-        color: "#0b0c0f",
-        display: "inline-block",
-        maxWidth: "579px",
-    },
-    heroDesc: {
-        flex: 1,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        minWidth: "227px",
-        maxWidth: "350px",
-    },
-    heroDescInner: {
-        alignSelf: "stretch",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    heroDescText: {
-        width: "322px",
-        position: "relative",
-        fontSize: "18px",
-        lineHeight: "28.8px",
-        color: "#505050",
-        fontFamily: "Inter, Arial, sans-serif",
-        display: "flex",
-        alignItems: "center",
-        maxWidth: "100%",
-    },
-    heroDivider: {
-        alignSelf: "stretch",
-        height: "2px",
-        position: "relative",
-        border: "1px solid #e6e6e6",
-        boxSizing: "border-box",
-    },
-
-    // ── Job details section ───────────────────────────────────────────────────
-    detailsSection: {
-        width: "100%",
-        display: "flex",
-        alignItems: "flex-start",
-        flexWrap: "wrap",
-        alignContent: "flex-start",
-        gap: "96px",
-        maxWidth: "1360px",
-    },
-
-    // Left column – job overview
-    overviewCol: {
-        flex: "1.173",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        padding: "44px 0 0",
-        boxSizing: "border-box",
-        gap: "14.7px",
-        minWidth: "310px",
-        maxWidth: "100%",
-        textAlign: "left",
-        fontSize: "20px",
-        color: "#0b0c0f",
-        fontFamily: "'Stack Sans Text', Arial, sans-serif",
-    },
-    sectionHeading: {
-        alignSelf: "stretch",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        padding: "0 0 0 40px",
-    },
-    sectionHeadingText: {
-        position: "relative",
-        lineHeight: "30px",
-        fontSize: "20px",
-        color: "#0b0c0f",
-        fontFamily: "'Stack Sans Text', Arial, sans-serif",
-    },
-    sectionHeading2: {
-        alignSelf: "stretch",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        padding: "29.3px 0 0 40px",
-        position: "relative",
-        isolation: "isolate",
-        zIndex: 0,
-    },
-    sectionHeading2Text: {
-        position: "relative",
-        lineHeight: "30px",
-        zIndex: 2,
-        flexShrink: 0,
-        fontSize: "20px",
-        color: "#0b0c0f",
-        fontFamily: "'Stack Sans Text', Arial, sans-serif",
-    },
-    sectionHeading2Img: {
-        width: "100%",
-        height: "30px",
-        position: "absolute",
-        margin: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
-        maxWidth: "100%",
-        overflow: "hidden",
-        flexShrink: 0,
-        objectFit: "cover",
-        zIndex: 1,
-    },
-    bodyPara: {
-        alignSelf: "stretch",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        padding: "0 0 0.9px",
-    },
-    bodyText: {
-        width: "100%",
-        position: "relative",
-        fontSize: "18px",
-        lineHeight: "28.8px",
-        color: "#505050",
-        fontFamily: "Inter, Arial, sans-serif",
-        display: "inline-block",
-        maxWidth: "776px",
-    },
-
-    benefitsList: {
-        alignSelf: "stretch",
-        overflow: "hidden",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        padding: "1.3px 0 0 40px",
-        boxSizing: "border-box",
-        gap: "16px",
-        maxWidth: "100%",
-        fontSize: "16px",
-        fontFamily: "Inter, Arial, sans-serif",
-    },
-    benefitRow: {
-        alignSelf: "stretch",
-        display: "flex",
-        alignItems: "center",
-        maxWidth: "100%",
-        gap: "8px",
-    },
-    benefitBulletWrap: {
-        width: "0.1px",
-        position: "relative",
-        lineHeight: "24px",
-        display: "flex",
-        alignItems: "center",
-        flexShrink: 0,
-    },
-    benefitText: {
-        flex: 1,
-        position: "relative",
-        lineHeight: "24px",
-        display: "inline-block",
-        minWidth: "478px",
-        maxWidth: "735.9px",
-        color: "#0b0c0f",
-    },
-    benefitLabel: {
-        fontWeight: 600,
-        lineHeight: "24px",
-    },
-
-    // Right column – essential info card
-    infoCard: {
-        flex: 1,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        borderRadius: "24px",
-        backgroundColor: "#f1f2f1",
-        padding: "36px",
-        boxSizing: "border-box",
-        gap: "24px",
-        minWidth: "310px",
-        maxWidth: "488px",
-        textAlign: "left",
-        fontSize: "16px",
-        color: "#0b0c0f",
-        fontFamily: "Lilex, Arial, sans-serif",
-    },
-    infoCardHeading: {
-        alignSelf: "stretch",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        fontSize: "24px",
-        fontFamily: "'Stack Sans Text', Arial, sans-serif",
-    },
-    infoCardTitle: {
-        margin: 0,
-        alignSelf: "stretch",
-        position: "relative",
-        fontSize: "inherit",
-        letterSpacing: "-1.2px",
-        lineHeight: "36px",
-        fontWeight: 400,
-        fontFamily: "inherit",
-    },
-    infoRows: {
-        alignSelf: "stretch",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        color: "#505050",
-    },
-    infoRow: {
-        alignSelf: "stretch",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        borderTop: "1px solid #aaa",
-        padding: "16px 0",
-        gap: "7px",
-    },
-    infoRowLabel: {
-        alignSelf: "stretch",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-    },
-    infoRowLabelText: {
-        alignSelf: "stretch",
-        position: "relative",
-        lineHeight: "24px",
-        textTransform: "uppercase",
-        fontWeight: 500,
-        fontSize: "16px",
-        color: "#505050",
-        fontFamily: "Lilex, Arial, sans-serif",
-    },
-    infoRowValue: {
-        alignSelf: "stretch",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        padding: "0 0 0.8px",
-        fontSize: "18px",
-        color: "#0b0c0f",
-        fontFamily: "'Stack Sans Text', Arial, sans-serif",
-    },
-    infoRowValueText: {
-        alignSelf: "stretch",
-        position: "relative",
-        lineHeight: "28.8px",
-    },
-    infoCardCta: {
-        alignSelf: "stretch",
-        display: "flex",
-        alignItems: "center",
-        padding: "24px 0 0",
-        color: "#fff",
-    },
-    ctaButton: {
-        height: "48px",
-        borderRadius: "8px",
-        backgroundColor: "#1f2a44",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "12px 20px",
-        boxSizing: "border-box",
-        gap: "8px",
-        cursor: "pointer",
-        border: "none",
-        textDecoration: "none",
-    },
-    ctaButtonText: {
-        position: "relative",
-        lineHeight: "24px",
-        textTransform: "uppercase",
-        fontWeight: 500,
-        color: "#fff",
-        fontSize: "16px",
-        fontFamily: "Lilex, Arial, sans-serif",
-        overflow: "hidden",
-    },
-    ctaIcon: {
-        height: "24px",
+const checkIcon = (
+    <div style={{
         width: "24px",
-        position: "relative",
-    },
-
-    // ── Contact / form section ────────────────────────────────────────────────
-    contactSection: {
-        width: "100%",
-        display: "flex",
-        justifyContent: "space-between",
-        flexWrap: "wrap",
-        alignContent: "flex-start",
-        padding: "60px 0 0",
-        gap: "20px",
-        maxWidth: "1360px",
-        boxSizing: "border-box",
-    },
-    contactLeft: {
-        flex: 1,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        padding: "12px 0",
-        gap: "22.9px",
-        minWidth: "310px",
-        maxWidth: "548px",
-        boxSizing: "border-box",
-        fontSize: "16px",
-        color: "#0b0c0f",
-        fontFamily: "Lilex, Arial, sans-serif",
-    },
-    contactBadge: {
-        width: "182px",
-        height: "32px",
-        borderRadius: "4px",
-        backgroundColor: "#f1f2f1",
+        height: "24px",
+        borderRadius: "6px",
+        backgroundColor: "#F1F2F1",
+        border: "1px solid #E6E6E6",
         display: "flex",
         alignItems: "center",
-        padding: "4px 8px 4px 6px",
-        gap: "4px",
-        boxSizing: "border-box",
-    },
-    contactBadgeLabel: {
-        lineHeight: "24px",
-        textTransform: "uppercase",
-        fontWeight: 500,
-        color: "#0b0c0f",
-    },
-    contactHeadingWrap: {
-        alignSelf: "stretch",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        padding: "0 0 0.7px",
-    },
-    contactTitle: {
-        margin: 0,
-        width: "100%",
-        position: "relative",
-        fontSize: "64px",
-        letterSpacing: "-1.5px",
-        lineHeight: "76.8px",
-        fontWeight: 400,
-        fontFamily: "'Stack Sans Text', Arial, sans-serif",
-        color: "#0b0c0f",
-        display: "inline-block",
-        maxWidth: "548px",
-    },
-    contactDescWrap: {
-        alignSelf: "stretch",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        padding: "19.9px 0 0.6px",
-    },
-    contactDesc: {
-        width: "100%",
-        position: "relative",
-        fontSize: "18px",
-        lineHeight: "28.8px",
-        color: "#505050",
-        fontFamily: "Inter, Arial, sans-serif",
-        display: "inline-block",
-        maxWidth: "548px",
-    },
+        justifyContent: "center",
+        flexShrink: 0
+    }}>
+        <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 4.5L4.5 8L11 1.5" stroke="#1F2A44" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+    </div>
+);
 
-    // Form
-    formWrap: {
-        flex: 1,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        padding: "44px 0 15px",
-        minWidth: "310px",
-        maxWidth: "712px",
-        boxSizing: "border-box",
-    },
-    form: {
-        alignSelf: "stretch",
-        display: "flex",
-        flexDirection: "column",
-        gap: "32px",
-        textAlign: "left",
-        fontSize: "16px",
-        color: "#1f2a44",
-        fontFamily: "Lilex, Arial, sans-serif",
-    },
-    formRow: {
-        display: "flex",
-        alignItems: "flex-start",
-        gap: "16px",
-        alignSelf: "stretch",
-        flexWrap: "wrap",
-    },
-    formField: {
-        flex: 1,
-        display: "flex",
-        flexDirection: "column",
-        gap: "12px",
-        minWidth: "226px",
-        maxWidth: "100%",
-    },
-    formFieldFull: {
-        flex: 1,
-        display: "flex",
-        flexDirection: "column",
-        gap: "12px",
-        minWidth: "226px",
-        maxWidth: "100%",
-        alignSelf: "stretch",
-    },
-    fieldLabel: {
-        alignSelf: "stretch",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        padding: "0 0 5px",
-    },
-    fieldLabelText: {
-        position: "relative",
-        lineHeight: "24px",
-        textTransform: "uppercase",
-        fontWeight: 500,
-        color: "#1f2a44",
-        whiteSpace: "nowrap",
-    },
-    fieldLabelRequired: {
-        color: "#7791a5",
-        lineHeight: "24px",
-    },
-    fieldInput: {
-        alignSelf: "stretch",
-        borderRadius: "12px",
-        backgroundColor: "#f1f2f1",
-        border: "1px solid #e6e6e6",
-        padding: "14px 12px",
-        color: "#7e7f80",
-        fontFamily: "Inter, Arial, sans-serif",
-        fontSize: "16px",
-        outline: "none",
-        boxSizing: "border-box",
-    },
-    fieldTextarea: {
-        alignSelf: "stretch",
-        height: "195px",
-        borderRadius: "12px",
-        backgroundColor: "#f1f2f1",
-        border: "1px solid #e6e6e6",
-        padding: "12px",
-        color: "#7e7f80",
-        fontFamily: "Inter, Arial, sans-serif",
-        fontSize: "16px",
-        outline: "none",
-        resize: "none",
-        boxSizing: "border-box",
-    },
-    formHint: {
-        alignSelf: "stretch",
-        position: "relative",
-        lineHeight: "24px",
-        fontSize: "14px",
-        color: "#0b0c0f",
-    },
-    formSubmitRow: {
-        alignSelf: "stretch",
-        display: "flex",
-        padding: "4px 0 0",
-    },
-    submitBtn: {
-        height: "48px",
-        borderRadius: "8px",
-        backgroundColor: "#1f2a44",
-        overflow: "hidden",
-        display: "flex",
-        alignItems: "center",
-        padding: "12px 20px",
-        boxSizing: "border-box",
-        cursor: "pointer",
-        border: "none",
-        color: "#fff",
-        fontSize: "16px",
-        fontFamily: "Lilex, Arial, sans-serif",
-        fontWeight: 500,
-        textTransform: "uppercase",
-        lineHeight: "24px",
-        letterSpacing: "normal",
-    },
-};
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
 const SectionHeadingFirst = ({ children }: { children: string }) => (
-    <div style={css.sectionHeading}>
-        <span style={css.sectionHeadingText}>{children}</span>
+    <div className="section-heading">
+        {checkIcon}
+        <span className="section-heading-text">{children}</span>
     </div>
 );
 
 const SectionHeadingWithIcon = ({ children }: { children: string }) => (
-    <div style={css.sectionHeading2}>
-        <span style={css.sectionHeading2Text}>{children}</span>
+    <div className="section-heading-2">
+        {checkIcon}
+        <span className="section-heading-2-text">{children}</span>
     </div>
 );
 
 const BodyPara = ({ children }: { children: string }) => (
-    <div style={css.bodyPara}>
-        <span style={css.bodyText}>{children}</span>
+    <div className="body-para">
+        <span className="body-text">{children}</span>
     </div>
 );
 
@@ -670,14 +96,14 @@ const FormField = ({
     placeholder: string;
     type?: string;
 }) => (
-    <div style={css.formField}>
-        <div style={css.fieldLabel}>
-            <span style={css.fieldLabelText}>
+    <div className="form-field">
+        <div className="field-label">
+            <span className="field-label-text">
                 {label}
-                <span style={css.fieldLabelRequired}>*</span>
+                <span className="field-label-required">*</span>
             </span>
         </div>
-        <input type={type} placeholder={placeholder} style={css.fieldInput} />
+        <input type={type} placeholder={placeholder} className="field-input" />
     </div>
 );
 
@@ -685,205 +111,1023 @@ const FormField = ({
 
 const JobPostingSection: FunctionComponent = () => {
     return (
-        <div style={css.page}>
-            {/* ── Hero ─────────────────────────────────────────────────────────── */}
-            <section style={css.heroSection}>
-                <div style={css.heroInner}>
-                    <div style={css.heroTop}>
-                        {/* Title + badge */}
-                        <div style={css.heroBadgeWrap}>
-                            <div style={css.badge}>
-                                <span style={css.badgeLabel}>Open Position</span>
-                            </div>
-                            <div style={css.heroHeading}>
-                                <h1 style={css.heroTitle}>
-                                    Staff Nurse
-                                    <br />
-                                    ICU &amp; Critical Care
-                                </h1>
-                            </div>
-                        </div>
+        <>
+            <style>{`
+                /* Container padding */
+                .career-page {
+                  width: 100%;
+                  position: relative;
+                  background-color: #fff;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  padding: 0 40px;
+                  box-sizing: border-box;
+                  gap: 80px;
+                  font-family: Lilex, Arial, sans-serif;
+                  line-height: normal;
+                  letter-spacing: normal;
+                }
 
-                        {/* Description */}
-                        <div style={css.heroDesc}>
-                            <div style={css.heroDescInner}>
-                                <span style={css.heroDescText}>
-                                    Join a clinical team committed to delivering life-saving care
-                                    with precision, compassion and professionalism at Swaraj
-                                    Hospital, Balangir.
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+                @media (max-width: 768px) {
+                  .career-page {
+                    padding: 0 20px;
+                    gap: 48px;
+                  }
+                }
 
-                    <div style={css.heroDivider} />
-                </div>
-            </section>
+                /* Hero Section */
+                .hero-section {
+                  align-self: stretch;
+                  overflow: hidden;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  padding: 80px 0 0;
+                  max-width: 100%;
+                  text-align: left;
+                  font-size: 16px;
+                  color: #0b0c0f;
+                }
 
-            {/* ── Job Details ──────────────────────────────────────────────────── */}
-            <div style={css.detailsSection}>
-                {/* Left – overview */}
-                <div style={css.overviewCol}>
-                    <SectionHeadingFirst>Job Overview.</SectionHeadingFirst>
-                    <BodyPara>
-                        As a key member of our critical care team, you will deliver
-                        high-dependency nursing care within a fully equipped ICU and Step
-                        Down ICU. Our facility includes a dedicated NICU, Modular OT and
-                        24/7 emergency support infrastructure. You will work within a
-                        structured, senior-led team in a supportive and professionally
-                        rewarding environment at the heart of western Odisha's most advanced
-                        hospital.
-                    </BodyPara>
+                @media (max-width: 768px) {
+                  .hero-section {
+                    padding: 40px 0 0;
+                  }
+                }
 
-                    <SectionHeadingWithIcon>
-                        Your Role &amp; Impact
-                    </SectionHeadingWithIcon>
-                    <BodyPara>
-                        You will ensure all patients in the ICU receive continuous,
-                        attentive and clinically accurate nursing care aligned with NABH
-                        standards. Your role involves close coordination with senior
-                        consultants, monitoring of critical vital parameters, medication
-                        administration and detailed patient documentation. Beyond direct
-                        care, you will contribute to infection control protocols and support
-                        junior staff development on the ward.
-                    </BodyPara>
+                .hero-inner {
+                  width: 100%;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-start;
+                  padding: 0 40px;
+                  gap: 32px;
+                  max-width: 1440px;
+                  box-sizing: border-box;
+                }
 
-                    <SectionHeadingWithIcon>Professional Profile</SectionHeadingWithIcon>
-                    <BodyPara>
-                        Candidates should possess a GNM or B.Sc. Nursing degree from a recognized institution and hold a valid registration with the Odisha Nurses and Midwives Council (ONMC). Prior clinical experience in an ICU or critical care setup is highly valued.
-                    </BodyPara>
+                @media (max-width: 768px) {
+                  .hero-inner {
+                    padding: 0;
+                    gap: 20px;
+                  }
+                }
 
-                    <SectionHeadingWithIcon>
-                        Employment &amp; Benefits
-                    </SectionHeadingWithIcon>
-                    <div style={css.benefitsList}>
-                        {benefits.map((b, i) => (
-                            <div key={i} style={css.benefitRow}>
-                                <span style={css.benefitBulletWrap}>
-                                    <ul
-                                        style={{
-                                            margin: 0,
-                                            padding: "0 0 0 21px",
-                                            fontFamily: "inherit",
-                                            fontSize: "inherit",
-                                        }}
-                                    >
-                                        <li style={{ lineHeight: "24px" }}> </li>
-                                    </ul>
-                                </span>
-                                <span style={css.benefitText}>
-                                    <span style={css.benefitLabel}>{b.label}</span> {b.text}
-                                </span>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+                .hero-top {
+                  align-self: stretch;
+                  display: flex;
+                  align-items: flex-end;
+                  justify-content: space-between;
+                  flex-wrap: wrap;
+                  gap: 20px;
+                  max-width: 100%;
+                }
 
-                {/* Right – essential info card */}
-                <div style={css.infoCard}>
-                    <div style={css.infoCardHeading}>
-                        <h3 style={css.infoCardTitle}>Essential information</h3>
-                    </div>
+                @media (max-width: 768px) {
+                  .hero-top {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 16px;
+                  }
+                }
 
-                    <div style={css.infoRows}>
-                        {infoRows.map((row, i) => (
-                            <div
-                                key={i}
-                                style={{
-                                    ...css.infoRow,
-                                    ...(row.height ? { height: row.height } : {}),
-                                    ...(row.borderBottom
-                                        ? { borderBottom: row.borderBottom }
-                                        : {}),
-                                }}
-                            >
-                                <div style={css.infoRowLabel}>
-                                    <span style={css.infoRowLabelText}>{row.label}</span>
+                .hero-badge-wrap {
+                  flex: 1;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-start;
+                  padding: 12px 0 0;
+                  gap: 22.9px;
+                  min-width: 376px;
+                  max-width: 579px;
+                  box-sizing: border-box;
+                }
+
+                @media (max-width: 768px) {
+                  .hero-badge-wrap {
+                    min-width: 100%;
+                    max-width: 100%;
+                    padding: 0;
+                    gap: 16px;
+                  }
+                }
+
+                .badge {
+                  display: flex;
+                  align-items: center;
+                  padding: 4px 8px;
+                  gap: 6px;
+                  border-radius: 4px;
+                  background-color: #f1f2f1;
+                  box-sizing: border-box;
+                  height: 32px;
+                }
+
+                .badge-label {
+                  font-size: 14px;
+                  line-height: 24px;
+                  text-transform: uppercase;
+                  font-weight: 500;
+                  color: #0b0c0f;
+                }
+
+                .hero-heading {
+                  align-self: stretch;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-start;
+                  padding: 0 0 0.7px;
+                }
+
+                .hero-title {
+                  margin: 0;
+                  width: 100%;
+                  position: relative;
+                  font-size: 64px;
+                  letter-spacing: -1.5px;
+                  line-height: 76.8px;
+                  font-weight: 400;
+                  font-family: 'Stack Sans Text', Arial, sans-serif;
+                  color: #0b0c0f;
+                  display: inline-block;
+                  max-width: 579px;
+                }
+
+                @media (max-width: 768px) {
+                  .hero-title {
+                    font-size: 32px;
+                    line-height: 40px;
+                    letter-spacing: -0.8px;
+                    max-width: 100%;
+                  }
+                }
+
+                .hero-desc {
+                  flex: 1;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-start;
+                  min-width: 227px;
+                  max-width: 350px;
+                }
+
+                @media (max-width: 768px) {
+                  .hero-desc {
+                    min-width: 100%;
+                    max-width: 100%;
+                  }
+                }
+
+                .hero-desc-inner {
+                  align-self: stretch;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  justify-content: center;
+                }
+
+                @media (max-width: 768px) {
+                  .hero-desc-inner {
+                    align-items: flex-start;
+                  }
+                }
+
+                .hero-desc-text {
+                  width: 322px;
+                  position: relative;
+                  font-size: 18px;
+                  line-height: 28.8px;
+                  color: #505050;
+                  font-family: Inter, Arial, sans-serif;
+                  display: flex;
+                  align-items: center;
+                  max-width: 100%;
+                }
+
+                @media (max-width: 768px) {
+                  .hero-desc-text {
+                    width: 100%;
+                    font-size: 15px;
+                    line-height: 24px;
+                  }
+                }
+
+                .hero-divider {
+                  align-self: stretch;
+                  height: 2px;
+                  position: relative;
+                  border-top: 1px solid #e6e6e6;
+                  box-sizing: border-box;
+                }
+
+                /* Details Section */
+                .details-section {
+                  width: 100%;
+                  display: flex;
+                  align-items: flex-start;
+                  flex-wrap: wrap;
+                  align-content: flex-start;
+                  gap: 96px;
+                  max-width: 1360px;
+                }
+
+                @media (max-width: 1024px) {
+                  .details-section {
+                    gap: 40px;
+                  }
+                }
+
+                @media (max-width: 768px) {
+                  .details-section {
+                    flex-direction: column;
+                    align-items: stretch;
+                    gap: 48px;
+                  }
+                }
+
+                /* Overview Column */
+                .overview-col {
+                  flex: 1.173;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-start;
+                  padding: 44px 0 0;
+                  box-sizing: border-box;
+                  gap: 16px;
+                  min-width: 310px;
+                  max-width: 100%;
+                  text-align: left;
+                  font-size: 20px;
+                  color: #0b0c0f;
+                  font-family: 'Stack Sans Text', Arial, sans-serif;
+                }
+
+                @media (max-width: 768px) {
+                  .overview-col {
+                    padding: 0;
+                    order: 2;
+                  }
+                }
+
+                .section-heading {
+                  align-self: stretch;
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                  padding: 0 0 0 40px;
+                }
+
+                @media (max-width: 768px) {
+                  .section-heading {
+                    padding: 0;
+                  }
+                }
+
+                .section-heading-text {
+                  font-size: 20px;
+                  line-height: 30px;
+                  color: #0b0c0f;
+                  font-family: 'Stack Sans Text', Arial, sans-serif;
+                  font-weight: 500;
+                }
+
+                @media (max-width: 768px) {
+                  .section-heading-text {
+                    font-size: 18px;
+                    line-height: 26px;
+                  }
+                }
+
+                .section-heading-2 {
+                  align-self: stretch;
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                  padding: 29.3px 0 0 40px;
+                }
+
+                @media (max-width: 768px) {
+                  .section-heading-2 {
+                    padding: 16px 0 0 0;
+                  }
+                }
+
+                .section-heading-2-text {
+                  font-size: 20px;
+                  line-height: 30px;
+                  color: #0b0c0f;
+                  font-family: 'Stack Sans Text', Arial, sans-serif;
+                  font-weight: 500;
+                }
+
+                @media (max-width: 768px) {
+                  .section-heading-2-text {
+                    font-size: 18px;
+                    line-height: 26px;
+                  }
+                }
+
+                .body-para {
+                  align-self: stretch;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-start;
+                  padding: 0 0 0.9px;
+                }
+
+                .body-text {
+                  width: 100%;
+                  font-size: 18px;
+                  line-height: 28.8px;
+                  color: #505050;
+                  font-family: Inter, Arial, sans-serif;
+                  display: inline-block;
+                  max-width: 776px;
+                }
+
+                @media (max-width: 768px) {
+                  .body-text {
+                    font-size: 15px;
+                    line-height: 24px;
+                  }
+                }
+
+                .benefits-list {
+                  align-self: stretch;
+                  overflow: hidden;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-start;
+                  padding: 1.3px 0 0 40px;
+                  box-sizing: border-box;
+                  gap: 16px;
+                  max-width: 100%;
+                  font-size: 16px;
+                  font-family: Inter, Arial, sans-serif;
+                }
+
+                @media (max-width: 768px) {
+                  .benefits-list {
+                    padding: 0;
+                  }
+                }
+
+                .benefit-row {
+                  align-self: stretch;
+                  display: flex;
+                  align-items: flex-start;
+                  max-width: 100%;
+                  gap: 12px;
+                }
+
+                .benefit-bullet {
+                  font-size: 18px;
+                  line-height: 24px;
+                  color: #0b0c0f;
+                  flex-shrink: 0;
+                }
+
+                .benefit-text {
+                  flex: 1;
+                  line-height: 24px;
+                  color: #505050;
+                  font-size: 16px;
+                }
+
+                @media (max-width: 768px) {
+                  .benefit-text {
+                    font-size: 15px;
+                    line-height: 22px;
+                  }
+                }
+
+                .benefit-label {
+                  font-weight: 600;
+                  color: #0b0c0f;
+                }
+
+                /* Essential Info Card */
+                .info-card {
+                  flex: 1;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-start;
+                  border-radius: 24px;
+                  background-color: #f1f2f1;
+                  padding: 36px;
+                  box-sizing: border-box;
+                  gap: 24px;
+                  min-width: 310px;
+                  max-width: 488px;
+                  text-align: left;
+                  font-size: 16px;
+                  color: #0b0c0f;
+                  font-family: Lilex, Arial, sans-serif;
+                }
+
+                @media (max-width: 768px) {
+                  .info-card {
+                    max-width: 100%;
+                    order: 1;
+                    padding: 24px;
+                    border-radius: 20px;
+                  }
+                }
+
+                .info-card-heading {
+                  align-self: stretch;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-start;
+                  font-size: 24px;
+                  font-family: 'Stack Sans Text', Arial, sans-serif;
+                }
+
+                @media (max-width: 768px) {
+                  .info-card-heading {
+                    font-size: 20px;
+                  }
+                }
+
+                .info-card-title {
+                  margin: 0;
+                  align-self: stretch;
+                  position: relative;
+                  font-size: inherit;
+                  letter-spacing: -1.2px;
+                  line-height: 36px;
+                  font-weight: 400;
+                  font-family: inherit;
+                }
+
+                .info-rows {
+                  align-self: stretch;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-start;
+                  color: #505050;
+                }
+
+                .info-row {
+                  align-self: stretch;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-start;
+                  border-top: 1px solid #aaa;
+                  padding: 16px 0;
+                  gap: 7px;
+                  box-sizing: border-box;
+                }
+
+                .info-row-label {
+                  align-self: stretch;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-start;
+                }
+
+                .info-row-label-text {
+                  align-self: stretch;
+                  line-height: 24px;
+                  text-transform: uppercase;
+                  font-weight: 500;
+                  font-size: 14px;
+                  color: #505050;
+                  font-family: Lilex, Arial, sans-serif;
+                }
+
+                .info-row-value {
+                  align-self: stretch;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-start;
+                  padding: 0 0 0.8px;
+                  font-size: 18px;
+                  color: #0b0c0f;
+                  font-family: 'Stack Sans Text', Arial, sans-serif;
+                }
+
+                @media (max-width: 768px) {
+                  .info-row-value {
+                    font-size: 16px;
+                  }
+                }
+
+                .info-row-value-text {
+                  align-self: stretch;
+                  line-height: 28.8px;
+                  word-break: break-all;
+                }
+
+                .info-card-cta {
+                  align-self: stretch;
+                  display: flex;
+                  align-items: center;
+                  padding: 24px 0 0;
+                  color: #fff;
+                }
+
+                @media (max-width: 768px) {
+                  .info-card-cta {
+                    justify-content: center;
+                  }
+                }
+
+                .cta-button {
+                  height: 48px;
+                  border-radius: 8px;
+                  background-color: #1f2a44;
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  padding: 12px 20px;
+                  box-sizing: border-box;
+                  gap: 8px;
+                  cursor: pointer;
+                  border: none;
+                  text-decoration: none;
+                }
+
+                .cta-button-text {
+                  line-height: 24px;
+                  text-transform: uppercase;
+                  font-weight: 500;
+                  color: #fff;
+                  font-size: 16px;
+                  font-family: Lilex, Arial, sans-serif;
+                  white-space: nowrap;
+                }
+
+                /* Contact Section */
+                .contact-section {
+                  width: 100%;
+                  display: flex;
+                  justify-content: space-between;
+                  flex-wrap: wrap;
+                  align-content: flex-start;
+                  padding: 60px 0 0;
+                  gap: 20px;
+                  max-width: 1360px;
+                  box-sizing: border-box;
+                }
+
+                @media (max-width: 768px) {
+                  .contact-section {
+                    flex-direction: column;
+                    align-items: stretch;
+                    padding: 40px 0 0;
+                    gap: 32px;
+                  }
+                }
+
+                .contact-left {
+                  flex: 1;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-start;
+                  padding: 12px 0;
+                  gap: 22.9px;
+                  min-width: 310px;
+                  max-width: 548px;
+                  box-sizing: border-box;
+                  font-size: 16px;
+                  color: #0b0c0f;
+                  font-family: Lilex, Arial, sans-serif;
+                }
+
+                @media (max-width: 768px) {
+                  .contact-left {
+                    min-width: 100%;
+                    max-width: 100%;
+                    padding: 0;
+                    gap: 16px;
+                  }
+                }
+
+                .contact-badge {
+                  display: flex;
+                  align-items: center;
+                  padding: 4px 8px;
+                  gap: 6px;
+                  border-radius: 4px;
+                  background-color: #f1f2f1;
+                  box-sizing: border-box;
+                  height: 32px;
+                }
+
+                .contact-badge-label {
+                  line-height: 24px;
+                  text-transform: uppercase;
+                  font-weight: 500;
+                  color: #0b0c0f;
+                  font-size: 14px;
+                }
+
+                .contact-heading-wrap {
+                  align-self: stretch;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-start;
+                  padding: 0 0 0.7px;
+                }
+
+                .contact-title {
+                  margin: 0;
+                  width: 100%;
+                  font-size: 64px;
+                  letter-spacing: -1.5px;
+                  line-height: 76.8px;
+                  font-weight: 400;
+                  font-family: 'Stack Sans Text', Arial, sans-serif;
+                  color: #0b0c0f;
+                  display: inline-block;
+                  max-width: 548px;
+                }
+
+                @media (max-width: 768px) {
+                  .contact-title {
+                    font-size: 36px;
+                    line-height: 44px;
+                    letter-spacing: -1px;
+                  }
+                }
+
+                .contact-desc-wrap {
+                  align-self: stretch;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-start;
+                  padding: 19.9px 0 0.6px;
+                }
+
+                @media (max-width: 768px) {
+                  .contact-desc-wrap {
+                    padding: 8px 0 0 0;
+                  }
+                }
+
+                .contact-desc {
+                  width: 100%;
+                  font-size: 18px;
+                  line-height: 28.8px;
+                  color: #505050;
+                  font-family: Inter, Arial, sans-serif;
+                  display: inline-block;
+                  max-width: 548px;
+                }
+
+                @media (max-width: 768px) {
+                  .contact-desc {
+                    font-size: 15px;
+                    line-height: 24px;
+                  }
+                }
+
+                /* Form Styles */
+                .form-wrap {
+                  flex: 1;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-start;
+                  padding: 44px 0 15px;
+                  min-width: 310px;
+                  max-width: 712px;
+                  box-sizing: border-box;
+                }
+
+                @media (max-width: 768px) {
+                  .form-wrap {
+                    min-width: 100%;
+                    max-width: 100%;
+                    padding: 0;
+                  }
+                }
+
+                .form {
+                  align-self: stretch;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 32px;
+                  text-align: left;
+                  font-size: 16px;
+                  color: #1f2a44;
+                  font-family: Lilex, Arial, sans-serif;
+                }
+
+                @media (max-width: 768px) {
+                  .form {
+                    gap: 24px;
+                  }
+                }
+
+                .form-row {
+                  display: flex;
+                  align-items: flex-start;
+                  gap: 16px;
+                  align-self: stretch;
+                  flex-wrap: wrap;
+                }
+
+                @media (max-width: 768px) {
+                  .form-row {
+                    flex-direction: column;
+                    gap: 24px;
+                  }
+                }
+
+                .form-field {
+                  flex: 1;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 12px;
+                  min-width: 226px;
+                  max-width: 100%;
+                }
+
+                @media (max-width: 768px) {
+                  .form-field {
+                    min-width: 100%;
+                  }
+                }
+
+                .form-field-full {
+                  flex: 1;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 12px;
+                  min-width: 226px;
+                  max-width: 100%;
+                  align-self: stretch;
+                }
+
+                .field-label {
+                  align-self: stretch;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-start;
+                  padding: 0 0 5px;
+                }
+
+                .field-label-text {
+                  line-height: 24px;
+                  text-transform: uppercase;
+                  font-weight: 500;
+                  color: #1f2a44;
+                  white-space: nowrap;
+                }
+
+                .field-label-required {
+                  color: #7791a5;
+                  line-height: 24px;
+                }
+
+                .field-input {
+                  align-self: stretch;
+                  border-radius: 12px;
+                  background-color: #f1f2f1;
+                  border: 1px solid #e6e6e6;
+                  padding: 14px 12px;
+                  color: #0b0c0f;
+                  font-family: Inter, Arial, sans-serif;
+                  font-size: 16px;
+                  outline: none;
+                  box-sizing: border-box;
+                }
+
+                .field-textarea {
+                  align-self: stretch;
+                  height: 195px;
+                  border-radius: 12px;
+                  background-color: #f1f2f1;
+                  border: 1px solid #e6e6e6;
+                  padding: 12px;
+                  color: #0b0c0f;
+                  font-family: Inter, Arial, sans-serif;
+                  font-size: 16px;
+                  outline: none;
+                  resize: none;
+                  box-sizing: border-box;
+                }
+
+                .form-hint {
+                  align-self: stretch;
+                  line-height: 24px;
+                  font-size: 14px;
+                  color: #505050;
+                }
+
+                .form-submit-row {
+                  align-self: stretch;
+                  display: flex;
+                  padding: 4px 0 0;
+                }
+
+                .submit-btn {
+                  height: 48px;
+                  border-radius: 8px;
+                  background-color: #1f2a44;
+                  overflow: hidden;
+                  display: flex;
+                  align-items: center;
+                  padding: 12px 20px;
+                  box-sizing: border-box;
+                  cursor: pointer;
+                  border: none;
+                  color: #fff;
+                  font-size: 16px;
+                  font-family: Lilex, Arial, sans-serif;
+                  font-weight: 500;
+                  text-transform: uppercase;
+                  line-height: 24px;
+                  letter-spacing: normal;
+                }
+            `}</style>
+
+            <div className="career-page">
+                {/* ── Hero ─────────────────────────────────────────────────────────── */}
+                <section className="hero-section">
+                    <div className="hero-inner">
+                        <div className="hero-top">
+                            {/* Title + badge */}
+                            <div className="hero-badge-wrap">
+                                <SectionBadge icon="/SVG.svg" label="Open Position" variant="dark" />
+                                <div className="hero-heading">
+                                    <h1 className="hero-title">
+                                        Staff Nurse
+                                        <br />
+                                        ICU &amp; Critical Care
+                                    </h1>
                                 </div>
-                                <div style={css.infoRowValue}>
-                                    <span style={css.infoRowValueText}>{row.value}</span>
+                            </div>
+
+                            {/* Description */}
+                            <div className="hero-desc">
+                                <div className="hero-desc-inner">
+                                    <span className="hero-desc-text">
+                                        Join a clinical team committed to delivering life-saving care
+                                        with precision, compassion and professionalism at Swaraj
+                                        Hospital, Balangir.
+                                    </span>
                                 </div>
                             </div>
-                        ))}
-                    </div>
-
-                    <div style={css.infoCardCta}>
-                        <Link to="/career" style={css.ctaButton}>
-                            <span style={css.ctaButtonText}>See All Job Openings</span>
-                        </Link>
-                    </div>
-                </div>
-            </div>
-
-            {/* ── Contact / Form ───────────────────────────────────────────────── */}
-            <div style={css.contactSection}>
-                {/* Left – contact blurb */}
-                <div style={css.contactLeft}>
-                    <div style={css.contactBadge}>
-                        <span style={css.contactBadgeLabel}>Affiliated Labs</span>
-                    </div>
-
-                    <div style={css.contactHeadingWrap}>
-                        <h1 style={css.contactTitle}>
-                            Any Queries?
-                            <br />
-                            Let Us Know.
-                        </h1>
-                    </div>
-
-                    <div style={css.contactDescWrap}>
-                        <span style={css.contactDesc}>
-                            We work with dedicated clinical and administrative staff across
-                            every department. Reach out and our HR team will respond within 48
-                            hours.
-                        </span>
-                    </div>
-                </div>
-
-                {/* Right – form */}
-                <div style={css.formWrap}>
-                    <div style={css.form}>
-                        {/* Row 1: name + email */}
-                        <div style={css.formRow}>
-                            <FormField
-                                label="Full Name"
-                                placeholder="Enter your legal name"
-                            />
-                            <FormField
-                                label="Full Name"
-                                placeholder="Enter Your email"
-                                type="email"
-                            />
                         </div>
 
-                        {/* Row 2: phone */}
-                        <div style={css.formRow}>
-                            <FormField
-                                label="Full Name"
-                                placeholder="Enter your phone number"
-                                type="tel"
-                            />
+                        <div className="hero-divider" />
+                    </div>
+                </section>
+
+                {/* ── Job Details ──────────────────────────────────────────────────── */}
+                <div className="details-section">
+                    {/* Right – essential info card (placed first in source for mobile order but styled for desktop layout) */}
+                    <div className="info-card">
+                        <div className="info-card-heading">
+                            <h3 className="info-card-title">Essential information</h3>
                         </div>
 
-                        {/* Row 3: message */}
-                        <div style={css.formFieldFull}>
-                            <div style={css.fieldLabel}>
-                                <span style={css.fieldLabelText}>Write Message</span>
-                            </div>
-                            <textarea placeholder="Your message" style={css.fieldTextarea} />
-                            <span style={css.formHint}>
-                                Request only. Our team will call you soon to confirm your slot.
+                        <div className="info-rows">
+                            {infoRows.map((row, i) => (
+                                <div
+                                    key={i}
+                                    className="info-row"
+                                    style={{
+                                        ...(row.borderBottom ? { borderBottom: row.borderBottom } : {}),
+                                    }}
+                                >
+                                    <div className="info-row-label">
+                                        <span className="info-row-label-text">{row.label}</span>
+                                    </div>
+                                    <div className="info-row-value">
+                                        <span className="info-row-value-text">{row.value}</span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="info-card-cta">
+                            <Link to="/career" className="cta-button">
+                                <span className="cta-button-text">See All Job Openings •</span>
+                            </Link>
+                        </div>
+                    </div>
+
+                    {/* Left – overview */}
+                    <div className="overview-col">
+                        <SectionHeadingFirst>Job Overview.</SectionHeadingFirst>
+                        <BodyPara>
+                            As a key member of our critical care team, you will deliver
+                            high-dependency nursing care within a fully equipped ICU and Step
+                            Down ICU. Our facility includes a dedicated NICU, Modular OT and
+                            24/7 emergency support infrastructure. You will work within a
+                            structured, senior-led team in a supportive and professionally
+                            rewarding environment at the heart of western Odisha's most advanced
+                            hospital.
+                        </BodyPara>
+
+                        <SectionHeadingWithIcon>
+                            Your Role &amp; Impact
+                        </SectionHeadingWithIcon>
+                        <BodyPara>
+                            You will ensure all patients in the ICU receive continuous,
+                            attentive and clinically accurate nursing care aligned with NABH
+                            standards. Your role involves close coordination with senior
+                            consultants, monitoring of critical vital parameters, medication
+                            administration and detailed patient documentation. Beyond direct
+                            care, you will contribute to infection control protocols and support
+                            junior staff development on the ward.
+                        </BodyPara>
+
+                        <SectionHeadingWithIcon>Professional Profile</SectionHeadingWithIcon>
+                        <BodyPara>
+                            Candidates should possess a GNM or B.Sc. Nursing degree from a recognized institution and hold a valid registration with the Odisha Nurses and Midwives Council (ONMC). Prior clinical experience in an ICU or critical care setup is highly valued.
+                        </BodyPara>
+
+                        <SectionHeadingWithIcon>
+                            Employment &amp; Benefits
+                        </SectionHeadingWithIcon>
+                        <div className="benefits-list">
+                            {benefits.map((b, i) => (
+                                <div key={i} className="benefit-row">
+                                    <span className="benefit-bullet">•</span>
+                                    <span className="benefit-text">
+                                        <strong className="benefit-label">{b.label}</strong> {b.text}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                {/* ── Contact / Form ───────────────────────────────────────────────── */}
+                <div className="contact-section">
+                    {/* Left – contact blurb */}
+                    <div className="contact-left">
+                        <div className="contact-badge">
+                            <span className="contact-badge-label">Affiliated Labs</span>
+                        </div>
+
+                        <div className="contact-heading-wrap">
+                            <h1 className="contact-title">
+                                Any Queries?
+                                <br />
+                                Let Us Know.
+                            </h1>
+                        </div>
+
+                        <div className="contact-desc-wrap">
+                            <span className="contact-desc">
+                                We work with dedicated clinical and administrative staff across
+                                every department. Reach out and our HR team will respond within 48
+                                hours.
                             </span>
                         </div>
+                    </div>
 
-                        {/* Submit */}
-                        <div style={css.formSubmitRow}>
-                            <button style={css.submitBtn}>Submit Now</button>
+                    {/* Right – form */}
+                    <div className="form-wrap">
+                        <div className="form">
+                            {/* Row 1: name + email */}
+                            <div className="form-row">
+                                <FormField
+                                    label="Full Name"
+                                    placeholder="Enter your legal name"
+                                />
+                                <FormField
+                                    label="Email Address"
+                                    placeholder="Enter Your email"
+                                    type="email"
+                                />
+                            </div>
+
+                            {/* Row 2: phone */}
+                            <div className="form-row">
+                                <FormField
+                                    label="Phone Number"
+                                    placeholder="Enter your phone number"
+                                    type="tel"
+                                />
+                            </div>
+
+                            {/* Row 3: message */}
+                            <div className="form-field-full">
+                                <div className="field-label">
+                                    <span className="field-label-text">Write Message</span>
+                                </div>
+                                <textarea placeholder="Your message" className="field-textarea" />
+                                <span className="form-hint">
+                                    Request only. Our team will call you soon to confirm your slot.
+                                </span>
+                            </div>
+
+                            {/* Submit */}
+                            <div className="form-submit-row">
+                                <button className="submit-btn">Submit Now</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 
