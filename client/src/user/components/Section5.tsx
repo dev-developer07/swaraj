@@ -124,7 +124,7 @@ const Section5: FunctionComponent<Section5Type> = ({ className = "" }) => {
           </Box>
         </section>
         <Box className="self-stretch flex flex-col items-start justify-center relative isolate max-w-full">
-          <section ref={scrollRef} className="w-[100vw] h-num-438 flex items-stretch overflow-x-auto no-scrollbar scroll-smooth !pt-num-0 !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-6 shrink-0 text-left text-num-16 text-web-white font-inter mq925:h-auto mq450:!max-w-none max-[450px]:!h-[320px] max-[450px]:!pl-5 max-[450px]:!pr-5 max-[450px]:!w-[100vw] max-[450px]:!box-border">
+          <section ref={scrollRef} className="w-[100vw] h-[470px] flex items-start overflow-x-auto no-scrollbar scroll-smooth !pt-4 !pb-4 !pl-num-0 !pr-num-0 box-border gap-6 shrink-0 text-left text-num-16 text-web-white font-inter mq925:h-auto mq925:!pt-4 mq925:!pb-4 mq450:!max-w-none max-[450px]:!h-[350px] max-[450px]:!pt-4 max-[450px]:!pb-4 max-[450px]:!pl-5 max-[450px]:!pr-5 max-[450px]:!w-[100vw] max-[450px]:!box-border">
             {diagnosticsItems.map((item, index) => (
               <Group2Of
                 key={index}
