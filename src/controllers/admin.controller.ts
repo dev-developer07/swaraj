@@ -746,9 +746,14 @@ class AdminController {
                 orderBy: { createdAt: "desc" }
             });
 
+            const mappedBlogs = blogs.map((b: any) => ({
+                ...b,
+                status: b.isPublished ? "PUBLISHED" : "DRAFT"
+            }));
+
             res.status(200).json({
                 success: true,
-                data: blogs
+                data: mappedBlogs
             });
         } catch (error) {
             console.error("Error listing blogs:", error);
@@ -761,7 +766,7 @@ class AdminController {
 
     async createBlog(req: AdminRequest, res: Response): Promise<void> {
         try {
-            const { title, slug, content, featuredImage, isPublished } = req.body;
+            const { title, slug, content, featuredImage, isPublished, status } = req.body;
 
             if (!title || !content) {
                 res.status(400).json({
@@ -799,20 +804,27 @@ class AdminController {
                 return;
             }
 
+            const resolvedIsPublished = status !== undefined 
+                ? status === "PUBLISHED" 
+                : (isPublished !== undefined ? Boolean(isPublished) : false);
+
             const blog = await prisma.blog.create({
                 data: {
                     title,
                     slug: finalSlug,
                     content,
                     featuredImage: featuredImage || null,
-                    isPublished: isPublished !== undefined ? Boolean(isPublished) : false
+                    isPublished: resolvedIsPublished
                 }
             });
 
             res.status(201).json({
                 success: true,
                 message: "Blog post created successfully",
-                data: blog
+                data: {
+                    ...blog,
+                    status: blog.isPublished ? "PUBLISHED" : "DRAFT"
+                }
             });
         } catch (error) {
             console.error("Error creating blog:", error);
@@ -826,7 +838,7 @@ class AdminController {
     async updateBlog(req: AdminRequest, res: Response): Promise<void> {
         try {
             const { id } = req.params;
-            const { title, slug, content, featuredImage, isPublished } = req.body;
+            const { title, slug, content, featuredImage, isPublished, status } = req.body;
 
             const existingBlog = await prisma.blog.findUnique({
                 where: { id: id as string }
@@ -843,7 +855,12 @@ class AdminController {
             if (title !== undefined) updateData.title = title;
             if (content !== undefined) updateData.content = content;
             if (featuredImage !== undefined) updateData.featuredImage = featuredImage;
-            if (isPublished !== undefined) updateData.isPublished = Boolean(isPublished);
+            
+            if (status !== undefined) {
+                updateData.isPublished = status === "PUBLISHED";
+            } else if (isPublished !== undefined) {
+                updateData.isPublished = Boolean(isPublished);
+            }
 
             if (slug !== undefined) {
                 let finalSlug = slug

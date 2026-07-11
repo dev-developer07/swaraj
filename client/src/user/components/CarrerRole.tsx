@@ -979,38 +979,6 @@ const JobPostingSection: FunctionComponent = () => {
 
                 {/* ── Job Details ──────────────────────────────────────────────────── */}
                 <div className="details-section">
-                    {/* Right – essential info card (placed first in source for mobile order but styled for desktop layout) */}
-                    <div className="info-card">
-                        <div className="info-card-heading">
-                            <h3 className="info-card-title">Essential information</h3>
-                        </div>
-
-                        <div className="info-rows">
-                            {infoRows.map((row, i) => (
-                                <div
-                                    key={i}
-                                    className="info-row"
-                                    style={{
-                                        ...(row.borderBottom ? { borderBottom: row.borderBottom } : {}),
-                                    }}
-                                >
-                                    <div className="info-row-label">
-                                        <span className="info-row-label-text">{row.label}</span>
-                                    </div>
-                                    <div className="info-row-value">
-                                        <span className="info-row-value-text">{row.value}</span>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-
-                        <div className="info-card-cta">
-                            <Link to="/career" className="cta-button">
-                                <span className="cta-button-text">See All Job Openings •</span>
-                            </Link>
-                        </div>
-                    </div>
-
                     {/* Left – overview */}
                     <div className="overview-col">
                         <SectionHeadingFirst>Job Overview.</SectionHeadingFirst>
@@ -1054,6 +1022,38 @@ const JobPostingSection: FunctionComponent = () => {
                                     </span>
                                 </div>
                             ))}
+                        </div>
+                    </div>
+
+                    {/* Right – essential info card */}
+                    <div className="info-card">
+                        <div className="info-card-heading">
+                            <h3 className="info-card-title">Essential information</h3>
+                        </div>
+
+                        <div className="info-rows">
+                            {infoRows.map((row, i) => (
+                                <div
+                                    key={i}
+                                    className="info-row"
+                                    style={{
+                                        ...(row.borderBottom ? { borderBottom: row.borderBottom } : {}),
+                                    }}
+                                >
+                                    <div className="info-row-label">
+                                        <span className="info-row-label-text">{row.label}</span>
+                                    </div>
+                                    <div className="info-row-value">
+                                        <span className="info-row-value-text">{row.value}</span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="info-card-cta">
+                            <Link to="/career" className="cta-button">
+                                <span className="cta-button-text">See All Job Openings •</span>
+                            </Link>
                         </div>
                     </div>
                 </div>
