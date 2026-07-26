@@ -86,7 +86,7 @@ const Section5: FunctionComponent<Section5Type> = ({ className = "" }) => {
 
   return (
     <Box
-      className={`self-stretch bg-web-white overflow-hidden flex flex-col items-start !pt-num-0 !pb-num-200 !pl-num-280 !pr-0 box-border shrink-0 max-w-full mq925:!pl-num-70 mq925:!pr-0 mq925:!pb-num-84 mq925:box-border mq1350:!pl-num-140 mq1350:!pr-0 mq1350:!pb-num-130 mq1350:box-border mq450:!pl-6 ${className} max-[450px]:!pl-0 max-[450px]:!pr-0 max-[450px]:!w-[390px] max-[450px]:!max-w-full max-[450px]:!mx-auto max-[450px]:!pb-[140px]`}
+      className={`self-stretch bg-web-white overflow-hidden flex flex-col items-start !pt-num-0 !pb-num-200 !pl-num-280 !pr-0 box-border shrink-0 max-w-full mq1825:!pl-num-140 mq1825:!pr-0 mq925:!pl-num-70 mq925:!pr-0 mq925:!pb-num-84 mq925:box-border mq1350:!pl-num-140 mq1350:!pr-0 mq1350:!pb-num-130 mq1350:box-border mq450:!pl-6 ${className} max-[450px]:!pl-0 max-[450px]:!pr-0 max-[450px]:!w-[390px] max-[450px]:!max-w-full max-[450px]:!mx-auto max-[450px]:!pb-[140px]`}
     >
       <Box className="self-stretch flex flex-col items-start !pt-num-140 !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-[46px] max-w-full mq925:gap-[23px] mq925:!pt-[91px] mq925:box-border mq450:!pt-[59px] mq450:box-border max-[450px]:!gap-6 max-[450px]:!pt-[59px] max-[450px]:!pb-0 max-[450px]:!pl-0 max-[450px]:!pr-0 max-[450px]:!w-full max-[450px]:!max-w-full">
         <section className="self-stretch flex items-end flex-wrap content-end gap-[492px] max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq925:gap-[123px] mq1350:gap-[246px] mq450:gap-[61px] box-border max-[450px]:!gap-4 max-[450px]:!flex max-[450px]:!flex-col max-[450px]:!items-start max-[450px]:!px-5 max-[450px]:!box-border">

@@ -1,6 +1,42 @@
 import { apiRequest } from "./api.client";
 
-// Request Callback Lead
+// ─── Auth / OTP ──────────────────────────────────────────────
+
+export async function requestOTP(phone: string) {
+  return apiRequest("/auth/request-otp", {
+    method: "POST",
+    body: JSON.stringify({ phone }),
+  });
+}
+
+export async function verifyOTP(phone: string, otp: string) {
+  return apiRequest("/auth/verify-otp", {
+    method: "POST",
+    body: JSON.stringify({ phone, otp }),
+  });
+}
+
+export async function getUserProfile(token: string) {
+  return apiRequest("/auth/profile", {}, token);
+}
+
+export async function updateUserProfile(
+  payload: {
+    name?: string;
+    careof?: string;
+    email?: string;
+    address?: string;
+  },
+  token: string
+) {
+  return apiRequest("/auth/profile", {
+    method: "PATCH",
+    body: JSON.stringify(payload),
+  }, token);
+}
+
+// ─── Lead / Enquiry ──────────────────────────────────────────
+
 export async function submitLead(payload: {
   name: string;
   phone: string;
@@ -27,7 +63,8 @@ export async function getPublicBlogBySlug(slug: string) {
   return apiRequest(`/booking/blogs/${slug}`, {});
 }
 
-// Create OPD Doctor Booking Order (Razorpay Order creation)
+// ─── Booking (Paid) ──────────────────────────────────────────
+
 export async function requestBooking(payload: {
   doctorId: string;
   appointmentDate: string;
@@ -38,13 +75,12 @@ export async function requestBooking(payload: {
   careof?: string;
   address?: string;
 }, token?: string) {
-  return apiRequest("/booking/request", {
+  return apiRequest("/booking/request-booking", {
     method: "POST",
     body: JSON.stringify(payload)
   }, token);
 }
 
-// Verify signature
 export async function verifyPayment(payload: {
   razorpay_order_id: string;
   razorpay_payment_id: string;

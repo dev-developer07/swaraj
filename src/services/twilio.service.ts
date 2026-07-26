@@ -1,9 +1,11 @@
 import twilio from "twilio";
 
+const isVerifySid = (sid: string) => sid.startsWith("VA");
+
 interface TwilioConfig {
   accountSid: string;
   authToken: string;
-  phoneNumber: string;
+  serviceSid: string;
 }
 
 class TwilioService {
@@ -14,82 +16,77 @@ class TwilioService {
     this.config = {
       accountSid: process.env.TWILIO_ACCOUNT_SID || "",
       authToken: process.env.TWILIO_AUTH_TOKEN || "",
-      phoneNumber: process.env.TWILIO_PHONE_NUMBER || "",
+      serviceSid: process.env.TWILIO_VERIFY_SERVICE_SID || "",
     };
-
-    if (!this.config.accountSid || !this.config.authToken) {
-      console.warn(
-        "Twilio credentials not configured. SMS functionality will be disabled."
-      );
-    }
 
     this.client = twilio(this.config.accountSid, this.config.authToken);
   }
 
   async sendOTP(phoneNumber: string, otp: string): Promise<boolean> {
     try {
-      if (!this.config.accountSid || !this.config.authToken) {
-        console.log(
-          `[DEV MODE] OTP for ${phoneNumber}: ${otp} (expires in 10 minutes)`
-        );
-        return true;
+      if (!this.config.accountSid || !this.config.authToken || !this.config.serviceSid) {
+        return false;
       }
 
-      const message = await this.client.messages.create({
-        body: `Your OPD Booking OTP is: ${otp}. Valid for 10 minutes. Do not share this code.`,
-        from: this.config.phoneNumber,
-        to: phoneNumber,
-      });
+      if (isVerifySid(this.config.serviceSid)) {
+        await this.client.verify.v2
+          .services(this.config.serviceSid)
+          .verifications.create({ to: phoneNumber, channel: "sms" });
+      } else {
+        await this.client.messages.create({
+          body: `Your OPD Booking OTP is: ${otp}. Valid for 10 minutes.`,
+          messagingServiceSid: this.config.serviceSid,
+          to: phoneNumber,
+        });
+      }
 
-      console.log(`SMS sent successfully: ${message.sid}`);
       return true;
-    } catch (error) {
-      console.error("Error sending OTP via Twilio:", error);
-      throw error;
+    } catch (error: any) {
+      console.error("[OTP] send error:", error?.message || error);
+      return false;
     }
   }
 
-  async verifySMS(
-    phoneNumber: string,
-    verificationCode: string
-  ): Promise<boolean> {
+  async checkVerification(phoneNumber: string, code: string): Promise<boolean | null> {
+    if (!this.config.accountSid || !this.config.authToken || !this.config.serviceSid) {
+      return null;
+    }
+
+    if (!isVerifySid(this.config.serviceSid)) {
+      return null;
+    }
+
     try {
-      if (!this.config.accountSid || !this.config.authToken) {
-        console.log(`[DEV MODE] Verification code verified for ${phoneNumber}`);
-        return true;
-      }
-
-        const verification = await this.client.verify.v2
-        .services(process.env.TWILIO_VERIFY_SERVICE_SID || "")
-        .verificationChecks.create({
-          to: phoneNumber,
-          code: verificationCode,
-        });
-
-      return verification.status === "approved";
-    } catch (error) {
-      console.error("Error verifying OTP with Twilio:", error);
+      const check = await this.client.verify.v2
+        .services(this.config.serviceSid)
+        .verificationChecks.create({ to: phoneNumber, code });
+      return check.status === "approved";
+    } catch (error: any) {
+      console.error("[OTP] verify check error:", error?.message || error);
       return false;
     }
   }
 
   async sendSMS(phoneNumber: string, messageBody: string): Promise<boolean> {
     try {
-      if (!this.config.accountSid || !this.config.authToken || !this.config.phoneNumber) {
-        console.log(`[DEV MODE SMS to ${phoneNumber}]: ${messageBody}`);
-        return true;
+      if (!this.config.accountSid || !this.config.authToken) {
+        return false;
       }
 
-      const message = await this.client.messages.create({
-        body: messageBody,
-        from: this.config.phoneNumber,
-        to: phoneNumber,
-      });
+      const opts: any = { body: messageBody, to: phoneNumber };
 
-      console.log(`SMS sent successfully: ${message.sid}`);
+      if (isVerifySid(this.config.serviceSid)) {
+        return false;
+      }
+
+      if (this.config.serviceSid) {
+        opts.messagingServiceSid = this.config.serviceSid;
+      }
+
+      await this.client.messages.create(opts);
       return true;
     } catch (error) {
-      console.error("Error sending SMS via Twilio:", error);
+      console.error("[SMS] send error:", error);
       return false;
     }
   }

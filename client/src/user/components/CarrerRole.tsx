@@ -5,114 +5,114 @@ import SectionBadge from "./SectionBadge";
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 type InfoRow = {
-    label: string;
-    value: string;
-    borderBottom?: string;
-    height?: string;
+  label: string;
+  value: string;
+  borderBottom?: string;
+  height?: string;
 };
 
 type BenefitItem = {
-    label: string;
-    text: string;
+  label: string;
+  text: string;
 };
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const infoRows: InfoRow[] = [
-    { label: "Type of Offer:", value: "Permanent contract" },
-    { label: "Work Schedule:", value: "Full-time / Flexible shifts" },
-    { label: "Key Benefit:", value: "NABH-aligned training environment" },
-    {
-        label: "Candidacy:",
-        value: "careers@swarajhospital.in",
-        borderBottom: "1px solid #aaa",
-    },
+  { label: "Type of Offer:", value: "Permanent contract" },
+  { label: "Work Schedule:", value: "Full-time / Flexible shifts" },
+  { label: "Key Benefit:", value: "NABH-aligned training environment" },
+  {
+    label: "Candidacy:",
+    value: "careers@swarajhospital.in",
+    borderBottom: "1px solid #aaa",
+  },
 ];
 
 const benefits: BenefitItem[] = [
-    {
-        label: "Remuneration:",
-        text: "Competitive salary based on qualification and experience, with structured increments.",
-    },
-    {
-        label: "Infrastructure:",
-        text: "Work with advanced critical care equipment including ventilators, cardiac monitors and infusion systems.",
-    },
-    {
-        label: "Coverage:",
-        text: "Medical benefits for you and your immediate family under the hospital's staff health scheme.",
-    },
+  {
+    label: "Remuneration:",
+    text: "Competitive salary based on qualification and experience, with structured increments.",
+  },
+  {
+    label: "Infrastructure:",
+    text: "Work with advanced critical care equipment including ventilators, cardiac monitors and infusion systems.",
+  },
+  {
+    label: "Coverage:",
+    text: "Medical benefits for you and your immediate family under the hospital's staff health scheme.",
+  },
 ];
 
 // ─── Icons ───────────────────────────────────────────────────────────────────
 
 const checkIcon = (
-    <div style={{
-        width: "24px",
-        height: "24px",
-        borderRadius: "6px",
-        backgroundColor: "#F1F2F1",
-        border: "1px solid #E6E6E6",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexShrink: 0
-    }}>
-        <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 4.5L4.5 8L11 1.5" stroke="#1F2A44" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-    </div>
+  <div style={{
+    width: "24px",
+    height: "24px",
+    borderRadius: "6px",
+    backgroundColor: "#F1F2F1",
+    border: "1px solid #E6E6E6",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: 0
+  }}>
+    <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1 4.5L4.5 8L11 1.5" stroke="#1F2A44" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  </div>
 );
 
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
 const SectionHeadingFirst = ({ children }: { children: string }) => (
-    <div className="section-heading">
-        {checkIcon}
-        <span className="section-heading-text">{children}</span>
-    </div>
+  <div className="section-heading">
+    {checkIcon}
+    <span className="section-heading-text">{children}</span>
+  </div>
 );
 
 const SectionHeadingWithIcon = ({ children }: { children: string }) => (
-    <div className="section-heading-2">
-        {checkIcon}
-        <span className="section-heading-2-text">{children}</span>
-    </div>
+  <div className="section-heading-2">
+    {checkIcon}
+    <span className="section-heading-2-text">{children}</span>
+  </div>
 );
 
 const BodyPara = ({ children }: { children: string }) => (
-    <div className="body-para">
-        <span className="body-text">{children}</span>
-    </div>
+  <div className="body-para">
+    <span className="body-text">{children}</span>
+  </div>
 );
 
 const FormField = ({
-    label,
-    placeholder,
-    type = "text",
+  label,
+  placeholder,
+  type = "text",
 }: {
-    label: string;
-    placeholder: string;
-    type?: string;
+  label: string;
+  placeholder: string;
+  type?: string;
 }) => (
-    <div className="form-field">
-        <div className="field-label">
-            <span className="field-label-text">
-                {label}
-                <span className="field-label-required">*</span>
-            </span>
-        </div>
-        <input type={type} placeholder={placeholder} className="field-input" />
+  <div className="form-field">
+    <div className="field-label">
+      <span className="field-label-text">
+        {label}
+        <span className="field-label-required">*</span>
+      </span>
     </div>
+    <input type={type} placeholder={placeholder} className="field-input" />
+  </div>
 );
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 const JobPostingSection: FunctionComponent = () => {
-    return (
-        <>
-            <style>{`
+  return (
+    <>
+      <style>{`
                 /* Container padding */
                 .career-page {
                   width: 100%;
@@ -666,7 +666,7 @@ const JobPostingSection: FunctionComponent = () => {
                   justify-content: space-between;
                   flex-wrap: wrap;
                   align-content: flex-start;
-                  padding: 60px 0 0;
+                  padding: 60px 0 120px;
                   gap: 20px;
                   max-width: 1360px;
                   box-sizing: border-box;
@@ -676,7 +676,7 @@ const JobPostingSection: FunctionComponent = () => {
                   .contact-section {
                     flex-direction: column;
                     align-items: stretch;
-                    padding: 40px 0 0;
+                    padding: 40px 0 80px;
                     gap: 32px;
                   }
                 }
@@ -915,6 +915,7 @@ const JobPostingSection: FunctionComponent = () => {
                   line-height: 24px;
                   font-size: 14px;
                   color: #505050;
+                  font-family: Inter, Arial, sans-serif;
                 }
 
                 .form-submit-row {
@@ -944,191 +945,191 @@ const JobPostingSection: FunctionComponent = () => {
                 }
             `}</style>
 
-            <div className="career-page">
-                {/* ── Hero ─────────────────────────────────────────────────────────── */}
-                <section className="hero-section">
-                    <div className="hero-inner">
-                        <div className="hero-top">
-                            {/* Title + badge */}
-                            <div className="hero-badge-wrap">
-                                <SectionBadge icon="/SVG.svg" label="Open Position" variant="dark" />
-                                <div className="hero-heading">
-                                    <h1 className="hero-title">
-                                        Staff Nurse
-                                        <br />
-                                        ICU &amp; Critical Care
-                                    </h1>
-                                </div>
-                            </div>
-
-                            {/* Description */}
-                            <div className="hero-desc">
-                                <div className="hero-desc-inner">
-                                    <span className="hero-desc-text">
-                                        Join a clinical team committed to delivering life-saving care
-                                        with precision, compassion and professionalism at Swaraj
-                                        Hospital, Balangir.
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="hero-divider" />
-                    </div>
-                </section>
-
-                {/* ── Job Details ──────────────────────────────────────────────────── */}
-                <div className="details-section">
-                    {/* Left – overview */}
-                    <div className="overview-col">
-                        <SectionHeadingFirst>Job Overview.</SectionHeadingFirst>
-                        <BodyPara>
-                            As a key member of our critical care team, you will deliver
-                            high-dependency nursing care within a fully equipped ICU and Step
-                            Down ICU. Our facility includes a dedicated NICU, Modular OT and
-                            24/7 emergency support infrastructure. You will work within a
-                            structured, senior-led team in a supportive and professionally
-                            rewarding environment at the heart of western Odisha's most advanced
-                            hospital.
-                        </BodyPara>
-
-                        <SectionHeadingWithIcon>
-                            Your Role &amp; Impact
-                        </SectionHeadingWithIcon>
-                        <BodyPara>
-                            You will ensure all patients in the ICU receive continuous,
-                            attentive and clinically accurate nursing care aligned with NABH
-                            standards. Your role involves close coordination with senior
-                            consultants, monitoring of critical vital parameters, medication
-                            administration and detailed patient documentation. Beyond direct
-                            care, you will contribute to infection control protocols and support
-                            junior staff development on the ward.
-                        </BodyPara>
-
-                        <SectionHeadingWithIcon>Professional Profile</SectionHeadingWithIcon>
-                        <BodyPara>
-                            Candidates should possess a GNM or B.Sc. Nursing degree from a recognized institution and hold a valid registration with the Odisha Nurses and Midwives Council (ONMC). Prior clinical experience in an ICU or critical care setup is highly valued.
-                        </BodyPara>
-
-                        <SectionHeadingWithIcon>
-                            Employment &amp; Benefits
-                        </SectionHeadingWithIcon>
-                        <div className="benefits-list">
-                            {benefits.map((b, i) => (
-                                <div key={i} className="benefit-row">
-                                    <span className="benefit-bullet">•</span>
-                                    <span className="benefit-text">
-                                        <strong className="benefit-label">{b.label}</strong> {b.text}
-                                    </span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Right – essential info card */}
-                    <div className="info-card">
-                        <div className="info-card-heading">
-                            <h3 className="info-card-title">Essential information</h3>
-                        </div>
-
-                        <div className="info-rows">
-                            {infoRows.map((row, i) => (
-                                <div
-                                    key={i}
-                                    className="info-row"
-                                    style={{
-                                        ...(row.borderBottom ? { borderBottom: row.borderBottom } : {}),
-                                    }}
-                                >
-                                    <div className="info-row-label">
-                                        <span className="info-row-label-text">{row.label}</span>
-                                    </div>
-                                    <div className="info-row-value">
-                                        <span className="info-row-value-text">{row.value}</span>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-
-                        <div className="info-card-cta">
-                            <Link to="/career" className="cta-button">
-                                <span className="cta-button-text">See All Job Openings •</span>
-                            </Link>
-                        </div>
-                    </div>
+      <div className="career-page">
+        {/* ── Hero ─────────────────────────────────────────────────────────── */}
+        <section className="hero-section">
+          <div className="hero-inner">
+            <div className="hero-top">
+              {/* Title + badge */}
+              <div className="hero-badge-wrap">
+                <SectionBadge icon="/SVG.svg" label="Open Position" variant="dark" />
+                <div className="hero-heading">
+                  <h1 className="hero-title">
+                    Staff Nurse
+                    <br />
+                    ICU &amp; Critical Care
+                  </h1>
                 </div>
+              </div>
 
-                {/* ── Contact / Form ───────────────────────────────────────────────── */}
-                <div className="contact-section">
-                    {/* Left – contact blurb */}
-                    <div className="contact-left">
-                        <div className="contact-badge">
-                            <span className="contact-badge-label">Affiliated Labs</span>
-                        </div>
-
-                        <div className="contact-heading-wrap">
-                            <h1 className="contact-title">
-                                Any Queries?
-                                <br />
-                                Let Us Know.
-                            </h1>
-                        </div>
-
-                        <div className="contact-desc-wrap">
-                            <span className="contact-desc">
-                                We work with dedicated clinical and administrative staff across
-                                every department. Reach out and our HR team will respond within 48
-                                hours.
-                            </span>
-                        </div>
-                    </div>
-
-                    {/* Right – form */}
-                    <div className="form-wrap">
-                        <div className="form">
-                            {/* Row 1: name + email */}
-                            <div className="form-row">
-                                <FormField
-                                    label="Full Name"
-                                    placeholder="Enter your legal name"
-                                />
-                                <FormField
-                                    label="Email Address"
-                                    placeholder="Enter Your email"
-                                    type="email"
-                                />
-                            </div>
-
-                            {/* Row 2: phone */}
-                            <div className="form-row">
-                                <FormField
-                                    label="Phone Number"
-                                    placeholder="Enter your phone number"
-                                    type="tel"
-                                />
-                            </div>
-
-                            {/* Row 3: message */}
-                            <div className="form-field-full">
-                                <div className="field-label">
-                                    <span className="field-label-text">Write Message</span>
-                                </div>
-                                <textarea placeholder="Your message" className="field-textarea" />
-                                <span className="form-hint">
-                                    Request only. Our team will call you soon to confirm your slot.
-                                </span>
-                            </div>
-
-                            {/* Submit */}
-                            <div className="form-submit-row">
-                                <button className="submit-btn">Submit Now</button>
-                            </div>
-                        </div>
-                    </div>
+              {/* Description */}
+              <div className="hero-desc">
+                <div className="hero-desc-inner">
+                  <span className="hero-desc-text">
+                    Join a clinical team committed to delivering life-saving care
+                    with precision, compassion and professionalism at Swaraj
+                    Hospital, Balangir.
+                  </span>
                 </div>
+              </div>
             </div>
-        </>
-    );
+
+            <div className="hero-divider" />
+          </div>
+        </section>
+
+        {/* ── Job Details ──────────────────────────────────────────────────── */}
+        <div className="details-section">
+          {/* Left – overview */}
+          <div className="overview-col">
+            <SectionHeadingFirst>Job Overview.</SectionHeadingFirst>
+            <BodyPara>
+              As a key member of our critical care team, you will deliver
+              high-dependency nursing care within a fully equipped ICU and Step
+              Down ICU. Our facility includes a dedicated NICU, Modular OT and
+              24/7 emergency support infrastructure. You will work within a
+              structured, senior-led team in a supportive and professionally
+              rewarding environment at the heart of western Odisha's most advanced
+              hospital.
+            </BodyPara>
+
+            <SectionHeadingWithIcon>
+              Your Role &amp; Impact
+            </SectionHeadingWithIcon>
+            <BodyPara>
+              You will ensure all patients in the ICU receive continuous,
+              attentive and clinically accurate nursing care aligned with NABH
+              standards. Your role involves close coordination with senior
+              consultants, monitoring of critical vital parameters, medication
+              administration and detailed patient documentation. Beyond direct
+              care, you will contribute to infection control protocols and support
+              junior staff development on the ward.
+            </BodyPara>
+
+            <SectionHeadingWithIcon>Professional Profile</SectionHeadingWithIcon>
+            <BodyPara>
+              Candidates should possess a GNM or B.Sc. Nursing degree from a recognized institution and hold a valid registration with the Odisha Nurses and Midwives Council (ONMC). Prior clinical experience in an ICU or critical care setup is highly valued.
+            </BodyPara>
+
+            <SectionHeadingWithIcon>
+              Employment &amp; Benefits
+            </SectionHeadingWithIcon>
+            <div className="benefits-list">
+              {benefits.map((b, i) => (
+                <div key={i} className="benefit-row">
+                  <span className="benefit-bullet">•</span>
+                  <span className="benefit-text">
+                    <strong className="benefit-label">{b.label}</strong> {b.text}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right – essential info card */}
+          <div className="info-card">
+            <div className="info-card-heading">
+              <h3 className="info-card-title">Essential information</h3>
+            </div>
+
+            <div className="info-rows">
+              {infoRows.map((row, i) => (
+                <div
+                  key={i}
+                  className="info-row"
+                  style={{
+                    ...(row.borderBottom ? { borderBottom: row.borderBottom } : {}),
+                  }}
+                >
+                  <div className="info-row-label">
+                    <span className="info-row-label-text">{row.label}</span>
+                  </div>
+                  <div className="info-row-value">
+                    <span className="info-row-value-text">{row.value}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="info-card-cta">
+              <Link to="/career" className="cta-button">
+                <span className="cta-button-text">See All Job Openings •</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Contact / Form ───────────────────────────────────────────────── */}
+        <div className="contact-section">
+          {/* Left – contact blurb */}
+          <div className="contact-left">
+            <div className="contact-badge">
+              <span className="contact-badge-label">Affiliated Labs</span>
+            </div>
+
+            <div className="contact-heading-wrap">
+              <h1 className="contact-title">
+                Any Queries?
+                <br />
+                Let Us Know.
+              </h1>
+            </div>
+
+            <div className="contact-desc-wrap">
+              <span className="contact-desc">
+                We work with dedicated clinical and administrative staff across
+                every department. Reach out and our HR team will respond within 48
+                hours.
+              </span>
+            </div>
+          </div>
+
+          {/* Right – form */}
+          <div className="form-wrap">
+            <div className="form">
+              {/* Row 1: name + email */}
+              <div className="form-row">
+                <FormField
+                  label="Full Name"
+                  placeholder="Enter your legal name"
+                />
+                <FormField
+                  label="Email Address"
+                  placeholder="Enter Your email"
+                  type="email"
+                />
+              </div>
+
+              {/* Row 2: phone */}
+              <div className="form-row">
+                <FormField
+                  label="Phone Number"
+                  placeholder="Enter your phone number"
+                  type="tel"
+                />
+              </div>
+
+              {/* Row 3: message */}
+              <div className="form-field-full">
+                <div className="field-label">
+                  <span className="field-label-text">Write Message</span>
+                </div>
+                <textarea placeholder="Your message" className="field-textarea" />
+                <span className="form-hint">
+                  Request only. Our team will call you soon to confirm your slot.
+                </span>
+              </div>
+
+              {/* Submit */}
+              <div className="form-submit-row">
+                <button className="submit-btn">Submit Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default JobPostingSection;

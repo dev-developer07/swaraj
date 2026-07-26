@@ -15,7 +15,7 @@ const Section3: FunctionComponent<Section3Type> = ({ className = "" }) => {
   return (
     <>
       <Box
-        className={`self-stretch overflow-hidden flex flex-col justify-center items-start !py-32 !pl-num-280 !pr-num-280 relative isolate z-[1] mq925:!pl-num-70 mq925:!pr-num-70 mq925:!py-16 mq925:box-border mq1350:!pl-num-140 mq1350:!pr-num-140 mq1350:box-border mq450:!pl-6 mq450:!pr-6 mq450:!py-16 mq450:box-border min-h-[600px] ${className} max-[450px]:!w-full max-[450px]:!max-w-full max-[450px]:!mx-auto max-[450px]:!h-[500px] max-[450px]:!min-h-[500px] max-[450px]:!pt-[60px] max-[450px]:!pb-[40px] max-[450px]:!px-6 max-[450px]:box-border`}
+        className={`self-stretch overflow-hidden flex flex-col justify-center items-start !py-32 !pl-num-280 !pr-num-280 relative isolate z-[1] mq1825:!pl-num-140 mq1825:!pr-num-140 mq925:!pl-num-70 mq925:!pr-num-70 mq925:!py-16 mq925:box-border mq1350:!pl-num-140 mq1350:!pr-num-140 mq1350:box-border mq450:!pl-6 mq450:!pr-6 mq450:!py-16 mq450:box-border min-h-[600px] ${className} max-[450px]:!w-full max-[450px]:!max-w-full max-[450px]:!mx-auto max-[450px]:!h-[500px] max-[450px]:!min-h-[500px] max-[450px]:!pt-[60px] max-[450px]:!pb-[40px] max-[450px]:!px-6 max-[450px]:box-border`}
       >
         <img
           className="w-full h-full absolute inset-0 object-cover z-[0] shrink-0"

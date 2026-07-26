@@ -1,53 +1,52 @@
-import crypto from "crypto";
 import { prisma } from "../lib/db.js";
 import twilioService from "./twilio.service.js";
+import crypto from "crypto";
 
 interface OtpResult {
   success: boolean;
   message: string;
+  exists?: boolean;
   userId?: number;
   token?: string;
   isRegistered?: boolean;
+  user?: {
+    id: number;
+    name: string | null;
+    careof: string | null;
+    phone: string;
+    email: string | null;
+    address: string | null;
+  };
 }
 
-class OtpService {
-  private otpLength: number = parseInt(process.env.OTP_LENGTH || "6");
-  private otpExpiryMinutes: number = parseInt(
-    process.env.OTP_EXPIRY_MINUTES || "10"
-  );
+interface OtpEntry {
+  otp: string;
+  expiresAt: number;
+  attempts: number;
+}
 
-  generateOTP(): string {
-    return crypto
-      .randomInt(Math.pow(10, this.otpLength - 1), Math.pow(10, this.otpLength))
-      .toString();
-  }
+const otpStore = new Map<string, OtpEntry>();
+
+const OTP_LENGTH = 6;
+const OTP_EXPIRY_MS = 10 * 60 * 1000;
+const MAX_ATTEMPTS = 5;
+
+class OtpService {
 
   async requestOTP(phoneNumber: string): Promise<OtpResult> {
     try {
       const normalizedPhone = this.normalizePhoneNumber(phoneNumber);
 
-      let user = await prisma.user.findUnique({
+      const existingUser = await prisma.user.findUnique({
         where: { phone: normalizedPhone },
       });
 
-      if (!user) {
-        user = await prisma.user.create({
-          data: {
-            phone: normalizedPhone,
-          },
-        });
-      }
-
       const otp = this.generateOTP();
-      const expiresAt = new Date(Date.now() + this.otpExpiryMinutes * 60 * 1000);
 
-      await prisma.otpLog.create({
-        data: {
-          userId: user.id,
-          phone: normalizedPhone,
-          otp,
-          expiresAt,
-        },
+      otpStore.set(normalizedPhone, {
+        otp,
+        expiresAt: Date.now() + OTP_EXPIRY_MS,
+        attempts: 0,
       });
 
       await twilioService.sendOTP(normalizedPhone, otp);
@@ -55,10 +54,10 @@ class OtpService {
       return {
         success: true,
         message: "OTP sent successfully",
-        userId: user.id,
+        exists: !!existingUser?.name,
       };
     } catch (error) {
-      console.error("Error requesting OTP:", error);
+      console.error("[OTP] request error:", error);
       return {
         success: false,
         message: "Failed to send OTP. Please try again.",
@@ -73,45 +72,50 @@ class OtpService {
     try {
       const normalizedPhone = this.normalizePhoneNumber(phoneNumber);
 
-      const user = await prisma.user.findUnique({
+      // 1. Try Twilio Verify API (returns false if invalid, null if not using Verify)
+      const twilioResult = await twilioService.checkVerification(normalizedPhone, otp);
+
+      if (twilioResult === false) {
+        return { success: false, message: "Invalid or expired OTP" };
+      }
+
+      // 2. If Verify API didn't handle it (null), check local store
+      if (twilioResult === null) {
+        const entry = otpStore.get(normalizedPhone);
+
+        if (!entry) {
+          return { success: false, message: "No OTP requested for this number" };
+        }
+
+        if (Date.now() > entry.expiresAt) {
+          otpStore.delete(normalizedPhone);
+          return { success: false, message: "OTP has expired. Please request a new one." };
+        }
+
+        if (entry.attempts >= MAX_ATTEMPTS) {
+          otpStore.delete(normalizedPhone);
+          return { success: false, message: "Too many failed attempts. Please request a new OTP." };
+        }
+
+        if (entry.otp !== otp) {
+          entry.attempts += 1;
+          return { success: false, message: "Invalid OTP" };
+        }
+      }
+
+      otpStore.delete(normalizedPhone);
+
+      let user = await prisma.user.findUnique({
         where: { phone: normalizedPhone },
       });
 
       if (!user) {
-        return {
-          success: false,
-          message: "User not found",
-        };
+        user = await prisma.user.create({
+          data: { phone: normalizedPhone },
+        });
       }
 
-      const otpLog = await prisma.otpLog.findFirst({
-        where: {
-          userId: user.id,
-          phone: normalizedPhone,
-          otp,
-          isUsed: false,
-          expiresAt: {
-            gt: new Date(),
-          },
-        },
-        orderBy: {
-          createdAt: "desc",
-        },
-      });
-
-      if (!otpLog) {
-        return {
-          success: false,
-          message: "Invalid or expired OTP",
-        };
-      }
-
-      await prisma.otpLog.update({
-        where: { id: otpLog.id },
-        data: { isUsed: true },
-      });
-
-      const token = this.generateToken(user.id, user.phone);
+      const token = await this.generateToken(user.id, user.phone);
 
       return {
         success: true,
@@ -119,9 +123,17 @@ class OtpService {
         userId: user.id,
         token,
         isRegistered: !!user.name,
+        user: {
+          id: user.id,
+          name: user.name,
+          careof: user.careof,
+          phone: user.phone,
+          email: user.email,
+          address: user.address,
+        },
       };
     } catch (error) {
-      console.error("Error verifying OTP:", error);
+      console.error("[OTP] verify error:", error);
       return {
         success: false,
         message: "Failed to verify OTP. Please try again.",
@@ -129,14 +141,17 @@ class OtpService {
     }
   }
 
-  private generateToken(userId: number, phone: string): string {
-    const jwt = require("jsonwebtoken");
+  private generateOTP(): string {
+    return crypto
+      .randomInt(Math.pow(10, OTP_LENGTH - 1), Math.pow(10, OTP_LENGTH))
+      .toString();
+  }
+
+  private async generateToken(userId: number, phone: string): Promise<string> {
+    const { createRequire } = await import("node:module");
+    const jwt = createRequire(import.meta.url)("jsonwebtoken");
     return jwt.sign(
-      {
-        userId,
-        phone,
-        iat: Date.now(),
-      },
+      { userId, phone, iat: Date.now() },
       process.env.JWT_SECRET || "default_secret",
       { expiresIn: "24h" }
     );
@@ -156,21 +171,6 @@ class OtpService {
     }
 
     return normalized;
-  }
-
-  async cleanupExpiredOTPs(): Promise<void> {
-    try {
-      await prisma.otpLog.deleteMany({
-        where: {
-          expiresAt: {
-            lt: new Date(),
-          },
-        },
-      });
-      console.log("Expired OTPs cleaned up");
-    } catch (error) {
-      console.error("Error cleaning up expired OTPs:", error);
-    }
   }
 }
 

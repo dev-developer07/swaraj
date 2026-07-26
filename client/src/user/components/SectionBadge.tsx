@@ -29,7 +29,7 @@ const SectionBadge: FunctionComponent<SectionBadgeProps> = ({
 
   return (
     <Box
-      className={`[filter:blur(0px)] rounded-num-4 ${bgClass} flex items-center !pt-1 !pb-1 !pl-num-6 !pr-2 gap-1 ${className}`}
+      className={`[filter:blur(0px)] rounded-num-4 ${bgClass} flex items-center !pt-1 !pb-1 !pl-num-6 !pr-2 gap-1 w-fit ${className}`}
     >
       <Box className="h-5 w-5 flex flex-col items-start justify-center">
         <img

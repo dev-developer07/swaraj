@@ -31,7 +31,7 @@ export class AuthController {
         success: true,
         message: result.message,
         data: {
-          userId: result.userId,
+          exists: result.exists,
         },
       });
     } catch (error) {
@@ -72,6 +72,7 @@ export class AuthController {
           userId: result.userId,
           token: result.token,
           isRegistered: result.isRegistered,
+          user: result.user,
         },
       });
     } catch (error) {

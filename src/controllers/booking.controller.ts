@@ -149,15 +149,28 @@ export class bookingController {
 
             const rp = getRazorpayInstance();
             if (rp) {
-                // Create Razorpay Order
-                const amountInPaise = Math.round(Number(doctor.bookingFee) * 100);
-                const order = await rp.orders.create({
-                    amount: amountInPaise,
-                    currency: "INR",
-                    receipt: bookingReference,
-                });
-                razorpayOrderId = order.id;
-                razorpayOrderPayload = order;
+                try {
+                    const amountInPaise = Math.round(Number(doctor.bookingFee) * 100);
+                    const order = await rp.orders.create({
+                        amount: amountInPaise,
+                        currency: "INR",
+                        receipt: bookingReference,
+                    });
+                    razorpayOrderId = order.id;
+                    razorpayOrderPayload = order;
+                } catch (razorpayError: any) {
+                    console.warn("[Razorpay] Order creation failed, falling back to MOCK mode:", razorpayError?.error?.description || razorpayError?.message || razorpayError);
+                    razorpayOrderId = `order_mock_${Date.now()}`;
+                    razorpayOrderPayload = {
+                        id: razorpayOrderId,
+                        entity: "order",
+                        amount: Math.round(Number(doctor.bookingFee) * 100),
+                        currency: "INR",
+                        receipt: bookingReference,
+                        status: "created",
+                        created_at: Math.floor(Date.now() / 1000),
+                    };
+                }
             } else {
                 console.warn("Razorpay credentials missing. Running in MOCK payment mode.");
                 razorpayOrderId = `order_mock_${Date.now()}`;
@@ -204,7 +217,8 @@ export class bookingController {
                 data: {
                     booking: result.booking,
                     payment: result.payment,
-                    razorpayOrder: razorpayOrderPayload
+                    razorpayOrder: razorpayOrderPayload,
+                    razorpayKeyId: rp ? (process.env.RAZORPAY_KEY_ID || null) : null
                 }
             });
 

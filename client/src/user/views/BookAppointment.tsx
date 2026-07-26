@@ -1,810 +1,684 @@
-import { type FunctionComponent, useState, useEffect } from "react";
-import { Box, Typography } from "@mui/material";
+import { type FunctionComponent, useState, useEffect, useRef, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
+import { Box, Typography } from "@mui/material";
 import Navbar from "../components/Navbar";
 import Section3 from "../components/Section3";
 import Section6 from "../components/Section6";
 import Background1 from "../components/Background1";
 import Section7 from "../components/Section7";
-import { DOCTORS_DATA } from "./MeetTheTeam";
-import { submitLead } from "../../services/user.service";
+import SectionBadge from "../components/SectionBadge";
+import {
+  requestOTP,
+  verifyOTP,
+  getUserProfile,
+  updateUserProfile,
+  getPublicDoctors,
+  requestBooking,
+  verifyPayment,
+} from "../../services/user.service";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
+type Step = "phone" | "otp" | "form" | "book" | "success";
+
+const RESEND_COOLDOWN = 30;
+const NAVY = "#1F2A44";
+const TEXT_DARK = "#0B0C0F";
+const TEXT_MUTED = "#7E7F80";
+const INPUT_BG = "#F1F2F1";
+const BORDER = "#E6E6E6";
+const RED = "#ef4444";
 
 const BookAppointment: FunctionComponent = () => {
   const [searchParams] = useSearchParams();
   const preselectedDoctorId = searchParams.get("doctor");
 
-  // ─── Form State ───────────────────────────────────────────
+  const [step, setStep] = useState<Step>("phone");
+  const [phone, setPhone] = useState("");
+  const [otp, setOtp] = useState("");
+  const [token, setToken] = useState<string | null>(() => localStorage.getItem("auth_token"));
+  const [isRegistered, setIsRegistered] = useState(false);
+
+  const [resendTimer, setResendTimer] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
   const [name, setName] = useState("");
   const [careof, setCareof] = useState("");
-  const [age, setAge] = useState("");
+  const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
-  const [phone, setPhone] = useState("");
-  const [preferredDate, setPreferredDate] = useState("");
-  const [doctorId, setDoctorId] = useState(preselectedDoctorId || "");
+  const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
-  const [message, setMessage] = useState("");
+
+  const [doctors, setDoctors] = useState<any[]>([]);
+  const [selectedDoctorId, setSelectedDoctorId] = useState(preselectedDoctorId || "");
+  const [bookingDate, setBookingDate] = useState("");
+  const [bookingNotes, setBookingNotes] = useState("");
+  const [bookingResult, setBookingResult] = useState<any>(null);
+  const [scheduleDays, setScheduleDays] = useState<string[]>([]);
+  const [scheduleTime, setScheduleTime] = useState("");
+
+  useEffect(() => {
+    if (!selectedDoctorId) { setScheduleDays([]); setScheduleTime(""); return; }
+    const doc = doctors.find((d) => d.id === selectedDoctorId);
+    if (!doc || !doc.schedules) { setScheduleDays([]); setScheduleTime(""); return; }
+    let sched = doc.schedules;
+    try { while (typeof sched === "string") { const t = JSON.parse(sched); if (t === sched) break; sched = t; } } catch { }
+    const parsed = Array.isArray(sched) ? sched : [];
+    setScheduleDays(parsed.map((s: any) => s.day).filter(Boolean));
+    if (parsed[0]?.startTime) {
+      const fmt = (t: string) => { const [h, m] = t.split(":"); const hr = parseInt(h); return `${hr > 12 ? hr - 12 : hr}:${m || "00"} ${hr >= 12 ? "PM" : "AM"}`; };
+      setScheduleTime(`${fmt(parsed[0].startTime)}${parsed[0].endTime ? ` - ${fmt(parsed[0].endTime)}` : ""}`);
+    } else { setScheduleTime(""); }
+  }, [selectedDoctorId, doctors]);
+
+  const scheduleError = (() => {
+    if (!bookingDate || scheduleDays.length === 0) return "";
+    const dayName = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][new Date(bookingDate).getDay()];
+    return scheduleDays.some((d) => d.toLowerCase() === dayName.toLowerCase()) ? "" : `Doctor is not available on ${dayName}s. Available: ${scheduleDays.join(", ")}`;
+  })();
+
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
-  // Scroll to top on mount
+  const phoneRef = useRef<HTMLInputElement>(null);
+  const otpRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => { window.scrollTo({ top: 0, behavior: "smooth" }); }, []);
+
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (step === "phone") phoneRef.current?.focus();
+    if (step === "otp") setTimeout(() => otpRef.current?.focus(), 100);
+  }, [step]);
+
+  useEffect(() => {
+    if (token) {
+      getUserProfile(token)
+        .then((res) => {
+          if (res.success && res.data) {
+            const u = res.data;
+            setPhone(u.phone || "");
+            setName(u.name || "");
+            setCareof(u.careof || "");
+            setEmail(u.email || "");
+            setAddress(u.address || "");
+            setIsRegistered(!!u.name);
+            setStep("book");
+            getPublicDoctors().then((r) => {
+              if (r.success && Array.isArray(r.data)) setDoctors(r.data.filter((d: any) => d.isActive !== false));
+            }).catch(() => { });
+          }
+        })
+        .catch(() => {
+          localStorage.removeItem("auth_token");
+          setToken(null);
+        });
+    }
   }, []);
 
-  // Set default doctor from URL params
   useEffect(() => {
     if (preselectedDoctorId) {
-      setDoctorId(preselectedDoctorId);
+      setSelectedDoctorId(preselectedDoctorId);
     }
   }, [preselectedDoctorId]);
 
-  const handleSubmit = async () => {
-    // Validation
-    if (!name.trim()) {
-      setErrorMessage("Name is required");
-      setStatus("error");
-      return;
-    }
-    if (!phone.trim()) {
-      setErrorMessage("Phone number is required");
-      setStatus("error");
-      return;
-    }
-    if (!preferredDate) {
-      setErrorMessage("Preferred date is required");
-      setStatus("error");
-      return;
-    }
-    if (!doctorId) {
-      setErrorMessage("Please select a doctor");
-      setStatus("error");
-      return;
-    }
-
-    setStatus("submitting");
-    setErrorMessage("");
-
-    try {
-      const notes = [
-        careof ? `C/O: ${careof}` : "",
-        age ? `Age: ${age}` : "",
-        address ? `Address: ${address}` : "",
-        gender ? `Gender: ${gender}` : "",
-        message || "",
-      ]
-        .filter(Boolean)
-        .join(" | ");
-
-      await submitLead({
-        name: name.trim(),
-        phone: phone.trim(),
-        preferredDate,
-        doctorId,
-        notes: notes || undefined,
+  const startTimer = useCallback(() => {
+    setResendTimer(RESEND_COOLDOWN);
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setResendTimer((prev) => {
+        if (prev <= 1) {
+          if (timerRef.current) clearInterval(timerRef.current);
+          return 0;
+        }
+        return prev - 1;
       });
+    }, 1000);
+  }, []);
 
-      setStatus("success");
-    } catch (err: any) {
-      setStatus("error");
-      setErrorMessage(
-        err?.message || "Something went wrong. Please try again."
-      );
-    }
+  useEffect(() => () => { if (timerRef.current) clearInterval(timerRef.current); }, []);
+
+  const selectedDoctor = doctors.find((d) => d.id === selectedDoctorId);
+
+  const handleSendOTP = async () => {
+    const cleaned = phone.replace(/\D/g, "");
+    if (cleaned.length < 10) { setStatus("error"); setErrorMessage("Enter a valid 10-digit phone number"); return; }
+    setStatus("submitting"); setErrorMessage("");
+    try {
+      const res = await requestOTP(phone);
+      if (res.success) {
+        setStep("otp"); startTimer(); setStatus("idle");
+      } else { setStatus("error"); setErrorMessage(res.message || "Failed to send OTP"); }
+    } catch (err: any) { setStatus("error"); setErrorMessage(err?.message || "Something went wrong"); }
   };
 
-  // Get today's date for min date
+  const handleVerifyOTP = async () => {
+    const cleaned = otp.replace(/\D/g, "");
+    if (cleaned.length < 4) { setStatus("error"); setErrorMessage("Enter the 6-digit code sent to your phone"); return; }
+    setStatus("submitting"); setErrorMessage("");
+    try {
+      const res = await verifyOTP(phone, otp);
+      if (res.success) {
+        const t = res.data?.token;
+        if (t) { localStorage.setItem("auth_token", t); setToken(t); }
+        setIsRegistered(res.data?.isRegistered || false);
+        const u = res.data?.user;
+        if (u) { setName(u.name || ""); setCareof(u.careof || ""); setEmail(u.email || ""); setAddress(u.address || ""); }
+        setStep("form"); setStatus("idle");
+      } else { setStatus("error"); setErrorMessage(res.message || "Invalid OTP"); }
+    } catch (err: any) { setStatus("error"); setErrorMessage(err?.message || "Something went wrong"); }
+  };
+
+  const handleResend = async () => {
+    setOtp(""); setErrorMessage(""); setStatus("submitting");
+    try { await requestOTP(phone); startTimer(); setStatus("idle"); } catch { setStatus("error"); setErrorMessage("Failed to resend OTP"); }
+  };
+
+  const handleSaveProfile = async () => {
+    if (!name.trim()) { setStatus("error"); setErrorMessage("Name is required"); return; }
+    setStatus("submitting"); setErrorMessage("");
+    try {
+      const t = token || localStorage.getItem("auth_token");
+      if (!t) throw new Error("Not authenticated");
+      await updateUserProfile({ name: name.trim(), careof: careof.trim() || undefined, email: email.trim() || undefined, address: address.trim() || undefined }, t);
+      setStatus("idle");
+      if (!selectedDoctorId) {
+        setStep("success");
+      } else {
+        setStep("book");
+        const docRes = await getPublicDoctors();
+        if (docRes.success && Array.isArray(docRes.data)) {
+          setDoctors(docRes.data.filter((d: any) => d.isActive !== false));
+        }
+        setBookingDate("");
+        setBookingNotes("");
+      }
+    } catch (err: any) { setStatus("error"); setErrorMessage(err?.message || "Failed to save details"); }
+  };
+
+  const loadRazorpayScript = () =>
+    new Promise<void>((resolve) => {
+      if ((window as any).Razorpay) return resolve();
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      script.onload = () => resolve();
+      script.onerror = () => resolve();
+      document.body.appendChild(script);
+    });
+
+  const handleConfirmBooking = async () => {
+    if (!selectedDoctorId) { setStatus("error"); setErrorMessage("Please select a doctor"); return; }
+    if (!bookingDate) { setStatus("error"); setErrorMessage("Please select an appointment date"); return; }
+    setStatus("submitting"); setErrorMessage("");
+    try {
+      const t = token || localStorage.getItem("auth_token");
+      if (!t) throw new Error("Not authenticated");
+      if (scheduleError) { setStatus("error"); setErrorMessage(scheduleError); return; }
+
+      const res = await requestBooking({
+        doctorId: selectedDoctorId,
+        appointmentDate: bookingDate,
+        notes: bookingNotes.trim() || undefined,
+        patientName: name,
+        phone,
+        email: email || undefined,
+        careof: careof || undefined,
+        address: address || undefined,
+      }, t);
+
+      if (!res.success) {
+        setStatus("error"); setErrorMessage(res.message || "Booking failed. Please try again.");
+        return;
+      }
+
+      const order = res.data?.razorpayOrder;
+      const keyId = res.data?.razorpayKeyId;
+
+      // Mock mode — no real Razorpay order
+      if (!keyId || !order || order.id?.startsWith("order_mock_")) {
+        setBookingResult(res.data);
+        setStep("success");
+        setStatus("idle");
+        return;
+      }
+
+      // Real Razorpay — open checkout
+      await loadRazorpayScript();
+      if (!(window as any).Razorpay) {
+        setStatus("error"); setErrorMessage("Payment gateway failed to load. Please try again.");
+        return;
+      }
+
+      const options = {
+        key: keyId,
+        amount: order.amount,
+        currency: order.currency || "INR",
+        name: "Swaraj Hospital",
+        description: selectedDoctor ? `Appointment with ${selectedDoctor.name}` : "Appointment Booking",
+        order_id: order.id,
+        prefill: { name: name || "", contact: phone, email: email || "" },
+        theme: { color: "#1F2A44" },
+        handler: async (response: any) => {
+          try {
+            const vRes = await verifyPayment({
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+            }, t);
+            if (vRes.success) {
+              setBookingResult(vRes.data);
+              setStep("success");
+              setStatus("idle");
+            } else {
+              setStatus("error"); setErrorMessage("Payment verification failed. Please contact support.");
+            }
+          } catch {
+            setStatus("error"); setErrorMessage("Payment verification failed. Please contact support.");
+          }
+        },
+        modal: {
+          ondismiss: () => {
+            setStatus("idle");
+            setErrorMessage("");
+          },
+        },
+      };
+
+      const rzp = new (window as any).Razorpay(options);
+      rzp.on("payment.failed", (response: any) => {
+        setStatus("error"); setErrorMessage(response.error?.description || "Payment failed. Please try again.");
+      });
+      rzp.open();
+    } catch (err: any) { setStatus("error"); setErrorMessage(err?.message || "Something went wrong"); }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("auth_token"); setToken(null); setPhone(""); setOtp("");
+    setName(""); setCareof(""); setEmail(""); setAddress(""); setAge(""); setGender("");
+    setBookingResult(null); setBookingDate(""); setBookingNotes("");
+    setStep("phone"); setStatus("idle"); setErrorMessage("");
+    if (timerRef.current) clearInterval(timerRef.current); setResendTimer(0);
+  };
+
+  const handleEditPhone = () => {
+    setStep("phone"); setOtp(""); setStatus("idle"); setErrorMessage("");
+    if (timerRef.current) clearInterval(timerRef.current); setResendTimer(0);
+  };
+
+  const stepLabels = ["Verify", "Details", "Book", "Confirm"];
+  const currentIdx = step === "phone" || step === "otp" ? 0 : step === "form" ? 1 : step === "book" ? 2 : 3;
+
+  const stl = (overrides: React.CSSProperties = {}): React.CSSProperties => ({
+    boxSizing: "border-box", display: "flex", flexDirection: "column", alignItems: "flex-start",
+    padding: "16px 14px", width: "100%", height: "52px", background: "#FFFFFF",
+    border: "1px solid #E6E6E6", borderRadius: "8px", outline: "none",
+    fontFamily: "'Inter'", fontSize: "15px", color: TEXT_DARK, transition: "all 0.2s",
+    ...overrides,
+  });
+
+  const formField = (label: string, value: string, onChange: (v: string) => void, placeholder: string, type = "text", required = false) => (
+    <Box sx={{ display: "flex", flexDirection: "column", gap: "10px", width: "100%", flexGrow: 1 }}>
+      <Typography sx={{ fontFamily: "'Lilex'", fontWeight: 500, fontSize: "12px", lineHeight: "18px", textTransform: "uppercase", color: NAVY, letterSpacing: "0.3px" }}>
+        {label}{required ? " *" : ""}
+      </Typography>
+      <input
+        ref={type === "tel" ? phoneRef : undefined}
+        type={type} placeholder={placeholder} value={value}
+        onChange={(e) => onChange(e.target.value)}
+        style={stl()}
+        className="placeholder:text-[#A0A0A0] focus:border-[#1F2A44]"
+        onFocus={(e) => { e.target.style.borderColor = NAVY; }}
+        onBlur={(e) => { if (!value) { e.target.style.borderColor = "#E6E6E6"; } }}
+      />
+    </Box>
+  );
+
+  const Spinner = () => (
+    <svg className="animate-spin" width="18" height="18" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" opacity="0.3" />
+      <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+    </svg>
+  );
+
+  const ErrorBox = () => errorMessage ? (
+    <Box sx={{ display: "flex", alignItems: "center", gap: "10px", p: "12px 16px", borderRadius: "10px", bgcolor: "#FEF2F2", border: "1px solid #FECACA", width: "100%" }}>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={RED} strokeWidth="2"><circle cx="12" cy="12" r="10" /><line x1="15" y1="9" x2="9" y2="15" /><line x1="9" y1="9" x2="15" y2="15" /></svg>
+      <Typography sx={{ fontFamily: "'Inter'", fontSize: "14px", color: RED }}>{errorMessage}</Typography>
+    </Box>
+  ) : null;
+
   const today = new Date().toISOString().split("T")[0];
 
+  const renderContent = () => {
+    if (step === "phone") {
+      return (
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "28px", width: "100%", maxWidth: "480px", mx: "auto", py: 2 }}>
+          {/* <Box sx={{ textAlign: "center" }}>
+            <Typography sx={{ fontFamily: "'Inter'", fontSize: "15px", color: TEXT_MUTED, lineHeight: "24px" }}>
+              Enter your mobile number to receive a one-time passcode
+            </Typography>
+          </Box> */}
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            <Typography sx={{ fontFamily: "'Lilex'", fontWeight: 500, fontSize: "12px", textTransform: "uppercase", color: NAVY, letterSpacing: "0.3px" }}>
+              Phone Number *
+            </Typography>
+            <input
+              ref={phoneRef}
+              type="tel" placeholder="Enter your 10-digit mobile number" value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSendOTP()}
+              style={stl({ fontSize: "18px", letterSpacing: "1px", textAlign: "center" })}
+              className="placeholder:text-[#A0A0A0] placeholder:text-[14px] placeholder:tracking-normal focus:border-[#1F2A44]"
+              onFocus={(e) => { e.target.style.borderColor = NAVY; }}
+              onBlur={(e) => { if (!phone) { e.target.style.borderColor = "#E6E6E6"; } }}
+            />
+          </Box>
+          <button onClick={handleSendOTP} disabled={status === "submitting"}
+            style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", width: "fit-content", minWidth: "160px", height: "48px", background: NAVY, borderRadius: "8px", border: "none", color: "#FFFFFF", fontFamily: "'Lilex'", fontSize: "14px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.5px", cursor: "pointer", transition: "all 0.25s" }}
+            className="hover:bg-[#151c2e] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed">
+            {status === "submitting" ? <><Spinner /> SENDING...</> : "SEND OTP"}
+          </button>
+          <ErrorBox />
+        </Box>
+      );
+    }
+
+    if (step === "otp") {
+      return (
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "28px", width: "100%", maxWidth: "480px", mx: "auto", py: 2 }}>
+          <Box sx={{ textAlign: "center" }}>
+            <Typography sx={{ fontFamily: "'Inter'", fontSize: "15px", color: TEXT_MUTED, lineHeight: "24px" }}>
+              A 6-digit code sent to{" "}
+              <strong style={{ color: TEXT_DARK }}>{phone}</strong>
+              <button onClick={handleEditPhone} style={{ background: "none", border: "none", color: NAVY, textDecoration: "underline", cursor: "pointer", fontFamily: "'Inter'", fontSize: "14px", marginLeft: "8px" }}>Edit</button>
+            </Typography>
+          </Box>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            <Typography sx={{ fontFamily: "'Lilex'", fontWeight: 500, fontSize: "12px", textTransform: "uppercase", color: NAVY, letterSpacing: "0.3px" }}>
+              Enter OTP *
+            </Typography>
+            <input
+              ref={otpRef}
+              type="text" inputMode="numeric" placeholder="000000" value={otp}
+              onChange={(e) => setOtp(e.target.value.replace(/\D/g, "").slice(0, 6))}
+              onKeyDown={(e) => e.key === "Enter" && handleVerifyOTP()}
+              maxLength={6}
+              style={stl({ fontSize: "28px", letterSpacing: "12px", textAlign: "center", fontWeight: 600, fontFamily: "'Inter', monospace" })}
+              className="placeholder:text-[#A0A0A0] placeholder:text-[20px] placeholder:tracking-[12px] focus:border-[#1F2A44]"
+              onFocus={(e) => { e.target.style.borderColor = NAVY; }}
+              onBlur={(e) => { if (!otp) { e.target.style.borderColor = "#E6E6E6"; } }}
+            />
+          </Box>
+          <button onClick={handleVerifyOTP} disabled={status === "submitting"}
+            style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", width: "fit-content", minWidth: "160px", height: "48px", background: NAVY, borderRadius: "8px", border: "none", color: "#FFFFFF", fontFamily: "'Lilex'", fontSize: "14px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.5px", cursor: "pointer", transition: "all 0.25s" }}
+            className="hover:bg-[#151c2e] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed">
+            {status === "submitting" ? <><Spinner /> VERIFYING...</> : "VERIFY OTP"}
+          </button>
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            {resendTimer > 0 ? (
+              <Typography sx={{ fontFamily: "'Inter'", fontSize: "14px", color: TEXT_MUTED }}>Resend code in {resendTimer}s</Typography>
+            ) : (
+              <button onClick={handleResend} disabled={status === "submitting"}
+                style={{ background: "none", border: "none", color: NAVY, cursor: "pointer", fontFamily: "'Inter'", fontSize: "14px", fontWeight: 500, textDecoration: "underline" }}>
+                Resend OTP
+              </button>
+            )}
+          </Box>
+          <ErrorBox />
+        </Box>
+      );
+    }
+
+    if (step === "book") {
+      return (
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "28px", width: "100%", maxWidth: "640px", mx: "auto" }}>
+          {selectedDoctor && (
+            <Box sx={{ display: "flex", alignItems: "center", gap: "16px", p: "16px", bgcolor: "#F8F9FA", borderRadius: "8px", border: "1px solid #EEEEEE" }}>
+              <Box sx={{ width: "56px", height: "56px", borderRadius: "8px", overflow: "hidden", bgcolor: "#E6E6E6", flexShrink: 0 }}>
+                <img src={selectedDoctor.profileImage || "/Container5@2x.png"} alt={selectedDoctor.name} className="w-full h-full object-cover" />
+              </Box>
+              <Box sx={{ flex: 1 }}>
+                <Typography sx={{ fontFamily: "'Lilex'", fontSize: "14px", fontWeight: 600, textTransform: "uppercase", color: TEXT_DARK }}>{selectedDoctor.name}</Typography>
+                <Typography sx={{ fontFamily: "'Inter'", fontSize: "14px", color: TEXT_MUTED, mb: 0.5 }}>{selectedDoctor.specialization?.name}</Typography>
+                {scheduleTime && (
+                  <Typography sx={{ fontFamily: "'Inter'", fontSize: "13px", color: "#7791A5" }}>{scheduleTime}</Typography>
+                )}
+              </Box>
+            </Box>
+          )}
+          {scheduleDays.length > 0 && (
+            <Box sx={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+              {scheduleDays.map((day) => (
+                <Box key={day} sx={{ width: "44px", height: "44px", borderRadius: "50%", border: "1px solid #E6E6E6", display: "flex", alignItems: "center", justifyContent: "center", bgcolor: "#FFFFFF" }}>
+                  <Typography sx={{ fontFamily: "'Lilex'", fontSize: "12px", textTransform: "uppercase", color: TEXT_DARK }}>{day.slice(0, 3)}</Typography>
+                </Box>
+              ))}
+            </Box>
+          )}
+
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            <Typography sx={{ fontFamily: "'Lilex'", fontWeight: 500, fontSize: "12px", textTransform: "uppercase", color: NAVY, letterSpacing: "0.3px" }}>
+              Select Doctor *
+            </Typography>
+            <Box sx={{ position: "relative", width: "100%" }}>
+              <select value={selectedDoctorId} onChange={(e) => setSelectedDoctorId(e.target.value)}
+                style={{ ...stl({ padding: "16px 14px", appearance: "none", cursor: "pointer", color: selectedDoctorId ? TEXT_DARK : "#A0A0A0" }) }}
+                className="focus:border-[#1F2A44]">
+                <option value="" disabled>Select a doctor...</option>
+                {doctors.map((doc) => (
+                  <option key={doc.id} value={doc.id} style={{ color: TEXT_DARK }}>{doc.name} — {doc.specialization?.name || ""}</option>
+                ))}
+              </select>
+              <Box className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4">
+                <svg className="fill-current h-4 w-4 text-[#A0A0A0]" viewBox="0 0 20 20">
+                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                </svg>
+              </Box>
+            </Box>
+          </Box>
+
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            <Typography sx={{ fontFamily: "'Lilex'", fontWeight: 500, fontSize: "12px", textTransform: "uppercase", color: NAVY, letterSpacing: "0.3px" }}>
+              Appointment Date *
+            </Typography>
+            <input type="date" min={today} value={bookingDate} onChange={(e) => { setBookingDate(e.target.value); setErrorMessage(""); }}
+              style={{ ...stl({ cursor: "pointer" }), borderColor: scheduleError && bookingDate ? RED : "#E6E6E6" }}
+              className="focus:border-[#1F2A44]" />
+            {scheduleError && bookingDate && (
+              <Typography sx={{ fontFamily: "'Inter'", fontSize: "13px", color: RED, mt: "2px" }}>
+                {scheduleError}
+              </Typography>
+            )}
+          </Box>
+
+          {/* Fee Display */}
+          {selectedDoctor && selectedDoctor.bookingFee && (
+            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", p: "16px 20px", bgcolor: "#F8F9FA", borderRadius: "8px", border: "1px solid #EEEEEE" }}>
+              <Typography sx={{ fontFamily: "'Inter'", fontSize: "14px", color: TEXT_DARK }}>Consultation Fee</Typography>
+              <Typography sx={{ fontFamily: "'Lilex'", fontSize: "18px", fontWeight: 600, color: NAVY }}>
+                ₹{Number(selectedDoctor.bookingFee).toLocaleString("en-IN")}
+              </Typography>
+            </Box>
+          )}
+
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            <Typography sx={{ fontFamily: "'Lilex'", fontWeight: 500, fontSize: "12px", textTransform: "uppercase", color: NAVY, letterSpacing: "0.3px" }}>
+              Notes (optional)
+            </Typography>
+            <textarea placeholder="Enter your message" value={bookingNotes} onChange={(e) => setBookingNotes(e.target.value)}
+              style={{ ...stl({ height: "100px", padding: "16px", resize: "none" }) }}
+              className="placeholder:text-[#A0A0A0] focus:border-[#1F2A44]" />
+          </Box>
+
+          <button onClick={handleConfirmBooking} disabled={status === "submitting" || (!!scheduleError && !!bookingDate)}
+            style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", width: "fit-content", minWidth: "180px", height: "48px", background: NAVY, borderRadius: "8px", border: "none", color: "#FFFFFF", fontFamily: "'Lilex'", fontSize: "14px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.5px", cursor: "pointer", transition: "all 0.25s", marginTop: "8px" }}
+            className="hover:bg-[#151c2e] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed">
+            {status === "submitting" ? <><Spinner /> REDIRECTING...</> : "PROCEED TO PAY"}
+          </button>
+          <ErrorBox />
+        </Box>
+      );
+    }
+
+    if (step === "success") {
+      const ref = bookingResult?.booking?.bookingReference || bookingResult?.bookingReference;
+      return (
+        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "24px", py: 4, px: 3, textAlign: "center" }}>
+          <Box sx={{ width: "80px", height: "80px", borderRadius: "50%", bgcolor: "#E8F5E9", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+          </Box>
+          <Typography sx={{ fontFamily: "'Stack Sans Text'", fontSize: "28px", fontWeight: 500, color: TEXT_DARK }}>
+            {ref ? "Booking Confirmed!" : "Details Saved Successfully!"}
+          </Typography>
+          {ref ? (
+            <>
+              <Typography sx={{ fontFamily: "'Inter'", fontSize: "15px", color: TEXT_MUTED, maxWidth: "400px", lineHeight: "24px" }}>
+                Your appointment has been booked. Your reference number is:
+              </Typography>
+              <Typography sx={{ fontFamily: "'Inter', monospace", fontSize: "22px", fontWeight: 600, color: NAVY, bgcolor: INPUT_BG, px: 4, py: 2, borderRadius: "8px", letterSpacing: "1px" }}>
+                {ref}
+              </Typography>
+              <Typography sx={{ fontFamily: "'Inter'", fontSize: "14px", color: TEXT_MUTED, maxWidth: "400px", lineHeight: "22px" }}>
+                Our team will contact you shortly to confirm your slot. Please bring the reference number when visiting.
+              </Typography>
+            </>
+          ) : (
+            <Typography sx={{ fontFamily: "'Inter'", fontSize: "15px", color: TEXT_MUTED, maxWidth: "400px", lineHeight: "24px" }}>
+              Your profile has been updated. To book an appointment, select a doctor above.
+            </Typography>
+          )}
+          <button onClick={handleLogout} style={{ marginTop: "8px", display: "flex", alignItems: "center", gap: "8px", padding: "12px 32px", background: NAVY, color: "#FFFFFF", fontFamily: "'Lilex'", fontSize: "14px", textTransform: "uppercase", borderRadius: "8px", border: "none", cursor: "pointer", transition: "all 0.2s" }}
+            className="hover:bg-[#151c2e] active:scale-[0.98]">
+            {ref ? "Book Another Appointment" : "Start Over"}
+          </button>
+        </Box>
+      );
+    }
+
+    return (
+      <Box sx={{ display: "flex", flexDirection: "column", gap: "24px", width: "100%", maxWidth: "640px", mx: "auto" }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
+          <Typography sx={{ fontFamily: "'Inter'", fontSize: "14px", color: TEXT_MUTED }}>
+            {isRegistered ? "Welcome back! Your details are pre-filled." : "Fill in your details to complete your profile."}
+          </Typography>
+          <Typography sx={{ fontFamily: "'Inter'", fontSize: "14px", color: TEXT_MUTED }}>
+            (<strong style={{ color: TEXT_DARK }}>{phone}</strong>)
+          </Typography>
+          <button onClick={handleLogout} style={{ background: "none", border: "none", color: NAVY, textDecoration: "underline", cursor: "pointer", fontFamily: "'Inter'", fontSize: "13px" }}>Change</button>
+        </Box>
+
+        <Box sx={{ display: "flex", gap: "16px", flexDirection: { xs: "column", sm: "row" } }}>
+          {formField("Name", name, setName, "Enter your legal name", "text", true)}
+          {formField("C/O Name", careof, setCareof, "Enter name")}
+        </Box>
+
+        <Box sx={{ display: "flex", gap: "16px", flexDirection: { xs: "column", sm: "row" } }}>
+          {formField("Age", age, setAge, "Enter your age", "number")}
+          {formField("Address", address, setAddress, "Enter your address")}
+        </Box>
+
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+          <Typography sx={{ fontFamily: "'Lilex'", fontWeight: 500, fontSize: "12px", textTransform: "uppercase", color: NAVY, letterSpacing: "0.3px" }}>
+            Gender
+          </Typography>
+          <select value={gender} onChange={(e) => setGender(e.target.value)}
+            style={{ ...stl({ padding: "16px 14px", appearance: "none", cursor: "pointer" }), color: gender ? TEXT_DARK : "#A0A0A0" }}
+            className="focus:border-[#1F2A44]">
+            <option value="" disabled>Select one...</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </Box>
+
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+          <Typography sx={{ fontFamily: "'Inter'", fontSize: "13px", color: TEXT_MUTED }}>
+            Book your slot. Our team will call you soon to confirm your slot.
+          </Typography>
+        </Box>
+
+        <button onClick={handleSaveProfile} disabled={status === "submitting"}
+          style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", width: "fit-content", minWidth: "180px", height: "48px", background: NAVY, borderRadius: "8px", border: "none", color: "#FFFFFF", fontFamily: "'Lilex'", fontSize: "14px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.5px", cursor: "pointer", transition: "all 0.25s", marginTop: "8px" }}
+          className="hover:bg-[#151c2e] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed">
+          {status === "submitting" ? <><Spinner /> SAVING...</> : "PROCEED TO PAY"}
+        </button>
+        <ErrorBox />
+      </Box>
+    );
+  };
+
   return (
-    <Box className="h-auto relative w-full flex flex-col items-start !pt-num-0 !pb-[0.1px] !pl-num-0 !pr-num-0 box-border leading-[normal] tracking-[normal] bg-[#F1F2F1]">
-      {/* Sticky Navbar */}
+    <Box className="h-auto relative w-full flex flex-col items-start leading-[normal] tracking-[normal] bg-[#F1F2F1]">
       <Box className="sticky top-0 z-[100] w-full bg-[#FFFFFF] shadow-[0_2px_10px_rgba(0,0,0,0.03)]">
         <Navbar />
       </Box>
 
-      {/* ─── Booking Form Section ─────────────────────────────── */}
-      <Box className="w-full flex flex-col items-center !py-[80px] !px-6 box-border">
-        {/* Figma styled Box container */}
-        <Box 
-          style={{
-            width: "100%",
-            maxWidth: "808px",
-            minHeight: "1149px",
-            background: "#FFFFFF",
-            borderRadius: "24px",
-            position: "relative",
-            boxSizing: "border-box",
-            display: "flex",
-            flexDirection: "column"
-          }}
-          className="shadow-[0_4px_30px_rgba(0,0,0,0.03)] mq925:min-h-0 mq925:!p-6 mq450:!p-4 mq925:!gap-6 mq450:!gap-5"
-        >
-          {/* Badge: BOOK AN APPOINTMENT */}
-          <Box
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              padding: "4px 12px 4px 6px",
-              gap: "4px",
-              position: "absolute",
-              height: "32px",
-              left: "24px",
-              top: "36px",
-              background: "#F1F2F1",
-              borderRadius: "4px",
-              boxSizing: "border-box"
-            }}
-            className="mq925:!static mq925:!w-max mq450:!static mq450:!w-max"
-          >
-            {/* Badge Icon Container */}
-            <Box
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "flex-start",
-                padding: "0px",
-                width: "20px",
-                height: "20px"
-              }}
-            >
-              <img
-                style={{
-                  width: "20px",
-                  height: "20px",
-                  alignSelf: "stretch",
-                  flexGrow: 1
-                }}
-                alt=""
-                src="/SVG.svg"
+      <Box className="w-full flex flex-col items-center py-[60px] px-6 box-border">
+        <Box sx={{ width: "100%", maxWidth: "808px", bgcolor: "#FFFFFF", borderRadius: "24px", boxShadow: "0 1px 12px rgba(0,0,0,0.04)", overflow: "hidden" }}>
+          {/* Step Progress */}
+          <Box sx={{ px: { xs: 3, sm: 5 }, pt: { xs: 3, sm: 4 } }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 0, justifyContent: "center", mb: 3 }}>
+              {stepLabels.map((label, i) => (
+                <Box key={label} sx={{ display: "flex", alignItems: "center" }}>
+                  <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "4px" }}>
+                    <Box sx={{
+                      width: "32px", height: "32px", borderRadius: "50%",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      bgcolor: i <= currentIdx ? NAVY : "#E6E6E6",
+                      color: i <= currentIdx ? "#FFFFFF" : TEXT_MUTED,
+                      fontFamily: "'Inter'", fontSize: "13px", fontWeight: 600,
+                      transition: "all 0.3s",
+                    }}>
+                      {i < currentIdx ? (
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                      ) : i + 1}
+                    </Box>
+                    <Typography sx={{ fontFamily: "'Inter'", fontSize: "11px", color: i <= currentIdx ? NAVY : TEXT_MUTED, fontWeight: i === currentIdx ? 600 : 400, textTransform: "uppercase", letterSpacing: "0.3px" }}>
+                      {label}
+                    </Typography>
+                  </Box>
+                  {i < stepLabels.length - 1 && (
+                    <Box sx={{
+                      width: { xs: "16px", sm: "36px" }, height: "2px",
+                      bgcolor: i < currentIdx ? NAVY : "#E6E6E6", mx: "4px", mb: "18px",
+                      transition: "all 0.3s",
+                    }} />
+                  )}
+                </Box>
+              ))}
+            </Box>
+          </Box>
+
+          {/* Header */}
+          <Box sx={{ px: { xs: 3, sm: 5 }, mb: 2 }}>
+            <Box sx={{ mb: 1.5 }}>
+              <SectionBadge
+                icon="/SVG.svg"
+                label={step === "book" ? "CONFIRM APPOINTMENT" : step === "form" ? "YOUR DETAILS" : step === "success" ? (bookingResult ? "BOOKING CONFIRMED" : "DONE") : "BOOK APPOINTMENT"}
+                variant="dark"
               />
             </Box>
-
-            {/* Badge Text */}
-            <Box
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-                padding: "0px"
-              }}
-            >
-              <span
-                style={{
-                  height: "24px",
-                  fontFamily: "'Lilex'",
-                  fontStyle: "normal",
-                  fontWeight: "500",
-                  fontSize: "16px",
-                  lineHeight: "24px",
-                  display: "flex",
-                  alignItems: "center",
-                  textTransform: "uppercase",
-                  color: "#0B0C0F",
-                  whiteSpace: "nowrap"
-                }}
-              >
-                BOOK AN Appointment
-              </span>
-            </Box>
+            <Typography sx={{ fontFamily: "'Stack Sans Text'", fontSize: { xs: "32px", sm: "42px" }, fontWeight: 400, color: TEXT_DARK, letterSpacing: "-0.5px" }}>
+              {step === "book" ? "Confirm Appointment" : step === "form" ? "Your Details" : step === "success" ? "All Set!" : "Book an Appointment"}
+            </Typography>
           </Box>
 
-          {/* Heading 1 Container */}
-          <Box
-            style={{
-              position: "absolute",
-              height: "76.8px",
-              left: "24px",
-              right: "24px",
-              top: "92px",
-              display: "flex",
-              alignItems: "center"
-            }}
-            className="mq925:!static mq925:!h-auto mq925:!w-full mq450:!static mq450:!h-auto mq450:!w-full"
-          >
-            <h1
-              style={{
-                width: "100%",
-                maxWidth: "612.12px",
-                height: "77px",
-                margin: 0,
-                fontFamily: "'Stack Sans Text'",
-                fontStyle: "normal",
-                fontWeight: "400",
-                fontSize: "64px",
-                lineHeight: "77px",
-                display: "flex",
-                alignItems: "center",
-                letterSpacing: "-1.5px",
-                color: "#0B0C0F"
-              }}
-              className="mq925:!text-[32px] mq925:!leading-[40px] mq925:!h-auto mq450:!text-[28px] mq450:!leading-[36px] mq450:!h-auto"
-            >
-              Book Appointment
-            </h1>
+          <Box sx={{ height: "1px", bgcolor: BORDER, mx: { xs: 3, sm: 5 } }} />
+
+          <Box sx={{ px: { xs: 3, sm: 5 }, py: { xs: 3, sm: 4 } }}>
+            {renderContent()}
           </Box>
-
-          {/* Horizontal Divider */}
-          <Box
-            style={{
-              boxSizing: "border-box",
-              position: "absolute",
-              height: "2px",
-              left: "24px",
-              right: "24px",
-              top: "206.8px",
-              border: "1px solid #E6E6E6"
-            }}
-            className="mq925:!static mq925:!h-[1px] mq925:!w-full mq925:!border-none mq925:!bg-[#E6E6E6] mq450:!static mq450:!h-[1px] mq450:!w-full mq450:!border-none mq450:!bg-[#E6E6E6]"
-          />
-
-          {/* Success State Overlay */}
-          {status === "success" ? (
-            <Box 
-              style={{
-                position: "absolute",
-                left: "24px",
-                right: "24px",
-                top: "252.8px",
-                bottom: "24px",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "24px"
-              }}
-              className="mq925:!static mq925:!w-full mq925:!py-10 mq450:!static mq450:!w-full mq450:!py-8"
-            >
-              <Box className="w-[72px] h-[72px] rounded-full bg-[#E8F5E9] flex items-center justify-center">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-              </Box>
-              <Typography
-                className="font-stack-sans-text text-center"
-                sx={{ fontSize: "32px", lineHeight: "40px", fontWeight: 500, color: "#0B0C0F" }}
-              >
-                Appointment Requested!
-              </Typography>
-              <Typography
-                className="font-inter text-center max-w-[440px]"
-                sx={{ fontSize: "16px", lineHeight: "24px", color: "#505050" }}
-              >
-                Our team will call you soon to confirm your slot.
-                Please keep your phone reachable.
-              </Typography>
-              <button
-                onClick={() => {
-                  setStatus("idle");
-                  setName("");
-                  setCareof("");
-                  setAge("");
-                  setAddress("");
-                  setPhone("");
-                  setPreferredDate("");
-                  setDoctorId(preselectedDoctorId || "");
-                  setGender("");
-                  setMessage("");
-                }}
-                className="mt-4 flex items-center gap-2 px-8 py-3 bg-[#1F2A44] text-[#FFFFFF] font-lilex text-[16px] leading-[24px] uppercase rounded-[8px] border-none cursor-pointer hover:bg-[#151c2e] active:scale-[0.98] transition-all duration-300"
-              >
-                Book Another
-              </button>
-            </Box>
-          ) : (
-            /* Form Container */
-            <Box
-              style={{
-                position: "absolute",
-                left: "24px",
-                right: "24px",
-                top: "252.8px",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-                padding: "0px",
-                gap: "32px"
-              }}
-              className="mq925:!static mq925:!w-full mq925:!p-0 mq925:!gap-6 mq450:!static mq450:!w-full mq450:!p-0 mq450:!gap-5"
-            >
-              {/* Row 1: Name + C/O Name */}
-              <Box
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "flex-start",
-                  padding: "0px",
-                  gap: "16px",
-                  width: "100%",
-                  maxWidth: "760px"
-                }}
-                className="w-full flex flex-row mq925:!flex-col mq925:!gap-6 mq450:!flex-col mq450:!gap-5"
-              >
-                {/* Name */}
-                <Box style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px", gap: "12px", flexGrow: 1 }} className="w-full">
-                  <Box style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px 0px 5px", width: "100%", height: "29px" }}>
-                    <label style={{ width: "100%", height: "24px", fontFamily: "'Lilex'", fontStyle: "normal", fontWeight: "500", fontSize: "16px", lineHeight: "24px", display: "flex", alignItems: "center", textTransform: "uppercase", color: "#1F2A44" }}>
-                      Name *
-                    </label>
-                  </Box>
-                  <input
-                    type="text"
-                    placeholder="Enter your legal name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    style={{
-                      boxSizing: "border-box",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-start",
-                      padding: "14px 12px",
-                      width: "100%",
-                      height: "50px",
-                      background: "#F1F2F1",
-                      border: "1px solid #E6E6E6",
-                      borderRadius: "12px",
-                      outline: "none",
-                      fontFamily: "'Inter'",
-                      fontSize: "16px",
-                      color: "#0B0C0F"
-                    }}
-                    className="placeholder:text-[#7E7F80] focus:border-[#1F2A44] focus:bg-[#FFFFFF] transition-all duration-200"
-                  />
-                </Box>
-
-                {/* C/O Name */}
-                <Box style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px", gap: "12px", flexGrow: 1 }} className="w-full">
-                  <Box style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px 0px 5px", width: "100%", height: "29px" }}>
-                    <label style={{ width: "100%", height: "24px", fontFamily: "'Lilex'", fontStyle: "normal", fontWeight: "500", fontSize: "16px", lineHeight: "24px", display: "flex", alignItems: "center", textTransform: "uppercase", color: "#1F2A44" }}>
-                      C/O Name
-                    </label>
-                  </Box>
-                  <input
-                    type="text"
-                    placeholder="Enter name"
-                    value={careof}
-                    onChange={(e) => setCareof(e.target.value)}
-                    style={{
-                      boxSizing: "border-box",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-start",
-                      padding: "14px 12px",
-                      width: "100%",
-                      height: "50px",
-                      background: "#F1F2F1",
-                      border: "1px solid #E6E6E6",
-                      borderRadius: "12px",
-                      outline: "none",
-                      fontFamily: "'Inter'",
-                      fontSize: "16px",
-                      color: "#0B0C0F"
-                    }}
-                    className="placeholder:text-[#7E7F80] focus:border-[#1F2A44] focus:bg-[#FFFFFF] transition-all duration-200"
-                  />
-                </Box>
-              </Box>
-
-              <Box
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "flex-start",
-                  padding: "0px",
-                  gap: "16px",
-                  width: "100%",
-                  maxWidth: "760px"
-                }}
-                className="w-full flex flex-row mq925:!flex-col mq925:!gap-6 mq450:!flex-col mq450:!gap-5"
-              >
-                {/* Age */}
-                <Box style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px", gap: "12px", flexGrow: 1 }} className="w-full">
-                  <Box style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px 0px 5px", width: "100%", height: "29px" }}>
-                    <label style={{ width: "100%", height: "24px", fontFamily: "'Lilex'", fontStyle: "normal", fontWeight: "500", fontSize: "16px", lineHeight: "24px", display: "flex", alignItems: "center", textTransform: "uppercase", color: "#1F2A44" }}>
-                      Age
-                    </label>
-                  </Box>
-                  <input
-                    type="number"
-                    placeholder="Enter your age"
-                    value={age}
-                    onChange={(e) => setAge(e.target.value)}
-                    style={{
-                      boxSizing: "border-box",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-start",
-                      padding: "14px 12px",
-                      width: "100%",
-                      height: "50px",
-                      background: "#F1F2F1",
-                      border: "1px solid #E6E6E6",
-                      borderRadius: "12px",
-                      outline: "none",
-                      fontFamily: "'Inter'",
-                      fontSize: "16px",
-                      color: "#0B0C0F"
-                    }}
-                    className="placeholder:text-[#7E7F80] focus:border-[#1F2A44] focus:bg-[#FFFFFF] transition-all duration-200"
-                  />
-                </Box>
-
-                {/* Address */}
-                <Box style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px", gap: "12px", flexGrow: 1 }} className="w-full">
-                  <Box style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px 0px 5px", width: "100%", height: "29px" }}>
-                    <label style={{ width: "100%", height: "24px", fontFamily: "'Lilex'", fontStyle: "normal", fontWeight: "500", fontSize: "16px", lineHeight: "24px", display: "flex", alignItems: "center", textTransform: "uppercase", color: "#1F2A44" }}>
-                      Address
-                    </label>
-                  </Box>
-                  <input
-                    type="text"
-                    placeholder="Enter your address"
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                    style={{
-                      boxSizing: "border-box",
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      alignItems: "flex-start",
-                      padding: "12px 16px",
-                      width: "100%",
-                      height: "50px",
-                      background: "#F1F2F1",
-                      border: "1px solid #E6E6E6",
-                      borderRadius: "12px",
-                      outline: "none",
-                      fontFamily: "'Inter'",
-                      fontSize: "16px",
-                      color: "#0B0C0F"
-                    }}
-                    className="placeholder:text-[#7E7F80] focus:border-[#1F2A44] focus:bg-[#FFFFFF] transition-all duration-200"
-                  />
-                </Box>
-              </Box>
-
-              <Box
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "flex-start",
-                  padding: "0px",
-                  gap: "16px",
-                  width: "100%",
-                  maxWidth: "760px"
-                }}
-                className="w-full flex flex-row mq925:!flex-col mq925:!gap-6 mq450:!flex-col mq450:!gap-5"
-              >
-                {/* Phone Number */}
-                <Box style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px", gap: "12px", flexGrow: 1 }} className="w-full">
-                  <Box style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px 0px 5px", width: "100%", height: "29px" }}>
-                    <label style={{ width: "100%", height: "24px", fontFamily: "'Lilex'", fontStyle: "normal", fontWeight: "500", fontSize: "16px", lineHeight: "24px", display: "flex", alignItems: "center", textTransform: "uppercase", color: "#1F2A44" }}>
-                      Phone Number *
-                    </label>
-                  </Box>
-                  <input
-                    type="tel"
-                    placeholder="Enter your phone number"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    style={{
-                      boxSizing: "border-box",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-start",
-                      padding: "14px 12px",
-                      width: "100%",
-                      height: "50px",
-                      background: "#F1F2F1",
-                      border: "1px solid #E6E6E6",
-                      borderRadius: "12px",
-                      outline: "none",
-                      fontFamily: "'Inter'",
-                      fontSize: "16px",
-                      color: "#0B0C0F"
-                    }}
-                    className="placeholder:text-[#7E7F80] focus:border-[#1F2A44] focus:bg-[#FFFFFF] transition-all duration-200"
-                  />
-                </Box>
-
-                {/* Preferred Date */}
-                <Box style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px", gap: "12px", flexGrow: 1 }} className="w-full">
-                  <Box style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px 0px 5px", width: "100%", height: "29px" }}>
-                    <label style={{ width: "100%", height: "24px", fontFamily: "'Lilex'", fontStyle: "normal", fontWeight: "500", fontSize: "16px", lineHeight: "24px", display: "flex", alignItems: "center", textTransform: "uppercase", color: "#1F2A44" }}>
-                      Preferred Date *
-                    </label>
-                  </Box>
-                  <input
-                    type="date"
-                    min={today}
-                    value={preferredDate}
-                    onChange={(e) => setPreferredDate(e.target.value)}
-                    style={{
-                      boxSizing: "border-box",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-start",
-                      padding: "14px 12px",
-                      width: "100%",
-                      height: "50px",
-                      background: "#F1F2F1",
-                      border: "1px solid #E6E6E6",
-                      borderRadius: "12px",
-                      outline: "none",
-                      fontFamily: "'Inter'",
-                      fontSize: "16px",
-                      color: "#0B0C0F",
-                      cursor: "pointer"
-                    }}
-                    className="placeholder:text-[#7E7F80] focus:border-[#1F2A44] focus:bg-[#FFFFFF] transition-all duration-200"
-                  />
-                </Box>
-              </Box>
-
-              <Box
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "flex-start",
-                  padding: "0px",
-                  gap: "16px",
-                  width: "100%",
-                  maxWidth: "760px"
-                }}
-                className="w-full flex flex-row mq925:!flex-col mq925:!gap-6 mq450:!flex-col mq450:!gap-5"
-              >
-                {/* Select Doctor */}
-                <Box style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px", gap: "12px", flexGrow: 1 }} className="w-full">
-                  <Box style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px 0px 5px", width: "100%", height: "29px" }}>
-                    <label style={{ width: "100%", height: "24px", fontFamily: "'Lilex'", fontStyle: "normal", fontWeight: "500", fontSize: "16px", lineHeight: "24px", display: "flex", alignItems: "center", textTransform: "uppercase", color: "#1F2A44" }}>
-                      SELECT DOCTOR *
-                    </label>
-                  </Box>
-                  <Box style={{ position: "relative", width: "100%" }}>
-                    <select
-                      value={doctorId}
-                      onChange={(e) => setDoctorId(e.target.value)}
-                      style={{
-                        boxSizing: "border-box",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center",
-                        alignItems: "flex-start",
-                        padding: "12px 28px 12px 16px",
-                        width: "100%",
-                        height: "50px",
-                        background: "#F1F2F1",
-                        border: "1px solid #E6E6E6",
-                        borderRadius: "12px",
-                        outline: "none",
-                        fontFamily: "'Inter'",
-                        fontSize: "16px",
-                        color: doctorId ? "#0B0C0F" : "#7E7F80",
-                        appearance: "none",
-                        cursor: "pointer"
-                      }}
-                      className="focus:border-[#1F2A44] focus:bg-[#FFFFFF] transition-all duration-200"
-                    >
-                      <option value="" disabled>Select one...</option>
-                      {DOCTORS_DATA.map((doc) => (
-                        <option key={doc.id} value={String(doc.id)} style={{ color: "#0B0C0F" }}>
-                          {doc.name} — {doc.specialty}
-                        </option>
-                      ))}
-                    </select>
-                    <Box className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4">
-                      <svg className="fill-current h-4 w-4 text-[#7E7F80]" viewBox="0 0 20 20">
-                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                      </svg>
-                    </Box>
-                  </Box>
-                </Box>
-
-                {/* Gender */}
-                <Box style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px", gap: "12px", flexGrow: 1 }} className="w-full">
-                  <Box style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px 0px 5px", width: "100%", height: "29px" }}>
-                    <label style={{ width: "100%", height: "24px", fontFamily: "'Lilex'", fontStyle: "normal", fontWeight: "500", fontSize: "16px", lineHeight: "24px", display: "flex", alignItems: "center", textTransform: "uppercase", color: "#1F2A44" }}>
-                      Gender
-                    </label>
-                  </Box>
-                  <Box style={{ position: "relative", width: "100%" }}>
-                    <select
-                      value={gender}
-                      onChange={(e) => setGender(e.target.value)}
-                      style={{
-                        boxSizing: "border-box",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center",
-                        alignItems: "flex-start",
-                        padding: "12px 28px 12px 16px",
-                        width: "100%",
-                        height: "50px",
-                        background: "#F1F2F1",
-                        border: "1px solid #E6E6E6",
-                        borderRadius: "12px",
-                        outline: "none",
-                        fontFamily: "'Inter'",
-                        fontSize: "16px",
-                        color: gender ? "#0B0C0F" : "#7E7F80",
-                        appearance: "none",
-                        cursor: "pointer"
-                      }}
-                      className="focus:border-[#1F2A44] focus:bg-[#FFFFFF] transition-all duration-200"
-                    >
-                      <option value="" disabled>Select one...</option>
-                      <option value="Male" style={{ color: "#0B0C0F" }}>Male</option>
-                      <option value="Female" style={{ color: "#0B0C0F" }}>Female</option>
-                      <option value="Other" style={{ color: "#0B0C0F" }}>Other</option>
-                    </select>
-                    <Box className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4">
-                      <svg className="fill-current h-4 w-4 text-[#7E7F80]" viewBox="0 0 20 20">
-                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                      </svg>
-                    </Box>
-                  </Box>
-                </Box>
-              </Box>
-
-              {/* Row 5: Message */}
-              <Box
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "flex-start",
-                  padding: "0px",
-                  width: "100%",
-                  maxWidth: "760px",
-                  height: "368px"
-                }}
-                className="w-full mq925:!h-auto mq450:!h-auto"
-              >
-                <Box 
-                  style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px", gap: "12px", width: "100%", height: "368px" }}
-                  className="w-full mq925:!h-auto mq450:!h-auto mq925:!gap-4 mq450:!gap-3"
-                >
-                  <Box style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px 0px 5px", width: "100%", height: "29px" }}>
-                    <label style={{ width: "100%", height: "24px", fontFamily: "'Lilex'", fontStyle: "normal", fontWeight: "500", fontSize: "16px", lineHeight: "24px", display: "flex", alignItems: "center", textTransform: "uppercase", color: "#1F2A44" }}>
-                      Write Message
-                    </label>
-                  </Box>
-                  <textarea
-                    placeholder="Enter your message"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    style={{
-                      boxSizing: "border-box",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-start",
-                      padding: "12px",
-                      width: "100%",
-                      height: "195px",
-                      overflowY: "scroll",
-                      background: "#F1F2F1",
-                      border: "1px solid #E6E6E6",
-                      borderRadius: "12px",
-                      outline: "none",
-                      fontFamily: "'Inter'",
-                      fontSize: "16px",
-                      color: "#0B0C0F",
-                      resize: "none"
-                    }}
-                    className="focus:border-[#1F2A44] focus:bg-[#FFFFFF] transition-all duration-200"
-                  />
-                  <Box 
-                    style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px", width: "100%", height: "24px" }}
-                    className="mq925:!h-auto mq450:!h-auto"
-                  >
-                    <span 
-                      style={{ width: "100%", height: "24px", fontFamily: "'Inter'", fontStyle: "normal", fontWeight: "400", fontSize: "14px", lineHeight: "24px", display: "flex", alignItems: "center", color: "#0B0C0F" }}
-                      className="mq925:!h-auto mq925:!leading-[20px] mq450:!h-auto mq450:!leading-[20px]"
-                    >
-                      Book your slot. Our team will call you soon to confirm your slot.
-                    </span>
-                  </Box>
-
-                  {/* Submit Button Section */}
-                  <Box 
-                    style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "36px 0px 0px", width: "100%", height: "84px" }}
-                    className="mq925:!h-auto mq925:!pt-4 mq450:!h-auto mq450:!pt-3"
-                  >
-                    <Box 
-                      style={{ display: "flex", flexDirection: "row", alignItems: "center", padding: "0px", width: "100%", height: "48px" }}
-                      className="mq925:!h-auto mq450:!h-auto w-full"
-                    >
-                      <button
-                        onClick={handleSubmit}
-                        disabled={status === "submitting"}
-                        style={{
-                          boxSizing: "border-box",
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          padding: "12px 20px",
-                          width: "213px",
-                          height: "48px",
-                          background: "#1F2A44",
-                          borderRadius: "8px",
-                          border: "none",
-                          cursor: "pointer",
-                          transition: "all 0.3s ease",
-                          outline: "none"
-                        }}
-                        className="hover:bg-[#151c2e] active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed mq925:!w-full mq450:!w-full"
-                      >
-                        <span
-                          style={{
-                            width: "173px",
-                            height: "24px",
-                            fontFamily: "'Lilex'",
-                            fontStyle: "normal",
-                            fontWeight: "400",
-                            fontSize: "16px",
-                            lineHeight: "24px",
-                            color: "#FFFFFF",
-                            textAlign: "center",
-                            textTransform: "uppercase",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center"
-                          }}
-                          className="mq925:!w-full mq450:!w-full"
-                        >
-                          {status === "submitting" ? "PLEASE WAIT..." : "BOOK AN APPOINTMENT"}
-                        </span>
-                      </button>
-                    </Box>
-                  </Box>
-                </Box>
-              </Box>
-
-              {/* Error Message */}
-              {status === "error" && errorMessage && (
-                <Box className="w-[100%] max-w-[760px] rounded-[8px] bg-[#FEF2F2] border border-solid border-[#FECACA] flex items-center gap-3"
-                  style={{ padding: "12px 16px", marginTop: "16px" }}
-                >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10" />
-                    <line x1="15" y1="9" x2="9" y2="15" />
-                    <line x1="9" y1="9" x2="15" y2="15" />
-                  </svg>
-                  <span className="font-inter text-[14px] text-[#ef4444]">{errorMessage}</span>
-                </Box>
-              )}
-            </Box>
-          )}
         </Box>
       </Box>
 
-      {/* ─── Scrolling Ticker Banner ──────────────────────────── */}
-      <Box className="w-full !pb-[80px]">
+      <Box className="w-full pb-[80px]">
         <Background1 className="!bg-web-white" icon="/Vector(2).png" />
       </Box>
-
-      {/* ─── FAQ Section ──────────────────────────────────────── */}
-      <Box className="w-full bg-[#ffffff]">
-        <Section6 />
-      </Box>
-
-      {/* ─── Advanced Multispecialty Care ──────────────────────── */}
-      <Box className="w-full overflow-hidden flex flex-col items-start isolate shrink-0 max-w-full bg-[#ffffff]">
-        <Section3 />
-      </Box>
-
-      {/* ─── Footer ───────────────────────────────────────────── */}
-      <Box className="w-full">
-        <Section7 />
-      </Box>
+      <Box className="w-full bg-[#ffffff]"><Section6 /></Box>
+      <Box className="w-full overflow-hidden flex flex-col items-start isolate shrink-0 max-w-full bg-[#ffffff]"><Section3 /></Box>
+      <Box className="w-full"><Section7 /></Box>
     </Box>
   );
 };

@@ -1037,18 +1037,10 @@ const JobRow = ({ item }: { item: JobItem }) => (
             <div className={styles.jobCellText} style={s.jobCellText}>On-site</div>
         </div>
         <Link to={item.id ? `/career/${item.id}` : "/career"} className={styles.jobSeeBtn} style={{ ...s.jobSeeBtn, textDecoration: "none" }}>
-            <div className={styles.jobSeeBtnText} style={s.jobSeeBtnText}>
-                <span>See role</span>
-                <span className={styles.jobBtnDot}> •</span>
+            <div className={styles.jobSeeBtnText} style={{ ...s.jobSeeBtnText, flexDirection: "row", gap: "6px", alignItems: "center", fontSize: "14px", letterSpacing: "0.5px" }}>
+                <span>SEE ROLE</span>
+                <span style={{ fontSize: "24px", lineHeight: 0, paddingBottom: "2px" }}>•</span>
             </div>
-            <div className={styles.jobSeeBtnArrow} style={s.jobSeeBtnArrow}>
-                <img
-                    style={s.doctorArrowImg}
-                    alt=""
-                    src="/699f6877b8f1c6d2edfe4bd7-Button-20Ball-svg@2x.png"
-                />
-            </div>
-            <div style={s.jobSeeBtnIcon} />
         </Link>
     </div>
 );

@@ -15,9 +15,20 @@ export const ScrollReveal: FunctionComponent<ScrollRevealProps> = ({
   direction = "up",
   threshold,
 }) => {
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== "undefined" && window.innerWidth <= 450
+  );
   const [isVisible, setIsVisible] = useState(false);
   const [dynamicThreshold, setDynamicThreshold] = useState(0.05);
   const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 450);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     if (!ref.current || threshold !== undefined) return;
@@ -86,11 +97,16 @@ export const ScrollReveal: FunctionComponent<ScrollRevealProps> = ({
     }
   };
 
+  if (isMobile) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <div
       ref={ref}
-      className={`transition-all duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${isVisible ? "opacity-100 blur-0" : "opacity-0 blur-[4px]"
-        } ${getDirectionClass()} ${className}`}
+      className={`transition-all duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        isVisible ? "opacity-100 blur-0" : "opacity-0 blur-[4px]"
+      } ${getDirectionClass()} ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}

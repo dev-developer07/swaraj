@@ -9,7 +9,7 @@ export type Section7Type = {
 const Section7: FunctionComponent<Section7Type> = ({ className = "" }) => {
   return (
     <footer
-      className={`w-screen bg-web-white overflow-hidden flex flex-col items-start !pt-num-200 !pb-num-200 !pl-num-280 !pr-num-280 box-border max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq925:!pt-num-84 mq925:!pb-num-84 mq925:!pl-num-70 mq925:!pr-num-70 mq925:box-border mq1350:!pt-num-130 mq1350:!pb-num-130 mq1350:!pl-num-140 mq1350:!pr-num-140 mq1350:box-border mq700:!pl-5 mq700:!pr-5 mq700:!pt-16 mq700:!pb-16 max-[450px]:!w-full max-[450px]:!max-w-full max-[450px]:!px-6 max-[450px]:!pt-16 max-[450px]:!pb-16 ${className}`}
+      className={`w-screen bg-web-white overflow-hidden flex flex-col items-start !pt-num-200 !pb-num-200 !pl-num-280 !pr-num-280 box-border max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq1825:!pl-num-140 mq1825:!pr-num-140 mq925:!pt-num-84 mq925:!pb-num-84 mq925:!pl-num-70 mq925:!pr-num-70 mq925:box-border mq1350:!pt-num-130 mq1350:!pb-num-130 mq1350:!pl-num-140 mq1350:!pr-num-140 mq1350:box-border mq700:!pl-5 mq700:!pr-5 mq700:!pt-16 mq700:!pb-16 max-[450px]:!w-full max-[450px]:!max-w-full max-[450px]:!px-6 max-[450px]:!pt-16 max-[450px]:!pb-16 ${className}`}
       style={{ maxWidth: "100vw" }}
     >
       <Box className="w-num-1360 flex flex-col items-start max-w-full mq700:w-full max-[450px]:!w-full">
@@ -58,7 +58,7 @@ const Section7: FunctionComponent<Section7Type> = ({ className = "" }) => {
         {/* Row 2: Links Columns & Location Column */}
         <Box className="self-stretch flex items-start justify-between py-0 box-border gap-11 max-w-full flex-wrap mq925:gap-8 mq700:gap-8 max-[450px]:!flex-col max-[450px]:!gap-8">
           {/* Columns 1-4: Link Lists */}
-          <Box className="flex-1 min-w-[280px] max-w-[840px] grid grid-cols-4 gap-6 mq1350:grid-cols-2 mq700:grid-cols-1 font-lilex max-[450px]:!order-2 max-[450px]:!grid-cols-1 max-[450px]:!gap-12 max-[450px]:!w-full">
+          <Box className="flex-1 min-w-[280px] max-w-[840px] grid grid-cols-4 gap-6 mq1825:grid-cols-2 mq1350:grid-cols-2 mq700:grid-cols-1 font-lilex max-[450px]:!order-2 max-[450px]:!grid-cols-1 max-[450px]:!gap-12 max-[450px]:!w-full">
             {/* Column 1: Swaraj Links (Aligned with Specialties header) */}
             <Box className="flex flex-col items-start gap-3 min-w-[120px] pt-1 max-[450px]:!gap-4">
               <Link to="/" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18 max-[450px]:!text-[16px] max-[450px]:!leading-[24px]">
