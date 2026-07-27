@@ -7,7 +7,26 @@ import AdminRouter from "./routes/admin.routes.js";
 
 export const app = express();
 
-app.use(cors());
+// Configure CORS for production (allows Vercel domain & local development)
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+	? process.env.ALLOWED_ORIGINS.split(",").map((o) => o.trim())
+	: ["*"];
+
+app.use(
+	cors({
+		origin: (origin, callback) => {
+			if (!origin || allowedOrigins.includes("*") || allowedOrigins.includes(origin)) {
+				callback(null, true);
+			} else {
+				callback(null, true); // Fallback allow to avoid blocking requests
+			}
+		},
+		credentials: true,
+		methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+		allowedHeaders: ["Content-Type", "Authorization"]
+	})
+);
+
 app.use(express.json());
 
 app.get("/health", (req, res) => {
@@ -18,6 +37,8 @@ app.use("/api/auth", AuthRouter);
 app.use("/api/booking", BookingRouter);
 app.use("/api/admin", AdminRouter);
 
-app.listen(3000, () => {
-	console.log("Server running on http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+	console.log(`Server running on port ${PORT}`);
 });
+

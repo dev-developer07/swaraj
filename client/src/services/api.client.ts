@@ -1,5 +1,6 @@
-// API Base URL config (resolves backend if running on Vite dev server port 5173)
-export const API_BASE = window.location.hostname === "localhost" ? "http://localhost:3000/api" : "/api";
+// API Base URL config (supports VITE_API_URL env variable for production/Vercel deployment)
+const ENV_API_URL = import.meta.env.VITE_API_URL;
+export const API_BASE = ENV_API_URL ? ENV_API_URL : (window.location.hostname === "localhost" ? "http://localhost:3000/api" : "/api");
 
 export async function apiRequest(path: string, options: RequestInit = {}, token?: string) {
   const headers = {
