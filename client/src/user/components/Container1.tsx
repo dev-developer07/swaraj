@@ -1,4 +1,5 @@
 import { type FunctionComponent, useState } from "react";
+import { Link } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
 import Listitem from "./Listitem";
 import Listitem1 from "./Listitem1";
@@ -120,11 +121,13 @@ const Container1: FunctionComponent<Container1Type> = ({ className = "" }) => {
         </Box>
       </section>
       <Box className="self-stretch flex items-center justify-center">
-        <NavyButton
-          label="MEET THE TEAM"
-          variant="filled"
-          endIcon="/69959585702a1a429f59d932-frame-svg.png"
-        />
+        <Link to="/meet-the-team" className="no-underline">
+          <NavyButton
+            label="MEET THE TEAM"
+            variant="filled"
+            endIcon="/69959585702a1a429f59d932-frame-svg.png"
+          />
+        </Link>
       </Box>
     </Box>
   );

@@ -36,6 +36,10 @@ const Section2: FunctionComponent<Section2Type> = ({ className = "" }) => {
     navigate("/team");
   }, [navigate]);
 
+  const onSpecialitiesClick = useCallback(() => {
+    navigate("/specialities");
+  }, [navigate]);
+
   return (
     <section
       className={`self-stretch [filter:blur(0px)] overflow-hidden flex items-start justify-center !pt-20 !pb-20 !pl-num-0 !pr-num-0 box-border relative isolate max-w-full mq925:!pt-num-34 mq925:!pb-num-34 mq925:box-border mq1350:!pt-num-52 mq1350:!pb-num-52 mq1350:box-border ${className}`}
@@ -114,9 +118,10 @@ const Section2: FunctionComponent<Section2Type> = ({ className = "" }) => {
               <Box className="self-stretch flex flex-row items-center gap-4 flex-wrap max-sm:flex-col max-sm:items-start max-sm:w-full max-sm:gap-4">
                 <NavyButton
                   className="max-sm:!w-[178px] max-sm:!h-[40px] max-sm:!px-4 max-sm:!py-2"
-                  label="Our Services"
+                  label="Our Specialities"
                   variant="outline"
                   endIcon="/699f6877b8f1c6d2edfe4bd7-button-20ball-svg.png"
+                  onClick={onSpecialitiesClick}
                 />
                 <NavyButton
                   className="max-sm:!w-[245px] max-sm:!h-[40px] max-sm:!px-4 max-sm:!py-2"

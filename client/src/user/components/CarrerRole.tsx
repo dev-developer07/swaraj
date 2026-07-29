@@ -1053,7 +1053,12 @@ const JobPostingSection: FunctionComponent = () => {
 
             <div className="info-card-cta">
               <Link to="/career" className="cta-button">
-                <span className="cta-button-text">See All Job Openings •</span>
+                <span className="cta-button-text">
+                  See All Job Openings{" "}
+                  <span style={{ fontSize: "24px", lineHeight: "1", verticalAlign: "-2px", marginLeft: "4px" }}>
+                    •
+                  </span>
+                </span>
               </Link>
             </div>
           </div>

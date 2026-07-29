@@ -1,4 +1,5 @@
 import { type FunctionComponent } from "react";
+import { Link } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
 import SectionBadge from "./SectionBadge";
 import NavyButton from "./NavyButton";
@@ -15,17 +16,17 @@ const Section: FunctionComponent<SectionType> = ({ className = "" }) => {
     >
       <section className="w-full max-w-[1360px] rounded-[1125px] flex flex-col items-center relative isolate">
         <ScrollReveal direction="up" className="w-full flex justify-center">
-          <Box className="w-full h-[890px] rounded-[890px] bg-web-gray-nurse overflow-hidden shrink-0 flex flex-col items-center justify-center gap-11 max-w-[890px] mq1350:w-[760px] mq1350:h-[760px] mq1350:rounded-[760px] mq1350:gap-8 mq925:h-auto mq925:rounded-[60px] mq925:gap-8 mq925:py-16 mq925:px-6 mq450:h-auto mq450:rounded-[60px] mq450:gap-8 mq450:py-16 mq450:px-6">
+          <Box className="w-full h-[890px] rounded-[890px] bg-web-gray-nurse overflow-hidden shrink-0 flex flex-col items-center justify-center gap-11 max-w-[890px] mq1350:w-[760px] mq1350:h-[760px] mq1350:rounded-[760px] mq1350:gap-8 mq925:h-auto mq925:rounded-[60px] mq925:gap-8 mq925:py-16 mq925:px-6 mq450:h-auto mq450:rounded-[60px] mq450:gap-8 mq450:py-16 mq450:px-1">
             <section className="w-full flex flex-col items-center gap-[16.2px] max-w-num-599 text-center text-num-16 text-web-woodsmoke font-lilex">
               <SectionBadge
                 icon="/SVG.svg"
                 label="Welcome to Swaraj"
                 variant="light"
               />
-              <Box className="w-[500px] flex flex-col items-center !pt-[7.2px] !pb-num-0 !pl-num-0 !pr-num-0 box-border max-w-num-500 text-num-48 mq925:text-num-38 mq450:text-num-29 font-stack-sans-text mq925:w-full">
-                <Box className="relative flex flex-col items-center text-center">
+              <Box className="w-[500px] flex flex-col items-center !pt-[7.2px] !pb-num-0 !pl-num-0 !pr-num-0 box-border max-w-num-500 text-num-48 mq925:text-num-38 mq450:text-[clamp(23px,6.5vw,30px)] font-stack-sans-text mq925:w-full mq450:w-full">
+                <Box className="relative flex flex-col items-center text-center w-full">
                   <Typography
-                    className="!m-0 w-full relative inline-block max-w-num-500 text-center leading-num-64_8 mq925:leading-num-52 mq450:leading-num-39"
+                    className="!m-0 w-full relative inline-block max-w-num-500 text-center leading-num-64_8 mq925:leading-num-52 mq450:leading-[1.35] mq450:text-[clamp(23px,6.5vw,30px)] mq450:whitespace-nowrap"
                     variantMapping={{ inherit: "h1" }}
                     sx={{
                       fontFamily: "inherit",
@@ -85,11 +86,13 @@ const Section: FunctionComponent<SectionType> = ({ className = "" }) => {
             </section>
             <Box className="self-stretch flex flex-col items-start !pt-4 !pb-num-0 !pl-num-0 !pr-num-0">
               <Box className="self-stretch [filter:blur(0px)] flex items-center justify-center gap-4">
-                <NavyButton
-                  label="Our specialties"
-                  variant="filled"
-                  endIcon="/container-3.png"
-                />
+                <Link to="/meet-the-team" className="no-underline">
+                  <NavyButton
+                    label="Our Specialists"
+                    variant="filled"
+                    endIcon="/container-3.png"
+                  />
+                </Link>
               </Box>
             </Box>
             {/* Mobile Image Grid (hidden on desktop, shown on mobile/tablet) */}

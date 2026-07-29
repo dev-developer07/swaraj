@@ -86,10 +86,10 @@ const Section5: FunctionComponent<Section5Type> = ({ className = "" }) => {
 
   return (
     <Box
-      className={`self-stretch bg-web-white overflow-hidden flex flex-col items-start !pt-num-0 !pb-num-200 !pl-num-280 !pr-0 box-border shrink-0 max-w-full mq1825:!pl-num-140 mq1825:!pr-0 mq925:!pl-num-70 mq925:!pr-0 mq925:!pb-num-84 mq925:box-border mq1350:!pl-num-140 mq1350:!pr-0 mq1350:!pb-num-130 mq1350:box-border mq450:!pl-6 ${className} max-[450px]:!pl-0 max-[450px]:!pr-0 max-[450px]:!w-[390px] max-[450px]:!max-w-full max-[450px]:!mx-auto max-[450px]:!pb-[140px]`}
+      className={`self-stretch bg-web-white overflow-hidden flex flex-col items-start !pt-num-0 !pb-num-200 !pl-0 !pr-0 box-border shrink-0 max-w-full mq925:!pb-num-84 mq925:box-border mq1350:!pb-num-130 mq1350:box-border ${className} max-[450px]:!w-full max-[450px]:!max-w-full max-[450px]:!pb-[140px]`}
     >
-      <Box className="self-stretch flex flex-col items-start !pt-num-140 !pb-num-0 !pl-num-0 !pr-num-0 box-border gap-[46px] max-w-full mq925:gap-[23px] mq925:!pt-[91px] mq925:box-border mq450:!pt-[59px] mq450:box-border max-[450px]:!gap-6 max-[450px]:!pt-[59px] max-[450px]:!pb-0 max-[450px]:!pl-0 max-[450px]:!pr-0 max-[450px]:!w-full max-[450px]:!max-w-full">
-        <section className="self-stretch flex items-end flex-wrap content-end gap-[492px] max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq925:gap-[123px] mq1350:gap-[246px] mq450:gap-[61px] box-border max-[450px]:!gap-4 max-[450px]:!flex max-[450px]:!flex-col max-[450px]:!items-start max-[450px]:!px-5 max-[450px]:!box-border">
+      <Box className="self-stretch flex flex-col items-start !pt-num-140 !pb-num-0 !pl-0 !pr-0 box-border gap-[46px] max-w-full mq925:gap-[23px] mq925:!pt-[91px] mq925:box-border mq450:!pt-[59px] mq450:box-border max-[450px]:!gap-6 max-[450px]:!pt-[59px] max-[450px]:!pb-0 max-[450px]:!w-full max-[450px]:!max-w-full">
+        <section className="self-stretch flex items-end flex-wrap content-end gap-[492px] max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq925:gap-[123px] mq1350:gap-[246px] mq450:gap-[61px] box-border !pl-num-280 !pr-num-280 mq1825:!pl-num-140 mq1825:!pr-num-140 mq1350:!pl-num-140 mq1350:!pr-num-140 mq925:!pl-num-70 mq925:!pr-num-70 mq450:!pl-6 mq450:!pr-6 max-[450px]:!gap-4 max-[450px]:!flex max-[450px]:!flex-col max-[450px]:!items-start max-[450px]:!px-5 max-[450px]:!box-border">
           <Box className="[filter:blur(0px)] flex flex-col items-start max-w-[490px] mq925:max-w-full max-[450px]:!max-w-full">
             <SectionBadge
               icon="/SVG.svg"
@@ -124,7 +124,10 @@ const Section5: FunctionComponent<Section5Type> = ({ className = "" }) => {
           </Box>
         </section>
         <Box className="self-stretch flex flex-col items-start justify-center relative isolate max-w-full">
-          <section ref={scrollRef} className="w-[100vw] h-[470px] flex items-start overflow-x-auto no-scrollbar scroll-smooth !pt-4 !pb-4 !pl-num-0 !pr-num-0 box-border gap-6 shrink-0 text-left text-num-16 text-web-white font-inter mq925:h-auto mq925:!pt-4 mq925:!pb-4 mq450:!max-w-none max-[450px]:!h-[350px] max-[450px]:!pt-4 max-[450px]:!pb-4 max-[450px]:!pl-5 max-[450px]:!pr-5 max-[450px]:!w-[100vw] max-[450px]:!box-border">
+          <section
+            ref={scrollRef}
+            className="w-full h-[470px] flex items-start overflow-x-auto no-scrollbar scroll-smooth !pt-4 !pb-4 !pl-num-280 mq1825:!pl-num-140 mq1350:!pl-num-140 mq925:!pl-num-70 mq450:!pl-6 max-[450px]:!pl-5 box-border gap-6 shrink-0 text-left text-num-16 text-web-white font-inter mq925:h-auto mq925:!pt-4 mq925:!pb-4 max-[450px]:!h-[350px] max-[450px]:!pt-4 max-[450px]:!pb-4 max-[450px]:!box-border"
+          >
             {diagnosticsItems.map((item, index) => (
               <Group2Of
                 key={index}
@@ -133,14 +136,14 @@ const Section5: FunctionComponent<Section5Type> = ({ className = "" }) => {
                 sliceCTScan={item.sliceCTScan}
               />
             ))}
-            <div style={{ width: `${rightSpacer}px`, flexShrink: 0 }} />
+            <div style={{ width: `${Math.max(rightSpacer + 160, 160)}px`, flexShrink: 0 }} />
           </section>
-          <Box onClick={scrollLeft} className="w-11 h-[10.05%] min-h-[44px] !!m-[0 important] absolute top-[104.95%] right-[350px] bottom-[-15%] [backdrop-filter:blur(12px)] rounded-num-8 bg-web-gray-nurse overflow-hidden flex items-center justify-center z-[1] shrink-0 cursor-pointer hover:bg-web-white transition-colors max-[450px]:!absolute max-[450px]:!top-[344px] max-[450px]:!right-[76px] max-[450px]:!bottom-auto max-[450px]:!left-auto max-[450px]:!flex">
+          <Box onClick={scrollLeft} className="w-11 h-[10.05%] min-h-[44px] !!m-[0 important] absolute top-[104.95%] right-[350px] mq1825:right-[210px] mq1350:right-[210px] mq925:right-[130px] bottom-[-15%] [backdrop-filter:blur(12px)] rounded-num-8 bg-web-gray-nurse overflow-hidden flex items-center justify-center z-[1] shrink-0 cursor-pointer hover:bg-web-white transition-colors max-[450px]:!absolute max-[450px]:!top-[344px] max-[450px]:!right-[76px] max-[450px]:!bottom-auto max-[450px]:!left-auto max-[450px]:!flex">
             <Box className="h-6 w-6 flex items-center justify-center">
               <img className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full" alt="" src="/SVG19.svg" />
             </Box>
           </Box>
-          <Box onClick={scrollRight} className="w-11 h-[10.05%] min-h-[44px] !!m-[0 important] absolute top-[104.95%] right-[280px] bottom-[-15%] rounded-num-12 bg-web-gray-nurse overflow-hidden flex items-center justify-center z-[2] shrink-0 cursor-pointer hover:bg-web-white transition-colors max-[450px]:!absolute max-[450px]:!top-[344px] max-[450px]:!right-5 max-[450px]:!bottom-auto max-[450px]:!left-auto max-[450px]:!flex">
+          <Box onClick={scrollRight} className="w-11 h-[10.05%] min-h-[44px] !!m-[0 important] absolute top-[104.95%] right-[280px] mq1825:right-[140px] mq1350:right-[140px] mq925:right-[70px] bottom-[-15%] rounded-num-12 bg-web-gray-nurse overflow-hidden flex items-center justify-center z-[2] shrink-0 cursor-pointer hover:bg-web-white transition-colors max-[450px]:!absolute max-[450px]:!top-[344px] max-[450px]:!right-5 max-[450px]:!bottom-auto max-[450px]:!left-auto max-[450px]:!flex">
             <Box className="h-6 w-6 flex items-center justify-center">
               <img className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full" alt="" src="/SVG20.svg" />
             </Box>
