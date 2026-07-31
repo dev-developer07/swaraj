@@ -290,6 +290,297 @@ const BookAppointment: FunctionComponent = () => {
     } catch (err: any) { setStatus("error"); setErrorMessage(err?.message || "Something went wrong"); }
   };
 
+  const handleDownloadTicket = () => {
+    const ref = bookingResult?.booking?.bookingReference || bookingResult?.bookingReference || "OPD-CONFIRMED";
+    const docName = selectedDoctor?.name || bookingResult?.booking?.doctor?.name || "OPD Doctor";
+    const docSpec = selectedDoctor?.specialization?.name || bookingResult?.booking?.doctor?.specialization?.name || "General Medicine";
+    const pName = name || bookingResult?.booking?.patientName || "Patient";
+    const pPhone = phone || bookingResult?.booking?.phone || "";
+    const pCareof = careof || bookingResult?.booking?.careof || "";
+    const pEmail = email || bookingResult?.booking?.email || "";
+    const pAddress = address || bookingResult?.booking?.address || "";
+    const feeVal = selectedDoctor?.bookingFee ? `₹${Number(selectedDoctor.bookingFee).toLocaleString("en-IN")}` : "Paid";
+
+    const formattedApptDate = bookingDate
+      ? new Date(bookingDate).toLocaleDateString("en-IN", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })
+      : "Confirmed Date";
+
+    const printWindow = window.open("", "_blank", "width=850,height=950");
+    if (!printWindow) {
+      alert("Please allow popups to download/print your appointment ticket.");
+      return;
+    }
+
+    printWindow.document.write(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>OPD Ticket - ${ref} - Swaraj Hospital</title>
+          <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+            * { box-sizing: border-box; margin: 0; padding: 0; }
+            body {
+              font-family: 'Inter', sans-serif;
+              background-color: #f8fafc;
+              color: #0b0c0f;
+              padding: 40px 20px;
+              display: flex;
+              justify-content: center;
+              align-items: flex-start;
+              min-height: 100vh;
+            }
+            .ticket-card {
+              background: #ffffff;
+              width: 100%;
+              max-width: 680px;
+              border: 2px solid #1F2A44;
+              border-radius: 16px;
+              padding: 36px;
+              box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            }
+            .header {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              border-bottom: 2px solid #E6E6E6;
+              padding-bottom: 20px;
+              margin-bottom: 24px;
+            }
+            .logo-container img {
+              height: 65px;
+              width: auto;
+            }
+            .hospital-details {
+              text-align: right;
+              font-size: 13px;
+              color: #4b5563;
+              line-height: 1.5;
+            }
+            .hospital-name {
+              font-size: 20px;
+              font-weight: 700;
+              color: #1F2A44;
+              letter-spacing: 0.5px;
+            }
+            .badge-row {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 24px;
+              background: #1F2A44;
+              color: #ffffff;
+              padding: 12px 20px;
+              border-radius: 8px;
+            }
+            .ticket-title {
+              font-size: 14px;
+              font-weight: 700;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+            }
+            .status-badge {
+              background: #22c55e;
+              color: #ffffff;
+              font-size: 12px;
+              font-weight: 700;
+              padding: 4px 12px;
+              border-radius: 20px;
+              text-transform: uppercase;
+            }
+            .ref-container {
+              background: #f1f5f9;
+              border: 2px dashed #94a3b8;
+              border-radius: 10px;
+              padding: 16px;
+              text-align: center;
+              margin-bottom: 24px;
+            }
+            .ref-label {
+              font-size: 11px;
+              color: #64748b;
+              text-transform: uppercase;
+              font-weight: 600;
+              letter-spacing: 0.5px;
+              margin-bottom: 4px;
+            }
+            .ref-code {
+              font-size: 24px;
+              font-weight: 700;
+              font-family: monospace;
+              color: #1F2A44;
+              letter-spacing: 2px;
+            }
+            .info-grid {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 20px;
+              margin-bottom: 24px;
+            }
+            .info-box {
+              background: #f8fafc;
+              border: 1px solid #e2e8f0;
+              border-radius: 10px;
+              padding: 16px;
+            }
+            .info-box-title {
+              font-size: 12px;
+              font-weight: 700;
+              color: #1F2A44;
+              text-transform: uppercase;
+              letter-spacing: 0.5px;
+              border-bottom: 1px solid #cbd5e1;
+              padding-bottom: 8px;
+              margin-bottom: 12px;
+            }
+            .data-row {
+              display: flex;
+              justify-content: space-between;
+              font-size: 13px;
+              margin-bottom: 8px;
+            }
+            .data-row:last-child { margin-bottom: 0; }
+            .data-label { color: #64748b; }
+            .data-value { font-weight: 600; color: #0f172a; text-align: right; }
+            .instructions-box {
+              background: #eff6ff;
+              border: 1px solid #bfdbfe;
+              border-radius: 10px;
+              padding: 16px;
+              font-size: 12px;
+              color: #1e40af;
+              line-height: 1.6;
+              margin-bottom: 20px;
+            }
+            .instructions-box strong { color: #1e3a8a; }
+            .instructions-list {
+              margin-top: 6px;
+              padding-left: 18px;
+            }
+            .instructions-list li { margin-bottom: 4px; }
+            .footer-text {
+              text-align: center;
+              font-size: 11px;
+              color: #94a3b8;
+              border-top: 1px solid #e2e8f0;
+              padding-top: 14px;
+            }
+            @media print {
+              body { background: #ffffff; padding: 0; }
+              .ticket-card { border: 1px solid #000; box-shadow: none; max-width: 100%; }
+            }
+          </style>
+        </head>
+        <body>
+          <div class="ticket-card">
+            <div class="header">
+              <div class="logo-container">
+                <img src="${window.location.origin}/1-922.svg" alt="Swaraj Hospital Logo" />
+              </div>
+              <div class="hospital-details">
+                <div class="hospital-name">SWARAJ HOSPITAL</div>
+                <div>Shri Jyoti Nagar, Patnagarh Road</div>
+                <div>Balangir, Odisha - 767001</div>
+                <div>Helpline: +91 (630) 555-0362</div>
+              </div>
+            </div>
+
+            <div class="badge-row">
+              <div class="ticket-title">OPD Appointment Confirmation Slip</div>
+              <div class="status-badge">Confirmed</div>
+            </div>
+
+            <div class="ref-container">
+              <div class="ref-label">Booking Reference Number</div>
+              <div class="ref-code">${ref}</div>
+            </div>
+
+            <div class="info-grid">
+              <div class="info-box">
+                <div class="info-box-title">Doctor & OPD Details</div>
+                <div class="data-row">
+                  <span class="data-label">Doctor:</span>
+                  <span class="data-value">${docName}</span>
+                </div>
+                <div class="data-row">
+                  <span class="data-label">Specialization:</span>
+                  <span class="data-value">${docSpec}</span>
+                </div>
+                <div class="data-row">
+                  <span class="data-label">Appointment Date:</span>
+                  <span class="data-value">${formattedApptDate}</span>
+                </div>
+                ${scheduleTime ? `
+                <div class="data-row">
+                  <span class="data-label">Time / Shift:</span>
+                  <span class="data-value">${scheduleTime}</span>
+                </div>` : ""}
+                <div class="data-row">
+                  <span class="data-label">Fee Status:</span>
+                  <span class="data-value">${feeVal} (Paid)</span>
+                </div>
+              </div>
+
+              <div class="info-box">
+                <div class="info-box-title">Patient Details</div>
+                <div class="data-row">
+                  <span class="data-label">Patient Name:</span>
+                  <span class="data-value">${pName}</span>
+                </div>
+                <div class="data-row">
+                  <span class="data-label">Phone:</span>
+                  <span class="data-value">${pPhone}</span>
+                </div>
+                ${pCareof ? `
+                <div class="data-row">
+                  <span class="data-label">C/O:</span>
+                  <span class="data-value">${pCareof}</span>
+                </div>` : ""}
+                ${pEmail ? `
+                <div class="data-row">
+                  <span class="data-label">Email:</span>
+                  <span class="data-value">${pEmail}</span>
+                </div>` : ""}
+                ${pAddress ? `
+                <div class="data-row">
+                  <span class="data-label">Address:</span>
+                  <span class="data-value">${pAddress}</span>
+                </div>` : ""}
+              </div>
+            </div>
+
+            <div class="instructions-box">
+              <strong>Important Patient Guidelines:</strong>
+              <ul class="instructions-list">
+                <li>Please arrive 15 minutes prior to your scheduled OPD time.</li>
+                <li>Present this ticket (digital copy or printout) at the OPD registration desk.</li>
+                <li>Please bring relevant previous medical history/prescriptions if applicable.</li>
+                <li>For any query or assistance, call our OPD helpline: +91 (630) 555-0362.</li>
+              </ul>
+            </div>
+
+            <div class="footer-text">
+              This is a computer-generated OPD appointment slip issued by Swaraj Hospital.
+            </div>
+          </div>
+
+          <script>
+            window.onload = function() {
+              setTimeout(function() {
+                window.print();
+              }, 300);
+            };
+          </script>
+        </body>
+      </html>
+    `);
+    printWindow.document.close();
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("auth_token"); setToken(null); setPhone(""); setOtp("");
     setName(""); setCareof(""); setEmail(""); setAddress(""); setAge(""); setGender("");
@@ -520,10 +811,16 @@ const BookAppointment: FunctionComponent = () => {
 
     if (step === "success") {
       const ref = bookingResult?.booking?.bookingReference || bookingResult?.bookingReference;
+      const docName = selectedDoctor?.name || bookingResult?.booking?.doctor?.name || "OPD Doctor";
+      const docSpec = selectedDoctor?.specialization?.name || bookingResult?.booking?.doctor?.specialization?.name || "General OPD";
+      const pName = name || bookingResult?.booking?.patientName || "Patient";
+      const pPhone = phone || bookingResult?.booking?.phone || "";
+      const feeText = selectedDoctor?.bookingFee ? `₹${Number(selectedDoctor.bookingFee).toLocaleString("en-IN")}` : "Paid";
+
       return (
-        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "24px", py: 4, px: 3, textAlign: "center" }}>
-          <Box sx={{ width: "80px", height: "80px", borderRadius: "50%", bgcolor: "#E8F5E9", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "24px", py: 2, px: { xs: 1, sm: 3 }, textAlign: "center" }}>
+          <Box sx={{ width: "72px", height: "72px", borderRadius: "50%", bgcolor: "#E8F5E9", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" />
             </svg>
           </Box>
@@ -532,25 +829,131 @@ const BookAppointment: FunctionComponent = () => {
           </Typography>
           {ref ? (
             <>
-              <Typography sx={{ fontFamily: "'Inter'", fontSize: "15px", color: TEXT_MUTED, maxWidth: "400px", lineHeight: "24px" }}>
+              <Typography sx={{ fontFamily: "'Inter'", fontSize: "15px", color: TEXT_MUTED, maxWidth: "440px", lineHeight: "24px" }}>
                 Your appointment has been booked. Your reference number is:
               </Typography>
               <Typography sx={{ fontFamily: "'Inter', monospace", fontSize: "22px", fontWeight: 600, color: NAVY, bgcolor: INPUT_BG, px: 4, py: 2, borderRadius: "8px", letterSpacing: "1px" }}>
                 {ref}
               </Typography>
-              <Typography sx={{ fontFamily: "'Inter'", fontSize: "14px", color: TEXT_MUTED, maxWidth: "400px", lineHeight: "22px" }}>
-                Our team will contact you shortly to confirm your slot. Please bring the reference number when visiting.
+
+              {/* Ticket Card Preview */}
+              <Box sx={{
+                width: "100%",
+                maxWidth: "520px",
+                bgcolor: "#FFFFFF",
+                border: "1.5px solid #1F2A44",
+                borderRadius: "12px",
+                p: { xs: 2.5, sm: 3.5 },
+                textAlign: "left",
+                boxShadow: "0 4px 14px rgba(0,0,0,0.06)",
+                mt: 1,
+              }}>
+                {/* Ticket Header */}
+                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", pb: 2, borderBottom: "1px solid #E6E6E6", mb: 2 }}>
+                  <img src="/1-922.svg" alt="Swaraj Hospital" style={{ height: "45px", width: "auto" }} />
+                  <Box sx={{ textAlign: "right" }}>
+                    <Typography sx={{ fontFamily: "'Lilex'", fontSize: "14px", fontWeight: 700, color: NAVY, textTransform: "uppercase" }}>Swaraj Hospital</Typography>
+                    <Typography sx={{ fontFamily: "'Inter'", fontSize: "11px", color: TEXT_MUTED }}>OPD Appointment Ticket</Typography>
+                  </Box>
+                </Box>
+
+                {/* Ticket Body */}
+                <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
+                  <Box sx={{ display: "flex", justifyContent: "space-between", fontSize: "13px" }}>
+                    <Typography sx={{ fontFamily: "'Inter'", color: TEXT_MUTED }}>Patient Name:</Typography>
+                    <Typography sx={{ fontFamily: "'Inter'", fontWeight: 600, color: TEXT_DARK }}>{pName}</Typography>
+                  </Box>
+                  <Box sx={{ display: "flex", justifyContent: "space-between", fontSize: "13px" }}>
+                    <Typography sx={{ fontFamily: "'Inter'", color: TEXT_MUTED }}>Phone:</Typography>
+                    <Typography sx={{ fontFamily: "'Inter'", fontWeight: 600, color: TEXT_DARK }}>{pPhone}</Typography>
+                  </Box>
+                  <Box sx={{ display: "flex", justifyContent: "space-between", fontSize: "13px" }}>
+                    <Typography sx={{ fontFamily: "'Inter'", color: TEXT_MUTED }}>Doctor:</Typography>
+                    <Typography sx={{ fontFamily: "'Inter'", fontWeight: 600, color: NAVY }}>{docName}</Typography>
+                  </Box>
+                  <Box sx={{ display: "flex", justifyContent: "space-between", fontSize: "13px" }}>
+                    <Typography sx={{ fontFamily: "'Inter'", color: TEXT_MUTED }}>Specialty:</Typography>
+                    <Typography sx={{ fontFamily: "'Inter'", fontWeight: 600, color: TEXT_DARK }}>{docSpec}</Typography>
+                  </Box>
+                  <Box sx={{ display: "flex", justifyContent: "space-between", fontSize: "13px" }}>
+                    <Typography sx={{ fontFamily: "'Inter'", color: TEXT_MUTED }}>Date:</Typography>
+                    <Typography sx={{ fontFamily: "'Inter'", fontWeight: 600, color: TEXT_DARK }}>{bookingDate ? new Date(bookingDate).toLocaleDateString("en-IN", { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' }) : "N/A"}</Typography>
+                  </Box>
+                  {scheduleTime && (
+                    <Box sx={{ display: "flex", justifyContent: "space-between", fontSize: "13px" }}>
+                      <Typography sx={{ fontFamily: "'Inter'", color: TEXT_MUTED }}>Timing:</Typography>
+                      <Typography sx={{ fontFamily: "'Inter'", fontWeight: 600, color: TEXT_DARK }}>{scheduleTime}</Typography>
+                    </Box>
+                  )}
+                  <Box sx={{ display: "flex", justifyContent: "space-between", fontSize: "13px", pt: 1, borderTop: "1px dashed #E6E6E6" }}>
+                    <Typography sx={{ fontFamily: "'Inter'", color: TEXT_MUTED }}>Payment Status:</Typography>
+                    <Typography sx={{ fontFamily: "'Lilex'", fontWeight: 700, color: "#16a34a", textTransform: "uppercase" }}>PAID ({feeText})</Typography>
+                  </Box>
+                </Box>
+              </Box>
+
+              <Typography sx={{ fontFamily: "'Inter'", fontSize: "14px", color: TEXT_MUTED, maxWidth: "440px", lineHeight: "22px", mt: 1 }}>
+                Our team will contact you shortly to confirm your slot. Please bring this ticket or reference number when visiting.
               </Typography>
+
+              {/* Action Buttons */}
+              <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap", justifyContent: "center", mt: 2 }}>
+                <button
+                  onClick={handleDownloadTicket}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    padding: "12px 28px",
+                    background: NAVY,
+                    color: "#FFFFFF",
+                    fontFamily: "'Lilex'",
+                    fontSize: "14px",
+                    fontWeight: 500,
+                    textTransform: "uppercase",
+                    borderRadius: "8px",
+                    border: "none",
+                    cursor: "pointer",
+                    transition: "all 0.2s"
+                  }}
+                  className="hover:bg-[#151c2e] active:scale-[0.98]"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                  </svg>
+                  DOWNLOAD TICKET
+                </button>
+                <button
+                  onClick={handleLogout}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    padding: "12px 24px",
+                    background: "#FFFFFF",
+                    color: NAVY,
+                    fontFamily: "'Lilex'",
+                    fontSize: "14px",
+                    fontWeight: 500,
+                    textTransform: "uppercase",
+                    borderRadius: "8px",
+                    border: `1px solid ${NAVY}`,
+                    cursor: "pointer",
+                    transition: "all 0.2s"
+                  }}
+                  className="hover:bg-[#F8F9FA] active:scale-[0.98]"
+                >
+                  Book Another
+                </button>
+              </Box>
             </>
           ) : (
             <Typography sx={{ fontFamily: "'Inter'", fontSize: "15px", color: TEXT_MUTED, maxWidth: "400px", lineHeight: "24px" }}>
               Your profile has been updated. To book an appointment, select a doctor above.
             </Typography>
           )}
-          <button onClick={handleLogout} style={{ marginTop: "8px", display: "flex", alignItems: "center", gap: "8px", padding: "12px 32px", background: NAVY, color: "#FFFFFF", fontFamily: "'Lilex'", fontSize: "14px", textTransform: "uppercase", borderRadius: "8px", border: "none", cursor: "pointer", transition: "all 0.2s" }}
-            className="hover:bg-[#151c2e] active:scale-[0.98]">
-            {ref ? "Book Another Appointment" : "Start Over"}
-          </button>
         </Box>
       );
     }
