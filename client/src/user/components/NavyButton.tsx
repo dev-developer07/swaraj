@@ -61,8 +61,8 @@ const NavyButton: FunctionComponent<NavyButtonProps> = ({
             transform: isHovered ? "translateY(calc(-1 * var(--translate-y)))" : "translateY(0px)",
           }}
         >
-          <span className="block h-[24px] max-sm:h-[20px] leading-[24px] max-sm:leading-[20px] text-left">{label}</span>
-          <span className="block h-[24px] max-sm:h-[20px] leading-[24px] max-sm:leading-[20px] text-left">{label}</span>
+          <span className="block h-[24px] max-sm:h-[20px] leading-[24px] max-sm:leading-[20px] text-left whitespace-nowrap">{label}</span>
+          <span className="block h-[24px] max-sm:h-[20px] leading-[24px] max-sm:leading-[20px] text-left whitespace-nowrap">{label}</span>
         </div>
       </div>
 

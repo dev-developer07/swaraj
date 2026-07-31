@@ -117,14 +117,14 @@ const Section2: FunctionComponent<Section2Type> = ({ className = "" }) => {
               </Box>
               <Box className="self-stretch flex flex-row items-center gap-4 flex-wrap max-sm:flex-col max-sm:items-start max-sm:w-full max-sm:gap-4">
                 <NavyButton
-                  className="max-sm:!w-[178px] max-sm:!h-[40px] max-sm:!px-4 max-sm:!py-2"
+                  className="max-sm:!w-auto max-sm:!h-[40px] max-sm:!px-4 max-sm:!py-2"
                   label="Our Specialities"
                   variant="outline"
                   endIcon="/699f6877b8f1c6d2edfe4bd7-button-20ball-svg.png"
                   onClick={onSpecialitiesClick}
                 />
                 <NavyButton
-                  className="max-sm:!w-[245px] max-sm:!h-[40px] max-sm:!px-4 max-sm:!py-2"
+                  className="max-sm:!w-auto max-sm:!h-[40px] max-sm:!px-4 max-sm:!py-2"
                   label="Book an Appointment"
                   variant="filled"
                   endIcon="/69959585702a1a429f59d932-frame-svg.png"

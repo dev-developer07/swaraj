@@ -199,7 +199,7 @@ const Section1: FunctionComponent<Section1Type> = ({ className = "" }) => {
               ))}
               <div style={{ width: `${spacerWidth}px`, flexShrink: 0 }} />
             </section>
-            <Box className="w-full flex justify-end gap-[22px] !pt-12 !pr-[324px] mq1350:!pr-num-120 mq925:!pr-[60px] mq450:!pr-5 box-border">
+            <Box className="w-full flex justify-end max-sm:!justify-center mq450:!justify-center gap-[22px] !pt-12 !pr-[324px] mq1350:!pr-num-120 mq925:!pr-[60px] mq450:!pr-0 max-sm:!pr-0 box-border">
               <Box onClick={scrollLeft} className="w-11 h-11 [backdrop-filter:blur(12px)] rounded-num-8 bg-web-white-12 overflow-hidden flex items-center justify-center shrink-0 cursor-pointer hover:bg-web-white-24 transition-colors">
                 <img className="h-3.5 w-3.5 relative" alt="" src="/SVG9.svg" />
               </Box>
