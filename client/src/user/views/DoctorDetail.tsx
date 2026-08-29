@@ -140,15 +140,28 @@ const DoctorDetail: FunctionComponent = () => {
               </Box>
 
               <Box className="flex flex-col items-start gap-6 w-full text-left font-inter font-normal text-[18px] leading-[28px] text-[#505050] mq450:!text-[14px] mq450:!leading-[22px] mq450:!gap-4">
-                <p className="m-0">
-                  With over {doctor.experienceYears || 10} years of clinical experience, {doctor.name} brings specialist expertise and a patient-first approach to every consultation. Having trained at leading medical institutions across India, they deliver care that meets the highest standards of diagnosis and treatment.
-                </p>
-                <p className="m-0">
-                  At Swaraj Hospital, we believe medicine is as much about listening as it is about treating. {doctor.name} takes time to understand each patient's history, concerns and goals — ensuring every decision is informed, transparent and compassionate.
-                </p>
-                <p className="m-0">
-                  An active contributor to medical research and continuing education, {doctor.name} is committed to bringing the latest evidence-based practices to the families of western Odisha.
-                </p>
+                {doctor.description ? (
+                  doctor.description
+                    .split("\n")
+                    .filter((p: string) => p.trim().length > 0)
+                    .map((paragraph: string, idx: number) => (
+                      <p key={idx} className="m-0">
+                        {paragraph}
+                      </p>
+                    ))
+                ) : (
+                  <>
+                    <p className="m-0">
+                      With over {doctor.experienceYears || 10} years of clinical experience, {doctor.name} brings specialist expertise and a patient-first approach to every consultation. Having trained at leading medical institutions across India, they deliver care that meets the highest standards of diagnosis and treatment.
+                    </p>
+                    <p className="m-0">
+                      At Swaraj Hospital, we believe medicine is as much about listening as it is about treating. {doctor.name} takes time to understand each patient's history, concerns and goals — ensuring every decision is informed, transparent and compassionate.
+                    </p>
+                    <p className="m-0">
+                      An active contributor to medical research and continuing education, {doctor.name} is committed to bringing the latest evidence-based practices to the families of western Odisha.
+                    </p>
+                  </>
+                )}
               </Box>
 
               <Box className="flex flex-wrap items-start gap-4 w-full pt-4 mq450:!gap-2">
@@ -174,12 +187,16 @@ const DoctorDetail: FunctionComponent = () => {
                   <Box className="flex items-center gap-3">
                     <Box className="rounded-full h-2 w-2 bg-[#7791a5] shrink-0 mq450:!hidden" />
                     <span className="hidden mq450:!inline text-[#1F2A44] font-bold text-[10px] shrink-0 mr-1">▶</span>
-                    <span className="font-inter font-normal text-[18px] leading-[28px] text-[#505050] mq450:!text-[14px] mq450:!leading-[22px]">info@swarajhospital.in</span>
+                    <span className="font-inter font-normal text-[18px] leading-[28px] text-[#505050] mq450:!text-[14px] mq450:!leading-[22px]">
+                      {doctor.email || "info@swarajhospital.in"}
+                    </span>
                   </Box>
                   <Box className="flex items-center gap-3">
                     <Box className="rounded-full h-2 w-2 bg-[#7791a5] shrink-0 mq450:!hidden" />
                     <span className="hidden mq450:!inline text-[#1F2A44] font-bold text-[10px] shrink-0 mr-1">▶</span>
-                    <span className="font-inter font-normal text-[18px] leading-[28px] text-[#505050] mq450:!text-[14px] mq450:!leading-[22px]">+91 63708 22507</span>
+                    <span className="font-inter font-normal text-[18px] leading-[28px] text-[#505050] mq450:!text-[14px] mq450:!leading-[22px]">
+                      {doctor.phone || "+91 63708 22507"}
+                    </span>
                   </Box>
                 </Box>
               </Box>

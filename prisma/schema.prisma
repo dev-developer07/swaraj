@@ -87,6 +87,9 @@ model Doctor {
   experienceYears    Int?
   bookingFee         Decimal
   profileImage       String?
+  description        String?
+  email              String?
+  phone              String?
   isActive           Boolean @default(true)
   schedules          Json @default("[]")
   specialization     Specialization @relation(fields: [specializationId], references: [id])

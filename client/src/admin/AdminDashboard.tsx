@@ -44,6 +44,10 @@ export default function AdminDashboard() {
     specializationId: string;
     experienceYears: number;
     bookingFee: number;
+    profileImage: string;
+    description: string;
+    email: string;
+    phone: string;
     isActive: boolean;
     schedules: Array<{ day: string; slots: string[] }>;
   }>({
@@ -51,6 +55,10 @@ export default function AdminDashboard() {
     specializationId: "",
     experienceYears: 0,
     bookingFee: 0,
+    profileImage: "",
+    description: "",
+    email: "",
+    phone: "",
     isActive: true,
     schedules: []
   });
@@ -60,6 +68,19 @@ export default function AdminDashboard() {
     notes: ""
   });
   const [blogForm, setBlogForm] = useState({ title: "", slug: "", content: "", featuredImage: "", isPublished: false });
+
+  const handleImageFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        if (typeof reader.result === "string") {
+          setDoctorForm(prev => ({ ...prev, profileImage: reader.result as string }));
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   // Load Data
   const loadDashboardData = async (jwt: string) => {
@@ -368,11 +389,15 @@ export default function AdminDashboard() {
         parsed = Array.isArray(current) ? current : [];
       }
       setDoctorForm({
-        name: doc.name,
-        specializationId: doc.specializationId,
-        experienceYears: doc.experienceYears,
+        name: doc.name || "",
+        specializationId: doc.specializationId || "",
+        experienceYears: doc.experienceYears || 0,
         bookingFee: parseFloat(doc.bookingFee) || 0,
-        isActive: doc.isActive,
+        profileImage: doc.profileImage || "",
+        description: doc.description || "",
+        email: doc.email || "",
+        phone: doc.phone || "",
+        isActive: doc.isActive ?? true,
         schedules: parsed
       });
     } else {
@@ -383,6 +408,10 @@ export default function AdminDashboard() {
         specializationId: specializations[0]?.id || "",
         experienceYears: 0,
         bookingFee: 0,
+        profileImage: "",
+        description: "",
+        email: "",
+        phone: "",
         isActive: true,
         schedules: []
       });
@@ -707,6 +736,86 @@ export default function AdminDashboard() {
                       />
                       <span>Active for Bookings</span>
                     </label>
+                  </div>
+                </div>
+
+                {/* Doctor Profile Image Upload */}
+                <div className="form-group">
+                  <label className="form-label">Doctor Profile Image</label>
+                  <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+                    <div
+                      style={{
+                        width: "64px",
+                        height: "64px",
+                        borderRadius: "8px",
+                        overflow: "hidden",
+                        backgroundColor: "#f1f2f1",
+                        flexShrink: 0,
+                        border: "1px solid var(--border-color)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center"
+                      }}
+                    >
+                      <img
+                        src={doctorForm.profileImage || "/Container5@2x.png"}
+                        alt="Preview"
+                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                      />
+                    </div>
+                    <div style={{ flexGrow: 1, display: "flex", flexDirection: "column", gap: "6px" }}>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageFileUpload}
+                        className="form-control"
+                        style={{ fontSize: "12px", padding: "4px 8px" }}
+                      />
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Or enter image URL (e.g. /Container5@2x.png)"
+                        value={doctorForm.profileImage}
+                        onChange={e => setDoctorForm({ ...doctorForm, profileImage: e.target.value })}
+                        style={{ fontSize: "12px" }}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Doctor Description / Bio */}
+                <div className="form-group">
+                  <label className="form-label">Doctor Description / Bio</label>
+                  <textarea
+                    rows={4}
+                    className="form-control"
+                    placeholder="Enter doctor clinical background, expertise, education, and patient care philosophy..."
+                    value={doctorForm.description}
+                    onChange={e => setDoctorForm({ ...doctorForm, description: e.target.value })}
+                  />
+                </div>
+
+                {/* Contact Info */}
+                <div className="form-row">
+                  <div className="form-group">
+                    <label className="form-label">Contact Email</label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      placeholder="e.g. info@swarajhospital.in"
+                      value={doctorForm.email}
+                      onChange={e => setDoctorForm({ ...doctorForm, email: e.target.value })}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Contact Phone</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="e.g. +91 63708 22507"
+                      value={doctorForm.phone}
+                      onChange={e => setDoctorForm({ ...doctorForm, phone: e.target.value })}
+                    />
                   </div>
                 </div>
 

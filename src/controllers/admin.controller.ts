@@ -112,7 +112,7 @@ class AdminController {
 
     async createDoctor(req: AdminRequest, res: Response): Promise<void> {
         try {
-            const { name, specializationId, experienceYears, bookingFee, profileImage, isActive, schedules } = req.body;
+            const { name, specializationId, experienceYears, bookingFee, profileImage, description, email, phone, isActive, schedules } = req.body;
 
             if (!name || !specializationId || bookingFee === undefined) {
                 res.status(400).json({
@@ -153,6 +153,9 @@ class AdminController {
                     experienceYears: experienceYears ? parseInt(experienceYears) : null,
                     bookingFee: String(bookingFee),
                     profileImage: profileImage || null,
+                    description: description || null,
+                    email: email || null,
+                    phone: phone || null,
                     isActive: isActive !== undefined ? Boolean(isActive) : true,
                     schedules: schedulesData
                 },
@@ -179,7 +182,7 @@ class AdminController {
     async updateDoctor(req: AdminRequest, res: Response): Promise<void> {
         try {
             const { id } = req.params;
-            const { name, specializationId, experienceYears, bookingFee, profileImage, isActive, schedules } = req.body;
+            const { name, specializationId, experienceYears, bookingFee, profileImage, description, email, phone, isActive, schedules } = req.body;
 
             const existingDoctor = await prisma.doctor.findUnique({
                 where: { id: id as string }
@@ -213,6 +216,9 @@ class AdminController {
             }
             if (bookingFee !== undefined) updateData.bookingFee = String(bookingFee);
             if (profileImage !== undefined) updateData.profileImage = profileImage;
+            if (description !== undefined) updateData.description = description;
+            if (email !== undefined) updateData.email = email;
+            if (phone !== undefined) updateData.phone = phone;
             if (isActive !== undefined) updateData.isActive = Boolean(isActive);
             if (schedules !== undefined) {
                 try {
