@@ -854,7 +854,7 @@ const ArticleDetail: FunctionComponent = () => {
                                     />
                                     <div className="ap-blur1-badge-text-wrap">
                                         <div className="ap-blur1-tag-author">
-                                            {blog.author || "DR. ANKIT PADHI"}
+                                            {(blog.author && !blog.author.toLowerCase().includes("ankit") && !blog.author.toLowerCase().includes("admin")) ? blog.author : "Swaraj Hospital"}
                                         </div>
                                     </div>
                                 </div>

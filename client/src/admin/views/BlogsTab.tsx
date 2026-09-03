@@ -68,7 +68,7 @@ export default function BlogsTab({
                     </div>
                   </td>
                   <td style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "var(--text-muted)" }}>/{b.slug}</td>
-                  <td>{b.author || "Hospital Admin"}</td>
+                  <td>{(b.author && !b.author.toLowerCase().includes("admin") && !b.author.toLowerCase().includes("ankit")) ? b.author : "Swaraj Hospital"}</td>
                   <td>
                     <span className={`badge ${b.status === "PUBLISHED" ? "badge-success" : "badge-outline"}`}>
                       {b.status}

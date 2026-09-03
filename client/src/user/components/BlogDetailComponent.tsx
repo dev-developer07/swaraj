@@ -642,7 +642,7 @@ const ArticlePage: FunctionComponent = () => {
                                     src="/Container1.svg"
                                 />
                                 <div className="ap-blur1-badge-text-wrap">
-                                    <div className="ap-blur1-tag-author">DR. ANKIT PADHI</div>
+                                    <div className="ap-blur1-tag-author">Swaraj Hospital</div>
                                 </div>
                             </div>
                             <button className="ap-blur1-tag-btn">
