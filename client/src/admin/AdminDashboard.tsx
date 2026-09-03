@@ -9,6 +9,7 @@ import LeadsTab from "./views/LeadsTab";
 import DoctorsTab from "./views/DoctorsTab";
 import SpecializationsTab from "./views/SpecializationsTab";
 import BlogsTab from "./views/BlogsTab";
+import { formatImageUrl } from "../utils/imageUtils";
 
 export default function AdminDashboard() {
   // Authentication & Session
@@ -219,11 +220,12 @@ export default function AdminDashboard() {
     e.preventDefault();
     if (!token) return;
     try {
+      const formattedImg = formatImageUrl(blogForm.featuredImage);
       const payload = {
         title: blogForm.title,
         slug: blogForm.slug || undefined,
         content: blogForm.content,
-        featuredImage: blogForm.featuredImage || undefined,
+        featuredImage: formattedImg || undefined,
         status: blogForm.isPublished ? "PUBLISHED" : "DRAFT"
       };
       if (editMode && selectedItem) {
@@ -996,13 +998,45 @@ export default function AdminDashboard() {
                 </div>
                 <div className="form-group">
                   <label className="form-label">Featured Image URL (Optional)</label>
-                  <input
-                    type="url"
-                    className="form-control"
-                    placeholder="e.g. https://images.unsplash.com/photo-..."
-                    value={blogForm.featuredImage}
-                    onChange={e => setBlogForm({ ...blogForm, featuredImage: e.target.value })}
-                  />
+                  <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+                    {blogForm.featuredImage && (
+                      <div
+                        style={{
+                          width: "64px",
+                          height: "64px",
+                          borderRadius: "8px",
+                          overflow: "hidden",
+                          backgroundColor: "#f1f2f1",
+                          flexShrink: 0,
+                          border: "1px solid var(--border-color)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center"
+                        }}
+                      >
+                        <img
+                          src={formatImageUrl(blogForm.featuredImage)}
+                          alt="Preview"
+                          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src = "/Container@2x.png";
+                          }}
+                        />
+                      </div>
+                    )}
+                    <div style={{ flexGrow: 1, display: "flex", flexDirection: "column", gap: "4px" }}>
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Paste image URL or Google Drive link..."
+                        value={blogForm.featuredImage}
+                        onChange={e => setBlogForm({ ...blogForm, featuredImage: e.target.value })}
+                      />
+                      <span style={{ fontSize: "11px", color: "var(--text-muted)" }}>
+                        Supports direct image links, Google Drive share links, Google Image search links, etc.
+                      </span>
+                    </div>
+                  </div>
                 </div>
                 <div className="form-group">
                   <label className="form-label">Article Content</label>

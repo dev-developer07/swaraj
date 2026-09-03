@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Plus, Edit2, Trash2, Search, FileText, Globe } from "lucide-react";
+import { formatImageUrl } from "../../utils/imageUtils";
 
 interface BlogsTabProps {
   blogs: any[];
@@ -63,7 +64,16 @@ export default function BlogsTab({
                 <tr key={b.id}>
                   <td style={{ fontWeight: 600 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                      {b.status === "PUBLISHED" ? <Globe size={14} className="text-success" /> : <FileText size={14} className="text-muted" />}
+                      {b.featuredImage ? (
+                        <img
+                          src={formatImageUrl(b.featuredImage)}
+                          alt=""
+                          style={{ width: "32px", height: "32px", borderRadius: "4px", objectFit: "cover", flexShrink: 0 }}
+                          onError={(e) => { (e.target as HTMLImageElement).src = "/Container@2x.png"; }}
+                        />
+                      ) : (
+                        b.status === "PUBLISHED" ? <Globe size={14} className="text-success" /> : <FileText size={14} className="text-muted" />
+                      )}
                       <span>{b.title}</span>
                     </div>
                   </td>

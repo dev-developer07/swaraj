@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import Section3 from "./Section3";
 import Section7 from "./Section7";
 import { getPublicBlogs } from "../../services/user.service";
+import { formatImageUrl } from "../../utils/imageUtils";
 import styles from "./BlogsPage.module.css";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -82,7 +83,7 @@ const BlogCard: FunctionComponent<BlogCardProps> = ({
                     className={styles.blogCardImg} 
                     loading="lazy" 
                     alt="" 
-                    src={image} 
+                    src={formatImageUrl(image)} 
                     onError={(e) => {
                         (e.target as HTMLImageElement).src = "/Container@2x.png";
                     }}
@@ -155,11 +156,12 @@ const BlogsPage: FunctionComponent<BlogsPageProps> = ({ className = "" }) => {
                             }
                         }
 
+                        const formattedImg = formatImageUrl(blog.featuredImage);
                         return {
                             category: categoryVal,
                             title: titleClean,
                             description: cleanDesc,
-                            image: blog.featuredImage || defaultImages[i % defaultImages.length],
+                            image: formattedImg || defaultImages[i % defaultImages.length],
                             gridColumn: String((i % 2) + 1),
                             gridRow: String(Math.floor(i / 2) + 1),
                             bodyMinWidth: i === 2 ? undefined : "253px",

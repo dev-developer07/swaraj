@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Section3 from "../components/Section3";
 import Section7 from "../components/Section7";
 import { getPublicBlogBySlug, getPublicBlogs } from "../../services/user.service";
+import { formatImageUrl } from "../../utils/imageUtils";
 
 const ArticleDetail: FunctionComponent = () => {
     const { slug } = useParams<{ slug: string }>();
@@ -890,7 +891,7 @@ const ArticleDetail: FunctionComponent = () => {
                                     className="ap-b2-figure"
                                     loading="lazy"
                                     alt={cleanTitle}
-                                    src={blog.featuredImage}
+                                    src={formatImageUrl(blog.featuredImage)}
                                     onError={handleImgError}
                                     style={{ marginBottom: "24px" }}
                                 />
@@ -939,7 +940,7 @@ const ArticleDetail: FunctionComponent = () => {
                                         className="ap-next-card-img"
                                         loading="lazy"
                                         alt=""
-                                        src={nextBlog.featuredImage || "/Container4@2x.png"}
+                                        src={formatImageUrl(nextBlog.featuredImage) || "/Container4@2x.png"}
                                         onError={handleImgError}
                                     />
                                 </div>
