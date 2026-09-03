@@ -89,7 +89,7 @@ const Section5: FunctionComponent<Section5Type> = ({ className = "" }) => {
       className={`self-stretch bg-web-white overflow-hidden flex flex-col items-start !pt-num-0 !pb-[100px] !pl-0 !pr-0 box-border shrink-0 max-w-full mq925:!pb-[60px] mq1350:!pb-[80px] mq1350:box-border ${className} max-[450px]:!w-full max-[450px]:!max-w-full max-[450px]:!pb-10`}
     >
       <Box className="self-stretch flex flex-col items-start !pt-num-140 !pb-num-0 !pl-0 !pr-0 box-border gap-[46px] max-w-full mq925:gap-[23px] mq925:!pt-[91px] mq925:box-border mq450:!pt-[59px] mq450:box-border max-[450px]:!gap-6 max-[450px]:!pt-[59px] max-[450px]:!pb-0 max-[450px]:!w-full max-[450px]:!max-w-full">
-        <section className="self-stretch flex items-end flex-wrap content-end gap-[492px] max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq925:gap-[123px] mq1350:gap-[246px] mq450:gap-[61px] box-border !pl-num-280 !pr-num-280 mq1825:!pl-num-140 mq1825:!pr-num-140 mq1350:!pl-num-140 mq1350:!pr-num-140 mq925:!pl-num-70 mq925:!pr-num-70 mq450:!pl-6 mq450:!pr-6 max-[450px]:!gap-4 max-[450px]:!flex max-[450px]:!flex-col max-[450px]:!items-start max-[450px]:!px-5 max-[450px]:!box-border">
+        <section className="self-stretch flex items-end justify-between flex-wrap gap-6 max-w-full text-left text-num-16 text-web-woodsmoke font-lilex box-border !pl-num-280 !pr-num-280 mq1825:!pl-num-140 mq1825:!pr-num-140 mq1350:!pl-num-140 mq1350:!pr-num-140 mq925:!pl-num-70 mq925:!pr-num-70 mq450:!pl-6 mq450:!pr-6 max-[450px]:!gap-4 max-[450px]:!flex max-[450px]:!flex-col max-[450px]:!items-start max-[450px]:!px-5 max-[450px]:!box-border">
           <Box className="[filter:blur(0px)] flex flex-col items-start max-w-[490px] mq925:max-w-full max-[450px]:!max-w-full">
             <SectionBadge
               icon="/SVG.svg"
@@ -113,9 +113,9 @@ const Section5: FunctionComponent<Section5Type> = ({ className = "" }) => {
               </Typography>
             </Box>
           </Box>
-          <Box className="flex-1 flex flex-col items-start max-w-[378px] mq925:max-w-full mq925:w-full mq450:max-w-full mq450:w-full font-inter max-[450px]:!flex-none max-[450px]:!w-[350px] max-[450px]:!max-w-full">
+          <Box className="flex-1 flex flex-col items-start min-w-[280px] max-w-[378px] mq925:max-w-full mq925:w-full mq925:min-w-0 mq450:max-w-full mq450:w-full font-inter max-[450px]:!flex-none max-[450px]:!w-full max-[450px]:!max-w-full">
             <Box className="self-stretch [filter:blur(0px)] flex flex-col items-start">
-              <div className="w-[378px] mq925:w-full mq450:w-full relative leading-num-24 flex items-center max-[450px]:!w-[350px] max-[450px]:!max-w-full max-[450px]:!text-[16px] max-[450px]:!leading-[24px] max-[450px]:!text-[#0B0C0F] max-[450px]:!h-auto">
+              <div className="w-full relative leading-num-24 flex items-center max-[450px]:!w-full max-[450px]:!max-w-full max-[450px]:!text-[16px] max-[450px]:!leading-[24px] max-[450px]:!text-[#0B0C0F] max-[450px]:!h-auto">
                 State-of-the-art diagnostic technology and lab-grade testing to
                 ensure every condition is identified with precision and treated
                 with confidence.

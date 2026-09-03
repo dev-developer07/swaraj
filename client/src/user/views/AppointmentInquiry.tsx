@@ -106,22 +106,22 @@ const AppointmentInquiry: FunctionComponent = () => {
       </Box>
 
       {/* ─── Inquiry Form Section ─────────────────────────────── */}
-      <Box className="w-full flex flex-col items-center !py-[80px] !px-6 box-border">
+      <Box className="w-full flex flex-col items-center !py-[80px] !px-6 box-border mq925:!py-10 mq450:!py-6">
         {/* Figma styled Box container */}
         <Box 
           style={{
             width: "100%",
             maxWidth: "808px",
-            height: status === "success" ? "374px" : undefined,
-            minHeight: status === "success" ? "374px" : "1050px",
             background: "#FFFFFF",
             borderRadius: "24px",
-            position: "relative",
             boxSizing: "border-box",
             display: "flex",
-            flexDirection: "column"
+            flexDirection: "column",
+            alignItems: "flex-start",
+            padding: "36px 32px 40px",
+            gap: "24px"
           }}
-          className="shadow-[0_4px_30px_rgba(0,0,0,0.03)] mq925:min-h-0 mq925:!h-auto mq925:!p-6 mq450:!p-4 mq925:!gap-6 mq450:!gap-5"
+          className="shadow-[0_4px_30px_rgba(0,0,0,0.03)] mq925:!p-6 mq450:!p-4 mq925:!gap-5 mq450:!gap-4"
         >
           {/* Badge: GET AN Appointment */}
           <Box
@@ -131,16 +131,12 @@ const AppointmentInquiry: FunctionComponent = () => {
               alignItems: "center",
               padding: "4px 8px 4px 6px",
               gap: "4px",
-              position: "absolute",
-              width: "211px",
+              width: "max-content",
               height: "32px",
-              left: "24px",
-              top: "36px",
               background: "#F1F2F1",
               borderRadius: "4px",
               boxSizing: "border-box"
             }}
-            className="mq925:!static mq925:!w-max mq450:!static mq450:!w-max"
           >
             {/* Badge Icon Container */}
             <Box
@@ -195,54 +191,29 @@ const AppointmentInquiry: FunctionComponent = () => {
             </Box>
           </Box>
 
-          {/* Heading 1 Container */}
-          <Box
+          {/* Heading 1 */}
+          <h1
             style={{
-              position: "absolute",
-              height: "76.8px",
-              left: "24px",
-              right: "24px",
-              top: "92px",
+              width: "100%",
+              maxWidth: "612.12px",
+              margin: 0,
+              fontFamily: "'Stack Sans Text'",
+              fontStyle: "normal",
+              fontWeight: "400",
+              fontSize: "64px",
+              lineHeight: "77px",
               display: "flex",
-              alignItems: "center"
+              alignItems: "center",
+              letterSpacing: "-1.5px",
+              color: "#0B0C0F"
             }}
-            className="mq925:!static mq925:!h-auto mq925:!w-full mq450:!static mq450:!h-auto mq450:!w-full"
+            className="mq925:!text-[32px] mq925:!leading-[40px] mq450:!text-[28px] mq450:!leading-[36px]"
           >
-            <h1
-              style={{
-                width: "100%",
-                maxWidth: "612.12px",
-                height: "77px",
-                margin: 0,
-                fontFamily: "'Stack Sans Text'",
-                fontStyle: "normal",
-                fontWeight: "400",
-                fontSize: "64px",
-                lineHeight: "77px",
-                display: "flex",
-                alignItems: "center",
-                letterSpacing: "-1.5px",
-                color: "#0B0C0F"
-              }}
-              className="mq925:!text-[32px] mq925:!leading-[40px] mq925:!h-auto mq450:!text-[28px] mq450:!leading-[36px] mq450:!h-auto"
-            >
-              Appointment Inquiry
-            </h1>
-          </Box>
+            Appointment Inquiry
+          </h1>
 
           {/* Horizontal Divider */}
-          <Box
-            style={{
-              boxSizing: "border-box",
-              position: "absolute",
-              height: "2px",
-              left: "24px",
-              right: "24px",
-              top: "206.8px",
-              border: "1px solid #E6E6E6"
-            }}
-            className="mq925:!static mq925:!h-[1px] mq925:!w-full mq925:!border-none mq925:!bg-[#E6E6E6] mq450:!static mq450:!h-[1px] mq450:!w-full mq450:!border-none mq450:!bg-[#E6E6E6]"
-          />
+          <Box style={{ width: "100%", height: "1px", background: "#E6E6E6" }} />
 
           {/* Success State Overlay */}
           {status === "success" ? (
@@ -252,114 +223,38 @@ const AppointmentInquiry: FunctionComponent = () => {
                 flexDirection: "column",
                 alignItems: "flex-start",
                 padding: "24px 28px",
-                position: "absolute",
-                height: "81px",
-                left: "24px",
-                right: "24px",
-                top: "253px",
+                width: "100%",
                 background: "#F1F2F1",
                 borderRadius: "12px",
                 boxSizing: "border-box"
               }}
-              className="mq925:!static mq925:!w-full mq925:!h-auto mq925:!p-6 mq450:!static mq450:!w-full mq450:!h-auto mq450:!p-4"
+              className="mq925:!p-6 mq450:!p-4"
             >
-              <Box
+              <span
                 style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  padding: "0px",
-                  gap: "298.17px",
-                  width: "704px",
-                  height: "33px"
+                  fontFamily: "'Inter'",
+                  fontStyle: "normal",
+                  fontWeight: "400",
+                  fontSize: "22px",
+                  lineHeight: "33px",
+                  color: "#0B0C0F"
                 }}
-                className="mq925:!w-full mq925:!h-auto mq925:!flex-col mq925:!gap-4 mq450:!w-full mq450:!h-auto mq450:!flex-col mq450:!gap-3"
+                className="mq925:!text-[18px] mq925:!leading-[26px] mq450:!text-[16px] mq450:!leading-[24px]"
               >
-                <Box
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                    padding: "0px",
-                    margin: "0 auto",
-                    width: "494px",
-                    height: "33px"
-                  }}
-                  className="mq925:!w-full mq925:!h-auto mq450:!w-full mq450:!h-auto"
-                >
-                  <span
-                    style={{
-                      width: "494px",
-                      height: "33px",
-                      fontFamily: "'Inter'",
-                      fontStyle: "normal",
-                      fontWeight: "400",
-                      fontSize: "22px",
-                      lineHeight: "33px",
-                      display: "flex",
-                      alignItems: "center",
-                      color: "#0B0C0F",
-                      whiteSpace: "nowrap"
-                    }}
-                    className="mq925:!w-full mq925:!h-auto mq925:!text-[18px] mq925:!leading-[26px] mq925:!whitespace-normal mq925:!text-center mq450:!w-full mq450:!h-auto mq450:!text-[16px] mq450:!leading-[24px] mq450:!whitespace-normal mq450:!text-center"
-                  >
-                    Thank you! Your submission has been received!
-                  </span>
-                </Box>
-                {/* Optional/hidden plus container from Figma details */}
-                <Box
-                  style={{
-                    display: "none",
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    padding: "0px",
-                    isolation: "isolate",
-                    width: "36px",
-                    height: "36px",
-                    borderRadius: "36px"
-                  }}
-                >
-                  <Box
-                    style={{
-                      width: "16px",
-                      height: "2px",
-                      background: "#1F2A44",
-                      borderRadius: "44px",
-                      zIndex: 0
-                    }}
-                  />
-                  <Box
-                    style={{
-                      position: "absolute",
-                      width: "2px",
-                      height: "16px",
-                      left: "17px",
-                      top: "10px",
-                      background: "#1F2A44",
-                      borderRadius: "44px",
-                      zIndex: 1
-                    }}
-                  />
-                </Box>
-              </Box>
+                Thank you! Your submission has been received!
+              </span>
             </Box>
           ) : (
             /* Form Container */
             <Box
               style={{
-                position: "absolute",
-                left: "24px",
-                right: "24px",
-                top: "252.8px",
+                width: "100%",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "flex-start",
                 padding: "0px",
-                gap: "32px"
+                gap: "24px"
               }}
-              className="mq925:!static mq925:!w-full mq925:!p-0 mq925:!gap-6 mq450:!static mq450:!w-full mq450:!p-0 mq450:!gap-5"
             >
               {/* Row 1: Name + Phone Number */}
               <Box
@@ -370,8 +265,7 @@ const AppointmentInquiry: FunctionComponent = () => {
                   alignItems: "flex-start",
                   padding: "0px",
                   gap: "16px",
-                  width: "100%",
-                  maxWidth: "760px"
+                  width: "100%"
                 }}
                 className="w-full flex flex-row mq925:!flex-col mq925:!gap-6 mq450:!flex-col mq450:!gap-5"
               >
@@ -449,8 +343,7 @@ const AppointmentInquiry: FunctionComponent = () => {
                   alignItems: "flex-start",
                   padding: "0px",
                   gap: "16px",
-                  width: "100%",
-                  maxWidth: "760px"
+                  width: "100%"
                 }}
                 className="w-full flex flex-row mq925:!flex-col mq925:!gap-6 mq450:!flex-col mq450:!gap-5"
               >
@@ -572,7 +465,7 @@ const AppointmentInquiry: FunctionComponent = () => {
                     alignItems: "flex-start",
                     padding: "16px",
                     width: "100%",
-                    height: "220px",
+                    height: "180px",
                     background: "#F1F2F1",
                     border: "1px solid #E6E6E6",
                     borderRadius: "12px",
@@ -592,7 +485,7 @@ const AppointmentInquiry: FunctionComponent = () => {
                     fontSize: "14px",
                     lineHeight: "22px",
                     color: "#0B0C0F",
-                    marginTop: "8px"
+                    marginTop: "4px"
                   }}
                   className="mq925:!leading-[20px] mq450:!leading-[20px]"
                 >
@@ -602,62 +495,55 @@ const AppointmentInquiry: FunctionComponent = () => {
 
               {/* Submit Button Section */}
               <Box 
-                style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "12px 0px 0px", width: "100%", height: "84px" }}
-                className="mq925:!h-auto mq925:!pt-4 mq450:!h-auto mq450:!pt-3"
+                style={{ display: "flex", flexDirection: "row", alignItems: "center", padding: "8px 0px 0px", width: "100%" }}
+                className="w-full"
               >
-                <Box 
-                  style={{ display: "flex", flexDirection: "row", alignItems: "center", padding: "0px", width: "100%", height: "48px" }}
-                  className="mq925:!h-auto mq450:!h-auto w-full"
+                <button
+                  onClick={handleSubmit}
+                  disabled={status === "submitting"}
+                  style={{
+                    boxSizing: "border-box",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: "12px 20px",
+                    width: "213px",
+                    height: "48px",
+                    background: "#1F2A44",
+                    borderRadius: "8px",
+                    border: "none",
+                    cursor: "pointer",
+                    transition: "all 0.3s ease",
+                    outline: "none"
+                  }}
+                  className="hover:bg-[#151c2e] active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed mq925:!w-full mq450:!w-full"
                 >
-                  <button
-                    onClick={handleSubmit}
-                    disabled={status === "submitting"}
+                  <span
                     style={{
-                      boxSizing: "border-box",
+                      width: "100%",
+                      fontFamily: "'Lilex'",
+                      fontStyle: "normal",
+                      fontWeight: "400",
+                      fontSize: "16px",
+                      lineHeight: "24px",
+                      color: "#FFFFFF",
+                      textAlign: "center",
+                      textTransform: "uppercase",
                       display: "flex",
-                      flexDirection: "column",
                       alignItems: "center",
-                      justifyContent: "center",
-                      padding: "12px 20px",
-                      width: "213px",
-                      height: "48px",
-                      background: "#1F2A44",
-                      borderRadius: "8px",
-                      border: "none",
-                      cursor: "pointer",
-                      transition: "all 0.3s ease",
-                      outline: "none"
+                      justifyContent: "center"
                     }}
-                    className="hover:bg-[#151c2e] active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed mq925:!w-full mq450:!w-full"
                   >
-                    <span
-                      style={{
-                        width: "173px",
-                        height: "24px",
-                        fontFamily: "'Lilex'",
-                        fontStyle: "normal",
-                        fontWeight: "400",
-                        fontSize: "16px",
-                        lineHeight: "24px",
-                        color: "#FFFFFF",
-                        textAlign: "center",
-                        textTransform: "uppercase",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center"
-                      }}
-                      className="mq925:!w-full mq450:!w-full"
-                    >
-                      {status === "submitting" ? "PLEASE WAIT..." : "GET AN APPOINTMENT"}
-                    </span>
-                  </button>
-                </Box>
+                    {status === "submitting" ? "PLEASE WAIT..." : "GET AN APPOINTMENT"}
+                  </span>
+                </button>
               </Box>
 
               {/* Error Message */}
               {status === "error" && errorMessage && (
-                <Box className="w-[100%] max-w-[760px] rounded-[8px] bg-[#FEF2F2] border border-solid border-[#FECACA] flex items-center gap-3"
-                  style={{ padding: "12px 16px", marginTop: "16px" }}
+                <Box className="w-[100%] rounded-[8px] bg-[#FEF2F2] border border-solid border-[#FECACA] flex items-center gap-3"
+                  style={{ padding: "12px 16px", marginTop: "8px" }}
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="12" r="10" />
