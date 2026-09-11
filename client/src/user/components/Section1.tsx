@@ -71,7 +71,7 @@ const Section1: FunctionComponent<Section1Type> = ({ className = "" }) => {
       advancedHeartCareWidth: "337px" as const,
     },
     {
-      background: "/Background1@2x.png",
+      background: "/Background4@2x.png",
       cardiology: "Orthopaedics & Joint Replacement",
       advancedHeartCareDiagnostics: "Advanced bone, joint and spine treatment including surgical replacement and rehabilitation support.",
       containerPadding: "38px 21px 38px 28px" as const,
@@ -79,7 +79,7 @@ const Section1: FunctionComponent<Section1Type> = ({ className = "" }) => {
       advancedHeartCareWidth: "337px" as const,
     },
     {
-      background: "/Background2@2x.png",
+      background: "/Background7@2x.png",
       cardiology: "Paediatrics & Neonatology",
       advancedHeartCareDiagnostics: "Dedicated care for newborns, infants and children — including a specialist NICU for critical neonatal cases.",
       containerPadding: "38px 21px 38px 28px" as const,
@@ -87,7 +87,7 @@ const Section1: FunctionComponent<Section1Type> = ({ className = "" }) => {
       advancedHeartCareWidth: "337px" as const,
     },
     {
-      background: "/Background@2x.png",
+      background: "/Background6@2x.png",
       cardiology: "Minimal Access & Laparoscopic Surgery",
       advancedHeartCareDiagnostics: "Minimally invasive surgical procedures for faster recovery, reduced pain and shorter hospital stays.",
       containerPadding: "38px 21px 38px 28px" as const,
@@ -95,7 +95,7 @@ const Section1: FunctionComponent<Section1Type> = ({ className = "" }) => {
       advancedHeartCareWidth: "337px" as const,
     },
     {
-      background: "/Background@2x.png",
+      background: "/Background10@2x.png",
       cardiology: "Ophthalmology",
       advancedHeartCareDiagnostics: "Complete eye care — from routine consultations and prescriptions to surgical intervention and post-operative support.",
       containerPadding: "38px 21px 38px 28px" as const,
@@ -103,7 +103,7 @@ const Section1: FunctionComponent<Section1Type> = ({ className = "" }) => {
       advancedHeartCareWidth: "337px" as const,
     },
     {
-      background: "/Background@2x.png",
+      background: "/Background8@2x.png",
       cardiology: "Neurology",
       advancedHeartCareDiagnostics: "Specialist diagnosis and treatment of brain, spine and nervous system conditions with advanced imaging support.",
       containerPadding: "38px 21px 38px 28px" as const,
@@ -111,7 +111,7 @@ const Section1: FunctionComponent<Section1Type> = ({ className = "" }) => {
       advancedHeartCareWidth: "337px" as const,
     },
     {
-      background: "/Background1@2x.png",
+      background: "/Background9@2x.png",
       cardiology: "Urology",
       advancedHeartCareDiagnostics: "Comprehensive urological care for conditions affecting the kidney, bladder and urinary tract in men and women.",
       containerPadding: "38px 21px 38px 28px" as const,
@@ -119,7 +119,7 @@ const Section1: FunctionComponent<Section1Type> = ({ className = "" }) => {
       advancedHeartCareWidth: "337px" as const,
     },
     {
-      background: "/Background3@2x.png",
+      background: "/Background11@2x.png",
       cardiology: "Dental & Maxillofacial Surgery",
       advancedHeartCareDiagnostics: "Oral health, dental surgery and complex maxillofacial procedures performed by experienced surgical specialists.",
       containerPadding: "38px 21px 38px 28px" as const,
@@ -127,7 +127,7 @@ const Section1: FunctionComponent<Section1Type> = ({ className = "" }) => {
       advancedHeartCareWidth: "337px" as const,
     },
     {
-      background: "/Background2@2x.png",
+      background: "/Background5@2x.png",
       cardiology: "Gastroenterology",
       advancedHeartCareDiagnostics: "Diagnosis and management of digestive system conditions including endoscopy and advanced gastrointestinal care.",
       containerPadding: "38px 21px 38px 28px" as const,

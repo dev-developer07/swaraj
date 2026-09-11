@@ -41,14 +41,14 @@ const SPECIALITIES_DATA: Speciality[] = [
     number: "004/",
     name: "Orthopaedics & Joint Replacement",
     description: "Advanced bone, joint and spine treatment including surgical replacement and rehabilitation support.",
-    image: "/Background1@2x.png",
+    image: "/Background4@2x.png",
     bgClass: "bg-[#ffffff]"
   },
   {
     number: "005/",
     name: "Paediatrics & Neonatology",
     description: "Dedicated care for newborns, infants and children — including a specialist NICU for critical neonatal cases.",
-    image: "/Background2@2x.png",
+    image: "/Background7@2x.png",
     bgClass: "bg-[#ffffff]"
   },
   {
@@ -62,42 +62,42 @@ const SPECIALITIES_DATA: Speciality[] = [
     number: "007/",
     name: "Minimal Access & Laparoscopic Surgery",
     description: "Minimally invasive surgical procedures for faster recovery, reduced pain and shorter hospital stays.",
-    image: "/Background@2x.png",
+    image: "/Background6@2x.png",
     bgClass: "bg-[#ffffff]"
   },
   {
     number: "008/",
     name: "Ophthalmology",
     description: "Complete eye care — from routine consultations and prescriptions to surgical intervention and post-operative support.",
-    image: "/Background@2x.png",
+    image: "/Background10@2x.png",
     bgClass: "bg-[#ffffff]"
   },
   {
     number: "009/",
     name: "Neurology",
     description: "Specialist diagnosis and treatment of brain, spine and nervous system conditions with advanced imaging support.",
-    image: "/Background@2x.png",
+    image: "/Background8@2x.png",
     bgClass: "bg-[#ffffff]"
   },
   {
     number: "010/",
     name: "Urology",
     description: "Comprehensive urological care for conditions affecting the kidney, bladder and urinary tract in men and women.",
-    image: "/Background1@2x.png",
+    image: "/Background9@2x.png",
     bgClass: "bg-[#ffffff]"
   },
   {
     number: "011/",
     name: "Dental & Maxillofacial Surgery",
     description: "Oral health, dental surgery and complex maxillofacial procedures performed by experienced surgical specialists.",
-    image: "/Background3@2x.png",
+    image: "/Background11@2x.png",
     bgClass: "bg-[#ffffff]"
   },
   {
     number: "012/",
     name: "Gastroenterology",
     description: "Diagnosis and management of digestive system conditions including endoscopy and advanced gastrointestinal care.",
-    image: "/Background2@2x.png",
+    image: "/Background5@2x.png",
     bgClass: "bg-[#ffffff]"
   }
 ];
