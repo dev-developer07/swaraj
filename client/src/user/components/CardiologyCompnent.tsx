@@ -61,7 +61,7 @@ const CARDIOLOGY_STYLES = `
 @media screen and (max-width: 450px) { .cs-main-section { padding-top: 25px; padding-bottom: var(--padding-20); box-sizing: border-box; } .cs-marquee-label { font-size: var(--fs-16); line-height: var(--lh-26); } .cs-marquee-item2 { flex-wrap: wrap; } .cs-marquee-img3-wrap { flex: 1; } .cs-marquee-img3 { align-self: stretch; width: 100%; } .cs-marquee-img4, .cs-marquee-img-blank { flex: 1; } }
 
 .cs-hero { align-self: stretch; overflow: hidden; display: flex; flex-direction: column; align-items: flex-start; padding: var(--padding-0) 280px var(--padding-80); position: relative; }
-.cs-hero-bg { position: absolute; margin: 0 !important; bottom: 0; flex-shrink: 0; width: 110%; height: 115.84%; top: -10.84%;left:0%; filter: blur(0); max-width: 100%; overflow: hidden; max-height: 100%; object-fit: cover; z-index: 0; }
+.cs-hero-bg { position: absolute; margin: 0 !important; bottom: 0; flex-shrink: 0; width: 100%; height: 100%; top: 0; left: 0; filter: blur(0); max-width: 100%; overflow: hidden; max-height: 100%; object-fit: cover; object-position: center 58%; z-index: 0; }
 .cs-hero-paint { position: absolute; margin: 0 !important; bottom: 0; flex-shrink: 0; width: 100%; height: 100%; top: 0; right: 0; left: 0; background-color: var(--color-gray-700); overflow: hidden; z-index: 1; }
 .cs-hero-blur { position: absolute; margin: 0 !important; bottom: 0; flex-shrink: 0; width: 100%; height: 100%; top: 0; right: 0; left: 0; backdrop-filter: blur(4px); background-color: var(--color-gray-600); z-index: 2; }
 .cs-hero-content { align-self: stretch; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; padding: var(--padding-80) var(--padding-0) var(--padding-0); gap: var(--gap-20); z-index: 3; flex-shrink: 0; text-align: left; font-size: var(--fs-16); color: var(--color-gray-300); font-family: var(--font-lilex); }
@@ -71,11 +71,11 @@ const CARDIOLOGY_STYLES = `
 .cs-hero-badge-icon { align-self: stretch; flex: 1; position: relative; max-width: 100%; overflow: hidden; max-height: 100%; }
 .cs-hero-badge-text-wrap { display: flex; flex-direction: column; align-items: flex-start; }
 .cs-hero-badge-text { position: relative; line-height: var(--lh-24); text-transform: uppercase; font-weight: 500; }
-.cs-hero-title-wrap { display: flex; flex-direction: column; align-items: flex-start; padding: var(--padding-24) var(--padding-20) var(--padding-0) var(--padding-0); flex-shrink: 0; font-size: var(--fs-64); color: var(--color-white); font-family: var(--font-stack-sans-text); }
-.cs-hero-title { margin: 0; position: relative; font-size: inherit; letter-spacing: var(--ls--1_5); line-height: 76.8px; font-weight: 400; font-family: inherit; }
-.cs-hero-sub-wrap { align-self: stretch; display: flex; flex-direction: column; align-items: flex-end; font-size: var(--fs-32); color: var(--color-white); font-family: var(--font-inter); }
+.cs-hero-title-wrap { display: flex; flex-direction: column; align-items: flex-start; padding: var(--padding-24) var(--padding-20) var(--padding-0) var(--padding-0); flex-shrink: 0; font-size: var(--fs-64); color: #0b0c0f; font-family: var(--font-stack-sans-text); }
+.cs-hero-title { margin: 0; position: relative; font-size: inherit; letter-spacing: var(--ls--1_5); line-height: 76.8px; font-weight: 400; font-family: inherit; color: #0b0c0f; }
+.cs-hero-sub-wrap { align-self: stretch; display: flex; flex-direction: column; align-items: flex-end; font-size: var(--fs-32); color: #0b0c0f; font-family: var(--font-inter); }
 .cs-hero-sub-inner { width: 620px; filter: blur(0); display: flex; flex-direction: column; align-items: flex-start; }
-.cs-hero-sub-text { align-self: stretch; position: relative; line-height: 51.2px; }
+.cs-hero-sub-text { align-self: stretch; position: relative; line-height: 51.2px; color: #0b0c0f; }
 @media screen and (max-width: 1350px) { .cs-hero { padding-left: var(--padding-140); padding-right: var(--padding-140); box-sizing: border-box; } .cs-hero-sub-inner { display: none; } }
 @media screen and (max-width: 925px) { .cs-hero { padding-left: 70px; padding-right: 70px; box-sizing: border-box; } .cs-hero-sub-inner { width: 0; } .cs-hero-sub-text { display: none; } }
 @media screen and (max-width: 450px) { .cs-hero { padding-bottom: var(--padding-52); box-sizing: border-box; } .cs-hero-content { padding-top: var(--padding-52); box-sizing: border-box; } }
@@ -131,22 +131,120 @@ const CARDIOLOGY_STYLES = `
 .cs-svc-badge-check { margin: 0; height: var(--height-20); width: var(--width-20); display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
 .cs-svc-badge-label-col { display: flex; flex-direction: column; align-items: flex-start; }
 .cs-svc-badge-label { position: relative; line-height: var(--lh-24); text-transform: uppercase; font-weight: 500; }
-.cs-svc-img { position: absolute; bottom: 2.5px; left: 316px; border-radius: var(--br-8); width: var(--width-220); height: var(--height-275); object-fit: cover; flex-shrink: 0; }
+.cs-svc-img { position: absolute; bottom: 2.5px; left: 316px; border-radius: var(--br-8); width: var(--width-220); height: var(--height-275); object-fit: cover; object-position: center 16%; flex-shrink: 0; }
+.cs-neurology-svc-img {
+  width: 270px;
+  height: 390px;
+  left: auto;
+  right: 0;
+  bottom: 2.5px;
+  object-fit: contain;
+  object-position: center bottom;
+  background-color: #e9ebeb;
+}
 
-.cs-stat-card { align-self: stretch; height: 1200px; display: flex; align-items: center; justify-content: center; position: relative; isolation: isolate; }
+.cs-stat-card { align-self: stretch; height: 1200px; display: flex; align-items: center; justify-content: center; position: relative; isolation: isolate; z-index: 0; }
 .cs-stat-bg { align-self: stretch; flex: 1; position: relative; max-width: 100%; overflow: hidden; max-height: 100%; object-fit: cover; z-index: 0; }
-.cs-stat-overlay { width: 700px; margin: 0 !important; position: absolute; top: 388.4px; left: 610px; backdrop-filter: blur(12px); border-radius: var(--br-16); background-color: var(--color-gray-400); border: var(--border-1); box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 56px var(--padding-32); max-width: 700px; z-index: 1; text-align: left; font-size: var(--fs-100); color: var(--color-white); font-family: var(--font-stack-sans-text); }
-.cs-stat-number-wrap { display: flex; flex-direction: column; align-items: flex-start; }
-.cs-stat-number { margin: 0; position: relative; font-size: inherit; line-height: 120px; font-weight: 400; font-family: inherit; }
-.cs-stat-divider-wrap { align-self: stretch; height: 78px; display: flex; flex-direction: column; align-items: flex-start; padding: 38px var(--padding-0); box-sizing: border-box; }
-.cs-stat-divider { align-self: stretch; height: var(--height-2); position: relative; border: 1px solid var(--color-gainsboro-200); }
-.cs-stat-text { display: flex; flex-direction: column; align-items: center; text-align: center; font-size: var(--fs-32); font-family: var(--font-inter); }
-.cs-stat-title { margin: 0; position: relative; font-size: inherit; line-height: 51.2px; font-weight: 400; font-family: inherit; }
-.cs-stat-desc-wrap { width: 633.8px; display: flex; flex-direction: column; align-items: flex-start; padding: var(--padding-12) var(--padding-0) var(--padding-0); box-sizing: border-box; margin-top: -0.4px; position: relative; font-size: var(--fs-16); color: var(--color-whitesmoke); }
+.cs-stat-overlay { width: 640px; height: 360px; margin: 0 !important; position: absolute; top: 24px; left: 52px; right: auto; transform: none; backdrop-filter: blur(12px); border-radius: var(--br-16); background-color: rgba(92, 104, 120, 0.42); border: 1px solid rgba(255,255,255,0.18); box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 18px 32px 20px; max-width: 640px; z-index: 2; text-align: center; font-size: var(--fs-100); color: var(--color-white); font-family: var(--font-stack-sans-text); }
+.cs-stat-card-label { align-self: flex-start; width: 100%; margin-bottom: 14px; position: relative; font-size: 28px; line-height: 1.1; letter-spacing: 0.04em; text-transform: uppercase; text-align: left; font-weight: 700; color: rgba(255,255,255,0.96); font-family: var(--font-lilex); }
+.cs-stat-number-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; }
+.cs-stat-number { margin: 0; position: relative; font-size: inherit; line-height: 120px; font-weight: 400; font-family: inherit; text-align: center; }
+.cs-stat-divider-wrap { align-self: stretch; height: 48px; display: flex; flex-direction: column; align-items: center; padding: 18px var(--padding-0); box-sizing: border-box; }
+.cs-stat-divider { align-self: stretch; height: var(--height-2); position: relative; border: 1px solid rgba(255,255,255,0.22); }
+.cs-stat-text { display: flex; flex-direction: column; align-items: center; text-align: center; font-size: var(--fs-32); font-family: var(--font-inter); width: 100%; }
+.cs-stat-title { margin: 0; position: relative; font-size: inherit; line-height: 51.2px; font-weight: 400; font-family: inherit; text-align: center; }
+.cs-stat-desc-wrap { width: 100%; display: flex; flex-direction: column; align-items: center; padding: var(--padding-12) var(--padding-0) var(--padding-0); box-sizing: border-box; margin-top: -0.4px; position: relative; font-size: var(--fs-16); color: var(--color-whitesmoke); }
 .cs-stat-desc-inner { align-self: stretch; display: flex; flex-direction: column; align-items: center; padding: var(--padding-0) var(--padding-14); }
-.cs-stat-desc { align-self: stretch; position: relative; line-height: var(--lh-24); }
-@media screen and (max-width: 925px) { .cs-stat-overlay { max-width: 100%; } .cs-stat-number { font-size: 50px; line-height: var(--lh-72); } .cs-stat-title { font-size: var(--fs-26); line-height: 41px; } }
-@media screen and (max-width: 450px) { .cs-stat-number { font-size: var(--fs-30); line-height: var(--lh-48); } .cs-stat-title { font-size: var(--fs-19); line-height: 31px; } }
+.cs-stat-desc { align-self: stretch; position: relative; line-height: var(--lh-24); text-align: center; }
+@media screen and (max-width: 925px) {
+  .cs-stat-card {
+    height: auto !important;
+    display: block;
+    position: relative;
+    padding: 0 24px;
+    box-sizing: border-box;
+  }
+  .cs-stat-bg {
+    display: block;
+    width: 100%;
+    height: 420px;
+    min-height: 420px;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 20px;
+  }
+  .cs-stat-overlay {
+    position: absolute !important;
+    inset: 50% auto auto 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: min(92%, 520px) !important;
+    max-width: 520px !important;
+    height: auto !important;
+    min-height: 230px;
+    left: 50% !important;
+    top: 26% !important;
+    margin: 0 !important;
+    padding: 18px 20px 20px !important;
+    z-index: 2;
+  }
+  .cs-stat-card-label {
+    display: none !important;
+  }
+  .cs-stat-number { font-size: 50px; line-height: var(--lh-72); }
+  .cs-stat-title { font-size: var(--fs-26); line-height: 41px; }
+}
+@media screen and (max-width: 450px) {
+  .cs-stat-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+    padding: 0 16px;
+    gap: 12px;
+  }
+  .cs-stat-bg {
+    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 300px;
+    min-height: 300px;
+    object-position: center center;
+    margin: 0 auto;
+  }
+  .cs-stat-overlay {
+    width: min(92%, 360px) !important;
+    max-width: 360px !important;
+    min-height: 250px;
+    margin: 0 !important;
+    padding: 14px 14px 16px !important;
+    border-radius: 16px;
+    top: 26% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: translate(-50%, -50%) !important;
+  }
+  .cs-stat-card-label {
+    display: none !important;
+  }
+  .cs-stat-number {
+    font-size: 42px !important;
+    line-height: 48px !important;
+  }
+  .cs-stat-divider-wrap {
+    height: 32px;
+    padding: 12px 0;
+  }
+  .cs-stat-title {
+    font-size: 20px !important;
+    line-height: 28px !important;
+  }
+  .cs-stat-desc {
+    font-size: 12px !important;
+    line-height: 18px !important;
+  }
+  .cs-hero-bg { height: 300px !important; object-position: center 58% !important; }
+
+}
 
 .cs-contact-info { align-self: stretch; width: 548px; display: flex; flex-direction: column; align-items: flex-start; padding: var(--padding-12) var(--padding-0) 309px; box-sizing: border-box; gap: 22.9px; max-width: 548px; text-align: left; font-size: var(--fs-16); color: var(--color-gray-300); font-family: var(--font-lilex); }
 .cs-contact-info-badge { filter: blur(0); border-radius: var(--br-4); background-color: var(--color-whitesmoke); display: flex; align-items: center; padding: var(--padding-4) var(--padding-8) var(--padding-4) var(--padding-6); gap: var(--gap-4); }
@@ -251,9 +349,37 @@ const CARDIOLOGY_STYLES = `
 
 @media screen and (max-width: 925px) {
   .cs-hero {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
     padding-left: 24px;
     padding-right: 24px;
     box-sizing: border-box;
+  }
+  .cs-hero-bg {
+    position: relative !important;
+    width: 100% !important;
+    height: 360px !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    order: 2;
+    border-radius: 18px;
+    object-fit: cover;
+    object-position: center 58%;
+    z-index: 0;
+  }
+  .cs-hero-content {
+    order: 1;
+    width: 100%;
+    padding-top: 12px;
+    gap: 16px;
+    z-index: 1;
+  }
+  .cs-hero-badge-wrap {
+    width: 100%;
+    max-width: 100%;
   }
   .cs-hero-sub-wrap {
     align-items: flex-start;
@@ -339,8 +465,18 @@ const CARDIOLOGY_STYLES = `
     position: static;
     width: 100% !important;
     height: auto !important;
-    aspect-ratio: 1.5;
+    aspect-ratio: 0.82;
     border-radius: 12px;
+    object-fit: cover;
+    object-position: center center;
+    background-color: #f2f4f5;
+  }
+  .cs-neurology-svc-img {
+    width: 100% !important;
+    height: 390px !important;
+    max-height: 65vw;
+    object-fit: contain !important;
+    object-position: center center !important;
   }
   
   .cs-list-section {
@@ -364,29 +500,43 @@ const CARDIOLOGY_STYLES = `
   }
   
   .cs-stat-card {
-    height: 600px;
+    height: 420px;
+    min-height: 420px;
     position: relative !important;
+    overflow: hidden;
+    display: block !important;
   }
   .cs-stat-bg {
     position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
+    inset: 0 !important;
     width: 100% !important;
     height: 100% !important;
+    display: block !important;
     object-fit: cover !important;
+    object-position: center center !important;
     z-index: 0 !important;
   }
   .cs-stat-overlay {
     position: absolute !important;
-    top: 50% !important;
+    top: 26% !important;
     left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
     transform: translate(-50%, -50%) !important;
-    width: 90% !important;
-    max-width: 500px !important;
+    width: min(92%, 520px) !important;
+    max-width: 520px !important;
+    min-height: 280px !important;
     margin: 0 !important;
-    padding: 32px 24px !important;
+    padding: 22px 18px !important;
     box-sizing: border-box !important;
     z-index: 1 !important;
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  .cs-stat-number-wrap, .cs-stat-text {
+    width: 100% !important;
+    max-width: 100% !important;
   }
   .cs-stat-desc-wrap {
     width: 100% !important;
@@ -401,16 +551,25 @@ const CARDIOLOGY_STYLES = `
     gap: 40px;
     padding: 60px 24px;
     box-sizing: border-box;
+    position: relative;
+    z-index: 0;
+    margin-top: 80px;
   }
   .cs-contact-info {
     width: 100%;
     max-width: 100%;
     padding-bottom: 0;
+    position: relative;
+    z-index: 0;
+    margin-top: 0;
   }
   .cs-form-wrap {
     width: 100%;
     max-width: 100%;
     padding-top: 0;
+    position: relative;
+    z-index: 0;
+    margin-top: 0;
   }
 }
 
@@ -482,8 +641,20 @@ const CARDIOLOGY_STYLES = `
     gap: 12px;
   }
   .cs-svc-img {
-    aspect-ratio: 1.2;
+    width: 100% !important;
+    height: 320px !important;
+    aspect-ratio: auto;
+    object-fit: contain;
+    object-position: center center;
     border-radius: 8px;
+    background-color: #f2f4f5;
+  }
+  .cs-neurology-svc-img {
+    width: 100% !important;
+    height: 320px !important;
+    max-height: none;
+    object-fit: contain !important;
+    object-position: center center !important;
   }
   
   .cs-list-section {
@@ -506,33 +677,55 @@ const CARDIOLOGY_STYLES = `
   }
   
   .cs-stat-card {
-    height: 480px;
+    height: 340px;
+    min-height: 340px;
+    display: block !important;
   }
   .cs-stat-overlay {
-    width: 92% !important;
+    top: 26% !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translate(-50%, -50%) !important;
+    width: min(92%, 360px) !important;
     max-width: 360px !important;
-    padding: 24px 16px !important;
+    min-height: 160px !important;
+    padding: 18px 14px !important;
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
   .cs-stat-number {
-    font-size: 48px !important;
-    line-height: 56px !important;
+    font-size: 42px !important;
+    line-height: 52px !important;
   }
   .cs-stat-divider-wrap {
-    height: 40px;
-    padding: 19px 0;
+    height: 36px;
+    padding: 14px 0;
   }
   .cs-stat-title {
     font-size: 18px !important;
     line-height: 26px !important;
   }
   .cs-stat-desc {
-    font-size: 14px !important;
+    font-size: 13px !important;
     line-height: 20px !important;
   }
   
   .cs-contact-section {
     padding: 40px 16px;
     gap: 32px;
+    margin-top: 64px;
+  }
+  .cs-contact-info {
+    padding-bottom: 0 !important;
+    margin-top: 0 !important;
+  }
+  .cs-contact-info-title {
+    font-size: 34px !important;
+    line-height: 42px !important;
+  }
+  .cs-form-wrap {
+    margin-top: 0 !important;
   }
 }
 `;
@@ -635,49 +828,78 @@ const ServiceDetail: FunctionComponent<ServiceDetailProps> = ({
                     <div className="cs-svc-badge-label">{label}</div>
                 </div>
             </div>
-            <img className="cs-svc-img" loading="lazy" alt="" src={imageSrc} />
+            <img
+                className={`cs-svc-img${imageSrc?.startsWith("/Neurology-") ? " cs-neurology-svc-img" : ""}`}
+                loading="lazy"
+                alt=""
+                src={imageSrc}
+            />
         </div>
     );
 };
 
 // HeroSection (was Section)
-const HeroSection: FunctionComponent<{ data: SpecialtyData }> = ({ data }) => (
-    <header className="cs-hero">
-        <img className="cs-hero-bg" alt="" src="/Overlay+OverlayBlur.png" />
-        {/* <div className="cs-hero-paint" />
-        <div className="cs-hero-blur" /> */}
-        <section className="cs-hero-content">
-            <div className="cs-hero-badge-wrap">
-                <div className="cs-hero-badge">
-                    <button className="cs-hero-badge-btn">
-                        <img
-                            className="cs-hero-badge-icon"
-                            loading="lazy"
-                            alt=""
-                            src="/SVG.svg"
-                        />
-                    </button>
-                    <div className="cs-hero-badge-text-wrap">
-                        <div className="cs-hero-badge-text">SPECIALITIES</div>
+const HeroSection: FunctionComponent<{ data: SpecialtyData; specialtyId?: string }> = ({ data, specialtyId }) => {
+    const heroImage = specialtyId === "general-surgery"
+        ? "/General-Surgery-Top-Image.png"
+        : specialtyId === "general-medicine"
+            ? "/General-Medicine-Top-Image.png"
+        : specialtyId === "gastroenterology"
+            ? "/Gastroenterology-Top-Image.png"
+        : specialtyId === "dental-maxillofacial-surgery"
+            ? "/Dental-Maxillofacial-Surgery-Top-Image.png"
+        : specialtyId === "ophthalmology"
+            ? "/Ophthalmology-Top-Image.png"
+        : specialtyId === "neurology"
+            ? "/Neurology-Top-Image.png"
+        : specialtyId === "minimal-access-laparoscopic-surgery"
+            ? "/Minimal-Access-Laparoscopic-Surgery-Top-Image.png"
+        : specialtyId === "paediatrics-neonatology"
+            ? "/Paediatrics-Neonatology-Top-Image.png"
+        : specialtyId === "obstetrics-gynaecology"
+            ? "/Obstetrics-Gynaecology-Top-Image.png"
+        : specialtyId === "orthopaedics-joint-replacement"
+            ? "/Orthopaedics-Joint-Replacement-Top-Image.png"
+            : "/Overlay+OverlayBlur.png";
+
+    return (
+        <header className="cs-hero">
+            <img className="cs-hero-bg" alt="" src={heroImage} />
+            {/* <div className="cs-hero-paint" />
+            <div className="cs-hero-blur" /> */}
+            <section className="cs-hero-content">
+                <div className="cs-hero-badge-wrap">
+                    <div className="cs-hero-badge">
+                        <button className="cs-hero-badge-btn">
+                            <img
+                                className="cs-hero-badge-icon"
+                                loading="lazy"
+                                alt=""
+                                src="/SVG.svg"
+                            />
+                        </button>
+                        <div className="cs-hero-badge-text-wrap">
+                            <div className="cs-hero-badge-text">SPECIALITIES</div>
+                        </div>
+                    </div>
+                    <div className="cs-hero-title-wrap">
+                        <h2 className="cs-hero-title">{data.name}</h2>
                     </div>
                 </div>
-                <div className="cs-hero-title-wrap">
-                    <h2 className="cs-hero-title">{data.name}</h2>
-                </div>
-            </div>
-            <div className="cs-hero-sub-wrap">
-                <div className="cs-hero-sub-inner">
-                    <div className="cs-hero-sub-text">
-                        {data.heroSubtext}
+                <div className="cs-hero-sub-wrap">
+                    <div className="cs-hero-sub-inner">
+                        <div className="cs-hero-sub-text">
+                            {data.heroSubtext}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </header>
-);
+            </section>
+        </header>
+    );
+};
 
 // TreatmentSection (was Container3)
-const TreatmentSection: FunctionComponent<{ data: SpecialtyData }> = ({ data }) => {
+const TreatmentSection: FunctionComponent<{ data: SpecialtyData; specialtyId?: string }> = ({ data, specialtyId }) => {
     return (
         <section className="cs-treatment">
             <div className="cs-treatment-top">
@@ -740,7 +962,27 @@ const TreatmentSection: FunctionComponent<{ data: SpecialtyData }> = ({ data }) 
                             <h1 className="cs-interventions-card-title">{data.intervention1Title}</h1>
                             <ServiceDetail
                                 label={data.intervention1Label}
-                                imageSrc="/69a3e99bd6ca614dc6e9e9aa-Service-20Details-20Image-2001-webp@2x.png"
+                                imageSrc={
+                                    specialtyId === "general-surgery"
+                                        ? "/General-Surgery-Diagnostic-Accuracy.png"
+                                        : specialtyId === "general-medicine"
+                                            ? "/General-Medicine-Diagnostic-Accuracy.png"
+                                        : specialtyId === "gastroenterology"
+                                            ? "/Gastroenterology-Diagnostic-Accuracy.png"
+                                        : specialtyId === "dental-maxillofacial-surgery"
+                                            ? "/Dental-Maxillofacial-Surgery-Diagnostic-Accuracy.png"
+                                        : specialtyId === "ophthalmology"
+                                            ? "/Ophthalmology-Diagnostic-Accuracy.png"
+                                        : specialtyId === "neurology"
+                                            ? "/Neurology-Diagnostic-Accuracy.png"
+                                        : specialtyId === "minimal-access-laparoscopic-surgery"
+                                            ? "/Minimal-Access-Laparoscopic-Surgery-Diagnostic-Accuracy.png"
+                                        : specialtyId === "paediatrics-neonatology"
+                                            ? "/Paediatrics-Neonatology-Diagnostic-Accuracy.png"
+                                        : specialtyId === "obstetrics-gynaecology"
+                                            ? "/Obstetrics-Gynaecology-Diagnostic-Accuracy.png"
+                                        : "/69a3e99bd6ca614dc6e9e9aa-Service-20Details-20Image-2001-webp@2x.png"
+                                }
                             />
                         </div>
                         <section className="cs-interventions-card2">
@@ -749,7 +991,27 @@ const TreatmentSection: FunctionComponent<{ data: SpecialtyData }> = ({ data }) 
                             </div>
                             <ServiceDetail
                                 label={data.intervention2Label}
-                                imageSrc="/69a3e99bfd7ca35f82f15373-Service-20Details-20Image-2002-webp@2x.png"
+                                imageSrc={
+                                    specialtyId === "general-surgery"
+                                        ? "/General-Surgery-Therapeutic-Strategy.png"
+                                        : specialtyId === "general-medicine"
+                                            ? "/General-Medicine-Therapeutic-Strategy.png"
+                                        : specialtyId === "gastroenterology"
+                                            ? "/Gastroenterology-Therapeutic-Strategy.png"
+                                        : specialtyId === "dental-maxillofacial-surgery"
+                                            ? "/Dental-Maxillofacial-Surgery-Therapeutic-Strategy.png"
+                                        : specialtyId === "ophthalmology"
+                                            ? "/Ophthalmology-Therapeutic-Strategy.png"
+                                        : specialtyId === "neurology"
+                                            ? "/Neurology-Therapeutic-Strategy.png"
+                                        : specialtyId === "minimal-access-laparoscopic-surgery"
+                                            ? "/Minimal-Access-Laparoscopic-Surgery-Therapeutic-Strategy.png"
+                                        : specialtyId === "paediatrics-neonatology"
+                                            ? "/Paediatrics-Neonatology-Therapeutic-Strategy.png"
+                                        : specialtyId === "obstetrics-gynaecology"
+                                            ? "/Obstetrics-Gynaecology-Therapeutic-Strategy.png"
+                                        : "/69a3e99bfd7ca35f82f15373-Service-20Details-20Image-2002-webp@2x.png"
+                                }
                                 width="unset"
                                 alignSelf="stretch"
                             />
@@ -799,15 +1061,33 @@ const TreatmentSection: FunctionComponent<{ data: SpecialtyData }> = ({ data }) 
 };
 
 // StatCard (was Container5)
-const StatCard: FunctionComponent<{ data: SpecialtyData }> = ({ data }) => (
+const StatCard: FunctionComponent<{ data: SpecialtyData; specialtyId?: string }> = ({ data, specialtyId }) => (
     <section className="cs-stat-card">
         <img
             className="cs-stat-bg"
             loading="lazy"
             alt=""
-            src="/69a98d6fd3c8a8ecf82bcdd1_Service_20process_20Card-p-2000.png.png"
-        />
-        <section className="cs-stat-overlay">
+           src={
+               specialtyId === "general-surgery"
+                   ? "/General-Surgery-Below-Section.png"
+                   : specialtyId === "general-medicine"
+                       ? "/General-Medicine-Below-Section.png"
+                   : specialtyId === "gastroenterology"
+                       ? "/Gastroenterology-Below-Section.png"
+                   : specialtyId === "dental-maxillofacial-surgery"
+                       ? "/Dental-Maxillofacial-Surgery-Below-Section.png"
+                   : specialtyId === "ophthalmology"
+                       ? "/Ophthalmology-Below-Section.png"
+                   : specialtyId === "minimal-access-laparoscopic-surgery"
+                       ? "/Minimal-Access-Laparoscopic-Surgery-Below-Section.png"
+                   : specialtyId === "paediatrics-neonatology"
+                       ? "/Paediatrics-Neonatology-Below-Section.png"
+                   : specialtyId === "obstetrics-gynaecology"
+                       ? "/Obstetrics-Gynaecology-Below-Section.png"
+                   : "/69a98d6fd3c8a8ecf82bcdd1_Service_20process_20Card-p-2000.png.png"
+           }
+       />
+       <section className="cs-stat-overlay">
             <div className="cs-stat-number-wrap">
                 <h1 className="cs-stat-number">{data.statNumber}</h1>
             </div>
@@ -924,9 +1204,9 @@ const CardiologySection: FunctionComponent = () => {
 
     return (
         <div className="cs-page">
-            <HeroSection data={data} />
+            <HeroSection data={data} specialtyId={specialtyId || "cardiology"} />
             <main className="cs-main-section">
-                <TreatmentSection data={data} />
+                <TreatmentSection data={data} specialtyId={specialtyId || "cardiology"} />
                 <div className="cs-marquee-wrap">
                     <div className="cs-marquee-row">
                         <div className="cs-marquee-item">
@@ -1059,7 +1339,7 @@ const CardiologySection: FunctionComponent = () => {
                         </div>
                     </div>
                 </div>
-                <StatCard data={data} />
+                <StatCard data={data} specialtyId={specialtyId || "cardiology"} />
             </main>
             <div className="cs-contact-section">
                 <ContactInfo data={data} />

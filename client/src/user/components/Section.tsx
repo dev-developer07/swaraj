@@ -127,19 +127,19 @@ const Section: FunctionComponent<SectionType> = ({ className = "" }) => {
           src="/Intro-Image@2x.png"
         />
         <img
-          className="w-[240px] h-[160px] absolute z-20 top-[40px] right-[calc(50%-450px)] mq1350:right-[calc(50%-385px)] mq1350:w-[185px] mq1350:h-[130px] rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.08)] object-cover shrink-0 mq925:hidden mq450:hidden"
+          className="w-[240px] h-[160px] absolute z-20 top-[40px] right-[calc(50%-450px)] mq1350:right-[calc(50%-385px)] mq1350:w-[185px] mq1350:h-[130px] rounded-[24px] border-[3px] border-white shadow-[0_8px_30px_rgba(0,0,0,0.08)] object-cover shrink-0 mq925:hidden mq450:hidden"
           loading="lazy"
           alt="Specialist doctor"
           src="/Intro-Image2@2x.png"
         />
         <img
-          className="w-[190px] h-[240px] absolute z-20 bottom-[40px] left-[calc(50%-430px)] mq1350:left-[calc(50%-375px)] mq1350:w-[155px] mq1350:h-[195px] rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.08)] object-cover shrink-0 mq925:hidden mq450:hidden"
+          className="w-[190px] h-[240px] absolute z-20 bottom-[40px] left-[calc(50%-430px)] mq1350:left-[calc(50%-375px)] mq1350:w-[155px] mq1350:h-[195px] rounded-[24px] border-[3px] border-white shadow-[0_8px_30px_rgba(0,0,0,0.08)] object-cover shrink-0 mq925:hidden mq450:hidden"
           loading="lazy"
-          alt="Female doctor"
+          alt="Medical monitoring equipment"
           src="/Intro-Image1@2x.png"
         />
         <img
-          className="w-[240px] h-[160px] absolute z-20 bottom-[40px] right-[calc(50%-450px)] mq1350:right-[calc(50%-385px)] mq1350:w-[185px] mq1350:h-[130px] rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.08)] object-cover shrink-0 mq925:hidden mq450:hidden"
+          className="w-[240px] h-[160px] absolute z-20 bottom-[40px] right-[calc(50%-450px)] mq1350:right-[calc(50%-385px)] mq1350:w-[185px] mq1350:h-[130px] rounded-[24px] border-[3px] border-white shadow-[0_8px_30px_rgba(0,0,0,0.08)] object-cover shrink-0 mq925:hidden mq450:hidden"
           loading="lazy"
           alt="Male doctor"
           src="/Intro-Image3@2x.png"
