@@ -134,12 +134,12 @@ model Payment {
 
 
 model Blog {
-
   id              String @id @default(cuid())
   title           String
   slug            String @unique
   content         String
   featuredImage   String?
+  author          String?  @default("Swaraj Hospital")
   isPublished     Boolean @default(false)
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt

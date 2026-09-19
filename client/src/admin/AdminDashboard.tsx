@@ -70,7 +70,7 @@ export default function AdminDashboard() {
     status: "NEW",
     notes: ""
   });
-  const [blogForm, setBlogForm] = useState({ title: "", slug: "", content: "", featuredImage: "", isPublished: false });
+  const [blogForm, setBlogForm] = useState({ title: "", slug: "", content: "", featuredImage: "", author: "Swaraj Hospital", isPublished: false });
   const [jobRoleForm, setJobRoleForm] = useState({
     title: "",
     department: "",
@@ -98,6 +98,19 @@ export default function AdminDashboard() {
       reader.onloadend = () => {
         if (typeof reader.result === "string") {
           setDoctorForm(prev => ({ ...prev, profileImage: reader.result as string }));
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleBlogImageFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        if (typeof reader.result === "string") {
+          setBlogForm(prev => ({ ...prev, featuredImage: reader.result as string }));
         }
       };
       reader.readAsDataURL(file);
@@ -244,12 +257,12 @@ export default function AdminDashboard() {
     e.preventDefault();
     if (!token) return;
     try {
-      const formattedImg = formatImageUrl(blogForm.featuredImage);
       const payload = {
         title: blogForm.title,
         slug: blogForm.slug || undefined,
         content: blogForm.content,
-        featuredImage: formattedImg || undefined,
+        featuredImage: blogForm.featuredImage || undefined,
+        author: blogForm.author || "Swaraj Hospital",
         status: blogForm.isPublished ? "PUBLISHED" : "DRAFT"
       };
       if (editMode && selectedItem) {
@@ -517,16 +530,17 @@ export default function AdminDashboard() {
       setEditMode(true);
       setSelectedItem(blog);
       setBlogForm({
-        title: blog.title,
-        slug: blog.slug,
-        content: blog.content,
+        title: blog.title || "",
+        slug: blog.slug || "",
+        content: blog.content || "",
         featuredImage: blog.featuredImage || "",
-        isPublished: blog.status === "PUBLISHED"
+        author: blog.author || "Swaraj Hospital",
+        isPublished: blog.status === "PUBLISHED" || blog.isPublished === true
       });
     } else {
       setEditMode(false);
       setSelectedItem(null);
-      setBlogForm({ title: "", slug: "", content: "", featuredImage: "", isPublished: false });
+      setBlogForm({ title: "", slug: "", content: "", featuredImage: "", author: "Swaraj Hospital", isPublished: false });
     }
     setShowModal("blog");
   };
@@ -1118,7 +1132,18 @@ export default function AdminDashboard() {
                   />
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Featured Image URL (Optional)</label>
+                  <label className="form-label">Publisher Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="e.g. Swaraj Hospital"
+                    value={blogForm.author}
+                    onChange={e => setBlogForm({ ...blogForm, author: e.target.value })}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="form-label">Featured Image Upload</label>
                   <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
                     {blogForm.featuredImage && (
                       <div
@@ -1147,15 +1172,12 @@ export default function AdminDashboard() {
                     )}
                     <div style={{ flexGrow: 1, display: "flex", flexDirection: "column", gap: "4px" }}>
                       <input
-                        type="text"
+                        type="file"
+                        accept="image/*"
+                        onChange={handleBlogImageFileUpload}
                         className="form-control"
-                        placeholder="Paste image URL or Google Drive link..."
-                        value={blogForm.featuredImage}
-                        onChange={e => setBlogForm({ ...blogForm, featuredImage: e.target.value })}
+                        style={{ fontSize: "12px", padding: "4px 8px" }}
                       />
-                      <span style={{ fontSize: "11px", color: "var(--text-muted)" }}>
-                        Supports direct image links, Google Drive share links, Google Image search links, etc.
-                      </span>
                     </div>
                   </div>
                 </div>

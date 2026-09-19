@@ -195,10 +195,11 @@ const ArticleDetail: FunctionComponent = () => {
     const readTime = calculateReadTime(blog.content);
     const formattedDate = blog.createdAt
         ? new Date(blog.createdAt).toLocaleDateString("en-US", {
+            day: "numeric",
             month: "long",
             year: "numeric",
           }).toUpperCase()
-        : "JUNE 2025";
+        : "SEPTEMBER 19, 2026";
 
     // Next Article finding logic
     const nextBlog = allBlogs.find(b => b.slug !== slug) || allBlogs.find(b => b.slug === slug) || null;
@@ -813,13 +814,6 @@ const ArticleDetail: FunctionComponent = () => {
                                     </h1>
                                 </div>
                             </div>
-                            <div className="ap-hero-sub-wrap">
-                                <div className="ap-hero-sub-inner">
-                                    <div className="ap-hero-subtitle">
-                                        {subtitle}
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </main>
 
@@ -855,7 +849,7 @@ const ArticleDetail: FunctionComponent = () => {
                                     />
                                     <div className="ap-blur1-badge-text-wrap">
                                         <div className="ap-blur1-tag-author">
-                                            {(blog.author && !blog.author.toLowerCase().includes("ankit") && !blog.author.toLowerCase().includes("admin")) ? blog.author : "Swaraj Hospital"}
+                                            {blog.author || "Swaraj Hospital"}
                                         </div>
                                     </div>
                                 </div>
@@ -867,15 +861,6 @@ const ArticleDetail: FunctionComponent = () => {
                                         onError={handleImgError}
                                     />
                                     <div className="ap-blur1-tag-btn-text">{formattedDate}</div>
-                                </button>
-                                <button className="ap-blur1-tag-btn">
-                                    <img
-                                        className="ap-blur1-tag-icon"
-                                        alt=""
-                                        src="/Container3.svg"
-                                        onError={handleImgError}
-                                    />
-                                    <div className="ap-blur1-tag-btn-text">{readTime}</div>
                                 </button>
                             </div>
                         </section>

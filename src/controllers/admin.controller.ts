@@ -820,7 +820,7 @@ class AdminController {
 
     async createBlog(req: AdminRequest, res: Response): Promise<void> {
         try {
-            const { title, slug, content, featuredImage, isPublished, status } = req.body;
+            const { title, slug, content, featuredImage, author, isPublished, status } = req.body;
 
             if (!title || !content) {
                 res.status(400).json({
@@ -868,6 +868,7 @@ class AdminController {
                     slug: finalSlug,
                     content,
                     featuredImage: featuredImage || null,
+                    author: author || "Swaraj Hospital",
                     isPublished: resolvedIsPublished
                 }
             });
@@ -892,7 +893,7 @@ class AdminController {
     async updateBlog(req: AdminRequest, res: Response): Promise<void> {
         try {
             const { id } = req.params;
-            const { title, slug, content, featuredImage, isPublished, status } = req.body;
+            const { title, slug, content, featuredImage, author, isPublished, status } = req.body;
 
             const existingBlog = await prisma.blog.findUnique({
                 where: { id: id as string }
@@ -909,6 +910,7 @@ class AdminController {
             if (title !== undefined) updateData.title = title;
             if (content !== undefined) updateData.content = content;
             if (featuredImage !== undefined) updateData.featuredImage = featuredImage;
+            if (author !== undefined) updateData.author = author;
             
             if (status !== undefined) {
                 updateData.isPublished = status === "PUBLISHED";
