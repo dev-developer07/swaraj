@@ -4,6 +4,7 @@ import cors from "cors";
 import AuthRouter from "./routes/auth.routes.js";
 import BookingRouter from "./routes/booking.routes.js";
 import AdminRouter from "./routes/admin.routes.js";
+import CareerRouter from "./routes/career.routes.js";
 
 export const app = express();
 
@@ -30,6 +31,10 @@ app.use(
 app.use(express.json({ limit: "25mb" }));
 app.use(express.urlencoded({ limit: "25mb", extended: true }));
 
+app.get("/", (req, res) => {
+	res.json({ message: "Swaraj Hospital Backend API is running", status: "ok", health: "/health" });
+});
+
 app.get("/health", (req, res) => {
 	res.json({ status: "ok" });
 });
@@ -37,6 +42,7 @@ app.get("/health", (req, res) => {
 app.use("/api/auth", AuthRouter);
 app.use("/api/booking", BookingRouter);
 app.use("/api/admin", AdminRouter);
+app.use("/api/career", CareerRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

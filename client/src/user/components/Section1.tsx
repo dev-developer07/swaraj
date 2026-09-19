@@ -147,16 +147,16 @@ const Section1: FunctionComponent<Section1Type> = ({ className = "" }) => {
     >
       <Box ref={containerRef} className="w-full flex flex-col items-start !pt-num-0 !pb-num-0 !pl-num-40 !pr-0 box-border relative isolate max-w-num-1440 mq1825:max-w-full mq450:!pl-0">
         <Box className="self-stretch flex flex-col items-start !pt-num-100 !pb-[132px] !pl-num-0 !pr-num-0 box-border gap-[46px] max-w-full z-[1] shrink-0 mq925:gap-[23px] mq925:!pt-[42px] mq925:!pb-14 mq925:box-border mq1350:!pt-num-65 mq1350:!pb-[86px] mq1350:box-border mq450:gap-[23px] mq450:!pt-[42px] mq450:!pb-14 mq450:box-border">
-          <section className="self-stretch !pr-60 mq925:!pr-[60px] mq1350:!pr-num-120 overflow-hidden flex items-end justify-between gap-5 max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq1350:flex-wrap mq1350:gap-5 mq925:flex-wrap mq450:flex-wrap mq450:!pr-6">
-            <Box className="[filter:blur(0px)] flex flex-col items-start max-w-[480px] mq925:max-w-full mq1350:w-full mq1350:min-w-full">
+          <section className="self-stretch !pr-60 mq925:!pr-[60px] mq1350:!pr-num-120 overflow-hidden flex flex-col md:flex-row items-start md:items-end justify-between gap-5 max-w-full text-left text-num-16 text-web-woodsmoke font-lilex max-md:!pr-6">
+            <Box className="[filter:blur(0px)] flex flex-col items-start w-full md:max-w-[480px]">
               <SectionBadge
                 icon="/SVG.svg"
                 label="SPECIALITIES"
                 variant="light"
               />
-              <Box className="flex flex-col items-start !pt-6 max-[450px]:!pt-8 !pb-num-0 !pl-num-0 !pr-num-0 shrink-0 text-num-48 text-web-white font-stack-sans-text">
+              <Box className="flex flex-col items-start !pt-6 max-[450px]:!pt-4 !pb-num-0 !pl-num-0 !pr-num-0 shrink-0 text-num-48 text-web-white font-stack-sans-text w-full">
                 <Typography
-                  className="!m-0 relative mq925:text-num-38 mq925:leading-num-52 mq450:text-num-29 mq450:leading-num-39 max-[450px]:!text-[28px] max-[450px]:!leading-[38px] max-[450px]:!tracking-[-0.42px] max-[450px]:!w-[345px] max-[450px]:!max-w-full"
+                  className="!m-0 relative mq925:text-num-38 mq925:leading-num-52 mq450:text-num-29 mq450:leading-num-39 max-[450px]:!text-[28px] max-[450px]:!leading-[38px] max-[450px]:!tracking-[-0.42px] w-full"
                   variant="inherit"
                   variantMapping={{ inherit: "h1" }}
                   sx={{
@@ -167,13 +167,13 @@ const Section1: FunctionComponent<Section1Type> = ({ className = "" }) => {
                 >
                   Exceptional
                   <br />
-                  <span className="mq925:whitespace-normal mq450:whitespace-normal whitespace-nowrap">care for every smile</span>
+                  <span className="whitespace-normal">care for every smile</span>
                 </Typography>
               </Box>
             </Box>
-            <Box className="flex-1 [filter:blur(0px)] flex flex-col items-start min-w-[235px] max-w-[362px] mq925:max-w-full mq925:w-full mq925:min-w-0 mq450:max-w-full mq450:w-full mq450:min-w-0 text-web-white font-inter">
-              <Box className="self-stretch flex flex-col items-start">
-                <div className="self-stretch relative leading-num-24">
+            <Box className="w-full md:w-auto md:flex-1 [filter:blur(0px)] flex flex-col items-start md:max-w-[362px] text-web-white font-inter mt-2 md:mt-0">
+              <Box className="self-stretch flex flex-col items-start w-full">
+                <div className="self-stretch relative leading-num-24 text-[15px] md:text-[16px]">
                   We offer a full range of advanced medical specialities, where
                   clinical expertise and compassionate care come together for
                   your family&apos;s health.

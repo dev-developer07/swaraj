@@ -7,37 +7,9 @@ import Section3 from "../components/Section3";
 import Section7 from "../components/Section7";
 import NavyButton from "../components/NavyButton";
 import { getPublicDoctors } from "../../services/user.service";
+import { parseDoctorSchedules } from "../../utils/scheduleUtils";
 
 const FALLBACK_IMAGE = "/Container5@2x.png";
-
-function parseSchedules(schedules: any): { day: string; startTime?: string; endTime?: string }[] {
-  if (!schedules) return [];
-  try {
-    let current = schedules;
-    while (typeof current === "string") {
-      const tmp = JSON.parse(current);
-      if (tmp === current) break;
-      current = tmp;
-    }
-    return Array.isArray(current) ? current : [];
-  } catch {
-    return [];
-  }
-}
-
-function formatAvailability(schedules: { day: string; startTime?: string; endTime?: string }[]): string {
-  if (schedules.length === 0) return "";
-  const t = schedules[0];
-  if (t.startTime && t.endTime) {
-    const fmt = (s: string) => {
-      const [h, m] = s.split(":");
-      const hr = parseInt(h);
-      return `${hr > 12 ? hr - 12 : hr}:${m || "00"} ${hr >= 12 ? "PM" : "AM"}`;
-    };
-    return `Available from ${fmt(t.startTime)} to ${fmt(t.endTime)}`;
-  }
-  return "Available";
-}
 
 const MeetTheTeam: FunctionComponent = () => {
   const navigate = useNavigate();
@@ -54,8 +26,27 @@ const MeetTheTeam: FunctionComponent = () => {
         if (res.success && Array.isArray(res.data)) {
           const active = res.data.filter((d: any) => d.isActive !== false);
           setDoctors(active);
-          const specs = [...new Set(active.map((d: any) => d.specialization?.name).filter(Boolean))] as string[];
-          setSpecialties(specs.sort());
+          const docSpecs = active.map((d: any) => d.specialization?.name).filter(Boolean);
+          const defaultSpecs = [
+            "Cardiology",
+            "Neurology",
+            "Orthopaedics & Joint Replacement",
+            "Paediatrics & Neonatology",
+            "Minimal Access & Laparoscopic Surgery",
+            "Obstetrics & Gynaecology",
+            "General Medicine",
+            "General Surgery",
+            "Gastroenterology",
+            "Nephrology",
+            "Urology",
+            "Radiodiagnosis & Imaging",
+            "Dermatology",
+            "ENT (Ear, Nose & Throat)",
+            "Dental & Maxillofacial Surgery",
+            "Critical Care & Anesthesiology"
+          ];
+          const allSpecs = Array.from(new Set([...defaultSpecs, ...docSpecs])).sort();
+          setSpecialties(allSpecs);
         }
       } catch (err) {
         console.error("Failed to load doctors:", err);
@@ -152,9 +143,7 @@ const MeetTheTeam: FunctionComponent = () => {
                 </Box>
               ) : filteredDoctors.length > 0 ? (
                 filteredDoctors.map((doc, index) => {
-                  const schedules = parseSchedules(doc.schedules);
-                  const days = schedules.map((s) => s.day);
-                  const availability = formatAvailability(schedules);
+                  const schedules = parseDoctorSchedules(doc.schedules);
                   const image = doc.profileImage || FALLBACK_IMAGE;
 
                   return (
@@ -165,28 +154,24 @@ const MeetTheTeam: FunctionComponent = () => {
                       style={{ top: `${index * 341}px` }}
                     >
                       <Box className="w-[640px] max-w-[640px] flex flex-col items-start justify-between mq925:w-full h-[276px] relative z-10 m-0 p-0 mq925:!h-auto mq925:!max-w-full mq925:!gap-6 mq450:w-full mq450:!h-auto mq450:!max-w-full mq450:!gap-6">
-                        <Box className="w-[640px] max-w-full flex flex-col items-start gap-[12px] relative m-0 p-0">
-                          {availability && (
-                            <Box className="w-[640px] max-w-full h-[24px] flex flex-col items-start relative m-0 p-0 mq450:!h-auto">
-                              <span className="text-left font-lilex font-normal text-[16px] leading-[24px] uppercase text-[#7791A5] h-[24px] mq450:!h-auto flex items-center mq450:!text-[12px] mq450:!leading-[18px]">
-                                {availability}
+                        <Box className="w-[640px] max-w-full flex flex-col items-start gap-[8px] relative m-0 p-0 mq450:!w-full">
+                          {schedules.length > 0 && (
+                            <Box className="w-[640px] max-w-full flex flex-col items-start gap-2 relative m-0 p-0 mq450:!w-full">
+                              <span className="text-left font-lilex font-semibold text-[13px] leading-[18px] uppercase text-[#7791A5] tracking-[0.5px]">
+                                Schedule & Timings:
                               </span>
-                            </Box>
-                          )}
-
-                          {days.length > 0 && (
-                            <Box className="pb-0 px-0 h-[60px] flex flex-col items-start relative box-border mq450:!h-auto">
-                              <Box className="w-max flex flex-row items-center gap-[16px] relative mq450:!gap-2">
-                                {days.map((day) => (
+                              <Box className="flex flex-wrap items-center gap-2 max-w-full">
+                                {schedules.map((s, idx) => (
                                   <Box
-                                    key={day}
-                                    className="w-[60px] h-[60px] rounded-[60px] bg-[#FFFFFF] border border-solid border-[#E6E6E6] flex items-center justify-center relative box-border mq450:!w-[44px] mq450:!h-[44px]"
+                                    key={idx}
+                                    className="flex flex-row items-center gap-2 bg-[#F1F2F1] border border-solid border-[#E6E6E6] rounded-[8px] px-3 py-1.5"
                                   >
-                                    <Box className="w-[28px] h-[28px] flex flex-col items-start justify-center relative mq450:!w-auto mq450:!h-auto">
-                                      <span className="text-left font-lilex font-normal text-[16px] leading-[24px] uppercase text-[#000000] w-max mq450:!text-[12px] mq450:!leading-[18px]">
-                                        {day.slice(0, 3)}
-                                      </span>
-                                    </Box>
+                                    <span className="font-lilex font-semibold text-[13px] uppercase text-[#1F2A44]">
+                                      {s.day.slice(0, 3)}:
+                                    </span>
+                                    <span className="font-inter font-medium text-[13px] text-[#505050]">
+                                      {s.timingText}
+                                    </span>
                                   </Box>
                                 ))}
                               </Box>

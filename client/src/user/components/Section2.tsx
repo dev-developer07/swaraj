@@ -46,7 +46,7 @@ const Section2: FunctionComponent<Section2Type> = ({ className = "" }) => {
     >
       <video
         className="h-full w-full absolute !!m-[0 important] top-[0%] right-[0%] bottom-[0%] left-[0%] max-w-full overflow-hidden max-h-full object-cover z-[0] shrink-0"
-        src="/Just_slow_camera_movement_of_t.mp4"
+        src="/swaraj-hero.mp4"
         autoPlay
         muted
         loop
@@ -115,16 +115,16 @@ const Section2: FunctionComponent<Section2Type> = ({ className = "" }) => {
                   to your family&apos;s wellness.
                 </Typography>
               </Box>
-              <Box className="self-stretch flex flex-row items-center gap-4 flex-wrap max-sm:flex-col max-sm:items-start max-sm:w-full max-sm:gap-4">
+              <Box className="self-stretch flex flex-row items-center gap-4 flex-wrap max-sm:flex-col max-sm:items-start max-sm:w-full max-sm:gap-3">
                 <NavyButton
-                  className="max-sm:!w-auto max-sm:!h-[40px] max-sm:!px-4 max-sm:!py-2"
+                  className="max-sm:!w-[230px] max-sm:justify-between max-sm:!px-4 max-sm:!h-[40px]"
                   label="Our Specialities"
                   variant="outline"
                   endIcon="/699f6877b8f1c6d2edfe4bd7-button-20ball-svg.png"
                   onClick={onSpecialitiesClick}
                 />
                 <NavyButton
-                  className="max-sm:!w-auto max-sm:!h-[40px] max-sm:!px-4 max-sm:!py-2"
+                  className="max-sm:!w-[230px] max-sm:justify-between max-sm:!px-4 max-sm:!h-[40px]"
                   label="Book an Appointment"
                   variant="filled"
                   endIcon="/69959585702a1a429f59d932-frame-svg.png"

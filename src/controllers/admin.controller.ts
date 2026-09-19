@@ -77,11 +77,13 @@ class AdminController {
                 }
             });
 
-        } catch (error) {
-            console.error("Error in admin login:", error);
+        } catch (error: any) {
+            console.error("Error in admin login:", error?.message || error);
             res.status(500).json({
                 success: false,
-                message: "Internal server error"
+                message: process.env.DATABASE_URL
+                    ? `Database error: ${error?.message || "Internal server error"}`
+                    : "Database connection failed: DATABASE_URL is not set in .env file."
             });
         }
     }
@@ -289,9 +291,42 @@ class AdminController {
     // -------------------------------------------------------------
     async listSpecializations(req: AdminRequest, res: Response): Promise<void> {
         try {
-            const specs = await prisma.specialization.findMany({
+            let specs = await prisma.specialization.findMany({
                 orderBy: { name: "asc" }
             });
+
+            if (specs.length === 0) {
+                const defaultSpecs = [
+                    "Cardiology",
+                    "Neurology",
+                    "Orthopaedics & Joint Replacement",
+                    "Paediatrics & Neonatology",
+                    "Minimal Access & Laparoscopic Surgery",
+                    "Obstetrics & Gynaecology",
+                    "General Medicine",
+                    "General Surgery",
+                    "Gastroenterology",
+                    "Nephrology",
+                    "Urology",
+                    "Radiodiagnosis & Imaging",
+                    "Dermatology",
+                    "ENT (Ear, Nose & Throat)",
+                    "Dental & Maxillofacial Surgery",
+                    "Critical Care & Anesthesiology"
+                ];
+
+                for (const name of defaultSpecs) {
+                    await prisma.specialization.upsert({
+                        where: { name },
+                        update: {},
+                        create: { name, description: `${name} Specialty Department` }
+                    });
+                }
+
+                specs = await prisma.specialization.findMany({
+                    orderBy: { name: "asc" }
+                });
+            }
 
             res.status(200).json({
                 success: true,
@@ -949,6 +984,171 @@ class AdminController {
             });
         }
     }
+
+    // -------------------------------------------------------------
+    // Job Role / Career Management
+    // -------------------------------------------------------------
+    async listJobRoles(req: Request, res: Response): Promise<void> {
+        try {
+            const roles = await prisma.jobRole.findMany({
+                orderBy: { createdAt: "desc" }
+            });
+
+            res.status(200).json({
+                success: true,
+                data: roles
+            });
+        } catch (error) {
+            console.error("Error listing job roles:", error);
+            res.status(500).json({
+                success: false,
+                message: "Internal server error"
+            });
+        }
+    }
+
+    async createJobRole(req: AdminRequest, res: Response): Promise<void> {
+        try {
+            const {
+                title, department, commitment, location, tagline, overview, roleImpact, profile,
+                remuneration, infrastructure, coverage, typeOfOffer, workSchedule, keyBenefit,
+                candidacyEmail, description, isActive
+            } = req.body;
+
+            if (!title || !department) {
+                res.status(400).json({
+                    success: false,
+                    message: "Job title and department are required"
+                });
+                return;
+            }
+
+            const role = await prisma.jobRole.create({
+                data: {
+                    title,
+                    department,
+                    commitment: commitment || "Full-time",
+                    location: location || "On-site",
+                    tagline: tagline || null,
+                    overview: overview || null,
+                    roleImpact: roleImpact || null,
+                    profile: profile || null,
+                    remuneration: remuneration || null,
+                    infrastructure: infrastructure || null,
+                    coverage: coverage || null,
+                    typeOfOffer: typeOfOffer || "Permanent contract",
+                    workSchedule: workSchedule || "Full-time / Flexible shifts",
+                    keyBenefit: keyBenefit || "NABH-aligned training environment",
+                    candidacyEmail: candidacyEmail || "careers@swarajhospital.in",
+                    description: description || null,
+                    isActive: isActive !== undefined ? Boolean(isActive) : true
+                }
+            });
+
+            res.status(201).json({
+                success: true,
+                message: "Job role created successfully",
+                data: role
+            });
+        } catch (error) {
+            console.error("Error creating job role:", error);
+            res.status(500).json({
+                success: false,
+                message: "Internal server error"
+            });
+        }
+    }
+
+    async updateJobRole(req: AdminRequest, res: Response): Promise<void> {
+        try {
+            const { id } = req.params;
+            const {
+                title, department, commitment, location, tagline, overview, roleImpact, profile,
+                remuneration, infrastructure, coverage, typeOfOffer, workSchedule, keyBenefit,
+                candidacyEmail, description, isActive
+            } = req.body;
+
+            const existingRole = await prisma.jobRole.findUnique({
+                where: { id: id as string }
+            });
+            if (!existingRole) {
+                res.status(404).json({
+                    success: false,
+                    message: "Job role not found"
+                });
+                return;
+            }
+
+            const updateData: any = {};
+            if (title !== undefined) updateData.title = title;
+            if (department !== undefined) updateData.department = department;
+            if (commitment !== undefined) updateData.commitment = commitment;
+            if (location !== undefined) updateData.location = location;
+            if (tagline !== undefined) updateData.tagline = tagline;
+            if (overview !== undefined) updateData.overview = overview;
+            if (roleImpact !== undefined) updateData.roleImpact = roleImpact;
+            if (profile !== undefined) updateData.profile = profile;
+            if (remuneration !== undefined) updateData.remuneration = remuneration;
+            if (infrastructure !== undefined) updateData.infrastructure = infrastructure;
+            if (coverage !== undefined) updateData.coverage = coverage;
+            if (typeOfOffer !== undefined) updateData.typeOfOffer = typeOfOffer;
+            if (workSchedule !== undefined) updateData.workSchedule = workSchedule;
+            if (keyBenefit !== undefined) updateData.keyBenefit = keyBenefit;
+            if (candidacyEmail !== undefined) updateData.candidacyEmail = candidacyEmail;
+            if (description !== undefined) updateData.description = description;
+            if (isActive !== undefined) updateData.isActive = Boolean(isActive);
+
+            const updatedRole = await prisma.jobRole.update({
+                where: { id: id as string },
+                data: updateData
+            });
+
+            res.status(200).json({
+                success: true,
+                message: "Job role updated successfully",
+                data: updatedRole
+            });
+        } catch (error) {
+            console.error("Error updating job role:", error);
+            res.status(500).json({
+                success: false,
+                message: "Internal server error"
+            });
+        }
+    }
+
+    async deleteJobRole(req: AdminRequest, res: Response): Promise<void> {
+        try {
+            const { id } = req.params;
+
+            const existingRole = await prisma.jobRole.findUnique({
+                where: { id: id as string }
+            });
+            if (!existingRole) {
+                res.status(404).json({
+                    success: false,
+                    message: "Job role not found"
+                });
+                return;
+            }
+
+            await prisma.jobRole.delete({
+                where: { id: id as string }
+            });
+
+            res.status(200).json({
+                success: true,
+                message: "Job role deleted successfully"
+            });
+        } catch (error) {
+            console.error("Error deleting job role:", error);
+            res.status(500).json({
+                success: false,
+                message: "Internal server error"
+            });
+        }
+    }
 }
+
 
 export default new AdminController();

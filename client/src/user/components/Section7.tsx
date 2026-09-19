@@ -9,7 +9,7 @@ export type Section7Type = {
 const Section7: FunctionComponent<Section7Type> = ({ className = "" }) => {
   return (
     <footer
-      className={`w-screen bg-web-white overflow-hidden flex flex-col items-start !pt-num-200 !pb-num-200 !pl-num-280 !pr-num-280 box-border max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq1825:!pl-num-140 mq1825:!pr-num-140 mq925:!pt-num-84 mq925:!pb-num-84 mq925:!pl-num-70 mq925:!pr-num-70 mq925:box-border mq1350:!pt-num-130 mq1350:!pb-num-130 mq1350:!pl-num-140 mq1350:!pr-num-140 mq1350:box-border mq700:!pl-5 mq700:!pr-5 mq700:!pt-16 mq700:!pb-16 ${className}`}
+      className={`w-screen bg-web-white overflow-hidden flex flex-col items-start !pt-12 !pb-12 !pl-num-280 !pr-num-280 box-border max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq1825:!pl-num-140 mq1825:!pr-num-140 mq925:!pt-10 mq925:!pb-10 mq925:!pl-num-70 mq925:!pr-num-70 mq925:box-border mq1350:!pt-12 mq1350:!pb-12 mq1350:!pl-num-140 mq1350:!pr-num-140 mq1350:box-border mq700:!pl-5 mq700:!pr-5 mq700:!pt-8 mq700:!pb-8 ${className}`}
       style={{ maxWidth: "100vw" }}
     >
       <Box className="w-num-1360 flex flex-col items-start max-w-full mq700:w-full">
@@ -47,7 +47,7 @@ const Section7: FunctionComponent<Section7Type> = ({ className = "" }) => {
         </section>
 
         {/* Divider 1 */}
-        <Box className="self-stretch h-[2px] bg-web-mercury !my-[72px] mq700:!my-8" />
+        <Box className="self-stretch h-[2px] bg-web-mercury !my-10 mq700:!my-6" />
 
         {/* Row 2: Links Columns & Location Column */}
         <Box className="self-stretch flex items-start justify-between py-0 box-border gap-11 max-w-full flex-wrap mq925:gap-8 mq700:gap-8">
@@ -212,7 +212,7 @@ const Section7: FunctionComponent<Section7Type> = ({ className = "" }) => {
         </Box>
 
         {/* Divider 2 */}
-        <Box className="self-stretch h-[2px] bg-web-mercury !my-[72px] mq700:!my-8" />
+        <Box className="self-stretch h-[2px] bg-web-mercury !my-10 mq700:!my-6" />
 
         {/* Row 3: Copyright & Policies */}
         <Box className="self-stretch flex items-center justify-between pt-0 pb-4 box-border gap-5 max-w-full flex-wrap mq700:flex-col mq700:items-start mq700:gap-4">

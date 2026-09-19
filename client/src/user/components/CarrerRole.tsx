@@ -1,6 +1,7 @@
-import { type FunctionComponent } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect, type FunctionComponent } from "react";
+import { Link, useParams } from "react-router-dom";
 import SectionBadge from "./SectionBadge";
+import { getPublicJobRoleById } from "../../services/user.service";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -107,9 +108,42 @@ const FormField = ({
   </div>
 );
 
+const cleanText = (text: string | undefined, prefix: string) => {
+  if (!text) return "";
+  const regex = new RegExp(`^${prefix}:?\\s*`, "i");
+  return text.replace(regex, "");
+};
+
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 const JobPostingSection: FunctionComponent = () => {
+  const { roleId, id } = useParams<{ roleId?: string; id?: string }>();
+  const targetId = roleId || id;
+  const [roleData, setRoleData] = useState<any>(null);
+
+  useEffect(() => {
+    if (targetId) {
+      getPublicJobRoleById(targetId)
+        .then((res: any) => {
+          if (res.success && res.data) {
+            setRoleData(res.data);
+          }
+        })
+        .catch((err) => console.error("Error loading role details:", err));
+    }
+  }, [targetId]);
+
+  const activeInfoRows = [
+    { label: "Type of Offer:", value: roleData?.typeOfOffer || "Permanent contract" },
+    { label: "Work Schedule:", value: roleData?.workSchedule || "Full-time / Flexible shifts" },
+    { label: "Key Benefit:", value: roleData?.keyBenefit || "NABH-aligned training environment" },
+    {
+      label: "Candidacy:",
+      value: roleData?.candidacyEmail || "careers@swarajhospital.in",
+      borderBottom: "1px solid #aaa",
+    },
+  ];
+
   return (
     <>
       <style>{`
@@ -375,7 +409,7 @@ const JobPostingSection: FunctionComponent = () => {
                   display: flex;
                   align-items: center;
                   gap: 12px;
-                  padding: 0 0 0 40px;
+                  padding: 0;
                 }
 
                 @media (max-width: 768px) {
@@ -404,7 +438,7 @@ const JobPostingSection: FunctionComponent = () => {
                   display: flex;
                   align-items: center;
                   gap: 12px;
-                  padding: 29.3px 0 0 40px;
+                  padding: 24px 0 0 0;
                 }
 
                 @media (max-width: 768px) {
@@ -459,7 +493,7 @@ const JobPostingSection: FunctionComponent = () => {
                   display: flex;
                   flex-direction: column;
                   align-items: flex-start;
-                  padding: 1.3px 0 0 40px;
+                  padding: 8px 0 0 0;
                   box-sizing: border-box;
                   gap: 16px;
                   max-width: 100%;
@@ -955,9 +989,11 @@ const JobPostingSection: FunctionComponent = () => {
                 <SectionBadge icon="/SVG.svg" label="Open Position" variant="dark" />
                 <div className="hero-heading">
                   <h1 className="hero-title">
-                    Staff Nurse
+                    {roleData?.title || "Staff Nurse"}
                     <br />
-                    ICU &amp; Critical Care
+                    <span style={{ fontSize: "36px", color: "#505050" }}>
+                      {roleData?.department || "ICU & Critical Care"}
+                    </span>
                   </h1>
                 </div>
               </div>
@@ -966,9 +1002,7 @@ const JobPostingSection: FunctionComponent = () => {
               <div className="hero-desc">
                 <div className="hero-desc-inner">
                   <span className="hero-desc-text">
-                    Join a clinical team committed to delivering life-saving care
-                    with precision, compassion and professionalism at Swaraj
-                    Hospital, Balangir.
+                    {roleData?.tagline || "Join a clinical team committed to delivering life-saving care with precision, compassion and professionalism at Swaraj Hospital, Balangir."}
                   </span>
                 </div>
               </div>
@@ -984,45 +1018,43 @@ const JobPostingSection: FunctionComponent = () => {
           <div className="overview-col">
             <SectionHeadingFirst>Job Overview.</SectionHeadingFirst>
             <BodyPara>
-              As a key member of our critical care team, you will deliver
-              high-dependency nursing care within a fully equipped ICU and Step
-              Down ICU. Our facility includes a dedicated NICU, Modular OT and
-              24/7 emergency support infrastructure. You will work within a
-              structured, senior-led team in a supportive and professionally
-              rewarding environment at the heart of western Odisha's most advanced
-              hospital.
+              {roleData?.overview || roleData?.description || "As a key member of our critical care team, you will deliver high-dependency nursing care within a fully equipped ICU and Step Down ICU. Our facility includes a dedicated NICU, Modular OT and 24/7 emergency support infrastructure."}
             </BodyPara>
 
             <SectionHeadingWithIcon>
               Your Role &amp; Impact
             </SectionHeadingWithIcon>
             <BodyPara>
-              You will ensure all patients in the ICU receive continuous,
-              attentive and clinically accurate nursing care aligned with NABH
-              standards. Your role involves close coordination with senior
-              consultants, monitoring of critical vital parameters, medication
-              administration and detailed patient documentation. Beyond direct
-              care, you will contribute to infection control protocols and support
-              junior staff development on the ward.
+              {roleData?.roleImpact || "You will ensure all patients in the ICU receive continuous, attentive and clinically accurate nursing care aligned with NABH standards. Your role involves close coordination with senior consultants and monitoring of critical vital parameters."}
             </BodyPara>
 
             <SectionHeadingWithIcon>Professional Profile</SectionHeadingWithIcon>
             <BodyPara>
-              Candidates should possess a GNM or B.Sc. Nursing degree from a recognized institution and hold a valid registration with the Odisha Nurses and Midwives Council (ONMC). Prior clinical experience in an ICU or critical care setup is highly valued.
+              {roleData?.profile || "Candidates should possess a GNM or B.Sc. Nursing degree from a recognized institution and hold a valid registration with the Odisha Nurses and Midwives Council (ONMC). Prior clinical experience in an ICU or critical care setup is highly valued."}
             </BodyPara>
 
             <SectionHeadingWithIcon>
               Employment &amp; Benefits
             </SectionHeadingWithIcon>
             <div className="benefits-list">
-              {benefits.map((b, i) => (
-                <div key={i} className="benefit-row">
-                  <span className="benefit-bullet">•</span>
-                  <span className="benefit-text">
-                    <strong className="benefit-label">{b.label}</strong> {b.text}
-                  </span>
-                </div>
-              ))}
+              <div className="benefit-row">
+                <span className="benefit-bullet">•</span>
+                <span className="benefit-text">
+                  <strong className="benefit-label">Remuneration:</strong> {cleanText(roleData?.remuneration, "Remuneration") || "Competitive salary based on qualification and experience, with structured increments."}
+                </span>
+              </div>
+              <div className="benefit-row">
+                <span className="benefit-bullet">•</span>
+                <span className="benefit-text">
+                  <strong className="benefit-label">Infrastructure:</strong> {cleanText(roleData?.infrastructure, "Infrastructure") || "Work with advanced critical care equipment including ventilators, cardiac monitors and infusion systems."}
+                </span>
+              </div>
+              <div className="benefit-row">
+                <span className="benefit-bullet">•</span>
+                <span className="benefit-text">
+                  <strong className="benefit-label">Coverage:</strong> {cleanText(roleData?.coverage, "Coverage") || "Medical benefits for you and your immediate family under the hospital's staff health scheme."}
+                </span>
+              </div>
             </div>
           </div>
 
@@ -1033,7 +1065,7 @@ const JobPostingSection: FunctionComponent = () => {
             </div>
 
             <div className="info-rows">
-              {infoRows.map((row, i) => (
+              {activeInfoRows.map((row, i) => (
                 <div
                   key={i}
                   className="info-row"

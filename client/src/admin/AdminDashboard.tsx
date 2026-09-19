@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Heart, UserCheck, Clock, ClipboardList, BookOpen, AlertCircle, RefreshCw } from "lucide-react";
+import { Plus, Heart, UserCheck, Clock, ClipboardList, BookOpen, AlertCircle, RefreshCw, Briefcase } from "lucide-react";
 import * as adminService from "../services/admin.service";
 import Sidebar from "./components/Sidebar";
 import TopHeader from "./components/TopHeader";
@@ -9,6 +9,7 @@ import LeadsTab from "./views/LeadsTab";
 import DoctorsTab from "./views/DoctorsTab";
 import SpecializationsTab from "./views/SpecializationsTab";
 import BlogsTab from "./views/BlogsTab";
+import JobRolesTab from "./views/JobRolesTab";
 import { formatImageUrl } from "../utils/imageUtils";
 
 export default function AdminDashboard() {
@@ -28,13 +29,14 @@ export default function AdminDashboard() {
   const [bookings, setBookings] = useState<any[]>([]);
   const [leads, setLeads] = useState<any[]>([]);
   const [blogs, setBlogs] = useState<any[]>([]);
+  const [jobRoles, setJobRoles] = useState<any[]>([]);
 
   // Page Load States
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   // Modal Controllers
-  const [showModal, setShowModal] = useState<"specialization" | "doctor" | "reschedule" | "lead_status" | "blog" | null>(null);
+  const [showModal, setShowModal] = useState<"specialization" | "doctor" | "reschedule" | "lead_status" | "blog" | "jobRole" | null>(null);
   const [editMode, setEditMode] = useState(false);
   const [selectedItem, setSelectedItem] = useState<any | null>(null);
 
@@ -69,6 +71,25 @@ export default function AdminDashboard() {
     notes: ""
   });
   const [blogForm, setBlogForm] = useState({ title: "", slug: "", content: "", featuredImage: "", isPublished: false });
+  const [jobRoleForm, setJobRoleForm] = useState({
+    title: "",
+    department: "",
+    commitment: "Full-time",
+    location: "On-site",
+    tagline: "",
+    overview: "",
+    roleImpact: "",
+    profile: "",
+    remuneration: "",
+    infrastructure: "",
+    coverage: "",
+    typeOfOffer: "Permanent contract",
+    workSchedule: "Full-time / Flexible shifts",
+    keyBenefit: "NABH-aligned training environment",
+    candidacyEmail: "careers@swarajhospital.in",
+    description: "",
+    isActive: true
+  });
 
   const handleImageFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -88,18 +109,20 @@ export default function AdminDashboard() {
     setLoading(true);
     setError(null);
     try {
-      const [docsRes, specsRes, booksRes, leadsRes, blogsRes] = await Promise.all([
+      const [docsRes, specsRes, booksRes, leadsRes, blogsRes, jobRolesRes] = await Promise.all([
         adminService.getDoctors(jwt),
         adminService.getSpecializations(jwt),
         adminService.getBookings(jwt),
         adminService.getLeads(jwt),
-        adminService.getBlogs(jwt)
+        adminService.getBlogs(jwt),
+        adminService.getJobRoles(jwt)
       ]);
       setDoctors(docsRes.data || []);
       setSpecializations(specsRes.data || []);
       setBookings(booksRes.data || []);
       setLeads(leadsRes.data || []);
       setBlogs(blogsRes.data || []);
+      setJobRoles(jobRolesRes.data || []);
     } catch (err: any) {
       console.error(err);
       if (err.message?.includes("unauthorized") || err.message?.includes("Unauthorized") || err.message?.includes("token")) {
@@ -237,6 +260,34 @@ export default function AdminDashboard() {
       loadDashboardData(token);
     } catch (err: any) {
       alert(err.message || "Error saving blog article.");
+    }
+  };
+
+  // Job Role Submit
+  const handleCreateOrUpdateJobRole = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!token) return;
+    try {
+      if (editMode && selectedItem) {
+        await adminService.updateJobRole(selectedItem.id, jobRoleForm, token);
+      } else {
+        await adminService.createJobRole(jobRoleForm, token);
+      }
+      setShowModal(null);
+      loadDashboardData(token);
+    } catch (err: any) {
+      alert(err.message || "Error saving job role.");
+    }
+  };
+
+  const handleDeleteJobRole = async (id: string) => {
+    if (!token) return;
+    if (!confirm("Are you sure you want to delete this job role?")) return;
+    try {
+      await adminService.deleteJobRole(id, token);
+      loadDashboardData(token);
+    } catch (err: any) {
+      alert(err.message || "Error deleting job role.");
     }
   };
 
@@ -461,6 +512,55 @@ export default function AdminDashboard() {
     setShowModal("blog");
   };
 
+  const openJobRoleModal = (role?: any) => {
+    if (role) {
+      setEditMode(true);
+      setSelectedItem(role);
+      setJobRoleForm({
+        title: role.title || "",
+        department: role.department || "",
+        commitment: role.commitment || "Full-time",
+        location: role.location || "On-site",
+        tagline: role.tagline || "",
+        overview: role.overview || "",
+        roleImpact: role.roleImpact || "",
+        profile: role.profile || "",
+        remuneration: role.remuneration || "",
+        infrastructure: role.infrastructure || "",
+        coverage: role.coverage || "",
+        typeOfOffer: role.typeOfOffer || "Permanent contract",
+        workSchedule: role.workSchedule || "Full-time / Flexible shifts",
+        keyBenefit: role.keyBenefit || "NABH-aligned training environment",
+        candidacyEmail: role.candidacyEmail || "careers@swarajhospital.in",
+        description: role.description || "",
+        isActive: role.isActive ?? true
+      });
+    } else {
+      setEditMode(false);
+      setSelectedItem(null);
+      setJobRoleForm({
+        title: "",
+        department: "",
+        commitment: "Full-time",
+        location: "On-site",
+        tagline: "",
+        overview: "",
+        roleImpact: "",
+        profile: "",
+        remuneration: "",
+        infrastructure: "",
+        coverage: "",
+        typeOfOffer: "Permanent contract",
+        workSchedule: "Full-time / Flexible shifts",
+        keyBenefit: "NABH-aligned training environment",
+        candidacyEmail: "careers@swarajhospital.in",
+        description: "",
+        isActive: true
+      });
+    }
+    setShowModal("jobRole");
+  };
+
   // Render view
   const renderTabContent = () => {
     if (loading) {
@@ -526,6 +626,14 @@ export default function AdminDashboard() {
             openDoctorModal={openDoctorModal}
             onDelete={handleDeleteDoctor}
             toggleStatus={handleToggleDoctorStatus}
+          />
+        );
+      case "jobRoles":
+        return (
+          <JobRolesTab
+            jobRoles={jobRoles}
+            openJobRoleModal={openJobRoleModal}
+            onDelete={handleDeleteJobRole}
           />
         );
       case "specializations":
@@ -1062,7 +1170,220 @@ export default function AdminDashboard() {
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" onClick={() => setShowModal(null)}>Cancel</button>
-                <button type="submit" className="btn btn-primary">{editMode ? "Save Post" : "Create Post"}</button>
+                <button type="submit" className="btn btn-primary">{editMode ? "Save Changes" : "Publish Article"}</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* -------------------------------------------------------------
+          MODAL: JOB ROLE FORM
+          ------------------------------------------------------------- */}
+      {showModal === "jobRole" && (
+        <div className="modal-overlay">
+          <div className="modal-container" style={{ maxWidth: "600px" }}>
+            <div className="modal-header">
+              <h3 className="modal-title">
+                <Briefcase size={16} className="text-primary" />
+                {editMode ? "Edit Job Opening" : "Post New Job Opening"}
+              </h3>
+              <button className="btn btn-ghost btn-sm" onClick={() => setShowModal(null)}>&times;</button>
+            </div>
+            <form onSubmit={handleCreateOrUpdateJobRole}>
+              <div className="modal-body">
+                <div className="form-group">
+                  <label className="form-label">Job Title</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="e.g. Consultant Cardiologist, Resident Medical Officer"
+                    value={jobRoleForm.title}
+                    onChange={e => setJobRoleForm({ ...jobRoleForm, title: e.target.value })}
+                    required
+                  />
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label className="form-label">Department</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="e.g. Cardiology, Critical Care, Emergency"
+                      value={jobRoleForm.department}
+                      onChange={e => setJobRoleForm({ ...jobRoleForm, department: e.target.value })}
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Commitment</label>
+                    <select
+                      className="form-control"
+                      value={jobRoleForm.commitment}
+                      onChange={e => setJobRoleForm({ ...jobRoleForm, commitment: e.target.value })}
+                    >
+                      <option value="Full-time">Full-time</option>
+                      <option value="Part-time">Part-time</option>
+                      <option value="Permanent">Permanent</option>
+                      <option value="Contract">Contract</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Hero Tagline / Summary</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="e.g. Join a clinical team committed to delivering life-saving care with precision..."
+                    value={jobRoleForm.tagline}
+                    onChange={e => setJobRoleForm({ ...jobRoleForm, tagline: e.target.value })}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">1. Job Overview</label>
+                  <textarea
+                    rows={3}
+                    className="form-control"
+                    placeholder="Enter detailed job overview text..."
+                    value={jobRoleForm.overview}
+                    onChange={e => setJobRoleForm({ ...jobRoleForm, overview: e.target.value })}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">2. Your Role & Impact</label>
+                  <textarea
+                    rows={3}
+                    className="form-control"
+                    placeholder="Describe daily responsibilities, NABH compliance, patient care impact..."
+                    value={jobRoleForm.roleImpact}
+                    onChange={e => setJobRoleForm({ ...jobRoleForm, roleImpact: e.target.value })}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">3. Professional Profile / Qualifications</label>
+                  <textarea
+                    rows={3}
+                    className="form-control"
+                    placeholder="Degree requirements (e.g., GNM/B.Sc. Nursing), registration, experience required..."
+                    value={jobRoleForm.profile}
+                    onChange={e => setJobRoleForm({ ...jobRoleForm, profile: e.target.value })}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label" style={{ fontWeight: 600 }}>4. Employment & Benefits Breakdown</label>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Remuneration: e.g. Competitive salary based on qualification and experience..."
+                      value={jobRoleForm.remuneration}
+                      onChange={e => setJobRoleForm({ ...jobRoleForm, remuneration: e.target.value })}
+                    />
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Infrastructure: e.g. Work with advanced critical care equipment..."
+                      value={jobRoleForm.infrastructure}
+                      onChange={e => setJobRoleForm({ ...jobRoleForm, infrastructure: e.target.value })}
+                    />
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Coverage: e.g. Medical benefits for you and your immediate family..."
+                      value={jobRoleForm.coverage}
+                      onChange={e => setJobRoleForm({ ...jobRoleForm, coverage: e.target.value })}
+                    />
+                  </div>
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label className="form-label">Work Location</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="e.g. On-site, Balangir"
+                      value={jobRoleForm.location}
+                      onChange={e => setJobRoleForm({ ...jobRoleForm, location: e.target.value })}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Offer Type</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="e.g. Permanent contract"
+                      value={jobRoleForm.typeOfOffer}
+                      onChange={e => setJobRoleForm({ ...jobRoleForm, typeOfOffer: e.target.value })}
+                    />
+                  </div>
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label className="form-label">Work Schedule</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="e.g. Full-time / Flexible shifts"
+                      value={jobRoleForm.workSchedule}
+                      onChange={e => setJobRoleForm({ ...jobRoleForm, workSchedule: e.target.value })}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Application Email</label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      placeholder="careers@swarajhospital.in"
+                      value={jobRoleForm.candidacyEmail}
+                      onChange={e => setJobRoleForm({ ...jobRoleForm, candidacyEmail: e.target.value })}
+                    />
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Key Highlight / Benefit</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="e.g. NABH-aligned training environment"
+                    value={jobRoleForm.keyBenefit}
+                    onChange={e => setJobRoleForm({ ...jobRoleForm, keyBenefit: e.target.value })}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Job Description & Requirements</label>
+                  <textarea
+                    rows={4}
+                    className="form-control"
+                    placeholder="Enter detailed role requirements, qualifications, and responsibilities..."
+                    value={jobRoleForm.description}
+                    onChange={e => setJobRoleForm({ ...jobRoleForm, description: e.target.value })}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="checkbox-label">
+                    <input
+                      type="checkbox"
+                      checked={jobRoleForm.isActive}
+                      onChange={e => setJobRoleForm({ ...jobRoleForm, isActive: e.target.checked })}
+                    />
+                    <span>Active for Applicants (Display on Website)</span>
+                  </label>
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" onClick={() => setShowModal(null)}>Cancel</button>
+                <button type="submit" className="btn btn-primary">{editMode ? "Save Changes" : "Post Job Opening"}</button>
               </div>
             </form>
           </div>

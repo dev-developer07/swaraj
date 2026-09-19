@@ -6,23 +6,9 @@ import Section3 from "../components/Section3";
 import Section7 from "../components/Section7";
 import NavyButton from "../components/NavyButton";
 import { getPublicDoctors } from "../../services/user.service";
+import { parseDoctorSchedules } from "../../utils/scheduleUtils";
 
 const FALLBACK_IMAGE = "/Container5@2x.png";
-
-function parseSchedules(schedules: any): { day: string; startTime?: string; endTime?: string }[] {
-  if (!schedules) return [];
-  try {
-    let current = schedules;
-    while (typeof current === "string") {
-      const tmp = JSON.parse(current);
-      if (tmp === current) break;
-      current = tmp;
-    }
-    return Array.isArray(current) ? current : [];
-  } catch {
-    return [];
-  }
-}
 
 const DoctorDetail: FunctionComponent = () => {
   const { id } = useParams<{ id: string }>();
@@ -80,16 +66,8 @@ const DoctorDetail: FunctionComponent = () => {
     );
   }
 
-  const schedules = parseSchedules(doctor.schedules);
-  const days = schedules.map((s) => s.day);
+  const schedules = parseDoctorSchedules(doctor.schedules);
   const image = doctor.profileImage || FALLBACK_IMAGE;
-
-  const formatTime = (s: string) => {
-    if (!s) return "";
-    const [h, m] = s.split(":");
-    const hr = parseInt(h);
-    return `${hr > 12 ? hr - 12 : hr}:${m || "00"} ${hr >= 12 ? "PM" : "AM"}`;
-  };
 
   return (
     <Box className="h-auto relative w-full flex flex-col items-start !pt-num-0 !pb-[0.1px] !pl-num-0 !pr-num-0 box-border leading-[normal] tracking-[normal] bg-[#FFFFFF]">
@@ -202,19 +180,22 @@ const DoctorDetail: FunctionComponent = () => {
               </Box>
 
               {schedules.length > 0 && (
-                <Box className="flex flex-col items-start gap-4 w-full pt-6 border-t border-[#E6E6E6] mq450:!pt-4 mq450:!gap-2">
+                <Box className="flex flex-col items-start gap-3 w-full pt-6 border-t border-[#E6E6E6] mq450:!pt-4 mq450:!gap-2">
                   <Typography className="text-left font-lilex font-semibold text-[14px] leading-[20px] text-[#7791A5] uppercase tracking-[0.5px] mq450:!text-[12px] mq450:!leading-[18px]">
-                    AVAILABLE FROM<br />
-                    <span className="font-inter font-normal text-[18px] leading-[28px] text-[#505050] mq450:!text-[14px] mq450:!leading-[22px]">
-                      {schedules[0]?.startTime ? `${formatTime(schedules[0].startTime)}` : ""}{schedules[0]?.endTime ? ` to ${formatTime(schedules[0].endTime)}` : ""}
-                    </span>
+                    CONSULTATION SCHEDULE & TIMINGS
                   </Typography>
 
-                  <Box className="flex flex-row items-center gap-4 pt-2 mq450:!gap-2">
-                    {days.map((day) => (
-                      <Box key={day} className="w-[60px] h-[60px] rounded-full bg-[#FFFFFF] border border-solid border-[#E6E6E6] flex items-center justify-center mq450:!w-[44px] mq450:!h-[44px]">
-                        <span className="font-lilex font-normal text-[16px] leading-[24px] uppercase text-[#0B0C0F] mq450:!text-[12px] mq450:!leading-[18px]">
-                          {day.toUpperCase().slice(0, 3)}
+                  <Box className="flex flex-col items-start gap-2.5 w-full">
+                    {schedules.map((s, idx) => (
+                      <Box
+                        key={idx}
+                        className="flex flex-row items-center justify-between bg-[#F1F2F1] border border-solid border-[#E6E6E6] rounded-[8px] px-4 py-3 w-full max-w-[500px] mq450:!px-3 mq450:!py-2"
+                      >
+                        <span className="font-lilex font-semibold text-[15px] uppercase text-[#1F2A44] mq450:!text-[13px]">
+                          {s.day}
+                        </span>
+                        <span className="font-inter font-medium text-[14px] text-[#505050] mq450:!text-[12px]">
+                          {s.timingText}
                         </span>
                       </Box>
                     ))}

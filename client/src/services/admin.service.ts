@@ -115,3 +115,27 @@ export async function updateBlog(id: string, payload: any, token: string) {
 export async function deleteBlog(id: string, token: string) {
   return apiRequest(`/admin/blogs/${id}`, { method: "DELETE" }, token);
 }
+
+// Job Roles CRUD
+export async function getJobRoles(token: string) {
+  return apiRequest("/admin/job-roles", {}, token);
+}
+
+export async function createJobRole(payload: any, token: string) {
+  return apiRequest("/admin/job-roles", {
+    method: "POST",
+    body: JSON.stringify(payload)
+  }, token);
+}
+
+export async function updateJobRole(id: string, payload: any, token: string) {
+  return apiRequest(`/admin/job-roles/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(payload)
+  }, token);
+}
+
+export async function deleteJobRole(id: string, token: string) {
+  return apiRequest(`/admin/job-roles/${id}`, { method: "DELETE" }, token);
+}
+

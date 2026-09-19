@@ -16,6 +16,7 @@ import {
   requestBooking,
   verifyPayment,
 } from "../../services/user.service";
+import { parseDoctorSchedules, type DoctorScheduleItem } from "../../utils/scheduleUtils";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 type Step = "phone" | "otp" | "form" | "book" | "success";
@@ -23,51 +24,71 @@ type Step = "phone" | "otp" | "form" | "book" | "success";
 const RESEND_COOLDOWN = 30;
 const NAVY = "#1F2A44";
 const TEXT_DARK = "#0B0C0F";
-const TEXT_MUTED = "#7E7F80";
+const TEXT_MUTED = "#505050";
 const INPUT_BG = "#F1F2F1";
+const BG_MUTED = "#F1F2F1";
 const BORDER = "#E6E6E6";
 const RED = "#ef4444";
+
+const stl = (extra?: any) => ({
+  width: "100%",
+  boxSizing: "border-box" as const,
+  borderRadius: "12px",
+  backgroundColor: BG_MUTED,
+  border: "1px solid #E6E6E6",
+  fontFamily: "'Inter'",
+  fontSize: "14px",
+  color: TEXT_DARK,
+  outline: "none",
+  transition: "all 0.2s ease",
+  ...extra,
+});
 
 const BookAppointment: FunctionComponent = () => {
   const [searchParams] = useSearchParams();
   const preselectedDoctorId = searchParams.get("doctor");
 
   const [step, setStep] = useState<Step>("phone");
+
+  // Form State
   const [phone, setPhone] = useState("");
   const [otp, setOtp] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [careof, setCareof] = useState("");
+  const [address, setAddress] = useState("");
+
   const [token, setToken] = useState<string | null>(() => localStorage.getItem("auth_token"));
   const [isRegistered, setIsRegistered] = useState(false);
 
   const [resendTimer, setResendTimer] = useState(0);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const [name, setName] = useState("");
-  const [careof, setCareof] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
 
   const [doctors, setDoctors] = useState<any[]>([]);
-  const [selectedDoctorId, setSelectedDoctorId] = useState(preselectedDoctorId || "");
+  const [selectedDoctorId, setSelectedDoctorId] = useState<string>(preselectedDoctorId || "");
   const [bookingDate, setBookingDate] = useState("");
   const [bookingNotes, setBookingNotes] = useState("");
   const [bookingResult, setBookingResult] = useState<any>(null);
+  const [schedules, setSchedules] = useState<DoctorScheduleItem[]>([]);
   const [scheduleDays, setScheduleDays] = useState<string[]>([]);
   const [scheduleTime, setScheduleTime] = useState("");
 
   useEffect(() => {
-    if (!selectedDoctorId) { setScheduleDays([]); setScheduleTime(""); return; }
+    if (!selectedDoctorId) { setSchedules([]); setScheduleDays([]); setScheduleTime(""); return; }
     const doc = doctors.find((d) => d.id === selectedDoctorId);
-    if (!doc || !doc.schedules) { setScheduleDays([]); setScheduleTime(""); return; }
-    let sched = doc.schedules;
-    try { while (typeof sched === "string") { const t = JSON.parse(sched); if (t === sched) break; sched = t; } } catch { }
-    const parsed = Array.isArray(sched) ? sched : [];
-    setScheduleDays(parsed.map((s: any) => s.day).filter(Boolean));
-    if (parsed[0]?.startTime) {
-      const fmt = (t: string) => { const [h, m] = t.split(":"); const hr = parseInt(h); return `${hr > 12 ? hr - 12 : hr}:${m || "00"} ${hr >= 12 ? "PM" : "AM"}`; };
-      setScheduleTime(`${fmt(parsed[0].startTime)}${parsed[0].endTime ? ` - ${fmt(parsed[0].endTime)}` : ""}`);
-    } else { setScheduleTime(""); }
+    if (!doc || !doc.schedules) { setSchedules([]); setScheduleDays([]); setScheduleTime(""); return; }
+
+    const parsed = parseDoctorSchedules(doc.schedules);
+    setSchedules(parsed);
+    setScheduleDays(parsed.map((s) => s.day));
+    if (parsed.length > 0) {
+      setScheduleTime(parsed.map((s) => `${s.day.slice(0, 3)}: ${s.timingText}`).join(" | "));
+    } else {
+      setScheduleTime("");
+    }
   }, [selectedDoctorId, doctors]);
 
   const scheduleError = (() => {
@@ -735,13 +756,23 @@ const BookAppointment: FunctionComponent = () => {
               </Box>
             </Box>
           )}
-          {scheduleDays.length > 0 && (
-            <Box sx={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-              {scheduleDays.map((day) => (
-                <Box key={day} sx={{ width: "44px", height: "44px", borderRadius: "50%", border: "1px solid #E6E6E6", display: "flex", alignItems: "center", justifyContent: "center", bgcolor: "#FFFFFF" }}>
-                  <Typography sx={{ fontFamily: "'Lilex'", fontSize: "12px", textTransform: "uppercase", color: TEXT_DARK }}>{day.slice(0, 3)}</Typography>
-                </Box>
-              ))}
+          {schedules.length > 0 && (
+            <Box sx={{ display: "flex", flexDirection: "column", gap: "8px", width: "100%" }}>
+              <Typography sx={{ fontFamily: "'Lilex'", fontSize: "12px", textTransform: "uppercase", color: "#7791A5", fontWeight: 600 }}>
+                Doctor Available Schedule & Timings:
+              </Typography>
+              <Box sx={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
+                {schedules.map((s, idx) => (
+                  <Box key={idx} sx={{ display: "flex", alignItems: "center", gap: "6px", px: "12px", py: "6px", borderRadius: "6px", bgcolor: "#F1F2F1", border: "1px solid #E6E6E6" }}>
+                    <Typography sx={{ fontFamily: "'Lilex'", fontSize: "12px", fontWeight: 600, color: "#1F2A44", textTransform: "uppercase" }}>
+                      {s.day.slice(0, 3)}:
+                    </Typography>
+                    <Typography sx={{ fontFamily: "'Inter'", fontSize: "12px", color: "#505050" }}>
+                      {s.timingText}
+                    </Typography>
+                  </Box>
+                ))}
+              </Box>
             </Box>
           )}
 

@@ -75,12 +75,12 @@ const Section5: FunctionComponent<Section5Type> = ({ className = "" }) => {
     {
       sliceCTScan: "Mammography",
       sVG1: "/SVG16.svg",
-      testingCardBG: "/Card(7).png",
+      testingCardBG: "/mammography-hover.jpg",
     },
     {
       sliceCTScan: "Echo & TMT Test",
       sVG1: "/SVG18.svg",
-      testingCardBG: "/Card(8).png",
+      testingCardBG: "/echo-tmt-hover.jpg",
     },
   ]);
 

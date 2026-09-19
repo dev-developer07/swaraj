@@ -160,3 +160,29 @@ model OtpLog {
   @@index([expiresAt])
 }
 
+model JobRole {
+  id             String   @id @default(cuid())
+  title          String
+  department     String
+  commitment     String   @default("Full-time")
+  location       String   @default("On-site")
+  date           DateTime @default(now())
+  tagline        String?
+  overview       String?
+  roleImpact     String?
+  profile        String?
+  remuneration   String?
+  infrastructure String?
+  coverage       String?
+  typeOfOffer    String?  @default("Permanent contract")
+  workSchedule   String?  @default("Full-time / Flexible shifts")
+  keyBenefit     String?  @default("NABH-aligned training environment")
+  candidacyEmail String?  @default("careers@swarajhospital.in")
+  description    String?
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+
+

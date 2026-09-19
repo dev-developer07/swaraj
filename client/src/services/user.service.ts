@@ -91,3 +91,14 @@ export async function verifyPayment(payload: {
     body: JSON.stringify(payload)
   }, token);
 }
+
+// ─── Public Careers ──────────────────────────────────────────
+
+export async function getPublicJobRoles() {
+  return apiRequest("/career/job-roles", {});
+}
+
+export async function getPublicJobRoleById(id: string) {
+  return apiRequest(`/career/job-roles/${id}`, {});
+}
+

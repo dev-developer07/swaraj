@@ -1,6 +1,7 @@
-import { useMemo, type FunctionComponent, type CSSProperties } from "react";
+import { useState, useEffect, useMemo, type FunctionComponent, type CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import styles from "./CarrerComponent.module.css";
+import { getPublicJobRoles } from "../../services/user.service";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -17,6 +18,7 @@ type JobItem = {
     title: string;
     department: string;
     commitment: string;
+    location?: string;
     id?: string;
 };
 
@@ -1034,7 +1036,7 @@ const JobRow = ({ item }: { item: JobItem }) => (
             <div className={styles.jobCellText} style={s.jobCellText}>{item.commitment}</div>
         </div>
         <div className={styles.jobCellLocation} style={s.jobCellLocation}>
-            <div className={styles.jobCellText} style={s.jobCellText}>On-site</div>
+            <div className={styles.jobCellText} style={s.jobCellText}>{item.location || "On-site"}</div>
         </div>
         <Link to={item.id ? `/career/${item.id}` : "/career"} className={styles.jobSeeBtn} style={{ ...s.jobSeeBtn, textDecoration: "none" }}>
             <div className={styles.jobSeeBtnText} style={{ ...s.jobSeeBtnText, flexDirection: "row", gap: "6px", alignItems: "center", fontSize: "14px", letterSpacing: "0.5px" }}>
@@ -1048,6 +1050,25 @@ const JobRow = ({ item }: { item: JobItem }) => (
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 const JobBoardSection: FunctionComponent = () => {
+    const [jobList, setJobList] = useState<JobItem[]>(jobs);
+
+    useEffect(() => {
+        getPublicJobRoles()
+            .then((res: any) => {
+                if (res.success && Array.isArray(res.data) && res.data.length > 0) {
+                    const formatted = res.data.map((r: any) => ({
+                        id: r.id,
+                        date: new Date(r.createdAt || r.date || Date.now()).toISOString().split("T")[0],
+                        title: r.title,
+                        department: r.department,
+                        commitment: r.commitment || "Full-time",
+                        location: r.location || "On-site"
+                    }));
+                    setJobList(formatted);
+                }
+            })
+            .catch((err) => console.error("Error fetching job roles:", err));
+    }, []);
     return (
         <div className={styles.pageRoot} style={s.pageRoot}>
             {/* ── 1. Hero ── */}
@@ -1300,7 +1321,7 @@ const JobBoardSection: FunctionComponent = () => {
 
                     {/* Body rows */}
                     <div className={styles.jobsTableBody} style={s.jobsTableBody}>
-                        {jobs.map((job, i) => (
+                        {jobList.map((job, i) => (
                             <JobRow key={i} item={job} />
                         ))}
                     </div>

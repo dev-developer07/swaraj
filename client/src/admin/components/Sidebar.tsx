@@ -1,4 +1,4 @@
-import { LayoutDashboard, Calendar, ClipboardList, UserSquare2, ShieldAlert, BookOpen, LogOut } from "lucide-react";
+import { LayoutDashboard, Calendar, ClipboardList, UserSquare2, Briefcase, BookOpen, LogOut } from "lucide-react";
 
 interface SidebarProps {
   activeTab: string;
@@ -16,7 +16,7 @@ export default function Sidebar({
     { id: "bookings", label: "OPD Bookings", icon: <Calendar size={16} /> },
     { id: "leads", label: "Callback Leads", icon: <ClipboardList size={16} /> },
     { id: "doctors", label: "Doctor Directory", icon: <UserSquare2 size={16} /> },
-    { id: "specializations", label: "Specialties", icon: <ShieldAlert size={16} /> },
+    { id: "jobRoles", label: "Careers & Job Roles", icon: <Briefcase size={16} /> },
     { id: "blogs", label: "Blog CMS", icon: <BookOpen size={16} /> },
   ];
 

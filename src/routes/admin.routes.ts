@@ -40,4 +40,10 @@ router.post("/blogs", adminController.createBlog.bind(adminController));
 router.put("/blogs/:id", adminController.updateBlog.bind(adminController));
 router.delete("/blogs/:id", adminController.deleteBlog.bind(adminController));
 
+// Job Role / Career management
+router.get("/job-roles", adminController.listJobRoles.bind(adminController));
+router.post("/job-roles", adminController.createJobRole.bind(adminController));
+router.put("/job-roles/:id", adminController.updateJobRole.bind(adminController));
+router.delete("/job-roles/:id", adminController.deleteJobRole.bind(adminController));
+
 export default router;

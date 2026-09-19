@@ -60,11 +60,11 @@ const CARDIOLOGY_STYLES = `
 @media screen and (max-width: 925px) { .cs-main-section { gap: var(--gap-20); padding-top: 38px; padding-bottom: 27px; box-sizing: border-box; } .cs-contact-section { padding-top: 59px; padding-bottom: 59px; box-sizing: border-box; } .cs-form-wrap { padding-top: 29px; padding-bottom: var(--padding-20); box-sizing: border-box; max-width: 100%; } }
 @media screen and (max-width: 450px) { .cs-main-section { padding-top: 25px; padding-bottom: var(--padding-20); box-sizing: border-box; } .cs-marquee-label { font-size: var(--fs-16); line-height: var(--lh-26); } .cs-marquee-item2 { flex-wrap: wrap; } .cs-marquee-img3-wrap { flex: 1; } .cs-marquee-img3 { align-self: stretch; width: 100%; } .cs-marquee-img4, .cs-marquee-img-blank { flex: 1; } }
 
-.cs-hero { align-self: stretch; overflow: hidden; display: flex; flex-direction: column; align-items: flex-start; padding: var(--padding-0) 280px var(--padding-80); position: relative; }
+.cs-hero { align-self: stretch; overflow: hidden; display: flex; flex-direction: column; align-items: flex-start; padding: var(--padding-0) 280px var(--padding-80); position: relative; min-height: 480px; box-sizing: border-box; }
 .cs-hero-bg { position: absolute; margin: 0 !important; bottom: 0; flex-shrink: 0; width: 100%; height: 100%; top: 0; left: 0; filter: blur(0); max-width: 100%; overflow: hidden; max-height: 100%; object-fit: cover; object-position: center 58%; z-index: 0; }
 .cs-hero-paint { position: absolute; margin: 0 !important; bottom: 0; flex-shrink: 0; width: 100%; height: 100%; top: 0; right: 0; left: 0; background-color: var(--color-gray-700); overflow: hidden; z-index: 1; }
 .cs-hero-blur { position: absolute; margin: 0 !important; bottom: 0; flex-shrink: 0; width: 100%; height: 100%; top: 0; right: 0; left: 0; backdrop-filter: blur(4px); background-color: var(--color-gray-600); z-index: 2; }
-.cs-hero-content { align-self: stretch; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; padding: var(--padding-80) var(--padding-0) var(--padding-0); gap: var(--gap-20); z-index: 3; flex-shrink: 0; text-align: left; font-size: var(--fs-16); color: var(--color-gray-300); font-family: var(--font-lilex); }
+.cs-hero-content { align-self: stretch; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: var(--padding-80) var(--padding-0); gap: var(--gap-20); z-index: 3; flex-shrink: 0; text-align: left; font-size: var(--fs-16); color: var(--color-gray-300); font-family: var(--font-lilex); min-height: 320px; box-sizing: border-box; }
 .cs-hero-badge-wrap { width: 320px; display: flex; flex-direction: column; align-items: flex-start; max-width: 320px; filter: blur(0); }
 .cs-hero-badge { height: var(--height-32); filter: blur(0); border-radius: var(--br-4); background-color: var(--color-whitesmoke); display: flex; align-items: center; padding: var(--padding-4) var(--padding-8) var(--padding-4) var(--padding-6); box-sizing: border-box; gap: var(--gap-4); flex-shrink: 0; }
 .cs-hero-badge-btn { cursor: pointer; border: 0; padding: var(--padding-01); background-color: transparent; height: var(--height-20); width: var(--width-20); display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
@@ -159,88 +159,99 @@ const CARDIOLOGY_STYLES = `
 @media screen and (max-width: 925px) {
   .cs-stat-card {
     height: auto !important;
-    display: block;
-    position: relative;
+    min-height: 380px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
     padding: 0 24px;
     box-sizing: border-box;
+    border-radius: 20px;
+    overflow: hidden !important;
   }
   .cs-stat-bg {
-    display: block;
-    width: 100%;
-    height: 420px;
-    min-height: 420px;
-    object-fit: cover;
-    object-position: center center;
-    border-radius: 20px;
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    border-radius: 20px !important;
+    z-index: 0 !important;
   }
   .cs-stat-overlay {
     position: absolute !important;
-    inset: 50% auto auto 50% !important;
-    transform: translate(-50%, -50%) !important;
-    width: min(92%, 520px) !important;
-    max-width: 520px !important;
-    height: auto !important;
-    min-height: 230px;
-    left: 50% !important;
-    top: 26% !important;
+    inset: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
     margin: 0 !important;
-    padding: 18px 20px 20px !important;
-    z-index: 2;
+    transform: none !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    background-color: rgba(15, 23, 42, 0.55) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 20px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 24px 20px !important;
+    z-index: 2 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
   .cs-stat-card-label {
     display: none !important;
   }
-  .cs-stat-number { font-size: 50px; line-height: var(--lh-72); }
-  .cs-stat-title { font-size: var(--fs-26); line-height: 41px; }
+  .cs-stat-number { font-size: 44px !important; line-height: 50px !important; text-align: center !important; color: #ffffff !important; margin: 0 !important; }
+  .cs-stat-title { font-size: 20px !important; line-height: 26px !important; text-align: center !important; color: #ffffff !important; margin: 0 !important; font-weight: 500 !important; }
+  .cs-stat-desc { font-size: 13px !important; line-height: 19px !important; text-align: center !important; color: rgba(255, 255, 255, 0.88) !important; }
 }
 @media screen and (max-width: 450px) {
   .cs-stat-card {
     width: 100% !important;
     max-width: 100% !important;
+    min-height: 320px !important;
     box-sizing: border-box;
     padding: 0 16px;
-    gap: 12px;
   }
   .cs-stat-bg {
-    display: block;
+    display: block !important;
     width: 100% !important;
     max-width: 100% !important;
-    height: 300px;
-    min-height: 300px;
-    object-position: center center;
-    margin: 0 auto;
+    height: 100% !important;
+    min-height: 100% !important;
+    object-position: center center !important;
   }
   .cs-stat-overlay {
-    width: min(92%, 360px) !important;
-    max-width: 360px !important;
-    min-height: 250px;
-    margin: 0 !important;
-    padding: 14px 14px 16px !important;
-    border-radius: 16px;
-    top: 26% !important;
-    left: 50% !important;
-    right: auto !important;
-    bottom: auto !important;
-    transform: translate(-50%, -50%) !important;
+    padding: 18px 16px !important;
   }
   .cs-stat-card-label {
     display: none !important;
   }
   .cs-stat-number {
-    font-size: 42px !important;
-    line-height: 48px !important;
+    font-size: 36px !important;
+    line-height: 42px !important;
   }
   .cs-stat-divider-wrap {
-    height: 32px;
-    padding: 12px 0;
+    height: 24px !important;
+    padding: 8px 0 !important;
   }
   .cs-stat-title {
-    font-size: 20px !important;
-    line-height: 28px !important;
+    font-size: 18px !important;
+    line-height: 24px !important;
   }
   .cs-stat-desc {
     font-size: 12px !important;
-    line-height: 18px !important;
+    line-height: 17px !important;
   }
   .cs-hero-bg { height: 300px !important; object-position: center 58% !important; }
 
@@ -351,15 +362,18 @@ const CARDIOLOGY_STYLES = `
   .cs-hero {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    padding-left: 24px;
-    padding-right: 24px;
+    gap: 12px;
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    min-height: auto !important;
     box-sizing: border-box;
   }
   .cs-hero-bg {
     position: relative !important;
     width: 100% !important;
-    height: 360px !important;
+    height: 320px !important;
     top: auto !important;
     left: auto !important;
     right: auto !important;
@@ -373,8 +387,10 @@ const CARDIOLOGY_STYLES = `
   .cs-hero-content {
     order: 1;
     width: 100%;
-    padding-top: 12px;
-    gap: 16px;
+    padding-top: 8px !important;
+    padding-bottom: 0 !important;
+    min-height: auto !important;
+    gap: 12px;
     z-index: 1;
   }
   .cs-hero-badge-wrap {
@@ -500,11 +516,14 @@ const CARDIOLOGY_STYLES = `
   }
   
   .cs-stat-card {
-    height: 420px;
-    min-height: 420px;
+    height: auto !important;
+    min-height: 380px !important;
     position: relative !important;
-    overflow: hidden;
-    display: block !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 20px !important;
   }
   .cs-stat-bg {
     position: absolute !important;
@@ -514,23 +533,33 @@ const CARDIOLOGY_STYLES = `
     display: block !important;
     object-fit: cover !important;
     object-position: center center !important;
+    border-radius: 20px !important;
     z-index: 0 !important;
   }
   .cs-stat-overlay {
     position: absolute !important;
-    top: 26% !important;
-    left: 50% !important;
-    right: auto !important;
-    bottom: auto !important;
-    transform: translate(-50%, -50%) !important;
-    width: min(92%, 520px) !important;
-    max-width: 520px !important;
-    min-height: 280px !important;
+    inset: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
     margin: 0 !important;
-    padding: 22px 18px !important;
+    transform: none !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    background-color: rgba(15, 23, 42, 0.55) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 20px !important;
     box-sizing: border-box !important;
-    z-index: 1 !important;
     display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 24px 20px !important;
+    z-index: 2 !important;
     opacity: 1 !important;
     visibility: visible !important;
   }
@@ -575,16 +604,23 @@ const CARDIOLOGY_STYLES = `
 
 @media screen and (max-width: 450px) {
   .cs-hero {
-    padding: 32px 16px 40px 16px;
+    padding: 12px 16px 12px 16px !important;
+    min-height: auto !important;
     box-sizing: border-box;
   }
   .cs-hero-content {
-    padding-top: 16px;
+    padding-top: 4px !important;
+    padding-bottom: 0 !important;
+    min-height: auto !important;
     box-sizing: border-box;
   }
+  .cs-hero-title-wrap {
+    padding-top: 4px !important;
+    padding-bottom: 0 !important;
+  }
   .cs-hero-title {
-    font-size: 36px !important;
-    line-height: 44px !important;
+    font-size: 32px !important;
+    line-height: 40px !important;
   }
   .cs-hero-sub-text {
     font-size: 16px !important;
@@ -677,38 +713,55 @@ const CARDIOLOGY_STYLES = `
   }
   
   .cs-stat-card {
-    height: 340px;
-    min-height: 340px;
-    display: block !important;
+    height: auto !important;
+    min-height: 340px !important;
+    position: relative !important;
+    overflow: hidden !important;
+    display: flex !important;
+    border-radius: 20px !important;
   }
   .cs-stat-overlay {
-    top: 26% !important;
-    left: 50% !important;
-    right: auto !important;
-    transform: translate(-50%, -50%) !important;
-    width: min(92%, 360px) !important;
-    max-width: 360px !important;
-    min-height: 160px !important;
-    padding: 18px 14px !important;
+    position: absolute !important;
+    inset: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    transform: none !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    background-color: rgba(15, 23, 42, 0.55) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 20px !important;
+    box-sizing: border-box !important;
     display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 20px 16px !important;
+    z-index: 2 !important;
     opacity: 1 !important;
     visibility: visible !important;
   }
   .cs-stat-number {
-    font-size: 42px !important;
-    line-height: 52px !important;
+    font-size: 36px !important;
+    line-height: 44px !important;
   }
   .cs-stat-divider-wrap {
-    height: 36px;
-    padding: 14px 0;
+    height: 24px;
+    padding: 8px 0;
   }
   .cs-stat-title {
     font-size: 18px !important;
-    line-height: 26px !important;
+    line-height: 24px !important;
   }
   .cs-stat-desc {
-    font-size: 13px !important;
-    line-height: 20px !important;
+    font-size: 12px !important;
+    line-height: 18px !important;
   }
   
   .cs-contact-section {
@@ -884,13 +937,6 @@ const HeroSection: FunctionComponent<{ data: SpecialtyData; specialtyId?: string
                     </div>
                     <div className="cs-hero-title-wrap">
                         <h2 className="cs-hero-title">{data.name}</h2>
-                    </div>
-                </div>
-                <div className="cs-hero-sub-wrap">
-                    <div className="cs-hero-sub-inner">
-                        <div className="cs-hero-sub-text">
-                            {data.heroSubtext}
-                        </div>
                     </div>
                 </div>
             </section>
