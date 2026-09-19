@@ -143,14 +143,14 @@ const DoctorDetail: FunctionComponent = () => {
               </Box>
 
               <Box className="flex flex-wrap items-start gap-4 w-full pt-4 mq450:!gap-2">
-                <Box className="rounded-[4px] w-max flex items-center justify-center gap-3 bg-[#f1f2f1] mq450:!h-9 mq450:!pl-3 mq450:!pr-3" style={{ height: "48px", paddingLeft: "36px", paddingRight: "36px" }}>
-                  <Box className="rounded-full h-2.5 w-2.5 bg-[#7791a5] mq450:!hidden" />
+                <Box className="rounded-[4px] flex items-center justify-start gap-3 bg-[#f1f2f1] mq450:!h-9 mq450:!w-[220px] mq450:!px-4" style={{ width: "250px", height: "48px", paddingLeft: "24px", paddingRight: "24px" }}>
+                  <Box className="rounded-full h-2.5 w-2.5 bg-[#7791a5] shrink-0 mq450:!hidden" />
                   <span className="font-lilex font-normal text-[14px] leading-[20px] uppercase text-[#0B0C0F] mq450:!text-[12px] mq450:!leading-[18px]">
                     <span className="hidden mq450:!inline mr-1">+</span>BOARD CERTIFIED
                   </span>
                 </Box>
-                <Box className="rounded-[4px] w-max flex items-center justify-center gap-3 bg-[#f1f2f1] mq450:!h-9 mq450:!pl-3 mq450:!pr-3" style={{ height: "48px", paddingLeft: "36px", paddingRight: "36px" }}>
-                  <Box className="rounded-full h-2.5 w-2.5 bg-[#7791a5] mq450:!hidden" />
+                <Box className="rounded-[4px] flex items-center justify-start gap-3 bg-[#f1f2f1] mq450:!h-9 mq450:!w-[220px] mq450:!px-4" style={{ width: "250px", height: "48px", paddingLeft: "24px", paddingRight: "24px" }}>
+                  <Box className="rounded-full h-2.5 w-2.5 bg-[#7791a5] shrink-0 mq450:!hidden" />
                   <span className="font-lilex font-normal text-[14px] leading-[20px] uppercase text-[#0B0C0F] mq450:!text-[12px] mq450:!leading-[18px]">
                     <span className="hidden mq450:!inline mr-1">+</span>{doctor.experienceYears || 10}+ YRS EXPERIENCE
                   </span>
