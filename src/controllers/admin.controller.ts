@@ -19,21 +19,34 @@ class AdminController {
                 return;
             }
 
+            const cleanUsername = String(username).trim();
+            const cleanPassword = String(password).trim();
+
             // Find admin with case-insensitive username lookup
             let admin = await prisma.admin.findFirst({
-                where: { Username: { equals: username, mode: "insensitive" } }
+                where: { Username: { equals: cleanUsername, mode: "insensitive" } }
             });
 
-            // Auto-create default admin account if not found
-            if (!admin && username.toLowerCase() === "admin") {
+            // If logging in with default admin/admin123, auto-upsert credentials in database
+            if (cleanUsername.toLowerCase() === "admin" && cleanPassword === "admin123") {
                 const defaultPasswordHash = await bcrypt.hash("admin123", 10);
-                admin = await prisma.admin.create({
-                    data: {
-                        Username: "admin",
-                        password: defaultPasswordHash,
-                        role: "ADMIN"
+                if (!admin) {
+                    admin = await prisma.admin.create({
+                        data: {
+                            Username: "admin",
+                            password: defaultPasswordHash,
+                            role: "ADMIN"
+                        }
+                    });
+                } else {
+                    const matches = await bcrypt.compare("admin123", admin.password);
+                    if (!matches) {
+                        admin = await prisma.admin.update({
+                            where: { id: admin.id },
+                            data: { password: defaultPasswordHash }
+                        });
                     }
-                });
+                }
             }
 
             if (!admin) {
@@ -44,17 +57,7 @@ class AdminController {
                 return;
             }
 
-            let isMatch = await bcrypt.compare(password, admin.password);
-            // If password mismatch for default admin/admin123 attempt, auto-sync hash
-            if (!isMatch && username.toLowerCase() === "admin" && password === "admin123") {
-                const newHash = await bcrypt.hash("admin123", 10);
-                await prisma.admin.update({
-                    where: { id: admin.id },
-                    data: { password: newHash }
-                });
-                isMatch = true;
-            }
-
+            const isMatch = await bcrypt.compare(cleanPassword, admin.password);
             if (!isMatch) {
                 res.status(401).json({
                     success: false,
