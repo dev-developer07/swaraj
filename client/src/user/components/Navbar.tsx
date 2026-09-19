@@ -14,22 +14,22 @@ const Navbar: FunctionComponent = () => {
   return (
     <>
       <Box
-        className="relative w-full h-[112px] max-lg:h-[80px] flex flex-row justify-center items-center py-5 bg-[#FFFFFF] backdrop-blur-[15px] z-50"
+        className="relative w-full h-[112px] max-lg:h-[80px] flex flex-row justify-center items-center bg-[#FFFFFF] backdrop-blur-[15px] z-50 px-4 sm:px-6 lg:px-8 xl:px-0"
       >
-        <Box className="flex flex-row justify-between items-center w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 xl:px-0 flex-nowrap gap-4">
+        <Box className="flex flex-row justify-between items-center w-full max-w-[1360px] flex-nowrap gap-2 lg:gap-4 xl:gap-6 2xl:gap-8 h-full">
           {/* Logo */}
           <Box className="flex items-center shrink-0">
             <Link to="/">
               <img
                 src="/logo.png"
                 alt="Swaraj Hospital"
-                className="h-[82.27px] w-[111.66px] max-lg:h-[55px] max-lg:w-[75px] object-contain cursor-pointer"
+                className="h-[68px] xl:h-[75px] max-lg:h-[50px] w-auto object-contain cursor-pointer"
               />
             </Link>
           </Box>
 
           {/* Navigation Links — hidden below 1024px */}
-          <Box className="flex flex-row items-center gap-3 lg:gap-4 xl:gap-6 2xl:gap-8 text-[#222222] font-lilex font-medium text-[13px] lg:text-[14px] xl:text-[15px] 2xl:text-[16px] uppercase tracking-[-0.5px] xl:tracking-[-0.8px] max-lg:hidden shrink-0">
+          <Box className="flex flex-row items-center gap-2 lg:gap-3 xl:gap-6 2xl:gap-8 text-[#222222] font-lilex font-medium text-[12px] lg:text-[13px] xl:text-[15px] 2xl:text-[16px] uppercase tracking-[-0.5px] xl:tracking-[-0.8px] max-lg:hidden shrink-0">
             <Link
               to="/"
               className={`no-underline hover:text-[#1F2A44] whitespace-nowrap ${isHome ? "text-[#1F2A44] font-semibold" : "text-[#222222]"
@@ -81,7 +81,7 @@ const Navbar: FunctionComponent = () => {
               label="SCHEDULE A CALL"
               variant="filled"
               endIcon="/69959585702a1a429f59d932-frame-svg.png"
-              className="!px-3 lg:!px-4 xl:!px-5 !py-2.5 xl:!py-3 font-medium uppercase text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[16px] whitespace-nowrap"
+              className="!px-3 lg:!px-4 xl:!px-5 !py-2 xl:!py-2.5 font-medium uppercase text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] whitespace-nowrap !h-[42px] xl:!h-[46px]"
               onClick={() => navigate("/enquire")}
             />
           </Box>
