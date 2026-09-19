@@ -19,32 +19,6 @@ type BenefitItem = {
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
-const infoRows: InfoRow[] = [
-  { label: "Type of Offer:", value: "Permanent contract" },
-  { label: "Work Schedule:", value: "Full-time / Flexible shifts" },
-  { label: "Key Benefit:", value: "NABH-aligned training environment" },
-  {
-    label: "Candidacy:",
-    value: "careers@swarajhospital.in",
-    borderBottom: "1px solid #aaa",
-  },
-];
-
-const benefits: BenefitItem[] = [
-  {
-    label: "Remuneration:",
-    text: "Competitive salary based on qualification and experience, with structured increments.",
-  },
-  {
-    label: "Infrastructure:",
-    text: "Work with advanced critical care equipment including ventilators, cardiac monitors and infusion systems.",
-  },
-  {
-    label: "Coverage:",
-    text: "Medical benefits for you and your immediate family under the hospital's staff health scheme.",
-  },
-];
-
 // ─── Icons ───────────────────────────────────────────────────────────────────
 
 const checkIcon = (

@@ -1,4 +1,3 @@
-import React from "react";
 import { Plus, Briefcase, Trash2, Edit, CheckCircle, XCircle, MapPin, Calendar, Clock } from "lucide-react";
 
 interface JobRolesTabProps {

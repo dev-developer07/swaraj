@@ -30,20 +30,6 @@ const BG_MUTED = "#F1F2F1";
 const BORDER = "#E6E6E6";
 const RED = "#ef4444";
 
-const stl = (extra?: any) => ({
-  width: "100%",
-  boxSizing: "border-box" as const,
-  borderRadius: "12px",
-  backgroundColor: BG_MUTED,
-  border: "1px solid #E6E6E6",
-  fontFamily: "'Inter'",
-  fontSize: "14px",
-  color: TEXT_DARK,
-  outline: "none",
-  transition: "all 0.2s ease",
-  ...extra,
-});
-
 const BookAppointment: FunctionComponent = () => {
   const [searchParams] = useSearchParams();
   const preselectedDoctorId = searchParams.get("doctor");
