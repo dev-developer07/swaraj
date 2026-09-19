@@ -65,9 +65,14 @@ const Navbar: FunctionComponent = () => {
             >
               ARTICLES
             </Link>
-            {/* <a href="#" className="no-underline text-[#222222] hover:text-[#1F2A44]">
-              CONTACT
-            </a> */}
+            <a
+              href="https://dev-developer07.github.io/Swaraj_Maternity/#home"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="no-underline text-[#222222] hover:text-[#1F2A44]"
+            >
+              SwarajMaternity
+            </a>
           </Box>
 
           {/* CTA Button — hidden below 1024px */}
@@ -192,13 +197,15 @@ const Navbar: FunctionComponent = () => {
         >
           ARTICLES
         </Link>
-        {/* <a
-          href="#"
+        <a
+          href="https://dev-developer07.github.io/Swaraj_Maternity/#home"
+          target="_blank"
+          rel="noopener noreferrer"
           onClick={() => setMobileMenuOpen(false)}
-          className="no-underline text-[#222222] font-lilex font-medium text-[20px] uppercase tracking-[-0.8px] hover:text-[#1F2A44]"
+          className="no-underline text-[#222222] font-lilex font-medium text-[20px] tracking-[-0.8px] hover:text-[#1F2A44]"
         >
-          CONTACT
-        </a> */}
+          SwarajMaternity
+        </a>
         <Box sx={{ marginTop: "12px" }}>
           <NavyButton
             label="SCHEDULE A CALL"
