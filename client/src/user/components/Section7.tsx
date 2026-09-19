@@ -67,6 +67,14 @@ const Section7: FunctionComponent<Section7Type> = ({ className = "" }) => {
               <Link to="/blogs" className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 uppercase font-medium text-num-18">
                 ARTICLES
               </Link>
+              <a
+                href="https://dev-developer07.github.io/Swaraj_Maternity/#home"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="no-underline text-inherit hover:text-[#1F2A44] transition-colors relative tracking-[-0.18px] leading-6 font-medium text-num-18"
+              >
+                SwarajMaternity
+              </a>
             </Box>
 
             {/* Column 2: Specialties */}
