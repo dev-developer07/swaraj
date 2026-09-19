@@ -148,9 +148,10 @@ export default function AdminDashboard() {
     setLoginLoading(true);
     try {
       const res = await adminService.adminLogin({ username, password });
-      if (res.success && res.data?.token) {
-        localStorage.setItem("adminToken", res.data.token);
-        setToken(res.data.token);
+      const tokenVal = res.data?.token || res.token;
+      if (tokenVal) {
+        localStorage.setItem("adminToken", tokenVal);
+        setToken(tokenVal);
       } else {
         setLoginError(res.message || "Invalid credentials.");
       }
