@@ -16,9 +16,9 @@ const Navbar: FunctionComponent = () => {
       <Box
         className="relative w-full h-[112px] max-lg:h-[80px] flex flex-row justify-center items-center py-5 bg-[#FFFFFF] backdrop-blur-[15px] z-50"
       >
-        <Box className="flex flex-row justify-between items-center w-full max-w-[1360px] px-5 xl:px-0">
+        <Box className="flex flex-row justify-between items-center w-full max-w-[1360px] px-4 sm:px-6 lg:px-8 xl:px-0 flex-nowrap gap-4">
           {/* Logo */}
-          <Box className="flex items-center">
+          <Box className="flex items-center shrink-0">
             <Link to="/">
               <img
                 src="/logo.png"
@@ -29,38 +29,38 @@ const Navbar: FunctionComponent = () => {
           </Box>
 
           {/* Navigation Links — hidden below 1024px */}
-          <Box className="flex flex-row items-center gap-8 text-[#222222] font-lilex font-medium text-[16px] uppercase tracking-[-0.8px] max-lg:hidden">
+          <Box className="flex flex-row items-center gap-3 lg:gap-4 xl:gap-6 2xl:gap-8 text-[#222222] font-lilex font-medium text-[13px] lg:text-[14px] xl:text-[15px] 2xl:text-[16px] uppercase tracking-[-0.5px] xl:tracking-[-0.8px] max-lg:hidden shrink-0">
             <Link
               to="/"
-              className={`no-underline hover:text-[#1F2A44] ${isHome ? "text-[#1F2A44] font-semibold" : "text-[#222222]"
+              className={`no-underline hover:text-[#1F2A44] whitespace-nowrap ${isHome ? "text-[#1F2A44] font-semibold" : "text-[#222222]"
                 }`}
             >
               HOME
             </Link>
             <Link
               to="/meet-the-team"
-              className={`no-underline hover:text-[#1F2A44] ${isDoctors ? "text-[#1F2A44] font-semibold" : "text-[#222222]"
+              className={`no-underline hover:text-[#1F2A44] whitespace-nowrap ${isDoctors ? "text-[#1F2A44] font-semibold" : "text-[#222222]"
                 }`}
             >
               DOCTORS
             </Link>
             <Link
               to="/specialities"
-              className={`no-underline hover:text-[#1F2A44] ${isSpecialities ? "text-[#1F2A44] font-semibold" : "text-[#222222]"
+              className={`no-underline hover:text-[#1F2A44] whitespace-nowrap ${isSpecialities ? "text-[#1F2A44] font-semibold" : "text-[#222222]"
                 }`}
             >
               SPECIALTIES +
             </Link>
             <Link
               to="/career"
-              className={`no-underline hover:text-[#1F2A44] ${location.pathname === "/career" ? "text-[#1F2A44] font-semibold" : "text-[#222222]"
+              className={`no-underline hover:text-[#1F2A44] whitespace-nowrap ${location.pathname === "/career" ? "text-[#1F2A44] font-semibold" : "text-[#222222]"
                 }`}
             >
               CAREERS
             </Link>
             <Link
               to="/blogs"
-              className={`no-underline hover:text-[#1F2A44] ${location.pathname === "/blogs" ? "text-[#1F2A44] font-semibold" : "text-[#222222]"
+              className={`no-underline hover:text-[#1F2A44] whitespace-nowrap ${location.pathname === "/blogs" ? "text-[#1F2A44] font-semibold" : "text-[#222222]"
                 }`}
             >
               ARTICLES
@@ -69,19 +69,19 @@ const Navbar: FunctionComponent = () => {
               href="https://dev-developer07.github.io/Swaraj_Maternity/#home"
               target="_blank"
               rel="noopener noreferrer"
-              className="no-underline text-[#222222] hover:text-[#1F2A44]"
+              className="no-underline text-[#222222] hover:text-[#1F2A44] whitespace-nowrap"
             >
               SWARAJMATERNITY
             </a>
           </Box>
 
           {/* CTA Button — hidden below 1024px */}
-          <Box className="flex items-center max-lg:hidden">
+          <Box className="flex items-center max-lg:hidden shrink-0 whitespace-nowrap">
             <NavyButton
               label="SCHEDULE A CALL"
               variant="filled"
               endIcon="/69959585702a1a429f59d932-frame-svg.png"
-              className="!px-5 !py-3 font-medium uppercase"
+              className="!px-3 lg:!px-4 xl:!px-5 !py-2.5 xl:!py-3 font-medium uppercase text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[16px] whitespace-nowrap"
               onClick={() => navigate("/enquire")}
             />
           </Box>
