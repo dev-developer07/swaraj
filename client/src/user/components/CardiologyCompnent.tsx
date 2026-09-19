@@ -1031,6 +1031,8 @@ const TreatmentSection: FunctionComponent<{ data: SpecialtyData; specialtyId?: s
                                             ? "/Obstetrics-Gynaecology-Diagnostic-Accuracy.png"
                                         : specialtyId === "orthopaedics-joint-replacement"
                                             ? "/Orthopaedics-Joint-Replacement-Diagnostic-Accuracy.jpg"
+                                        : specialtyId === "urology"
+                                            ? "/Urology-Diagnostic-Accuracy.jpg"
                                         : "/69a3e99bd6ca614dc6e9e9aa-Service-20Details-20Image-2001-webp@2x.png"
                                 }
                             />
@@ -1062,6 +1064,8 @@ const TreatmentSection: FunctionComponent<{ data: SpecialtyData; specialtyId?: s
                                             ? "/Obstetrics-Gynaecology-Therapeutic-Strategy.png"
                                         : specialtyId === "orthopaedics-joint-replacement"
                                             ? "/Orthopaedics-Joint-Replacement-Therapeutic-Strategy.jpg"
+                                        : specialtyId === "urology"
+                                            ? "/Urology-Therapeutic-Strategy.jpg"
                                         : "/69a3e99bfd7ca35f82f15373-Service-20Details-20Image-2002-webp@2x.png"
                                 }
                                 width="unset"
