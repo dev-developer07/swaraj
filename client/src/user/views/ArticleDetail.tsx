@@ -517,17 +517,21 @@ const ArticleDetail: FunctionComponent = () => {
                   position: relative;
                   line-height: 28.8px;
                   display: inline-block;
-                  max-width: 640px;
+                  max-width: 100%;
+                  overflow-wrap: break-word;
+                  word-break: break-word;
                 }
                 .ap-b2-figure {
                   align-self: stretch;
                   height: auto;
-                  max-height: 430.8px;
+                  max-height: 480px;
+                  width: 100%;
                   position: relative;
                   max-width: 100%;
                   overflow: hidden;
                   flex-shrink: 0;
                   object-fit: cover;
+                  border-radius: 8px;
                 }
                 .ap-b2-heading-padded {
                   align-self: stretch;
@@ -564,7 +568,9 @@ const ArticleDetail: FunctionComponent = () => {
                   position: relative;
                   line-height: 24px;
                   display: inline-block;
-                  max-width: 604px;
+                  max-width: 100%;
+                  overflow-wrap: break-word;
+                  word-break: break-word;
                 }
                 .ap-b2-bold { font-weight: 500; line-height: 24px; }
                 .ap-b2-dim { color: #505050; line-height: 24px; }
@@ -582,7 +588,9 @@ const ArticleDetail: FunctionComponent = () => {
                   line-height: 36px;
                   font-weight: 500;
                   display: inline-block;
-                  max-width: 640px;
+                  max-width: 100%;
+                  overflow-wrap: break-word;
+                  word-break: break-word;
                 }
                 .ap-b2-conclusion {
                   align-self: stretch;
@@ -600,7 +608,7 @@ const ArticleDetail: FunctionComponent = () => {
                   align-self: stretch;
                   border-top: 1px solid #e6e6e6;
                   box-sizing: border-box;
-                  padding: 124px 0px 0px;
+                  padding: 80px 0px 0px;
                   gap: 14px;
                   max-width: 100%;
                   text-align: left;
@@ -636,34 +644,36 @@ const ArticleDetail: FunctionComponent = () => {
                   justify-content: space-between;
                   padding: 24px;
                   box-sizing: border-box;
-                  gap: 0px;
-                  row-gap: 20px;
+                  gap: 20px;
                   max-width: 100%;
                   font-size: 14px;
                   color: #7791a5;
                   font-family: Lilex, Arial, sans-serif;
+                  overflow: hidden;
                 }
                 .ap-next-card-content {
                   flex: 1;
+                  min-width: 0;
                   padding: 0px 16px 0px 0px;
                   box-sizing: border-box;
-                  gap: 85.7px;
-                  min-width: 175px;
+                  gap: 20px;
                   display: flex;
                   flex-direction: column;
                   align-items: flex-start;
+                  overflow-wrap: break-word;
+                  word-break: break-word;
                 }
                 .ap-next-card-inner {
                   align-self: stretch;
                   height: auto;
                   gap: 8px;
-                  min-width: 253px;
+                  width: 100%;
                   display: flex;
                   flex-direction: column;
                   align-items: flex-start;
                 }
                 .ap-next-card-tag {
-                  width: 84px;
+                  width: auto;
                   height: 21px;
                   display: flex;
                   flex-direction: column;
@@ -675,15 +685,17 @@ const ArticleDetail: FunctionComponent = () => {
                   text-transform: uppercase;
                 }
                 .ap-next-card-heading {
-                  width: 253px;
+                  width: 100%;
                   display: flex;
                   flex-direction: column;
                   align-items: flex-start;
-                  padding: 36px 0px 0px;
+                  padding: 16px 0px 0px;
                   box-sizing: border-box;
                   font-size: 24px;
                   color: #0b0c0f;
                   font-family: Stack Sans Text, Arial, sans-serif;
+                  overflow-wrap: break-word;
+                  word-break: break-word;
                 }
                 .ap-next-card-heading-text {
                   width: 100%;
@@ -691,23 +703,29 @@ const ArticleDetail: FunctionComponent = () => {
                   letter-spacing: -1.2px;
                   line-height: 36px;
                   display: inline-block;
-                  max-width: 253px;
+                  max-width: 100%;
+                  overflow-wrap: break-word;
+                  word-break: break-word;
                 }
                 .ap-next-card-desc {
-                  width: 253px;
+                  width: 100%;
                   display: flex;
                   flex-direction: column;
                   align-items: flex-start;
                   font-size: 16px;
                   color: #505050;
                   font-family: Inter, Arial, sans-serif;
+                  overflow-wrap: break-word;
+                  word-break: break-word;
                 }
                 .ap-next-card-desc-text {
                   width: 100%;
                   position: relative;
                   line-height: 24px;
                   display: inline-block;
-                  max-width: 253px;
+                  max-width: 100%;
+                  overflow-wrap: break-word;
+                  word-break: break-word;
                 }
                 .ap-next-card-btn {
                   cursor: pointer;
@@ -721,6 +739,7 @@ const ArticleDetail: FunctionComponent = () => {
                   align-items: center;
                   justify-content: center;
                   box-sizing: border-box;
+                  flex-shrink: 0;
                 }
                 .ap-next-card-btn-inner {
                   height: 24px;
@@ -747,10 +766,11 @@ const ArticleDetail: FunctionComponent = () => {
                 }
                 .ap-next-card-img {
                   width: 323px;
-                  height: 180px;
+                  height: 200px;
                   position: relative;
                   border-radius: 4px;
                   object-fit: cover;
+                  flex-shrink: 0;
                   max-width: 100%;
                 }
 

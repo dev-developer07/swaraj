@@ -208,6 +208,7 @@
     padding: 24px;
     box-sizing: border-box;
     max-width: 100%;
+    overflow: hidden;
     text-align: left;
     font-size: 14px;
     color: #7791a5;
@@ -215,15 +216,18 @@
 }
 
 .blogCardBody {
-    height: 403px;
+    min-height: 403px;
+    height: auto;
     flex: 1;
-    min-width: 164px;
+    min-width: 0;
     max-width: 253px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
     gap: 20px;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .blogCardMeta {
@@ -231,6 +235,9 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
+    width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .blogCardMetaInner {
@@ -255,6 +262,8 @@
     font-size: 24px;
     color: #0b0c0f;
     font-family: Stack Sans Text, Arial, sans-serif;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .blogCardTitle {
@@ -262,6 +271,8 @@
     position: relative;
     letter-spacing: -1.2px;
     line-height: 36px;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .blogCardDescWrap {
@@ -272,12 +283,16 @@
     font-size: 16px;
     color: #505050;
     font-family: Inter, Arial, sans-serif;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .blogCardDesc {
     align-self: stretch;
     position: relative;
     line-height: 24px;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .blogCardCta {
@@ -312,6 +327,7 @@
     width: 323px;
     border-radius: 4px;
     object-fit: cover;
+    flex-shrink: 0;
     max-width: 100%;
 }
 
