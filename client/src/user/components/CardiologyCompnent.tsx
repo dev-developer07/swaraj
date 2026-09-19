@@ -913,6 +913,8 @@ const HeroSection: FunctionComponent<{ data: SpecialtyData; specialtyId?: string
             ? "/Obstetrics-Gynaecology-Top-Image.png"
         : specialtyId === "orthopaedics-joint-replacement"
             ? "/Orthopaedics-Joint-Replacement-Top-Image.png"
+        : specialtyId === "urology"
+            ? "/Urology-Top-Image.png"
             : "/Overlay+OverlayBlur.png";
 
     return (
