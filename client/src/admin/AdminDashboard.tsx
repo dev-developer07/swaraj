@@ -428,7 +428,7 @@ export default function AdminDashboard() {
     if (doc) {
       setEditMode(true);
       setSelectedItem(doc);
-      let parsed = [];
+      let parsed: Array<{ day: string; slots: string[] }> = [];
       if (doc.schedules) {
         let current = doc.schedules;
         while (typeof current === "string") {
@@ -440,13 +440,31 @@ export default function AdminDashboard() {
             break;
           }
         }
-        parsed = Array.isArray(current) ? current : [];
+        if (Array.isArray(current)) {
+          parsed = current.map((item: any) => {
+            let slotsList: string[] = [];
+            if (Array.isArray(item.slots)) {
+              slotsList = item.slots.map((s: any) => String(s));
+            } else if (item.time) {
+              slotsList = [String(item.time)];
+            } else if (item.startTime && item.endTime) {
+              slotsList = [`${item.startTime} - ${item.endTime}`];
+            } else if (item.timingText) {
+              slotsList = [String(item.timingText)];
+            }
+            return {
+              day: item.day || item.name || "Monday",
+              slots: slotsList
+            };
+          });
+        }
       }
+      const feeNum = parseFloat(String(doc.bookingFee || 0));
       setDoctorForm({
         name: doc.name || "",
         specializationId: doc.specializationId || "",
-        experienceYears: doc.experienceYears || 0,
-        bookingFee: parseFloat(doc.bookingFee) || 0,
+        experienceYears: typeof doc.experienceYears === "number" ? doc.experienceYears : (parseInt(doc.experienceYears) || 0),
+        bookingFee: isNaN(feeNum) ? 0 : feeNum,
         profileImage: doc.profileImage || "",
         description: doc.description || "",
         email: doc.email || "",
@@ -941,26 +959,20 @@ export default function AdminDashboard() {
                   <div className="schedules-list" style={{ marginTop: "8px" }}>
                     {doctorForm.schedules.map((s, index) => (
                       <div key={index} className="schedule-item">
-                        <select
+                        <input
+                          type="text"
                           className="form-control"
-                          style={{ width: "120px", padding: "4px" }}
-                          value={s.day}
+                          style={{ width: "140px", padding: "4px" }}
+                          placeholder="e.g. Monday, Everyday"
+                          value={s.day || ""}
                           onChange={e => updateScheduleDay(index, e.target.value)}
-                        >
-                          <option value="Monday">Monday</option>
-                          <option value="Tuesday">Tuesday</option>
-                          <option value="Wednesday">Wednesday</option>
-                          <option value="Thursday">Thursday</option>
-                          <option value="Friday">Friday</option>
-                          <option value="Saturday">Saturday</option>
-                          <option value="Sunday">Sunday</option>
-                        </select>
+                        />
                         <input
                           type="text"
                           className="form-control"
                           style={{ flexGrow: 1, margin: "0 8px", padding: "4px" }}
                           placeholder="e.g. 09:00 AM, 10:00 AM"
-                          value={s.slots.join(", ")}
+                          value={Array.isArray(s.slots) ? s.slots.join(", ") : ""}
                           onChange={e => updateScheduleSlots(index, e.target.value)}
                         />
                         <button type="button" className="btn btn-ghost btn-sm" onClick={() => removeScheduleRow(index)}>

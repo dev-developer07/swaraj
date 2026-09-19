@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Plus, Edit2, Trash2, Shield, ShieldOff, Search } from "lucide-react";
 
+import { parseDoctorSchedules } from "../../utils/scheduleUtils";
+
 interface DoctorsTabProps {
   doctors: any[];
   specializations: any[];
@@ -22,21 +24,6 @@ export default function DoctorsTab({
     return (d.name || "").toLowerCase().includes(term) ||
            (d.specialization?.name || "").toLowerCase().includes(term);
   });
-
-  const parseSchedules = (scheds: any): any[] => {
-    if (!scheds) return [];
-    let current = scheds;
-    while (typeof current === "string") {
-      try {
-        const parsed = JSON.parse(current);
-        if (parsed === current) break;
-        current = parsed;
-      } catch (e) {
-        break;
-      }
-    }
-    return Array.isArray(current) ? current : [];
-  };
 
   return (
     <div className="card">
@@ -79,19 +66,20 @@ export default function DoctorsTab({
             </thead>
             <tbody>
               {filtered.map(d => {
-                const schedules = parseSchedules(d.schedules);
+                const schedules = parseDoctorSchedules(d.schedules);
+                const feeNum = parseFloat(d.bookingFee || 0);
                 return (
                   <tr key={d.id}>
                     <td style={{ fontWeight: 600 }}>{d.name}</td>
                     <td>{d.specialization?.name || "None"}</td>
-                    <td>{d.experienceYears} Years</td>
-                    <td style={{ fontWeight: 600 }}>₹{parseFloat(d.bookingFee).toFixed(2)}</td>
+                    <td>{d.experienceYears || 0} Years</td>
+                    <td style={{ fontWeight: 600 }}>₹{isNaN(feeNum) ? "0.00" : feeNum.toFixed(2)}</td>
                     <td>
                       {schedules && schedules.length > 0 ? (
                         <div style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
-                          {schedules.map((s: any, idx: number) => (
+                          {schedules.map((s, idx) => (
                             <span key={idx} className="badge badge-outline" style={{ fontSize: "10px", padding: "2px 6px" }}>
-                              <strong>{s.day.substring(0, 3)}:</strong> {s.slots ? s.slots.join(", ") : "None"}
+                              <strong>{s.day}:</strong> {s.timingText}
                             </span>
                           ))}
                         </div>
