@@ -71,7 +71,7 @@ const Navbar: FunctionComponent = () => {
               rel="noopener noreferrer"
               className="no-underline text-[#222222] hover:text-[#1F2A44]"
             >
-              SwarajMaternity
+              SWARAJMATERNITY
             </a>
           </Box>
 
@@ -202,9 +202,9 @@ const Navbar: FunctionComponent = () => {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => setMobileMenuOpen(false)}
-          className="no-underline text-[#222222] font-lilex font-medium text-[20px] tracking-[-0.8px] hover:text-[#1F2A44]"
+          className="no-underline text-[#222222] font-lilex font-medium text-[20px] uppercase tracking-[-0.8px] hover:text-[#1F2A44]"
         >
-          SwarajMaternity
+          SWARAJMATERNITY
         </a>
         <Box sx={{ marginTop: "12px" }}>
           <NavyButton
