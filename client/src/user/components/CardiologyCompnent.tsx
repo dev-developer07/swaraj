@@ -1144,6 +1144,8 @@ const StatCard: FunctionComponent<{ data: SpecialtyData; specialtyId?: string }>
                        ? "/Orthopaedics-Joint-Replacement-Below-Section.jpg"
                    : specialtyId === "neurology"
                        ? "/Neurology-Below-Section.jpg"
+                   : specialtyId === "urology"
+                       ? "/Urology-Below-Section.jpg"
                    : "/69a98d6fd3c8a8ecf82bcdd1_Service_20process_20Card-p-2000.png.png"
            }
        />
