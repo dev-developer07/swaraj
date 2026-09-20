@@ -9,9 +9,10 @@ export type Section7Type = {
 const Section7: FunctionComponent<Section7Type> = ({ className = "" }) => {
   return (
     <footer
-      className={`w-full max-w-full bg-web-white overflow-hidden flex flex-col items-center py-10 lg:py-16 px-4 sm:px-8 lg:px-12 xl:px-16 box-border text-left text-num-16 text-web-woodsmoke font-lilex ${className}`}
+      className={`w-screen bg-web-white overflow-hidden flex flex-col items-start !pt-12 !pb-12 !pl-num-280 !pr-num-280 box-border max-w-full text-left text-num-16 text-web-woodsmoke font-lilex mq1825:!pl-num-140 mq1825:!pr-num-140 mq925:!pt-10 mq925:!pb-10 mq925:!pl-num-70 mq925:!pr-num-70 mq925:box-border mq1350:!pt-12 mq1350:!pb-12 mq1350:!pl-num-140 mq1350:!pr-num-140 mq1350:box-border mq700:!pl-5 mq700:!pr-5 mq700:!pt-8 mq700:!pb-8 ${className}`}
+      style={{ maxWidth: "100vw" }}
     >
-      <Box className="w-full max-w-[1360px] flex flex-col items-start">
+      <Box className="w-num-1360 flex flex-col items-start max-w-full mq700:w-full">
         {/* Row 1: Logo & Main Contact Info */}
         <section className="self-stretch flex items-center justify-between pb-0 text-left text-web-woodsmoke mq1825:flex-wrap mq700:flex-wrap mq700:gap-6">
           <Box className="flex items-center">

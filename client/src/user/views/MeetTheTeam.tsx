@@ -72,26 +72,28 @@ const MeetTheTeam: FunctionComponent = () => {
         <Navbar />
       </Box>
 
-      <Box className="w-full bg-web-gray-nurse flex flex-col items-start py-8 lg:py-16 px-4 sm:px-6 lg:px-12 box-border">
-        <Box className="w-full max-w-[1440px] mx-auto rounded-3xl bg-web-white flex flex-col items-start py-8 lg:py-16 px-4 sm:px-8 lg:px-12 box-border shadow-[0_4px_30px_rgba(0,0,0,0.03)] relative overflow-hidden">
-          <Box className="w-full flex flex-col items-start gap-8 lg:gap-10 box-border">
+      <Box className="w-full bg-web-gray-nurse flex flex-col items-start !pt-[80px] !pb-[80px] !px-6 box-border min-h-[1400px] mq450:!px-0 mq450:!pt-0 mq450:!pb-0 mq450:!bg-[#FFFFFF]">
+        <Box className="w-full max-w-[1872px] mx-auto rounded-num-16 bg-web-white flex flex-col items-start !pt-[80px] !pb-[80px] !px-[216px] mq925:!px-10 mq1350:!px-[108px] min-h-[1240px] box-border shadow-[0_4px_30px_rgba(0,0,0,0.03)] relative overflow-hidden mq450:!px-5 mq450:!pt-10 mq450:!pb-10 mq450:!rounded-none mq450:!shadow-none mq450:!min-h-0">
+          <Box className="w-full max-w-[1440px] flex flex-col items-start gap-10 !px-10 box-border min-h-[1080px] mq450:!px-0 mq450:!min-h-0 mq450:!gap-8">
             {/* Header */}
-            <Box className="w-full flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-              <Box>
+            <Box className="w-full flex flex-row justify-between items-start mq925:flex-col mq925:gap-4 mq450:flex-col mq450:gap-4">
+              <Box className="pt-[12px]">
                 <SectionBadge icon="/SVG.svg" label="THE SPECIALISTS" variant="dark" />
               </Box>
               <Typography
-                className="!m-0 relative font-stack-sans-text text-left sm:text-right font-normal text-[28px] sm:text-[36px] lg:text-[48px] leading-[36px] sm:leading-[48px] lg:leading-[60px] tracking-[-0.72px] text-[#0b0c0f]"
+                className="!m-0 relative font-stack-sans-text text-right mq925:text-left mq450:!text-[28px] mq450:!leading-[38px] mq450:!tracking-[-0.42px] mq450:!w-[345px] mq450:!text-left mq450:!font-semibold"
                 variant="inherit"
                 variantMapping={{ inherit: "h1" }}
+                sx={{ fontWeight: "400", lineHeight: "65px", letterSpacing: "-0.72px", fontSize: "48px", color: "#0b0c0f", width: "450px", maxWidth: "100%" }}
               >
-                Expert hands in Health
+                <span className="mq450:hidden">Expert hands in Health</span>
+                <span className="hidden mq450:inline">Expert hands in<br />Health</span>
               </Typography>
             </Box>
 
             {/* Filters */}
-            <Box className="w-full max-w-[760px] flex flex-col sm:flex-row justify-start items-stretch gap-4">
-              <div className="relative w-full sm:w-[360px] h-[50px]">
+            <Box className="w-[760px] max-w-full flex flex-row justify-start items-start gap-[16px] mq925:flex-col mq925:items-stretch mq450:flex-col mq450:items-stretch">
+              <div className="relative w-[372px] h-[50px] mq925:w-full mq450:w-full">
                 <select
                   value={selectedSpecialty}
                   onChange={(e) => setSelectedSpecialty(e.target.value)}
@@ -110,7 +112,7 @@ const MeetTheTeam: FunctionComponent = () => {
                 </div>
               </div>
 
-              <div className="relative w-full sm:w-[360px] h-[50px]">
+              <div className="relative w-[372px] h-[50px] mq925:w-full mq450:w-full">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-[16px] pointer-events-none">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7.33333 12.6667C10.2789 12.6667 12.6667 10.2789 12.6667 7.33333C12.6667 4.38781 10.2789 2 7.33333 2C4.38781 2 2 4.38781 2 7.33333C2 10.2789 4.38781 12.6667 7.33333 12.6667Z" stroke="#7E7F80" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
@@ -129,7 +131,10 @@ const MeetTheTeam: FunctionComponent = () => {
             </Box>
 
             {/* Doctor Cards */}
-            <Box className="w-full flex flex-col gap-6">
+            <Box
+              className="w-full max-w-[1360px] mx-auto relative transition-all duration-300 mq925:!h-auto mq925:!flex mq925:!flex-col mq450:!h-auto mq450:!flex mq450:!flex-col"
+              style={{ height: loading ? "auto" : `${filteredDoctors.length * 341 - 33}px` }}
+            >
               {loading ? (
                 <Box className="w-full flex items-center justify-center py-20">
                   <svg className="animate-spin" width="32" height="32" viewBox="0 0 24 24" fill="none">
@@ -138,7 +143,7 @@ const MeetTheTeam: FunctionComponent = () => {
                   </svg>
                 </Box>
               ) : filteredDoctors.length > 0 ? (
-                filteredDoctors.map((doc) => {
+                filteredDoctors.map((doc, index) => {
                   const schedules = parseDoctorSchedules(doc.schedules);
                   const image = doc.profileImage || FALLBACK_IMAGE;
 
@@ -146,16 +151,17 @@ const MeetTheTeam: FunctionComponent = () => {
                     <Box
                       key={doc.id}
                       onClick={() => navigate(`/doctor/${doc.id}`)}
-                      className="w-full bg-[#FFFFFF] hover:bg-web-gray-nurse border border-solid border-[#e6e6e6] group p-6 lg:p-8 box-border transition-all duration-300 ease-in-out cursor-pointer rounded-2xl flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 shadow-[0_2px_12px_rgba(0,0,0,0.02)]"
+                      className="w-full max-w-[1360px] h-[308px] flex flex-row items-center justify-between bg-[#FFFFFF] hover:bg-web-gray-nurse border-t border-solid border-[#f1f2f1] group p-[32px] box-border absolute left-0 transition-all duration-300 ease-in-out cursor-pointer rounded-3xl mq925:!relative mq925:!top-auto mq925:!left-auto mq925:!flex-col mq925:!items-start mq925:!gap-6 mq450:!relative mq450:!top-auto mq450:!left-auto mq450:!flex-col mq450:!items-start mq450:!gap-6 mq450:!h-auto mq450:!px-0 mq450:!py-8 mq450:!rounded-none mq450:hover:!bg-[#FFFFFF]"
+                      style={{ top: `${index * 341}px` }}
                     >
-                      <Box className="flex-1 flex flex-col items-start justify-between gap-6 w-full">
-                        <Box className="flex flex-col items-start gap-2 w-full">
+                      <Box className="w-[640px] max-w-[640px] flex flex-col items-start justify-between mq925:w-full h-[276px] relative z-10 m-0 p-0 mq925:!h-auto mq925:!max-w-full mq925:!gap-6 mq450:w-full mq450:!h-auto mq450:!max-w-full mq450:!gap-6">
+                        <Box className="w-[640px] max-w-full flex flex-col items-start gap-[8px] relative m-0 p-0 mq450:!w-full">
                           {schedules.length > 0 && (
-                            <Box className="flex flex-col items-start gap-2 w-full">
+                            <Box className="w-[640px] max-w-full flex flex-col items-start gap-2 relative m-0 p-0 mq450:!w-full">
                               <span className="text-left font-lilex font-semibold text-[13px] leading-[18px] uppercase text-[#7791A5] tracking-[0.5px]">
                                 Schedule & Timings:
                               </span>
-                              <Box className="flex flex-wrap items-center gap-2 w-full">
+                              <Box className="flex flex-wrap items-center gap-2 max-w-full">
                                 {schedules.map((s, idx) => (
                                   <Box
                                     key={idx}
@@ -174,51 +180,55 @@ const MeetTheTeam: FunctionComponent = () => {
                           )}
                         </Box>
 
-                        <Box className="flex flex-col items-start gap-1 w-full">
-                          <Typography
-                            className="!m-0 text-left font-stack-sans-text uppercase text-[24px] sm:text-[30px] lg:text-[36px] leading-[32px] sm:leading-[40px] lg:leading-[46px] tracking-[-1px] font-semibold text-[#0B0C0F]"
-                            variant="inherit"
-                            variantMapping={{ inherit: "h2" }}
-                          >
-                            {doc.name}
-                          </Typography>
-                          <span className="text-left font-inter font-normal text-[15px] sm:text-[18px] leading-[24px] sm:leading-[29px] text-[#505050]">
-                            {doc.specialization?.name}{doc.experienceYears ? ` · ${doc.experienceYears} yrs` : ""}
-                          </span>
+                        <Box className="w-[640px] max-w-full pb-0 px-0 flex flex-col items-start relative box-border mq450:!max-w-full">
+                          <Box className="w-[640px] max-w-full pb-[0.8px] flex flex-col items-start relative box-border mq450:!max-w-full">
+                            <Typography
+                              className="!m-0 text-left font-stack-sans-text uppercase mq450:!text-[24px] mq450:!leading-[32px] mq450:!tracking-[-0.5px]"
+                              variant="inherit"
+                              variantMapping={{ inherit: "h2" }}
+                              sx={{ fontWeight: "600", fontSize: "36px", lineHeight: "47px", letterSpacing: "-1px", color: "#0B0C0F" }}
+                            >
+                              {doc.name}
+                            </Typography>
+                          </Box>
+                          <Box className="w-[640px] max-w-full pb-[0.8px] flex flex-col items-start relative box-border mq450:!max-w-full">
+                            <span className="text-left font-inter font-normal text-[18px] leading-[29px] text-[#505050] h-auto flex items-center mq450:!text-[14px] mq450:!leading-[22px]">
+                              {doc.specialization?.name}{doc.experienceYears ? ` · ${doc.experienceYears} yrs` : ""}
+                            </span>
+                          </Box>
                         </Box>
 
-                        <Box className="w-full flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+                        <Box className="w-full max-w-[640px] min-h-[48px] flex flex-row items-center gap-[16px] relative mq450:flex-col mq450:items-start mq450:h-auto mq450:!gap-3">
                           <NavyButton
                             label="Book an Appointment"
                             variant="filled"
                             onClick={(e) => { e.stopPropagation(); navigate(`/book?doctor=${doc.id}`); }}
-                            className="!h-[48px] !px-6"
+                            className="flex-1 !h-[48px] !px-5 mq450:!w-[80%] mq450:!flex-none"
                           />
                           <NavyButton
                             label="Request your session"
                             variant="outline"
                             onClick={(e) => { e.stopPropagation(); navigate(`/enquire?doctor=${doc.id}`); }}
-                            className="!h-[48px] !px-6"
+                            className="flex-1 !h-[48px] !px-5 mq450:!bg-transparent mq450:hover:!bg-transparent mq450:!shadow-none mq450:!text-[#1F2A44] mq450:!w-[80%] mq450:!justify-start mq450:!px-0 mq450:!py-2 mq450:!flex-none"
                           />
                         </Box>
                       </Box>
 
-                      <Box className="w-full lg:w-[240px] xl:w-[280px] h-[220px] lg:h-[240px] xl:h-[260px] overflow-hidden rounded-2xl relative flex items-center justify-center shrink-0 self-center">
+                      <Box className="h-[276px] w-[276px] mq925:hidden overflow-hidden rounded-[16px] relative flex items-center justify-center m-0 p-0 mq450:flex mq450:w-full mq450:h-[276px]">
                         <img
-                          className="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105 rounded-2xl"
+                          className="h-[276px] w-[276px] object-cover object-center transition-transform duration-300 group-hover:scale-105 rounded-[16px] mq450:w-full mq450:h-full"
                           src={image}
                           alt={doc.name}
-                          onError={(e) => {
-                            (e.target as HTMLElement).setAttribute('src', FALLBACK_IMAGE);
-                          }}
                         />
                       </Box>
                     </Box>
                   );
                 })
               ) : (
-                <Box className="w-full flex items-center justify-center py-16 text-[#7791A5] font-inter text-base">
-                  No doctors found matching your criteria.
+                <Box className="w-full flex flex-col items-center justify-center py-20 text-center border-t border-solid border-web-mercury">
+                  <span className="text-[18px] font-medium text-web-rolling-stone font-inter">
+                    No specialists match your criteria.
+                  </span>
                 </Box>
               )}
             </Box>
