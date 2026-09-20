@@ -13,37 +13,34 @@ export type Container1Type = {
 const Container1: FunctionComponent<Container1Type> = ({ className = "" }) => {
   const [listitemItems] = useState([
     {
-      container: "/Container5@2x.png",
-      dRAnkitPadhi: "DR. Ankit Padhi",
-      cardiology: "Cardiology",
-      listitemGridColumn: "1" as const,
-      listitemWidth: undefined,
-      linkWidth: "322.7px" as const,
-      linkAlignSelf: undefined,
-      containerJustifyContent: "space-between" as const,
-      containerGap: "20px" as const,
-    },
-    {
-      container: "/Container8@2x.png",
-      dRAnkitPadhi: "Dr. Suraj Samal",
-      cardiology: "Neurology",
-      listitemGridColumn: "2" as const,
-      listitemWidth: "322.7px" as const,
-      linkWidth: "unset" as const,
-      linkAlignSelf: "stretch" as const,
-      containerJustifyContent: "unset" as const,
-      containerGap: "194.7px" as const,
-    },
-    {
-      container: "/Container6@2x.png",
-      dRAnkitPadhi: "DR. Priyanka Patra",
+      container: "/doctors/dr-sujnanendra-mishra.jpeg",
+      dRAnkitPadhi: "DR. Sujnanendra Mishra",
       cardiology: "Obstetrics & Gynaecology",
-      listitemGridColumn: "3" as const,
-      listitemWidth: "322.7px" as const,
-      linkWidth: "unset" as const,
-      linkAlignSelf: "stretch" as const,
-      containerJustifyContent: "unset" as const,
-      containerGap: "194.6px" as const,
+    },
+    {
+      container: "/doctors/dr-bikramaditya-padhi.jpeg",
+      dRAnkitPadhi: "DR. Bikramaditya Padhi",
+      cardiology: "Cardiology",
+    },
+    {
+      container: "/doctors/dr-rajat-bral.jpeg",
+      dRAnkitPadhi: "DR. Rajat Bral",
+      cardiology: "General Medicine",
+    },
+    {
+      container: "/doctors/dr-swadhin-ku-mishra.jpeg",
+      dRAnkitPadhi: "DR. Swadhin Ku. Mishra",
+      cardiology: "Obstetrics & Gynaecology",
+    },
+    {
+      container: "/doctors/dr-sabyasachi-swain.jpeg",
+      dRAnkitPadhi: "DR. Sabyasachi Swain",
+      cardiology: "Orthopaedics & Joint Replacement",
+    },
+    {
+      container: "/doctors/dr-anil-ku-patra.png",
+      dRAnkitPadhi: "DR. Anil Ku. Patra",
+      cardiology: "Neurology",
     },
   ]);
   return (
@@ -86,38 +83,16 @@ const Container1: FunctionComponent<Container1Type> = ({ className = "" }) => {
       </section>
       <section className="w-full max-w-[992px] flex flex-col items-center justify-center mq1350:max-w-full">
         <Box className="self-stretch flex flex-col items-start !pt-5 !pb-num-0 !pl-num-0 !pr-num-0">
-          <div className="self-stretch h-auto min-h-num-182 grid box-border grid-cols-[repeat(auto-fit,_minmax(244px,_1fr))] mq925:grid-cols-1 mq450:grid-cols-1 gap-3">
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {listitemItems.map((item, index) => (
               <Listitem
                 key={index}
                 container={item.container}
                 dRAnkitPadhi={item.dRAnkitPadhi}
                 cardiology={item.cardiology}
-                listitemGridColumn={item.listitemGridColumn}
-                listitemWidth={item.listitemWidth}
-                linkWidth={item.linkWidth}
-                linkAlignSelf={item.linkAlignSelf}
-                containerJustifyContent={item.containerJustifyContent}
-                containerGap={item.containerGap}
               />
             ))}
           </div>
-        </Box>
-        <Box className="self-stretch flex flex-col items-start !pt-num-10 !pb-num-0 !pl-num-0 !pr-num-0 box-border max-w-full !mt-[-8px] relative">
-          <Box className="self-stretch flex flex-row mq925:flex-col mq450:flex-col items-stretch justify-center gap-3 max-w-full">
-            <Listitem1
-              className="flex-1 w-full"
-              container="/Container9@2x.png"
-              dRAnuradhaAcharya="DR. Anuradha Acharya"
-              orthopaedicsJointReplacement={`Orthopaedics & Joint Replacement`}
-            />
-            <Listitem1
-              className="flex-1 w-full"
-              container="/Container10@2x.png"
-              dRAnuradhaAcharya="DR. Barsha Dash"
-              orthopaedicsJointReplacement={`Pediatrics & Neonatology`}
-            />
-          </Box>
         </Box>
       </section>
       <Box className="self-stretch flex items-center justify-center">
