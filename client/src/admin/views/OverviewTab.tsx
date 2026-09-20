@@ -1,4 +1,4 @@
-import { Calendar, ClipboardList, UserCheck, Heart } from "lucide-react";
+import { Calendar, ClipboardList, UserCheck, Clock } from "lucide-react";
 
 interface OverviewTabProps {
   bookings: any[];
@@ -15,11 +15,13 @@ export default function OverviewTab({
   specializations,
   setActiveTab
 }: OverviewTabProps) {
+  const pendingCount = bookings.filter(b => b.status === "PENDING").length;
+
   return (
     <>
       {/* Stats Grid */}
       <div className="stats-grid">
-        <div className="stat-card">
+        <div className="stat-card" onClick={() => setActiveTab("bookings")} style={{ cursor: "pointer" }}>
           <div className="stat-info">
             <span className="stat-label">Confirmed Bookings</span>
             <span className="stat-value">{bookings.filter(b => b.status === "CONFIRMED").length}</span>
@@ -28,7 +30,7 @@ export default function OverviewTab({
             <Calendar size={20} />
           </div>
         </div>
-        <div className="stat-card">
+        <div className="stat-card" onClick={() => setActiveTab("leads")} style={{ cursor: "pointer" }}>
           <div className="stat-info">
             <span className="stat-label">New Leads</span>
             <span className="stat-value">{leads.filter(l => l.status === "NEW").length}</span>
@@ -37,7 +39,7 @@ export default function OverviewTab({
             <ClipboardList size={20} />
           </div>
         </div>
-        <div className="stat-card">
+        <div className="stat-card" onClick={() => setActiveTab("doctors")} style={{ cursor: "pointer" }}>
           <div className="stat-info">
             <span className="stat-label">Doctors Active</span>
             <span className="stat-value">{doctors.filter(d => d.isActive).length}</span>
@@ -46,13 +48,13 @@ export default function OverviewTab({
             <UserCheck size={20} />
           </div>
         </div>
-        <div className="stat-card">
+        <div className="stat-card" onClick={() => setActiveTab("bookings")} style={{ cursor: "pointer" }}>
           <div className="stat-info">
-            <span className="stat-label">Specialties</span>
-            <span className="stat-value">{specializations.length}</span>
+            <span className="stat-label">Pending Approvals</span>
+            <span className="stat-value">{pendingCount}</span>
           </div>
-          <div className="stat-icon-wrapper">
-            <Heart size={20} />
+          <div className="stat-icon-wrapper" style={{ backgroundColor: pendingCount > 0 ? "rgba(239, 68, 68, 0.1)" : "rgba(2, 132, 199, 0.1)", color: pendingCount > 0 ? "#ef4444" : "#0284c7" }}>
+            <Clock size={20} />
           </div>
         </div>
       </div>
