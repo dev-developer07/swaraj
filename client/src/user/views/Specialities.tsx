@@ -117,11 +117,11 @@ const Specialities: FunctionComponent = () => {
       </Box>
 
       {/* Main Specialities Section Wrapper with Gray Nurse Background */}
-      <Box className="w-full bg-web-gray-nurse flex flex-col items-center !pt-[80px] !pb-[80px] !px-6 box-border mq450:!pt-6 mq450:!pb-6 mq450:!px-3">
+      <Box className="w-full bg-web-gray-nurse flex flex-col items-center py-8 lg:py-16 px-4 sm:px-6 lg:px-12 box-border">
         {/* White Background Container */}
-        <Box className="w-full max-w-[1872px] mx-auto rounded-num-16 bg-[#ffffff] flex flex-col items-start !pt-[80px] !pb-[80px] !px-[216px] mq925:!px-10 mq1350:!px-[108px] box-border shadow-[0_4px_30px_rgba(0,0,0,0.03)] relative overflow-hidden mq450:!pt-6 mq450:!pb-6 mq450:!px-4 mq450:!rounded-[12px]">
+        <Box className="w-full max-w-[1440px] mx-auto rounded-3xl bg-[#ffffff] flex flex-col items-start py-8 lg:py-16 px-4 sm:px-8 lg:px-12 box-border shadow-[0_4px_30px_rgba(0,0,0,0.03)] relative overflow-hidden">
           {/* Inner Content Grid */}
-          <Box className="w-full max-w-[1440px] flex flex-col items-start gap-[80px] !px-10 box-border mq450:!px-0 mq450:!gap-6">
+          <Box className="w-full flex flex-col items-start gap-8 lg:gap-12 box-border">
 
             {/* Header Content */}
             <Box className="w-full flex flex-row justify-between items-start mq1350:flex-col mq1350:gap-8 mq450:!flex-col mq450:!gap-4 mq450:!items-start">

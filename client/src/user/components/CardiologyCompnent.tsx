@@ -60,7 +60,7 @@ const CARDIOLOGY_STYLES = `
 @media screen and (max-width: 925px) { .cs-main-section { gap: var(--gap-20); padding-top: 38px; padding-bottom: 27px; box-sizing: border-box; } .cs-contact-section { padding-top: 59px; padding-bottom: 59px; box-sizing: border-box; } .cs-form-wrap { padding-top: 29px; padding-bottom: var(--padding-20); box-sizing: border-box; max-width: 100%; } }
 @media screen and (max-width: 450px) { .cs-main-section { padding-top: 25px; padding-bottom: var(--padding-20); box-sizing: border-box; } .cs-marquee-label { font-size: var(--fs-16); line-height: var(--lh-26); } .cs-marquee-item2 { flex-wrap: wrap; } .cs-marquee-img3-wrap { flex: 1; } .cs-marquee-img3 { align-self: stretch; width: 100%; } .cs-marquee-img4, .cs-marquee-img-blank { flex: 1; } }
 
-.cs-hero { align-self: stretch; overflow: hidden; display: flex; flex-direction: column; align-items: flex-start; padding: var(--padding-0) 280px var(--padding-80); position: relative; min-height: 480px; box-sizing: border-box; }
+.cs-hero { align-self: stretch; overflow: hidden; display: flex; flex-direction: column; align-items: flex-start; padding: 0 80px 80px; position: relative; min-height: 480px; box-sizing: border-box; }
 .cs-hero-bg { position: absolute; margin: 0 !important; bottom: 0; flex-shrink: 0; width: 100%; height: 100%; top: 0; left: 0; filter: blur(0); max-width: 100%; overflow: hidden; max-height: 100%; object-fit: cover; object-position: center 58%; z-index: 0; }
 .cs-hero-paint { position: absolute; margin: 0 !important; bottom: 0; flex-shrink: 0; width: 100%; height: 100%; top: 0; right: 0; left: 0; background-color: var(--color-gray-700); overflow: hidden; z-index: 1; }
 .cs-hero-blur { position: absolute; margin: 0 !important; bottom: 0; flex-shrink: 0; width: 100%; height: 100%; top: 0; right: 0; left: 0; backdrop-filter: blur(4px); background-color: var(--color-gray-600); z-index: 2; }
@@ -76,9 +76,9 @@ const CARDIOLOGY_STYLES = `
 .cs-hero-sub-wrap { align-self: stretch; display: flex; flex-direction: column; align-items: flex-end; font-size: var(--fs-32); color: #0b0c0f; font-family: var(--font-inter); }
 .cs-hero-sub-inner { width: 620px; filter: blur(0); display: flex; flex-direction: column; align-items: flex-start; }
 .cs-hero-sub-text { align-self: stretch; position: relative; line-height: 51.2px; color: #0b0c0f; }
-@media screen and (max-width: 1350px) { .cs-hero { padding-left: var(--padding-140); padding-right: var(--padding-140); box-sizing: border-box; } .cs-hero-sub-inner { display: none; } }
-@media screen and (max-width: 925px) { .cs-hero { padding-left: 70px; padding-right: 70px; box-sizing: border-box; } .cs-hero-sub-inner { width: 0; } .cs-hero-sub-text { display: none; } }
-@media screen and (max-width: 450px) { .cs-hero { padding-bottom: var(--padding-52); box-sizing: border-box; } .cs-hero-content { padding-top: var(--padding-52); box-sizing: border-box; } }
+@media screen and (max-width: 1350px) { .cs-hero { padding-left: 60px; padding-right: 60px; box-sizing: border-box; } .cs-hero-sub-inner { display: none; } }
+@media screen and (max-width: 925px) { .cs-hero { padding-left: 32px; padding-right: 32px; box-sizing: border-box; } .cs-hero-sub-inner { width: 0; } .cs-hero-sub-text { display: none; } }
+@media screen and (max-width: 450px) { .cs-hero { padding-left: 16px; padding-right: 16px; padding-bottom: var(--padding-52); box-sizing: border-box; } .cs-hero-content { padding-top: var(--padding-52); box-sizing: border-box; } }
 
 .cs-treatment { width: 1360px; display: flex; flex-direction: column; align-items: center; max-width: 100%; text-align: left; font-size: var(--fs-16); color: var(--color-gray-300); font-family: var(--font-lilex); }
 .cs-treatment-top { align-self: stretch; display: flex; align-items: flex-start; gap: 170px; max-width: 100%; }
