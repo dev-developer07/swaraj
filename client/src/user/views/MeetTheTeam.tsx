@@ -20,6 +20,7 @@ const MeetTheTeam: FunctionComponent = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     (async () => {
       try {
         const res = await getPublicDoctors();

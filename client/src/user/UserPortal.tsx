@@ -1,4 +1,5 @@
-import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Container from "./views/Container"
 import MeetTheTeam from "./views/MeetTheTeam";
 import DoctorDetail from "./views/DoctorDetail";
@@ -11,9 +12,18 @@ import AppointmentInquiry from "./views/AppointmentInquiry";
 import BlogsPage from "./components/BlogsPage";
 import ArticleDetail from "./views/ArticleDetail";
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
 export default function UserPortal() {
   return (
     <div style={{ minHeight: "100vh", width: "100%", backgroundColor: "#ffffff", display: "flex", flexDirection: "column" }}>
+      <ScrollToTop />
       {/* Patient views router */}
       <main style={{ flexGrow: 1, position: "relative" }}>
         <Routes>
