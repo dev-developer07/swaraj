@@ -1112,7 +1112,7 @@ const JobBoardSection: FunctionComponent = () => {
                         style={s.heroImage}
                         loading="lazy"
                         alt=""
-                        src="/Job Board Hero Image.png"
+                        src="/team-hero.jpg"
                     />
                 </div>
             </main>
