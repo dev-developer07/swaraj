@@ -1178,32 +1178,62 @@ const JobBoardSection: FunctionComponent = () => {
                         </div>
                     </div>
 
-                    {/* Benefits */}
-                    <div className={styles.benefitsSection} style={s.benefitsSection}>
-                        <div
-                            style={{
-                                alignSelf: "stretch",
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "flex-start",
-                            }}
-                        >
+                    {/* Benefits & Staff Testimonial Grid */}
+                    <div className="w-full flex flex-col lg:flex-row justify-between items-stretch gap-10 pt-8">
+                        {/* Left: Benefits List */}
+                        <div className="flex-1 flex flex-col items-start gap-6 max-w-full lg:max-w-[52%]">
                             <div className={styles.benefitsLabel} style={s.benefitsLabel}>Benefits list</div>
+                            <div className="w-full flex flex-col items-start">
+                                {benefits.map((b, i) => (
+                                    <BenefitRow
+                                        key={i}
+                                        label={b.label}
+                                    />
+                                ))}
+                            </div>
                         </div>
-                        <div
-                            style={{
-                                alignSelf: "stretch",
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "flex-start",
-                            }}
-                        >
-                            {benefits.map((b, i) => (
-                                <BenefitRow
-                                    key={i}
-                                    label={b.label}
+
+                        {/* Right: Staff Voice Testimonial Card */}
+                        <div className="flex-1 w-full lg:max-w-[44%] bg-[#F4F7F6] border border-[#E1E8E5] rounded-2xl p-8 lg:p-10 flex flex-col justify-between shadow-[0_4px_20px_rgba(0,0,0,0.02)] relative overflow-hidden group">
+                            {/* Decorative background accent */}
+                            <div className="absolute -right-6 -top-6 w-32 h-32 bg-[#7791A5]/10 rounded-full blur-2xl pointer-events-none" />
+
+                            <div>
+                                {/* Header Badge & Quote Icon */}
+                                <div className="flex items-center justify-between mb-6">
+                                    <span className="text-xs uppercase tracking-wider font-semibold text-[#7791A5] bg-white px-3.5 py-1.5 rounded-full border border-[#E2E8F0]">
+                                        Staff Voice
+                                    </span>
+                                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" className="text-[#005BB7] opacity-80">
+                                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" fill="currentColor"/>
+                                    </svg>
+                                </div>
+
+                                {/* Quote Content */}
+                                <blockquote className="text-[#0B0C0F] text-lg lg:text-xl font-normal leading-relaxed tracking-tight italic mb-8">
+                                    “Joining Swaraj Hospital has been an incredibly rewarding journey. The collaborative medical culture, modern surgical infrastructure, and patient-first commitment empower us to deliver exceptional care every day.”
+                                </blockquote>
+                            </div>
+
+                            {/* Author Info */}
+                            <div className="flex items-center gap-4 pt-6 border-t border-[#E1E8E5]">
+                                <img
+                                    src="/doctors/dr-bikramaditya-padhi.jpeg"
+                                    alt="Dr. Bikramaditya Padhi"
+                                    className="w-14 h-14 rounded-full object-cover border-2 border-white shadow-sm flex-shrink-0"
+                                    onError={(e) => {
+                                        (e.target as HTMLElement).setAttribute('src', '/Container5@2x.png');
+                                    }}
                                 />
-                            ))}
+                                <div>
+                                    <h4 className="text-[#0B0C0F] font-semibold text-base leading-snug m-0">
+                                        Dr. Bikramaditya Padhi
+                                    </h4>
+                                    <p className="text-[#7791A5] text-sm font-medium m-0 mt-0.5">
+                                        Senior Consultant Specialist
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
