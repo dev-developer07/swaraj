@@ -214,9 +214,9 @@ const MeetTheTeam: FunctionComponent = () => {
                         </Box>
                       </Box>
 
-                      <Box className="h-[276px] w-[276px] mq925:hidden overflow-hidden rounded-[16px] relative flex items-center justify-center m-0 p-0 mq450:flex mq450:w-full mq450:h-[276px]">
+                      <Box className="h-[276px] w-[276px] mq925:hidden overflow-hidden rounded-[16px] relative flex items-center justify-center bg-[#F1F2F1] m-0 p-0 mq450:flex mq450:w-full mq450:h-[276px]">
                         <img
-                          className="h-[276px] w-[276px] object-cover object-center transition-transform duration-300 group-hover:scale-105 rounded-[16px] mq450:w-full mq450:h-full"
+                          className="h-[276px] w-[276px] object-cover object-top transition-transform duration-300 group-hover:scale-105 rounded-[16px] mq450:w-full mq450:h-full"
                           src={image}
                           alt={doc.name}
                         />

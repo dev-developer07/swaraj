@@ -221,7 +221,7 @@ const DoctorDetail: FunctionComponent = () => {
 
             <Box className="flex items-center justify-center relative box-border shrink-0 mq1350:!w-full mq925:!w-full mq450:!w-full" style={{ width: "750.2px" }}>
               <Box className="rounded-[12px] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.06)] relative flex items-center justify-center bg-[#F1F2F1] mq1350:!w-full mq1350:!h-auto mq1350:!aspect-square mq925:!w-full mq925:!h-auto mq925:!aspect-square mq450:!w-full mq450:!h-auto mq450:!aspect-square mq450:!rounded-none" style={{ width: "750.2px", height: "751.3px" }}>
-                <img className="w-full h-full object-cover object-center" src={image} alt={doctor.name} />
+                <img className="w-full h-full object-cover object-top" src={image} alt={doctor.name} />
               </Box>
             </Box>
           </Box>
