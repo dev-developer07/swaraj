@@ -193,7 +193,7 @@ const MeetTheTeam: FunctionComponent = () => {
                           </Box>
                           <Box className="w-[640px] max-w-full pb-[0.8px] flex flex-col items-start relative box-border mq450:!max-w-full">
                             <span className="text-left font-inter font-normal text-[18px] leading-[29px] text-[#505050] h-auto flex items-center mq450:!text-[14px] mq450:!leading-[22px]">
-                              {doc.specialization?.name}{doc.experienceYears ? ` · ${doc.experienceYears} yrs` : ""}
+                              {doc.specialization?.name}
                             </span>
                           </Box>
                         </Box>

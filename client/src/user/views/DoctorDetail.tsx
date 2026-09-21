@@ -113,7 +113,7 @@ const DoctorDetail: FunctionComponent = () => {
                   {doctor.name}
                 </Typography>
                 <Typography className="text-left font-inter font-normal text-[20px] leading-[30px] text-[#505050] mq450:!text-[16px] mq450:!leading-[24px]">
-                  {doctor.specialization?.name}{doctor.experienceYears ? ` · ${doctor.experienceYears} yrs experience` : ""}
+                  {doctor.specialization?.name}
                 </Typography>
               </Box>
 
@@ -130,7 +130,7 @@ const DoctorDetail: FunctionComponent = () => {
                 ) : (
                   <>
                     <p className="m-0">
-                      With over {doctor.experienceYears || 10} years of clinical experience, {doctor.name} brings specialist expertise and a patient-first approach to every consultation. Having trained at leading medical institutions across India, they deliver care that meets the highest standards of diagnosis and treatment.
+                      With extensive clinical experience, {doctor.name} brings specialist expertise and a patient-first approach to every consultation. Having trained at leading medical institutions across India, they deliver care that meets the highest standards of diagnosis and treatment.
                     </p>
                     <p className="m-0">
                       At Swaraj Hospital, we believe medicine is as much about listening as it is about treating. {doctor.name} takes time to understand each patient's history, concerns and goals — ensuring every decision is informed, transparent and compassionate.
@@ -152,7 +152,7 @@ const DoctorDetail: FunctionComponent = () => {
                 <Box className="rounded-[4px] flex items-center justify-start gap-3 bg-[#f1f2f1] mq450:!h-9 mq450:!w-[220px] mq450:!px-4" style={{ width: "250px", height: "48px", paddingLeft: "24px", paddingRight: "24px" }}>
                   <Box className="rounded-full h-2.5 w-2.5 bg-[#7791a5] shrink-0 mq450:!hidden" />
                   <span className="font-lilex font-normal text-[14px] leading-[20px] uppercase text-[#0B0C0F] mq450:!text-[12px] mq450:!leading-[18px]">
-                    <span className="hidden mq450:!inline mr-1">+</span>{doctor.experienceYears || 10}+ YRS EXPERIENCE
+                    <span className="hidden mq450:!inline mr-1">+</span>SENIOR SPECIALIST
                   </span>
                 </Box>
               </Box>
