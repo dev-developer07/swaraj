@@ -35,38 +35,78 @@ const Container: FunctionComponent = () => {
 
         {/* 4th Section (Slide 3): Specialties & Stats */}
         <Box className="relative w-full z-30 bg-web-white">
-          <div className="self-stretch bg-web-white border-web-silver-chalice border-dashed border-t-[1px] grid grid-cols-[repeat(auto-fit,_minmax(384px,_1fr))] grid-rows-[365.593994140625px] mq925:grid-cols-[1fr] mq925:grid-rows-none mq925:pt-5 mq925:pb-5 mq450:grid-cols-[1fr] mq450:grid-rows-none mq450:pt-4 mq450:pb-4 [row-gap:0px]">
+          <div className="self-stretch bg-web-white border-web-silver-chalice border-dashed border-t-[1px] grid grid-cols-[repeat(auto-fit,_minmax(280px,_1fr))] mq925:grid-cols-[1fr] mq450:grid-cols-[1fr] [row-gap:0px]">
             <StatCard
               icon="/ClockCountdown.svg"
               title="5 Years of Experience"
-              description={
-                <>
-                  Serving patients with confidence, care, and trusted experience
-                </>
+              statVisual={
+                <div className="flex flex-col items-start gap-1">
+                  <div className="text-4xl font-extrabold tracking-tight text-web-woodsmoke font-inter">
+                    5+ <span className="text-xl font-bold text-[#0EA5E9]">Years</span>
+                  </div>
+                  <div className="text-[11px] uppercase tracking-wider font-semibold text-[#475569] bg-[#F1F5F9] px-2.5 py-1 rounded-md">
+                    Established 2022
+                  </div>
+                </div>
               }
+              description="Serving patients with confidence, care, and trusted medical experience."
               className="col-[1] row-[1] mq925:col-auto mq925:row-auto mq450:col-auto mq450:row-auto"
             />
             <StatCard
               icon="/SVG6.svg"
               title="Specialist Doctors"
-              description="Experienced specialists across 13+ medical disciplines"
+              statVisual={
+                <div className="flex flex-col items-start gap-2">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-4xl font-extrabold tracking-tight text-web-woodsmoke font-inter">13+</span>
+                    <span className="text-xs font-semibold text-[#475569] uppercase tracking-wider bg-[#F1F5F9] px-2 py-0.5 rounded">Specialties</span>
+                  </div>
+                  <div className="flex items-center -space-x-2 overflow-hidden pt-0.5">
+                    <img className="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover object-top" src="/doctors/dr-bikramaditya-padhi.jpeg" alt="Doctor" />
+                    <img className="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover object-top" src="/doctors/dr-rajat-bral.jpeg" alt="Doctor" />
+                    <img className="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover object-top" src="/doctors/dr-swadhin-ku-mishra.jpeg" alt="Doctor" />
+                    <div className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#E2E8F0] ring-2 ring-white text-[11px] font-bold text-[#334155]">
+                      +10
+                    </div>
+                  </div>
+                </div>
+              }
+              description="Experienced specialists across 13+ medical disciplines under one roof."
               className="col-[2] row-[1] mq925:col-auto mq925:row-auto mq450:col-auto mq450:row-auto"
             />
             <StatCard
               icon="/SVG7.svg"
               title="Patient-First Care"
-              description={
-                <>
-                  Your comfort, safety, and needs always come first
-                </>
+              statVisual={
+                <div className="flex flex-col items-start gap-1">
+                  <div className="text-4xl font-extrabold tracking-tight text-[#0284C7] font-inter">
+                    24 / 7
+                  </div>
+                  <div className="text-[11px] uppercase tracking-wider font-semibold text-[#0369A1] bg-[#E0F2FE] px-2.5 py-1 rounded-md flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-[#0284C7] animate-pulse"></span>
+                    Emergency & Care
+                  </div>
+                </div>
               }
+              description="Your comfort, safety, and personal healthcare needs always come first."
               className="col-[3] row-[1] mq925:col-auto mq925:row-auto mq450:col-auto mq450:row-auto"
             />
             <StatCard
               icon="/SVG8.svg"
               title="NABH Pre-accredited"
-              description="Meeting national standards for safety and quality of care"
-              className="col-[4] row-[1] !pb-[64.8px] mq925:col-auto mq925:row-auto mq450:col-auto mq450:row-auto"
+              statVisual={
+                <div className="flex flex-col items-start gap-1.5">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#F0FDF4] border border-[#BBF7D0]">
+                    <span className="text-xl font-black text-[#15803D] tracking-wide font-inter">NABH</span>
+                    <span className="text-[10px] font-extrabold text-[#166534] bg-[#DCFCE7] px-1.5 py-0.5 rounded uppercase">Pre-accredited</span>
+                  </div>
+                  <div className="text-[11px] font-semibold text-[#166534] uppercase tracking-wider">
+                    Highest Safety Protocols
+                  </div>
+                </div>
+              }
+              description="Meeting strict national standards for patient safety and clinical quality of care."
+              className="col-[4] row-[1] mq925:col-auto mq925:row-auto mq450:col-auto mq450:row-auto"
             />
           </div>
           <Section1 />
