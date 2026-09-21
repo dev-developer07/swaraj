@@ -59,7 +59,7 @@ const Section2: FunctionComponent<Section2Type> = ({ className = "" }) => {
             <Box className="self-stretch flex items-start">
               <SectionBadge
                 icon="/SVG.svg"
-                label="SINCE 2010 — TRUSTED medical CARE"
+                label="SINCE 2022 — TRUSTED medical CARE"
                 variant="light"
               />
             </Box>

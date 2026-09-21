@@ -50,7 +50,7 @@ const Container1: FunctionComponent<Container1Type> = ({ className = "" }) => {
       <section className="w-full max-w-num-599 flex flex-col items-center justify-center text-center text-num-16 text-web-woodsmoke font-lilex">
         <SectionBadge
           icon="/SVG.svg"
-          label="since 2010"
+          label="since 2022"
           variant="light"
         />
         <Box className="flex flex-col items-start !pt-6 !pb-num-0 !pl-num-0 !pr-num-0 box-border max-w-num-500 text-num-48 font-stack-sans-text mq925:max-w-full mq450:max-w-full max-[450px]:!max-w-full max-[450px]:!w-full max-[450px]:!items-center">
