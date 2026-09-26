@@ -16,31 +16,37 @@ const Container1: FunctionComponent<Container1Type> = ({ className = "" }) => {
       container: "/doctors/dr-sujnanendra-mishra.jpeg",
       dRAnkitPadhi: "DR. Sujnanendra Mishra",
       cardiology: "Obstetrics & Gynaecology",
+      cardImage: "/doctors/dr-sujnanendra-mishra-card-v7.png",
     },
     {
       container: "/doctors/dr-bikramaditya-padhi.jpeg",
       dRAnkitPadhi: "DR. Bikramaditya Padhi",
       cardiology: "Cardiology",
+      cardImage: "/doctors/dr-bikramaditya-padhi-card-v5.png",
     },
     {
       container: "/doctors/dr-rajat-bral.jpeg",
       dRAnkitPadhi: "DR. Rajat Bral",
       cardiology: "General Medicine",
+      cardImage: "/doctors/dr-rajat-bral-card-v5.png",
     },
     {
       container: "/doctors/dr-swadhin-ku-mishra.jpeg",
       dRAnkitPadhi: "DR. Swadhin Ku. Mishra",
       cardiology: "Obstetrics & Gynaecology",
+      cardImage: "/doctors/dr-swadhin-ku-mishra-card-v5.png",
     },
     {
       container: "/doctors/dr-sabyasachi-swain.jpeg",
       dRAnkitPadhi: "DR. Sabyasachi Swain",
       cardiology: "Orthopaedics & Joint Replacement",
+      cardImage: "/doctors/dr-sabyasachi-swain-card-v7.png",
     },
     {
       container: "/doctors/dr-anil-ku-patra.png",
       dRAnkitPadhi: "DR. Anil Ku. Patra",
       cardiology: "Neurology",
+      cardImage: "/doctors/dr-anil-ku-patra-card-v6.png",
     },
   ]);
   return (
@@ -90,6 +96,7 @@ const Container1: FunctionComponent<Container1Type> = ({ className = "" }) => {
                 container={item.container}
                 dRAnkitPadhi={item.dRAnkitPadhi}
                 cardiology={item.cardiology}
+                cardImage={item.cardImage}
               />
             ))}
           </div>

@@ -1,5 +1,21 @@
 /* Base responsive styles for Career Component */
 
+.doctorCardGraphicWrap {
+  width: 100%;
+  border-radius: 16px;
+  background-color: #ffffff !important;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  position: relative;
+  z-index: 2;
+  filter: blur(0);
+  padding: 0 !important;
+}
+
 @media screen and (max-width: 900px) {
   .pageRoot {
     width: 100% !important;
@@ -218,7 +234,17 @@
     padding: 64px 16px 48px !important; /* Bottom padding to avoid abrupt gradient cutoff */
     box-sizing: border-box !important;
     gap: 40px !important;
-    background: radial-gradient(circle at 100% 0%, #d4e0eb 0%, #e2eaf0 50%, #ecefef 100%) !important; /* Soft gradient matching mockup */
+    background: radial-gradient(ellipse 100% 90% at 50% 0%, #bcc8d2 0%, #cbd7e1 35%, #e4ebf1 65%, #f5f7f9 90%, #ffffff 100%) !important;
+    position: relative !important;
+    z-index: 10 !important;
+  }
+
+  .specialistsInner {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 40px !important;
   }
 
   .specialistsSidebar {
@@ -274,6 +300,22 @@
     height: auto !important;
     grid-column: auto !important;
     grid-row: auto !important;
+  }
+
+  .doctorCardGraphicWrap {
+    width: 100% !important;
+    border-radius: 16px !important;
+    background-color: #ffffff !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
+    position: relative !important;
+    z-index: 2 !important;
+    filter: blur(0) !important;
+    padding: 0 !important;
   }
 
   .doctorCardLink {

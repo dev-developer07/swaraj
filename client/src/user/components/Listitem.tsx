@@ -6,6 +6,7 @@ export type ListitemType = {
   container?: string;
   dRAnkitPadhi?: string;
   cardiology?: string;
+  cardImage?: string;
 
   /** Style props (deprecated, now handled by standard Tailwind) */
   listitemGridColumn?: any;
@@ -21,7 +22,25 @@ const Listitem: FunctionComponent<ListitemType> = ({
   container,
   dRAnkitPadhi,
   cardiology,
+  cardImage,
 }) => {
+  if (cardImage) {
+    return (
+      <Box
+        className={`flex flex-col items-center justify-center !pt-num-10 !pb-num-0 !pl-num-0 !pr-num-0 shrink-0 text-left text-num-16 text-web-woodsmoke font-inter w-full ${className}`}
+      >
+        <Box
+          className="w-full max-w-[322.7px] mq925:max-w-full mq450:max-w-full rounded-num-16 bg-web-white overflow-hidden flex items-center justify-center !p-0 box-border shadow-sm hover:shadow-md transition-shadow"
+        >
+          <img
+            src={cardImage}
+            alt={dRAnkitPadhi || "Doctor Card"}
+            className="w-full h-auto object-contain block mx-auto"
+          />
+        </Box>
+      </Box>
+    );
+  }
   return (
     <Box
       className={`flex flex-col items-start !pt-num-10 !pb-num-0 !pl-num-0 !pr-num-0 shrink-0 text-left text-num-16 text-web-woodsmoke font-inter w-full ${className}`}

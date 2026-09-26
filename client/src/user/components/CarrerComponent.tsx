@@ -11,6 +11,7 @@ type DoctorItem = {
     specialty: string;
     gridColumn: string;
     gridRow: string;
+    cardImage?: string;
 };
 
 type JobItem = {
@@ -31,6 +32,7 @@ const doctors: DoctorItem[] = [
         specialty: "Obstetrics & Gynaecology",
         gridColumn: "1",
         gridRow: "1",
+        cardImage: "/doctors/dr-sujnanendra-mishra-card-v7.png",
     },
     {
         container: "/doctors/dr-bikramaditya-padhi.jpeg",
@@ -38,6 +40,7 @@ const doctors: DoctorItem[] = [
         specialty: "Cardiology",
         gridColumn: "2",
         gridRow: "1",
+        cardImage: "/doctors/dr-bikramaditya-padhi-card-v5.png",
     },
     {
         container: "/doctors/dr-rajat-bral.jpeg",
@@ -45,6 +48,7 @@ const doctors: DoctorItem[] = [
         specialty: "General Medicine",
         gridColumn: "1",
         gridRow: "2",
+        cardImage: "/doctors/dr-rajat-bral-card-v5.png",
     },
     {
         container: "/doctors/dr-swadhin-ku-mishra.jpeg",
@@ -52,6 +56,7 @@ const doctors: DoctorItem[] = [
         specialty: "Obstetrics & Gynaecology",
         gridColumn: "2",
         gridRow: "2",
+        cardImage: "/doctors/dr-swadhin-ku-mishra-card-v5.png",
     },
     {
         container: "/doctors/dr-sabyasachi-swain.jpeg",
@@ -59,6 +64,7 @@ const doctors: DoctorItem[] = [
         specialty: "Orthopaedics & Joint Replacement",
         gridColumn: "1",
         gridRow: "3",
+        cardImage: "/doctors/dr-sabyasachi-swain-card-v7.png",
     },
     {
         container: "/doctors/dr-anil-ku-patra.png",
@@ -66,6 +72,7 @@ const doctors: DoctorItem[] = [
         specialty: "Neurology",
         gridColumn: "2",
         gridRow: "3",
+        cardImage: "/doctors/dr-anil-ku-patra-card-v6.png",
     },
 ];
 
@@ -400,21 +407,23 @@ const s: Record<string, CSSProperties> = {
         position: "relative",
         isolation: "isolate",
         maxWidth: "100%",
+        overflow: "hidden",
     },
     whyOverlayBlur: {
         width: "100%",
-        height: "120.07%",
+        height: "100%",
         position: "absolute",
         margin: 0,
         top: "10%",
         right: 0,
-        bottom: "-30.08%",
+        bottom: 0,
         left: 0,
-        filter: "blur(300px)",
+        filter: "blur(200px)",
         borderRadius: "1560px",
         backgroundColor: "rgba(119, 145, 165, 0.6)",
         zIndex: 0,
         flexShrink: 0,
+        pointerEvents: "none",
     },
     whyCard: {
         alignSelf: "stretch",
@@ -546,11 +555,22 @@ const s: Record<string, CSSProperties> = {
 
     // ── Specialists Section ──
     specialistsSection: {
-        width: "1360px",
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "flex-start",
+        padding: "160px 24px 80px",
+        boxSizing: "border-box",
+        position: "relative",
+        zIndex: 10,
+        background: "radial-gradient(ellipse 100% 90% at 50% 0%, #bcc8d2 0%, #cbd7e1 35%, #e4ebf1 65%, #f5f7f9 90%, #ffffff 100%)",
+    },
+    specialistsInner: {
+        width: "100%",
+        maxWidth: "1360px",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "flex-start",
-        padding: "200px 0 0",
         gap: "20px",
         boxSizing: "border-box",
     },
@@ -624,11 +644,11 @@ const s: Record<string, CSSProperties> = {
     },
     doctorList: {
         alignSelf: "stretch",
-        height: "570px",
+        height: "auto",
         display: "grid",
         boxSizing: "border-box",
         gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-        gridTemplateRows: "repeat(3, 182px)",
+        gridTemplateRows: "repeat(3, auto)",
         gap: "12px",
     },
     // Doctor card
@@ -636,11 +656,26 @@ const s: Record<string, CSSProperties> = {
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-start",
-        padding: "0 0 6px",
+        padding: "0",
         textAlign: "left",
         fontSize: "16px",
         color: "#0b0c0f",
         fontFamily: "Inter, Arial, sans-serif",
+    },
+    doctorCardGraphicWrap: {
+        filter: "blur(0)",
+        borderRadius: "16px",
+        backgroundColor: "#ffffff",
+        overflow: "hidden",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "100%",
+        padding: "0",
+        boxSizing: "border-box",
+        boxShadow: "0 4px 16px rgba(0, 0, 0, 0.06)",
+        position: "relative",
+        zIndex: 2,
     },
     doctorCardLink: {
         filter: "blur(0)",
@@ -993,6 +1028,33 @@ const DoctorCard = ({ item }: { item: DoctorItem }) => {
         }),
         [item.gridColumn, item.gridRow]
     );
+
+    if (item.cardImage) {
+        return (
+            <div className={styles.doctorCard} style={cardStyle}>
+                <div
+                    className={styles.doctorCardGraphicWrap}
+                    style={{
+                        ...s.doctorCardGraphicWrap,
+                        backgroundColor: "#ffffff",
+                    }}
+                >
+                    <img
+                        src={item.cardImage}
+                        alt={item.name}
+                        style={{
+                            width: "100%",
+                            height: "auto",
+                            display: "block",
+                            objectFit: "contain",
+                            backgroundColor: "#ffffff",
+                        }}
+                    />
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className={styles.doctorCard} style={cardStyle}>
             <div className={styles.doctorCardLink} style={s.doctorCardLink}>
@@ -1248,52 +1310,54 @@ const JobBoardSection: FunctionComponent = () => {
 
             {/* ── 4. Specialists ── */}
             <section className={styles.specialistsSection} style={s.specialistsSection}>
-                {/* Sidebar */}
-                <section className={styles.specialistsSidebar} style={s.specialistsSidebar}>
-                    <div className={styles.specialistsBadge} style={s.specialistsBadge}>
-                        <div style={s.badgeIconWrap}>
-                            <img style={s.badgeIcon} alt="" src="/SVG.svg" />
-                        </div>
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "flex-start",
-                            }}
-                        >
+                <div className={styles.specialistsInner} style={s.specialistsInner}>
+                    {/* Sidebar */}
+                    <section className={styles.specialistsSidebar} style={s.specialistsSidebar}>
+                        <div className={styles.specialistsBadge} style={s.specialistsBadge}>
+                            <div style={s.badgeIconWrap}>
+                                <img style={s.badgeIcon} alt="" src="/SVG.svg" />
+                            </div>
                             <div
-                                className={styles.badgeText}
                                 style={{
-                                    ...s.badgeText,
-                                    fontFamily: "Lilex, Arial, sans-serif",
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    alignItems: "flex-start",
                                 }}
                             >
-                                OUR SPECIALISTS
+                                <div
+                                    className={styles.badgeText}
+                                    style={{
+                                        ...s.badgeText,
+                                        fontFamily: "Lilex, Arial, sans-serif",
+                                    }}
+                                >
+                                    OUR SPECIALISTS
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className={styles.specialistsH2Wrap} style={s.specialistsH2Wrap}>
-                        <h1 className={styles.specialistsH2} style={s.specialistsH2}>
-                            The Hands Behind{" "}
-                            <br />
-                            the Care
-                        </h1>
-                    </div>
-                    <div className={styles.specialistsBodyWrap} style={s.specialistsBodyWrap}>
-                        <div className={styles.specialistsBody} style={s.specialistsBody}>
-                            From emergency medicine to advanced surgery, our specialists cover
-                            every dimension of patient health.
+                        <div className={styles.specialistsH2Wrap} style={s.specialistsH2Wrap}>
+                            <h1 className={styles.specialistsH2} style={s.specialistsH2}>
+                                The Hands Behind{" "}
+                                <br />
+                                the Care
+                            </h1>
                         </div>
-                    </div>
-                </section>
+                        <div className={styles.specialistsBodyWrap} style={s.specialistsBodyWrap}>
+                            <div className={styles.specialistsBody} style={s.specialistsBody}>
+                                From emergency medicine to advanced surgery, our specialists cover
+                                every dimension of patient health.
+                            </div>
+                        </div>
+                    </section>
 
-                {/* Doctor grid */}
-                <div className={styles.doctorGrid} style={s.doctorGrid}>
-                    <div className={styles.doctorGridInner} style={s.doctorGridInner}>
-                        <div className={styles.doctorList} style={s.doctorList}>
-                            {doctors.map((doc, i) => (
-                                <DoctorCard key={i} item={doc} />
-                            ))}
+                    {/* Doctor grid */}
+                    <div className={styles.doctorGrid} style={s.doctorGrid}>
+                        <div className={styles.doctorGridInner} style={s.doctorGridInner}>
+                            <div className={styles.doctorList} style={s.doctorList}>
+                                {doctors.map((doc, i) => (
+                                    <DoctorCard key={i} item={doc} />
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
